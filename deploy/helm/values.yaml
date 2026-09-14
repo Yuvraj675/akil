@@ -1,0 +1,58 @@
+# AKIL Helm Chart — Default Values
+
+# Container image settings
+image:
+  registry: ghcr.io/yuvraj675/akil
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+# Collector (DaemonSet) settings
+collector:
+  enabled: true
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 50m
+      memory: 64Mi
+  # eBPF ring buffer size in bytes (16 MB default)
+  ringBufferSize: 16777216
+  # Batch settings
+  batchMaxEvents: 1000
+  batchIntervalMs: 1000
+  # Security context — required for eBPF
+  securityContext:
+    privileged: true
+  # Host PID — required for cgroup resolution
+  hostPID: true
+
+# Aggregator (Deployment) settings
+aggregator:
+  enabled: true
+  replicas: 1
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
+  # Sliding window configuration
+  bucketCount: 12
+  bucketDurationSeconds: 5
+  # gRPC port
+  port: 50051
+
+# Scheduler Plugin settings
+schedulerPlugin:
+  enabled: false  # disabled by default — requires custom kube-scheduler
+  weights:
+    cache: 35
+    lock: 30
+    pageFault: 20
+    ctxSwitch: 15
+  queryTimeoutMs: 5
+
+# Namespace
+namespace: akil-system

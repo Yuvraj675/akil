@@ -1,0 +1,22 @@
+# AKIL Collector — Multi-stage Dockerfile
+# Produces a minimal image with the collector binary.
+
+# Stage 1: Build
+FROM golang:1.22-bookworm AS builder
+
+WORKDIR /build
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="-s -w" -o /akil-collector ./cmd/collector/
+
+# Stage 2: Runtime
+FROM gcr.io/distroless/static-debian12:nonroot
+
+COPY --from=builder /akil-collector /akil-collector
+
+# The collector needs to be run as root for eBPF (overridden in the DaemonSet spec)
+USER root
+
+ENTRYPOINT ["/akil-collector"]

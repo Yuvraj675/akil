@@ -27,59 +27,117 @@ The project does **NOT** involve machine learning, reinforcement learning, or "A
 
 ---
 
-## Architecture — Three Components
+## Architecture — Four Layers
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                     Kubernetes Cluster                          │
-│                                                                 │
-│  ┌─────────────────────┐         ┌──────────────────────────┐   │
-│  │  Per-Node DaemonSet  │         │    Control Plane          │   │
-│  │                     │  gRPC   │                          │   │
-│  │  ┌───────────────┐  │ stream  │  ┌────────────────────┐  │   │
-│  │  │ eBPF Probes   │  │────────▶│  │ Aggregation Service│  │   │
-│  │  │ (kernel space) │  │         │  │ (in-memory profiles)│  │   │
-│  │  └───────┬───────┘  │         │  └────────┬───────────┘  │   │
-│  │          │perf buf   │         │           │ gRPC query   │   │
-│  │  ┌───────▼───────┐  │         │  ┌────────▼───────────┐  │   │
-│  │  │ Collector     │  │         │  │ Scheduler Plugin   │  │   │
-│  │  │ (user space)  │  │         │  │ (Score extension)  │  │   │
-│  │  └───────────────┘  │         │  └────────────────────┘  │   │
-│  └─────────────────────┘         └──────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────┐
+│                       Kubernetes Cluster                            │
+│                                                                     │
+│  ┌───────────────────────────┐    ┌──────────────────────────────┐  │
+│  │  Per-Node DaemonSet        │    │    Control Plane              │  │
+│  │                           │    │                              │  │
+│  │  ┌─────────────────────┐  │    │  ┌────────────────────────┐  │  │
+│  │  │ Layer 1: eBPF Probes│  │    │  │ Layer 3: Aggregation   │  │  │
+│  │  │ (kernel space)      │  │    │  │ Service (gRPC server)  │  │  │
+│  │  │  • Page Fault       │  │    │  │  • Sliding window      │  │  │
+│  │  │  • Cache Miss       │  │    │  │  • Profile Store       │  │  │
+│  │  │  • Lock Contention  │  │    │  │  • Query API           │  │  │
+│  │  │  • Context Switch   │  │    │  └──────────┬─────────────┘  │  │
+│  │  └─────────┬───────────┘  │    │             │ gRPC unary     │  │
+│  │            │ ring buffer   │    │  ┌──────────▼─────────────┐  │  │
+│  │  ┌─────────▼───────────┐  │    │  │ Layer 4: Scheduler     │  │  │
+│  │  │ Layer 2: Collector  │  │    │  │ Plugin (Score)         │  │  │
+│  │  │ (user space, Go)    │──┼────┼─▶│  • Penalty scoring     │  │  │
+│  │  │  • Cgroup resolver  │ gRPC  │  │  • Confidence adjust   │  │  │
+│  │  │  • Batch assembler  │stream │  │  • Graceful degradation│  │  │
+│  │  └─────────────────────┘  │    │  └────────────────────────┘  │  │
+│  └───────────────────────────┘    └──────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────────┘
 ```
 
-### Component 1: Telemetry Collector (DaemonSet)
+### Layer 1: eBPF Probes (Kernel Space)
 
-- **Location**: `cmd/collector/`, `pkg/ebpf/`, `pkg/telemetry/`
-- **Runs on**: Every node (Kubernetes DaemonSet)
-- **Kernel space**: eBPF programs attached to:
-  - `tracepoint/exceptions/page_fault_user` and `page_fault_kernel` — page fault rate
-  - `perf_event` (hardware counters) — cache miss rate (LLC misses)
-  - `tracepoint/lock/contention_begin` / `contention_end` — lock/mutex contention
-  - `tracepoint/sched/sched_switch` — context-switch frequency
-- **User space**: Reads perf ring buffers, resolves cgroup IDs to pod/container identity, packages telemetry into protobuf messages, streams to aggregation service via gRPC.
-- **Key constraint**: Overhead must be negligible — this runs on production nodes alongside real workloads.
+- **Location**: `pkg/ebpf/` (C source + bpf2go generated Go)
+- **Shared BPF ring buffer** (16 MB, `BPF_MAP_TYPE_RINGBUF`) — all 4 probes write to one buffer
+- **Event struct**: `{ u8 event_type, u64 cgroup_id, u64 timestamp_ns, union { per-type fields } }`
+- **Internal map**: `BPF_MAP_TYPE_HASH` "lock_starts" for tracking lock contention begin/end pairs
+- **Probes**:
+  - `tracepoint/exceptions/page_fault_user` + `page_fault_kernel` — page fault rate
+  - `perf_event` HW counter `PERF_COUNT_HW_CACHE_MISSES` — cache miss rate (sampled, 1 event per 10K misses)
+  - `tracepoint/lock/contention_begin` + `contention_end` — lock/mutex contention duration
+  - `tracepoint/sched/sched_switch` — context-switch frequency (captures both prev/next cgroup IDs)
+- **CO-RE**: All programs use BTF for kernel portability. Minimum kernel: 5.8.
 
-### Component 2: Aggregation Service (Deployment)
+### Layer 2: Telemetry Collector (DaemonSet)
+
+- **Location**: `cmd/collector/`, `pkg/telemetry/`
+- **Pipeline**: Ring Buffer Reader → Cgroup Resolver → Batch Assembler → gRPC Stream Sender
+- **Cgroup resolution**: cgroupfs walk → path parsing (containerd/CRI-O) → kubelet `/pods` API → LRU cache (TTL: 30s)
+- **Key type**: `PodIdentity { namespace, pod_name, container, workload_key, node_name }`
+- **`workload_key`**: Owner reference string `"namespace/Kind/name"` (e.g., `"default/Deployment/web-frontend"`) — identifies workload type, not individual pod
+- **Batching**: Flush on 1000 events OR 1 second, whichever first
+- **Backpressure**: Drop events if gRPC stream is down (not lossless — continuous observation, not audit logging)
+
+### Layer 3: Aggregation Service (Deployment)
 
 - **Location**: `cmd/aggregator/`, `pkg/profile/`, `pkg/proto/`
-- **Runs as**: Kubernetes Deployment (single replica or leader-elected for HA)
-- **Function**: Receives gRPC streams from all node collectors, maintains a **sliding-window runtime profile** per workload (keyed by pod owner — Deployment, StatefulSet, Job).
-- **Storage**: In-memory ring buffer per workload. No external database on the hot path.
-- **API**: Exposes a gRPC `QueryProfile(workloadID)` method returning the current runtime profile. This is what the scheduler plugin calls.
-- **Key constraint**: Query latency must be sub-millisecond — the scheduler has a tight latency budget.
+- **Dual API**: `StreamTelemetry` (bidirectional streaming for ingest) + `QueryProfile` / `QueryNodeProfiles` (unary for scheduler)
+- **Storage**: `sync.Map` of `workload_key → *WorkloadProfile`
+- **Sliding window**: 12 buckets × 5 seconds = 60s window. Circular buffer, oldest bucket evicted every 5s.
+- **Rate computation**: `rate = total_events_in_window / window_duration_seconds`
+- **Confidence**: `LOW` (<100 samples), `MEDIUM` (100–1000), `HIGH` (>1000)
 
-### Component 3: Scheduler Plugin (Score)
+### Layer 4: Scheduler Plugin (Score)
 
 - **Location**: `cmd/scheduler-plugin/`, `pkg/scoring/`
-- **Runs as**: Part of a custom `kube-scheduler` binary (or as a secondary scheduler)
-- **Extension point**: Kubernetes Scheduling Framework — `Score` phase
-- **Logic**: For each candidate node, queries the aggregation service for:
-  1. The *candidate pod's* workload profile (from previous instances of the same workload)
-  2. The *already-running pods'* profiles on that node
-- **Scoring**: Penalizes destructive co-location (e.g., two cache-heavy workloads on the same NUMA domain), rewards complementary behavior.
-- **Key constraint**: Must degrade gracefully — if the aggregation service is unreachable or no profile exists, the plugin must return a neutral score and not block scheduling.
+- **Framework**: Kubernetes Scheduling Framework `ScorePlugin` interface
+- **Algorithm**: Start at 100, subtract pairwise co-location penalties against every existing workload on the candidate node
+- **Penalty formula per co-located workload**:
+  - `cachePenalty = min(candidate.cache_miss_rate, p.cache_miss_rate) / max_rate × 35`
+  - `lockPenalty = (candidate.lock_ratio + p.lock_ratio) × 30`
+  - `pageFaultPenalty = (candidate.pf_rate + p.pf_rate) / max_rate × 20`
+  - `ctxSwitchPenalty = (candidate.cs_rate + p.cs_rate) / max_rate × 15`
+- **Confidence dampening**: LOW=0.25×, MEDIUM=0.75×, HIGH=1.0×
+- **Graceful degradation**: Return neutral score (50) on any failure — aggregator unreachable, timeout (>5ms), no profile, unknown confidence
+
+---
+
+## Performance Budget
+
+| Component | Metric | Target |
+|---|---|---|
+| eBPF probes | Per-event overhead | < 1μs |
+| eBPF probes | Node CPU overhead | < 0.5% of one core |
+| Collector | Event-to-gRPC latency (p99) | < 10ms |
+| Collector | Memory (RSS) | < 64 MB |
+| Aggregator | Ingestion throughput | ≥ 100K events/sec |
+| Aggregator | Query latency (p99) | < 500μs |
+| Plugin | Score() time (p99) | < 5ms |
+| Plugin | Scheduling throughput impact | < 5% increase |
+
+---
+
+## gRPC Proto Schema Reference
+
+The proto file at `pkg/proto/akil.proto` defines:
+
+- **`AkilTelemetry` service**: `StreamTelemetry`, `QueryProfile`, `QueryNodeProfiles`
+- **`TelemetryBatch`**: `{ node_name, batch_timestamp_ns, repeated TelemetryEvent }`
+- **`TelemetryEvent`**: `{ event_type, workload_key, timestamp_ns, oneof payload }`
+- **`RuntimeProfile`**: `{ workload_key, page_fault_rate, cache_miss_rate, lock_contention_ratio, context_switch_rate, sample_count, window_start_ns, window_end_ns, confidence }`
+- **`ProfileConfidence` enum**: `UNKNOWN=0, LOW=1, MEDIUM=2, HIGH=3`
+
+When generating proto code, use `protoc-gen-go` and `protoc-gen-go-grpc`. Generated files are committed.
+
+---
+
+## Security & Privileges
+
+**Collector** (elevated):
+- `CAP_BPF`, `CAP_PERFMON`, `CAP_SYS_ADMIN` (fallback for kernel <5.19)
+- `hostPID: true`, read-only mounts: `/sys/fs/cgroup`, `/sys/kernel/btf`
+
+**Aggregator & Plugin**: No elevated privileges.
 
 ---
 

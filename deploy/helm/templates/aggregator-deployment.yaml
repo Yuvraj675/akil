@@ -1,0 +1,67 @@
+{{- if .Values.aggregator.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: akil-aggregator
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: akil-aggregator
+    app.kubernetes.io/component: aggregator
+    app.kubernetes.io/part-of: akil
+spec:
+  replicas: {{ .Values.aggregator.replicas }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: akil-aggregator
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: akil-aggregator
+        app.kubernetes.io/component: aggregator
+        app.kubernetes.io/part-of: akil
+    spec:
+      serviceAccountName: akil-aggregator
+      containers:
+        - name: aggregator
+          image: "{{ .Values.image.registry }}/aggregator:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - --listen-addr=:{{ .Values.aggregator.port }}
+            - --bucket-count={{ .Values.aggregator.bucketCount }}
+            - --bucket-duration={{ .Values.aggregator.bucketDurationSeconds }}s
+          ports:
+            - name: grpc
+              containerPort: {{ .Values.aggregator.port }}
+              protocol: TCP
+          resources:
+            {{- toYaml .Values.aggregator.resources | nindent 12 }}
+          readinessProbe:
+            grpc:
+              port: {{ .Values.aggregator.port }}
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            grpc:
+              port: {{ .Values.aggregator.port }}
+            initialDelaySeconds: 15
+            periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: akil-aggregator
+  namespace: {{ .Values.namespace }}
+  labels:
+    app.kubernetes.io/name: akil-aggregator
+    app.kubernetes.io/component: aggregator
+    app.kubernetes.io/part-of: akil
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: akil-aggregator
+  ports:
+    - name: grpc
+      port: {{ .Values.aggregator.port }}
+      targetPort: grpc
+      protocol: TCP
+{{- end }}

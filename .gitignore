@@ -1,0 +1,28 @@
+# Binaries
+bin/
+*.exe
+
+# Go
+*.test
+*.out
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# eBPF generated (keep committed, but track regeneration)
+# pkg/ebpf/akil_bpfel.go
+# pkg/ebpf/akil_bpfeb.go
+# pkg/ebpf/akil_bpfel.o
+# pkg/ebpf/akil_bpfeb.o
+
+# Temporary
+/tmp/
+*.log

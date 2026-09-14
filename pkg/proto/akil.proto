@@ -1,0 +1,108 @@
+syntax = "proto3";
+
+package akil.v1;
+
+option go_package = "github.com/Yuvraj675/akil/pkg/proto";
+
+// AkilTelemetry is the core gRPC service for AKIL.
+// It provides both ingestion (collector → aggregator) and query (plugin → aggregator) APIs.
+service AkilTelemetry {
+  // StreamTelemetry: Collectors stream batches of kernel events.
+  // Aggregator responds with acks containing optional backpressure signals.
+  rpc StreamTelemetry(stream TelemetryBatch) returns (stream IngestAck);
+
+  // QueryProfile: Scheduler plugin requests a single workload's runtime profile.
+  rpc QueryProfile(ProfileRequest) returns (RuntimeProfile);
+
+  // QueryNodeProfiles: Scheduler plugin requests all workload profiles on a node.
+  rpc QueryNodeProfiles(NodeProfilesRequest) returns (NodeProfilesResponse);
+}
+
+// ---------------------------------------------------------------------------
+// Ingest messages (Collector → Aggregator)
+// ---------------------------------------------------------------------------
+
+message TelemetryBatch {
+  string node_name = 1;
+  int64  batch_timestamp_ns = 2;
+  repeated TelemetryEvent events = 3;
+}
+
+message TelemetryEvent {
+  EventType event_type = 1;
+  string    workload_key = 2;  // "namespace/Kind/name"
+  int64     timestamp_ns = 3;
+  oneof payload {
+    PageFaultEvent      page_fault = 4;
+    CacheMissEvent      cache_miss = 5;
+    LockContentionEvent lock_contention = 6;
+    ContextSwitchEvent  ctx_switch = 7;
+  }
+}
+
+enum EventType {
+  EVENT_TYPE_UNSPECIFIED = 0;
+  EVENT_TYPE_PAGE_FAULT = 1;
+  EVENT_TYPE_CACHE_MISS = 2;
+  EVENT_TYPE_LOCK_CONTENTION = 3;
+  EVENT_TYPE_CONTEXT_SWITCH = 4;
+}
+
+message PageFaultEvent {
+  bool   is_major = 1;  // true = major (disk I/O), false = minor
+  uint64 address = 2;
+}
+
+message CacheMissEvent {
+  uint64 miss_count_delta = 1;  // number of misses since last sample
+}
+
+message LockContentionEvent {
+  uint64 lock_address = 1;
+  int64  duration_ns = 2;  // time spent waiting on the lock
+}
+
+message ContextSwitchEvent {
+  string prev_workload_key = 1;  // workload that was switched out
+  int32  prev_state = 2;         // task state of the outgoing process
+}
+
+message IngestAck {
+  int64 acked_timestamp_ns = 1;
+  bool  apply_backpressure = 2;  // if true, collector should slow down
+}
+
+// ---------------------------------------------------------------------------
+// Query messages (Scheduler Plugin → Aggregator)
+// ---------------------------------------------------------------------------
+
+message ProfileRequest {
+  string workload_key = 1;
+}
+
+message RuntimeProfile {
+  string workload_key = 1;
+  double page_fault_rate = 2;        // faults/sec (sliding window average)
+  double cache_miss_rate = 3;        // misses/sec
+  double lock_contention_ratio = 4;  // fraction of time in contention [0.0, 1.0]
+  double context_switch_rate = 5;    // switches/sec
+  int64  sample_count = 6;          // total events in current window
+  int64  window_start_ns = 7;
+  int64  window_end_ns = 8;
+  ProfileConfidence confidence = 9;
+}
+
+enum ProfileConfidence {
+  PROFILE_CONFIDENCE_UNKNOWN = 0;
+  PROFILE_CONFIDENCE_LOW = 1;     // < 100 samples in window
+  PROFILE_CONFIDENCE_MEDIUM = 2;  // 100–1000 samples
+  PROFILE_CONFIDENCE_HIGH = 3;    // > 1000 samples
+}
+
+message NodeProfilesRequest {
+  string node_name = 1;
+}
+
+message NodeProfilesResponse {
+  repeated RuntimeProfile profiles = 1;
+}

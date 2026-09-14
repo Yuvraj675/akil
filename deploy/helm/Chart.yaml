@@ -1,0 +1,13 @@
+apiVersion: v2
+name: akil
+description: AKIL — Adaptive Kernel Intelligence Layer for Runtime-Aware Container Scheduling
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+keywords:
+  - kubernetes
+  - scheduler
+  - ebpf
+  - telemetry
+maintainers:
+  - name: Yuvraj
