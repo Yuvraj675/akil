@@ -33,7 +33,7 @@ func main() {
 	flag.Parse()
 
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
-		Level: slog.LevelInfo,
+		Level: slog.LevelDebug,
 	}))
 	slog.SetDefault(logger)
 
@@ -122,23 +122,34 @@ func (s *aggregatorService) StreamTelemetry(stream pb.AkilTelemetry_StreamTeleme
 		eventsProcessed := 0
 		for _, evt := range batch.Events {
 			if evt.WorkloadKey == "" {
+				s.logger.Debug("Empty workload key, skipping event", "type", evt.EventType)
 				continue
 			}
 
 			wp := s.store.GetOrCreate(evt.WorkloadKey)
+
+			s.logger.Debug("Processing event", "type", evt.EventType, "workload", evt.WorkloadKey)
 
 			switch evt.EventType {
 			case pb.EventType_EVENT_TYPE_PAGE_FAULT:
 				wp.RecordPageFault(batch.NodeName)
 
 			case pb.EventType_EVENT_TYPE_CACHE_MISS:
-				if cm := evt.GetCacheMiss(); cm != nil {
+				cm := evt.GetCacheMiss()
+				s.logger.Debug("Cache miss event", "cm", cm)
+				if cm != nil {
 					wp.RecordCacheMiss(int64(cm.MissCountDelta), batch.NodeName)
+				} else {
+					s.logger.Warn("CacheMiss payload is nil!")
 				}
 
 			case pb.EventType_EVENT_TYPE_LOCK_CONTENTION:
-				if lc := evt.GetLockContention(); lc != nil {
+				lc := evt.GetLockContention()
+				s.logger.Debug("Lock contention event", "lc", lc)
+				if lc != nil {
 					wp.RecordLockContention(lc.DurationNs, batch.NodeName)
+				} else {
+					s.logger.Warn("LockContention payload is nil!")
 				}
 
 			case pb.EventType_EVENT_TYPE_CONTEXT_SWITCH:

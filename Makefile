@@ -130,3 +130,8 @@ benchmark:
 dev-aggregator:
 	$(GOBUILD) -o $(AGGREGATOR_BIN) ./cmd/aggregator/ && \
 	$(AGGREGATOR_BIN) --listen-addr=:50051
+
+## build-cli: Build the interactive monitor CLI
+build-cli:
+	@mkdir -p $(BIN_DIR)
+	$(GOBUILD) -o $(BIN_DIR)/akil-cli ./cmd/akil-cli/

@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cache-stress
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: cache-stress
+  template:
+    metadata:
+      labels:
+        app: cache-stress
+    spec:
+      containers:
+      - name: stress-ng
+        image: polinux/stress-ng
+        args: ["--cache", "2", "--cache-flush", "--metrics-brief"]
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lock-stress
+  namespace: default
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: lock-stress
+  template:
+    metadata:
+      labels:
+        app: lock-stress
+    spec:
+      containers:
+      - name: stress-ng
+        image: polinux/stress-ng
+        args: ["--pthread", "4", "--metrics-brief"]
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi

@@ -33,10 +33,10 @@ const (
 // AkilScorePlugin implements the AKIL scoring logic.
 // In production, this implements framework.ScorePlugin from k8s.io/kubernetes.
 type AkilScorePlugin struct {
-	client        pb.AkilTelemetryClient
-	scorer        *scoring.Scorer
-	queryTimeout  time.Duration
-	logger        *slog.Logger
+	client       pb.AkilTelemetryClient
+	scorer       *scoring.Scorer
+	queryTimeout time.Duration
+	logger       *slog.Logger
 }
 
 // AkilScoreArgs are the plugin configuration arguments.
@@ -221,12 +221,12 @@ func main() {
 		Level: slog.LevelInfo,
 	}))
 
-	logger.Info("AKIL Scheduler Plugin",
-		"note", "This binary requires Kubernetes Scheduling Framework integration.",
-		"usage", "Build as part of a custom kube-scheduler. See deploy/helm/ for configuration.",
-	)
+	fmt.Println("======================================================")
+	fmt.Println(" AKIL SCHEDULER SIMULATOR (Demonstration Mode) ")
+	fmt.Println("======================================================")
+	fmt.Println("Connecting to Aggregator:", *aggregatorAddr)
 
-	// Create plugin instance (validates aggregator connectivity)
+	// Create plugin instance
 	plugin, err := NewAkilScorePlugin(AkilScoreArgs{
 		AggregatorAddress: *aggregatorAddr,
 	})
@@ -235,16 +235,49 @@ func main() {
 		os.Exit(1)
 	}
 
-	// Example: score a workload on a node
-	ctx := context.Background()
-	score, reason, err := plugin.Score(ctx, "default/Deployment/example", "node-1")
-	if err != nil {
-		logger.Error("scoring failed", "error", err)
-		os.Exit(1)
+	nodes := []string{"akil-worker", "akil-worker2", "akil-worker3", "akil-control-plane"}
+	workloadsToSchedule := []string{
+		"default/Deployment/cache-stress",
+		"default/Deployment/lock-stress",
+		"default/Deployment/web-frontend",
 	}
 
-	logger.Info("example score",
-		"score", score,
-		"reason", reason,
-	)
+	for {
+		fmt.Println("\n--- New Scheduling Cycle ---")
+
+		for _, w := range workloadsToSchedule {
+			fmt.Printf("\n[+] Incoming Pod for Workload: %s\n", w)
+
+			bestScore := int64(-1)
+			bestNode := ""
+			bestReason := ""
+
+			for _, node := range nodes {
+				ctx := context.Background()
+				score, reason, err := plugin.Score(ctx, w, node)
+				if err != nil {
+					fmt.Printf("    - Node %-18s : ERROR (%v)\n", node, err)
+					continue
+				}
+
+				fmt.Printf("    - Node %-18s : Score %3d | %s\n", node, score, reason)
+
+				if score > bestScore {
+					bestScore = score
+					bestNode = node
+					bestReason = reason
+				}
+			}
+
+			if bestNode != "" {
+				fmt.Printf("    => SCHEDULING DECISION: Assigned to %s (Score: %d) [%s]\n", bestNode, bestScore, bestReason)
+			} else {
+				fmt.Printf("    => SCHEDULING DECISION: Failed to schedule\n")
+			}
+			time.Sleep(3 * time.Second)
+		}
+
+		fmt.Println("\nWaiting for next cycle (10s)...")
+		time.Sleep(10 * time.Second)
+	}
 }

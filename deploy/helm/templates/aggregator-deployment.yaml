@@ -36,12 +36,12 @@ spec:
           resources:
             {{- toYaml .Values.aggregator.resources | nindent 12 }}
           readinessProbe:
-            grpc:
+            tcpSocket:
               port: {{ .Values.aggregator.port }}
             initialDelaySeconds: 5
             periodSeconds: 10
           livenessProbe:
-            grpc:
+            tcpSocket:
               port: {{ .Values.aggregator.port }}
             initialDelaySeconds: 15
             periodSeconds: 20

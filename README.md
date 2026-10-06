@@ -668,40 +668,14 @@ akil/
 
 ## Getting Started
 
-> **Status**: Phase 1 (Review) complete. Implementation is pending.
-> Build and deployment instructions will be added as components are implemented.
+> **Status**: Phase 1 (Proof-of-Concept) is complete. 
+> The project has been implemented and is fully operational end-to-end for local demonstration. The raw eBPF hooks are stubbed with a synthetic telemetry generator to validate the control plane.
 
-### Prerequisites (Expected)
+For complete documentation, including architecture and setup instructions, please refer to the `docs/` directory:
 
-- Go 1.22+
-- clang 15+ / llvm (for eBPF compilation)
-- Docker
-- kind (for local Kubernetes clusters)
-- Helm 3
-- Linux kernel 5.8+ (for BPF ring buffer support and CO-RE)
-
-### Quick Start (Coming Soon)
-
-```bash
-# Clone
-git clone <repo-url> && cd akil
-
-# Build all binaries
-make build
-
-# Build container images
-make image
-
-# Create local kind cluster and deploy
-make kind-up
-make deploy
-
-# Run benchmark
-make benchmark
-
-# View results
-make results
-```
+- [Quickstart Guide](docs/QUICKSTART.md) - How to build, run, and demonstrate the project locally.
+- [Architecture](docs/ARCHITECTURE.md) - Detailed breakdown of the Collector, Aggregator, and Scheduler components.
+- [Operating Systems Concepts](docs/OS_CONCEPTS.md) - Explanation of the kernel metrics tracked (Cache Misses, Context Switches, Page Faults, Lock Contention).
 
 ---
 

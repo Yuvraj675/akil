@@ -44,7 +44,7 @@ func main() {
 
 	// Set up structured logging
 	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
-		Level: slog.LevelInfo,
+		Level: slog.LevelDebug,
 	}))
 	slog.SetDefault(logger)
 
@@ -141,10 +141,76 @@ func main() {
 	// Start gRPC batch sender
 	go func() {
 		for batch := range batcher.Batches() {
-			if err := stream.Send(batch); err != nil {
-				logger.Warn("failed to send batch", "error", err)
-				// On stream error, events are dropped (by design — not lossless)
+			err := stream.Send(batch)
+			if err != nil {
+				logger.Warn("failed to send batch, reconnecting", "error", err)
+				
+				// Reconnect logic
+				for {
+					time.Sleep(1 * time.Second)
+					newStream, err := client.StreamTelemetry(ctx)
+					if err == nil {
+						stream = newStream
+						logger.Info("successfully reconnected stream")
+						break
+					}
+					if ctx.Err() != nil {
+						return
+					}
+				}
 				continue
+			}
+		}
+	}()
+
+	// FAKE EVENT GENERATOR FOR DEMO PURPOSES
+	// Since eBPF is stubbed in Phase 1, we inject synthetic data directly into the batcher
+	go func() {
+		logger.Info("Starting synthetic telemetry generator for demo workloads")
+		
+		cacheStressID := telemetry.PodIdentity{
+			Namespace:   "default",
+			WorkloadKey: "default/Deployment/cache-stress",
+			NodeName:    *nodeName,
+		}
+		lockStressID := telemetry.PodIdentity{
+			Namespace:   "default",
+			WorkloadKey: "default/Deployment/lock-stress",
+			NodeName:    *nodeName,
+		}
+
+		ticker := time.NewTicker(100 * time.Millisecond)
+		defer ticker.Stop()
+		for {
+			select {
+			case <-ctx.Done():
+				return
+			case t := <-ticker.C:
+				now := uint64(t.UnixNano())
+				
+				// Generate heavy cache misses for cache-stress
+				batcher.Add(telemetry.TaggedEvent{
+					RawEvent: telemetry.RawEvent{
+						Type:        telemetry.EventCacheMiss,
+						TimestampNs: now,
+						Payload: telemetry.CacheMissPayload{
+							MissCountDelta: 8500, // 85k misses per sec
+						},
+					},
+					Identity: cacheStressID,
+				})
+				
+				// Generate high lock contention for lock-stress
+				batcher.Add(telemetry.TaggedEvent{
+					RawEvent: telemetry.RawEvent{
+						Type:        telemetry.EventLockContention,
+						TimestampNs: now,
+						Payload: telemetry.LockContentionPayload{
+							DurationNs: 75000000, // 750ms total lock contention per sec (0.75 ratio)
+						},
+					},
+					Identity: lockStressID,
+				})
 			}
 		}
 	}()

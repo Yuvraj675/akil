@@ -27,7 +27,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
             - --aggregator-addr=akil-aggregator.{{ .Values.namespace }}:{{ .Values.aggregator.port }}
-            - --ring-buffer-size={{ .Values.collector.ringBufferSize }}
+            - --ring-buffer-size={{ printf "%v" .Values.collector.ringBufferSize | int }}
             - --batch-max-events={{ .Values.collector.batchMaxEvents }}
             - --batch-interval={{ .Values.collector.batchIntervalMs }}ms
           env:

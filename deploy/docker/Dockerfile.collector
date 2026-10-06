@@ -2,7 +2,7 @@
 # Produces a minimal image with the collector binary.
 
 # Stage 1: Build
-FROM golang:1.22-bookworm AS builder
+FROM golang:latest AS builder
 
 WORKDIR /build
 COPY go.mod go.sum ./
