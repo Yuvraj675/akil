@@ -1,10 +1,3 @@
-// AKIL Collector — DaemonSet binary
-//
-// The collector runs on every Kubernetes node and is responsible for:
-//  1. Loading eBPF programs into the kernel
-//  2. Reading events from the shared BPF ring buffer
-//  3. Resolving cgroup IDs to Kubernetes pod identity
-//  4. Batching events and streaming them to the aggregation service via gRPC
 package main
 
 import (
@@ -19,89 +12,81 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	akilebpf "github.com/Yuvraj675/akil/pkg/ebpf"
+	"encoding/binary"
+
+	"github.com/Yuvraj675/akil/pkg/cgroup"
+	"github.com/Yuvraj675/akil/pkg/ebpf"
 	pb "github.com/Yuvraj675/akil/pkg/proto"
-	"github.com/Yuvraj675/akil/pkg/telemetry"
+	"github.com/cilium/ebpf/link"
+	"github.com/cilium/ebpf/ringbuf"
 )
 
 var (
-	aggregatorAddr = flag.String("aggregator-addr", "akil-aggregator.akil-system:50051",
-		"Address of the AKIL aggregation service")
-	nodeName = flag.String("node-name", "",
-		"Kubernetes node name (from downward API)")
-	kubeletURL = flag.String("kubelet-url", "https://localhost:10250",
-		"Local kubelet API URL")
-	ringBufferSize = flag.Int("ring-buffer-size", 16*1024*1024,
-		"BPF ring buffer size in bytes")
-	batchMaxEvents = flag.Int("batch-max-events", 1000,
-		"Maximum events per batch")
-	batchInterval = flag.Duration("batch-interval", 1*time.Second,
-		"Maximum time between batch flushes")
+	aggregatorAddr = flag.String("aggregator", "localhost:50051", "Aggregator gRPC address")
+	nodeName       = flag.String("node-name", "worker-node-01", "Node name reporting")
 )
 
 func main() {
 	flag.Parse()
-
-	// Set up structured logging
-	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{
-		Level: slog.LevelDebug,
-	}))
+	logger := slog.New(slog.NewJSONHandler(os.Stdout, &slog.HandlerOptions{Level: slog.LevelDebug}))
 	slog.SetDefault(logger)
+	
+	logger.Info("AKIL Collector starting", "node", *nodeName, "aggregator", *aggregatorAddr)
 
-	logger.Info("AKIL collector starting",
-		"aggregator_addr", *aggregatorAddr,
-		"node_name", *nodeName,
-		"ring_buffer_size", *ringBufferSize,
-	)
-
-	// Resolve node name from environment if not specified
-	if *nodeName == "" {
-		*nodeName = os.Getenv("NODE_NAME")
-	}
-	if *nodeName == "" {
-		logger.Error("node name not specified (use --node-name or NODE_NAME env)")
+	// Load pre-compiled eBPF programs
+	var objs ebpf.BpfObjects
+	if err := ebpf.LoadBpfObjects(&objs, nil); err != nil {
+		logger.Error("failed to load objects", "error", err)
 		os.Exit(1)
 	}
+	defer objs.Close()
 
-	// Set up context with signal handling
+	// Attach tracepoints
+	tpPF, err := link.Tracepoint("exceptions", "page_fault_user", objs.HandlePageFault, nil)
+	if err != nil {
+		logger.Error("failed to attach page fault", "error", err)
+		os.Exit(1)
+	}
+	defer tpPF.Close()
+
+	tpCS, err := link.Tracepoint("sched", "sched_switch", objs.HandleSchedSwitch, nil)
+	if err != nil {
+		logger.Error("failed to attach sched switch", "error", err)
+		os.Exit(1)
+	}
+	defer tpCS.Close()
+
+	logger.Info("eBPF probes attached successfully")
+
+	// Open BPF ring buffer
+	reader, err := ringbuf.NewReader(objs.Events)
+	if err != nil {
+		logger.Error("failed to create ringbuf reader", "error", err)
+		os.Exit(1)
+	}
+	defer reader.Close()
+
+	
+	// Start cgroup resolver
+	var resolver *cgroup.Resolver
+	var errRes error
+	resolver, errRes = cgroup.NewResolver(*nodeName)
+	if errRes != nil {
+		logger.Warn("failed to init cgroup resolver, using raw IDs", "error", errRes)
+	} else {
+		logger.Info("cgroup resolver started")
+	}
+
 	ctx, cancel := signal.NotifyContext(context.Background(), syscall.SIGINT, syscall.SIGTERM)
 	defer cancel()
 
-	// Check BPF support
-	if err := akilebpf.CheckBPFSupport(); err != nil {
-		logger.Warn("BPF support check failed (running in degraded mode)", "error", err)
+	if resolver != nil {
+		go resolver.Start(ctx)
 	}
 
-	// Initialize eBPF loader
-	loader, err := akilebpf.NewLoader(akilebpf.LoaderConfig{
-		RingBufferSize: *ringBufferSize,
-		Logger:         logger,
-	})
-	if err != nil {
-		logger.Error("failed to initialize eBPF loader", "error", err)
-		os.Exit(1)
-	}
-	defer loader.Close()
 
-	// Initialize cgroup resolver
-	resolver := telemetry.NewCgroupResolver(telemetry.CgroupResolverConfig{
-		KubeletURL: *kubeletURL,
-		NodeName:   *nodeName,
-		Logger:     logger,
-	})
-
-	// Initialize batch assembler
-	batcher := telemetry.NewBatchAssembler(telemetry.BatchAssemblerConfig{
-		MaxEvents:     *batchMaxEvents,
-		FlushInterval: *batchInterval,
-		NodeName:      *nodeName,
-		Logger:        logger,
-	})
-
-	// Connect to aggregator via gRPC
-	conn, err := grpc.NewClient(*aggregatorAddr,
-		grpc.WithTransportCredentials(insecure.NewCredentials()),
-	)
+	// Connect to aggregator
+	conn, err := grpc.Dial(*aggregatorAddr, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		logger.Error("failed to connect to aggregator", "error", err)
 		os.Exit(1)
@@ -109,146 +94,72 @@ func main() {
 	defer conn.Close()
 
 	client := pb.NewAkilTelemetryClient(conn)
-
-	// Start the gRPC stream
 	stream, err := client.StreamTelemetry(ctx)
 	if err != nil {
 		logger.Error("failed to open telemetry stream", "error", err)
 		os.Exit(1)
 	}
 
-	// Start batch assembler
-	go batcher.Start()
+	logger.Info("Streaming to aggregator...")
 
-	// Start event processing pipeline: eBPF events → resolve → batch → stream
 	go func() {
-		for rawEvt := range loader.Events() {
-			// Resolve cgroup ID to pod identity
-			identity, err := resolver.Resolve(rawEvt.CgroupID)
-			if err != nil {
-				// Skip events for unresolvable cgroups (system processes, etc.)
-				continue
-			}
-
-			tagged := telemetry.TaggedEvent{
-				RawEvent: rawEvt,
-				Identity: identity,
-			}
-			batcher.Add(tagged)
-		}
+		<-ctx.Done()
+		reader.Close()
 	}()
 
-	// Start gRPC batch sender
-	go func() {
-		for batch := range batcher.Batches() {
-			err := stream.Send(batch)
-			if err != nil {
-				logger.Warn("failed to send batch, reconnecting", "error", err)
-				
-				// Reconnect logic
-				for {
-					time.Sleep(1 * time.Second)
-					newStream, err := client.StreamTelemetry(ctx)
-					if err == nil {
-						stream = newStream
-						logger.Info("successfully reconnected stream")
-						break
-					}
-					if ctx.Err() != nil {
-						return
-					}
-				}
-				continue
-			}
-		}
-	}()
-
-	// FAKE EVENT GENERATOR FOR DEMO PURPOSES
-	// Since eBPF is stubbed in Phase 1, we inject synthetic data directly into the batcher
-	go func() {
-		logger.Info("Starting synthetic telemetry generator for demo workloads")
-		
-		cacheStressID := telemetry.PodIdentity{
-			Namespace:   "default",
-			WorkloadKey: "default/Deployment/cache-stress",
-			NodeName:    *nodeName,
-		}
-		lockStressID := telemetry.PodIdentity{
-			Namespace:   "default",
-			WorkloadKey: "default/Deployment/lock-stress",
-			NodeName:    *nodeName,
-		}
-
-		ticker := time.NewTicker(100 * time.Millisecond)
-		defer ticker.Stop()
-		for {
-			select {
-			case <-ctx.Done():
-				return
-			case t := <-ticker.C:
-				now := uint64(t.UnixNano())
-				
-				// Generate heavy cache misses for cache-stress
-				batcher.Add(telemetry.TaggedEvent{
-					RawEvent: telemetry.RawEvent{
-						Type:        telemetry.EventCacheMiss,
-						TimestampNs: now,
-						Payload: telemetry.CacheMissPayload{
-							MissCountDelta: 8500, // 85k misses per sec
-						},
-					},
-					Identity: cacheStressID,
-				})
-				
-				// Generate high lock contention for lock-stress
-				batcher.Add(telemetry.TaggedEvent{
-					RawEvent: telemetry.RawEvent{
-						Type:        telemetry.EventLockContention,
-						TimestampNs: now,
-						Payload: telemetry.LockContentionPayload{
-							DurationNs: 75000000, // 750ms total lock contention per sec (0.75 ratio)
-						},
-					},
-					Identity: lockStressID,
-				})
-			}
-		}
-	}()
-
-	// Start eBPF ring buffer reader (blocks until context is cancelled)
-	go func() {
-		if err := loader.Start(ctx); err != nil && ctx.Err() == nil {
-			logger.Error("eBPF loader failed", "error", err)
-			cancel()
-		}
-	}()
-
-	// Start periodic cache eviction
-	go func() {
-		ticker := time.NewTicker(30 * time.Second)
-		defer ticker.Stop()
-		for {
-			select {
-			case <-ticker.C:
-				evicted := resolver.EvictExpired()
-				if evicted > 0 {
-					logger.Debug("evicted expired cgroup cache entries", "count", evicted)
-				}
-			case <-ctx.Done():
-				return
-			}
-		}
-	}()
-
-	// Wait for shutdown signal
-	<-ctx.Done()
-	logger.Info("shutting down collector")
-
-	batcher.Stop()
-
-	if err := stream.CloseSend(); err != nil {
-		logger.Warn("error closing gRPC stream", "error", err)
+	batch := &pb.TelemetryBatch{
+		NodeName: *nodeName,
+		Events:   make([]*pb.TelemetryEvent, 0, 100),
 	}
+	
+	lastFlush := time.Now()
 
-	logger.Info("collector stopped")
+	for {
+		record, err := reader.Read()
+		if err != nil {
+			if ctx.Err() != nil {
+				break
+			}
+			logger.Error("read from ringbuf failed", "error", err)
+			continue
+		}
+
+		if len(record.RawSample) < 24 {
+			continue
+		}
+
+		// Parse the struct event_t
+		eventType := record.RawSample[0]
+		// Cgroup ID is bytes 8-15, Timestamp is bytes 16-23 (little endian, assuming 64-bit aligned)
+		
+		cgroupID := binary.LittleEndian.Uint64(record.RawSample[8:16])
+		
+		wk := ""
+		if resolver != nil {
+			wk = resolver.Resolve(cgroupID)
+		}
+		if wk == "" {
+			// fallback or ignore if not a k8s pod
+			continue
+		}
+
+		evt := &pb.TelemetryEvent{
+			EventType:   pb.EventType(eventType),
+			WorkloadKey: wk,
+			TimestampNs: time.Now().UnixNano(),
+		}
+
+		batch.Events = append(batch.Events, evt)
+
+		if len(batch.Events) >= 100 || time.Since(lastFlush) > time.Second {
+			batch.BatchTimestampNs = time.Now().UnixNano()
+			if err := stream.Send(batch); err != nil {
+				logger.Warn("failed to send batch", "error", err)
+			}
+			batch.Events = make([]*pb.TelemetryEvent, 0, 100)
+			lastFlush = time.Now()
+		}
+	}
+	
+	logger.Info("Collector shutdown complete")
 }

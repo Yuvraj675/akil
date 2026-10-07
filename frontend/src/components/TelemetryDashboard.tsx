@@ -1,39 +1,56 @@
 import { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { Activity } from 'lucide-react';
-
-const WORKLOADS = ['default/Deployment/nginx-frontend', 'data/StatefulSet/redis-cache', 'jobs/Job/batch-processor'];
+import { Activity } from "lucide-react";
+import ScaleControl from "./ScaleControl";
+import Walkthrough from "./Walkthrough";
 
 export default function TelemetryDashboard() {
   const [data, setData] = useState<any[]>([]);
-  const [selectedWorkload, setSelectedWorkload] = useState(WORKLOADS[0]);
+  const [workloads, setWorkloads] = useState<string[]>([]);
+  const [selectedWorkload, setSelectedWorkload] = useState('');
 
-  // Simulate real-time telemetry data
+  // Fetch real-time telemetry data from the Aggregator backend
   useEffect(() => {
-    // Initial data
-    const initialData = Array.from({ length: 20 }).map((_, i) => ({
-      time: new Date(Date.now() - (20 - i) * 1000).toLocaleTimeString([], { hour12: false, second: '2-digit', minute: '2-digit' }),
-      pageFaults: Math.random() * 100 + (selectedWorkload.includes('redis') ? 200 : 50),
-      cacheMisses: Math.random() * 50 + (selectedWorkload.includes('batch') ? 150 : 20),
-      lockContention: Math.random() * 10 + (selectedWorkload.includes('redis') ? 30 : 5),
-      ctxSwitches: Math.random() * 500 + 1000,
-    }));
-    setData(initialData);
+    const fetchProfiles = async () => {
+      try {
+        const res = await fetch('http://localhost:8080/api/profiles');
+        if (!res.ok) return;
+        const profiles = await res.json();
+        
+        if (profiles && profiles.length > 0) {
+          const keys = profiles.map((p: any) => p.WorkloadKey);
+          setWorkloads(keys);
+          
+          if (!selectedWorkload && keys.length > 0) {
+            const demo = keys.find((k: string) => k.includes('demo-workload'));
+            setSelectedWorkload(demo || keys[0]);
+          }
 
-    const interval = setInterval(() => {
-      setData(prev => {
-        const newData = [...prev.slice(1)];
-        newData.push({
-          time: new Date().toLocaleTimeString([], { hour12: false, second: '2-digit', minute: '2-digit' }),
-          pageFaults: Math.random() * 100 + (selectedWorkload.includes('redis') ? 200 : 50),
-          cacheMisses: Math.random() * 50 + (selectedWorkload.includes('batch') ? 150 : 20),
-          lockContention: Math.random() * 10 + (selectedWorkload.includes('redis') ? 30 : 5),
-          ctxSwitches: Math.random() * 500 + 1000,
-        });
-        return newData;
-      });
-    }, 1000);
+          const currentProfile = profiles.find((p: any) => p.WorkloadKey === (selectedWorkload || keys[0]));
+          
+          if (currentProfile) {
+            setData(prev => {
+              const newData = [...prev];
+              if (newData.length >= 20) newData.shift();
+              
+              newData.push({
+                time: new Date().toLocaleTimeString([], { hour12: false, second: '2-digit', minute: '2-digit' }),
+                pageFaults: currentProfile.PageFaultRate || 0,
+                cacheMisses: currentProfile.CacheMissRate || 0,
+                lockContention: currentProfile.LockContentionRatio || 0,
+                ctxSwitches: currentProfile.ContextSwitchRate || 0,
+              });
+              
+              return newData;
+            });
+          }
+        }
+      } catch (err) {
+        console.error("Failed to fetch profiles", err);
+      }
+    };
 
+    const interval = setInterval(fetchProfiles, 1000);
     return () => clearInterval(interval);
   }, [selectedWorkload]);
 
@@ -45,7 +62,7 @@ export default function TelemetryDashboard() {
           {payload.map((entry: any, index: number) => (
             <p key={index} style={{ color: entry.color }} className="text-sm font-semibold flex items-center justify-between gap-4">
               <span>{entry.name}:</span>
-              <span>{entry.value.toFixed(0)} /s</span>
+              <span>{entry.value.toFixed(2)} {entry.name === 'Lock Contention' ? 'ratio' : '/s'}</span>
             </p>
           ))}
         </div>
@@ -56,23 +73,26 @@ export default function TelemetryDashboard() {
 
   return (
     <div className="space-y-6 animate-in fade-in duration-500">
+      <Walkthrough />
+      <ScaleControl />
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-900 border border-slate-800 p-4 rounded-xl">
         <div className="flex items-center gap-2">
           <Activity className="text-emerald-400" />
-          <h2 className="text-lg font-semibold text-slate-100">Live Telemetry Streams</h2>
+          <h2 className="text-lg font-semibold text-slate-100">Live Telemetry Streams (Aggregator Connected)</h2>
         </div>
         <select 
           value={selectedWorkload}
           onChange={(e) => setSelectedWorkload(e.target.value)}
           className="bg-slate-800 border border-slate-700 text-slate-200 text-sm rounded-lg focus:ring-emerald-500 focus:border-emerald-500 block p-2.5 outline-none"
         >
-          {WORKLOADS.map(w => <option key={w} value={w}>{w}</option>)}
+          {workloads.length === 0 && <option>Waiting for data...</option>}
+          {workloads.map(w => <option key={w} value={w}>{w}</option>)}
         </select>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Memory Pressure */}
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm transition-all hover:border-slate-700">
           <div className="flex justify-between items-center mb-4">
             <h3 className="font-medium text-slate-200 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-blue-500"></span> Memory Pressure
@@ -93,7 +113,7 @@ export default function TelemetryDashboard() {
         </div>
 
         {/* Cache Locality */}
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm transition-all hover:border-slate-700">
           <div className="flex justify-between items-center mb-4">
             <h3 className="font-medium text-slate-200 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-rose-500"></span> Cache Locality
@@ -114,7 +134,7 @@ export default function TelemetryDashboard() {
         </div>
 
         {/* Sync Overhead */}
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm transition-all hover:border-slate-700">
           <div className="flex justify-between items-center mb-4">
             <h3 className="font-medium text-slate-200 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-purple-500"></span> Sync Overhead
@@ -135,7 +155,7 @@ export default function TelemetryDashboard() {
         </div>
 
         {/* Context Switches */}
-        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5">
+        <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm transition-all hover:border-slate-700">
           <div className="flex justify-between items-center mb-4">
             <h3 className="font-medium text-slate-200 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-amber-500"></span> Context Switches

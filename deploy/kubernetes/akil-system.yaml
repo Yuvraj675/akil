@@ -1,0 +1,149 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: akil-system
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: akil-aggregator
+  namespace: akil-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: akil-aggregator
+  template:
+    metadata:
+      labels:
+        app: akil-aggregator
+    spec:
+      serviceAccountName: akil-aggregator-sa
+      containers:
+      - name: aggregator
+        image: akil-aggregator:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 50051
+          name: grpc
+        - containerPort: 8080
+          name: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: akil-aggregator
+  namespace: akil-system
+spec:
+  selector:
+    app: akil-aggregator
+  ports:
+  - port: 50051
+    targetPort: grpc
+    name: grpc
+  - port: 8080
+    targetPort: http
+    name: http
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: akil-collector
+  namespace: akil-system
+spec:
+  selector:
+    matchLabels:
+      app: akil-collector
+  template:
+    metadata:
+      labels:
+        app: akil-collector
+    spec:
+      hostPID: true
+      serviceAccountName: akil-collector-sa
+      containers:
+      - name: collector
+        image: akil-collector:latest
+        imagePullPolicy: Never
+        securityContext:
+          privileged: true
+          capabilities:
+            add: ["BPF", "PERFMON", "SYS_ADMIN"]
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        args:
+        - "-node-name=$(NODE_NAME)"
+        - "-aggregator=akil-aggregator.akil-system.svc.cluster.local:50051"
+        volumeMounts:
+        - mountPath: /sys/kernel/tracing
+          name: tracefs
+          readOnly: true
+        - mountPath: /sys/fs/cgroup
+          name: cgroup
+          readOnly: true
+      volumes:
+      - name: tracefs
+        hostPath:
+          path: /sys/kernel/tracing
+      - name: cgroup
+        hostPath:
+          path: /sys/fs/cgroup
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: akil-aggregator-sa
+  namespace: akil-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: akil-aggregator-role
+rules:
+- apiGroups: ["apps", "extensions"]
+  resources: ["deployments", "deployments/scale"]
+  verbs: ["get", "list", "watch", "update", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: akil-aggregator-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: akil-aggregator-role
+subjects:
+- kind: ServiceAccount
+  name: akil-aggregator-sa
+  namespace: akil-system
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: akil-collector-sa
+  namespace: akil-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: akil-collector-role
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: akil-collector-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: akil-collector-role
+subjects:
+- kind: ServiceAccount
+  name: akil-collector-sa
+  namespace: akil-system

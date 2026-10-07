@@ -6,7 +6,7 @@ import SchedulingSim from './components/SchedulingSim';
 import './App.css';
 
 function App() {
-  const [activeTab, setActiveTab] = useState('architecture');
+  const [activeTab, setActiveTab] = useState('telemetry');
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-50 flex flex-col font-sans">

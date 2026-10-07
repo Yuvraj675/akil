@@ -1,0 +1,8 @@
+FROM golang:alpine AS builder
+WORKDIR /app
+COPY . .
+RUN go build -o /bin/aggregator ./cmd/aggregator
+
+FROM alpine:latest
+COPY --from=builder /bin/aggregator /bin/aggregator
+ENTRYPOINT ["/bin/aggregator"]

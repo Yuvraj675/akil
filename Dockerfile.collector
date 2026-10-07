@@ -1,0 +1,10 @@
+FROM golang:alpine AS builder
+WORKDIR /app
+COPY . .
+# Note: In a real build, we need clang/llvm for bpf2go if we don't commit the generated files.
+# We generated them in the previous step, so just build the Go binary.
+RUN go build -o /bin/collector ./cmd/collector
+
+FROM alpine:latest
+COPY --from=builder /bin/collector /bin/collector
+ENTRYPOINT ["/bin/collector"]

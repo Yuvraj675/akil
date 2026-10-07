@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-workload
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-workload
+  template:
+    metadata:
+      labels:
+        app: demo-workload
+    spec:
+      containers:
+      - name: workload
+        image: alpine
+        command: ["/bin/sh", "-c"]
+        args: ["while true; do dd if=/dev/urandom of=/dev/null bs=1M count=1 2>/dev/null; sleep 0.1; done"]
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi

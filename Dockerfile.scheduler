@@ -1,0 +1,8 @@
+FROM golang:alpine AS builder
+WORKDIR /app
+COPY . .
+RUN go build -o /bin/scheduler-plugin ./cmd/scheduler-plugin
+
+FROM alpine:latest
+COPY --from=builder /bin/scheduler-plugin /usr/local/bin/kube-scheduler
+ENTRYPOINT ["/usr/local/bin/kube-scheduler"]

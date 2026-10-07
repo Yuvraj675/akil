@@ -1,0 +1,57 @@
+--- cmd/aggregator/main.go
++++ cmd/aggregator/main.go
+@@ -5,6 +5,7 @@
+ import (
+ 	"context"
++	"encoding/json"
+ 	"flag"
+ 	"fmt"
+ 	"io"
+ 	"log/slog"
+ 	"net"
++	"net/http"
+ 	"os"
+ 	"os/signal"
+@@ -17,6 +18,7 @@
+ 
+ var (
+ 	listenAddr     = flag.String("listen-addr", ":50051", "gRPC listen address")
++	httpAddr       = flag.String("http-addr", ":8080", "HTTP listen address for frontend")
+ 	bucketCount    = flag.Int("bucket-count", 12, "Number of sliding window buckets")
+ 	bucketDuration = flag.Duration("bucket-duration", 5*time.Second, "Duration of each bucket")
+@@ -62,6 +64,30 @@
+ 		}
+ 	}()
+ 
++	// Start HTTP server for frontend UI
++	mux := http.NewServeMux()
++	mux.HandleFunc("/api/profiles", func(w http.ResponseWriter, r *http.Request) {
++		w.Header().Set("Access-Control-Allow-Origin", "*")
++		w.Header().Set("Content-Type", "application/json")
++		keys := store.Keys()
++		profiles := make([]profile.RuntimeProfile, 0, len(keys))
++		for _, k := range keys {
++			profiles = append(profiles, store.QueryProfile(k))
++		}
++		json.NewEncoder(w).Encode(profiles)
++	})
++
++	httpServer := &http.Server{Addr: *httpAddr, Handler: mux}
++	go func() {
++		logger.Info("HTTP server listening for frontend", "addr", *httpAddr)
++		if err := httpServer.ListenAndServe(); err != nil && err != http.ErrServerClosed {
++			logger.Error("HTTP server failed", "error", err)
++		}
++	}()
++
+ 	// Start profile stats reporter
+ 	go func() {
+ 		ticker := time.NewTicker(30 * time.Second)
+@@ -79,6 +105,7 @@
+ 	<-ctx.Done()
+ 	logger.Info("shutting down aggregator")
+ 	server.GracefulStop()
++	httpServer.Shutdown(context.Background())
+ 	logger.Info("aggregator stopped")
+ }
+ 
