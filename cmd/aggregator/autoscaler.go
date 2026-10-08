@@ -64,75 +64,98 @@ func startAutoscalerLoop(ctx context.Context, store *profile.Store, client *kube
 				continue
 			}
 			
-			// Find demo-workload profile
+			// Iterate over all active profiles
 			keys := store.Keys()
-			var targetKey string
-			for _, k := range keys {
-				if strings.Contains(k, "demo-workload") {
-					targetKey = k
-					break
-				}
-			}
 			
-			if targetKey == "" {
-				continue
-			}
-			
-			prof := store.QueryProfile(targetKey)
-			
-			// Get current scale
-			scale, err := client.AppsV1().Deployments("default").GetScale(ctx, "demo-workload", metav1.GetOptions{})
-			if err != nil {
-				logger.Error("autoscaler failed to get scale", "err", err)
-				continue
-			}
-			
-			currentReplicas := scale.Spec.Replicas
-			newReplicas := currentReplicas
-			var reason string
-			
-			// Logic: High context switches (> 100/s) or high page faults (> 5000/s) implies noisy neighbor interference.
-			if prof.ContextSwitchRate > 100 {
-				newReplicas++
-				reason = "High Context Switch Rate detected (>100/s). Scaling UP to relieve CPU contention."
-			} else if prof.PageFaultRate > 5000 {
-				newReplicas++
-				reason = "High Page Fault Rate detected (>5000/s). Scaling UP to distribute memory pressure."
-			} else if prof.CacheMissRate > 1000 {
-				newReplicas++
-				reason = "High Cache Miss Rate detected (>1000/s). Scaling UP to improve cache locality."
-			} else if prof.ContextSwitchRate < 50 && prof.PageFaultRate < 2000 && prof.CacheMissRate < 500 {
-				newReplicas--
-				reason = "Metrics nominal. Scaling DOWN to conserve resources."
-			}
-			
-			if newReplicas > 5 {
-				newReplicas = 5
-				reason = "Max replicas (5) reached."
-			}
-			if newReplicas < 1 {
-				newReplicas = 1
-				reason = "Min replicas (1) reached."
-			}
-			
-			if newReplicas != currentReplicas {
-				logger.Info("autoscaler acting on telemetry", "old", currentReplicas, "new", newReplicas, "reason", reason)
-				
-				autoMu.Lock()
-				scalingLogs = append(scalingLogs, ScalingLog{
-					Timestamp: time.Now().Format(time.RFC3339),
-					Action:    map[bool]string{true: "SCALE UP", false: "SCALE DOWN"}[newReplicas > currentReplicas],
-					Reason:    reason,
-					Replicas:  newReplicas,
-				})
-				// Keep only last 50 logs
-				if len(scalingLogs) > 50 {
-					scalingLogs = scalingLogs[1:]
-				}
-				autoMu.Unlock()
+			// Track processed deployments to avoid scaling multiple times for different pods of same deployment
+			processedDeployments := make(map[string]bool)
 
-				scale.Spec.Replicas = newReplicas
-				client.AppsV1().Deployments("default").UpdateScale(ctx, "demo-workload", scale, metav1.UpdateOptions{})
+			for _, k := range keys {
+				prof := store.QueryProfile(k)
+				
+				// Parse workload key. Example: "default/ReplicaSet/demo-workload-7cb4c48f" or "demo-workload"
+				deploymentName := k
+				if strings.Contains(k, "/") {
+					slashParts := strings.Split(k, "/")
+					if len(slashParts) == 3 {
+						namePart := slashParts[2]
+						// namePart is like demo-workload-7cb4c48f
+						dashParts := strings.Split(namePart, "-")
+						if len(dashParts) >= 2 {
+							// For replicasets, the last part is the pod-template-hash. We drop it to get the deployment name.
+							deploymentName = strings.Join(dashParts[:len(dashParts)-1], "-")
+						} else {
+							deploymentName = namePart
+						}
+					}
+				} else {
+					// Fallback for simple keys like "demo-workload" sent by UI directly
+					parts := strings.Split(k, "-")
+					if len(parts) >= 3 {
+						deploymentName = strings.Join(parts[:len(parts)-2], "-")
+					}
+				}
+
+				if processedDeployments[deploymentName] {
+					continue
+				}
+				
+				// Try to get scale for derived name
+				scale, err := client.AppsV1().Deployments("default").GetScale(ctx, deploymentName, metav1.GetOptions{})
+				if err != nil {
+					// Fallback to exact key
+					scale, err = client.AppsV1().Deployments("default").GetScale(ctx, k, metav1.GetOptions{})
+					if err != nil {
+						continue // Not a deployment or not found
+					}
+					deploymentName = k
+				}
+				
+				processedDeployments[deploymentName] = true
+
+				currentReplicas := scale.Spec.Replicas
+				newReplicas := currentReplicas
+				var reason string
+				
+				if prof.ContextSwitchRate > 100 {
+					newReplicas++
+					reason = "High Context Switch Rate detected (>100/s) for " + deploymentName + ". Scaling UP to relieve CPU contention."
+				} else if prof.PageFaultRate > 5000 {
+					newReplicas++
+					reason = "High Page Fault Rate detected (>5000/s) for " + deploymentName + ". Scaling UP to distribute memory pressure."
+				} else if prof.CacheMissRate > 1000 {
+					newReplicas++
+					reason = "High Cache Miss Rate detected (>1000/s) for " + deploymentName + ". Scaling UP to improve cache locality."
+				} else if prof.ContextSwitchRate < 50 && prof.PageFaultRate < 2000 && prof.CacheMissRate < 500 {
+					newReplicas--
+					reason = "Metrics nominal for " + deploymentName + ". Scaling DOWN to conserve resources."
+				}
+				
+				if newReplicas > 5 {
+					newReplicas = 5
+				}
+				if newReplicas < 1 {
+					newReplicas = 1
+				}
+				
+				if newReplicas != currentReplicas {
+					logger.Info("autoscaler acting on telemetry", "deployment", deploymentName, "old", currentReplicas, "new", newReplicas, "reason", reason)
+					
+					autoMu.Lock()
+					scalingLogs = append(scalingLogs, ScalingLog{
+						Timestamp: time.Now().Format(time.RFC3339),
+						Action:    map[bool]string{true: "SCALE UP", false: "SCALE DOWN"}[newReplicas > currentReplicas],
+						Reason:    reason,
+						Replicas:  newReplicas,
+					})
+					if len(scalingLogs) > 50 {
+						scalingLogs = scalingLogs[1:]
+					}
+					autoMu.Unlock()
+
+					scale.Spec.Replicas = newReplicas
+					client.AppsV1().Deployments("default").UpdateScale(ctx, deploymentName, scale, metav1.UpdateOptions{})
+				}
 			}
 		}
 	}

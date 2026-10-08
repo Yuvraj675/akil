@@ -3,6 +3,8 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import { Activity } from "lucide-react";
 import ScaleControl from "./ScaleControl";
 import Walkthrough from "./Walkthrough";
+import StressControl from "./StressControl";
+import LogsPanel from "./LogsPanel";
 
 export default function TelemetryDashboard() {
   const [data, setData] = useState<any[]>([]);
@@ -74,7 +76,17 @@ export default function TelemetryDashboard() {
   return (
     <div className="space-y-6 animate-in fade-in duration-500">
       <Walkthrough />
-      <ScaleControl />
+      
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="space-y-6">
+          <ScaleControl />
+          <StressControl />
+        </div>
+        <div>
+          <LogsPanel />
+        </div>
+      </div>
+
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-900 border border-slate-800 p-4 rounded-xl">
         <div className="flex items-center gap-2">
           <Activity className="text-emerald-400" />

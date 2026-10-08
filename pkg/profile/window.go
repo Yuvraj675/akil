@@ -116,6 +116,17 @@ func NewWorkloadProfile(workloadKey string, bucketCount int, bucketDuration time
 	}
 }
 
+// ResetData clears all buckets while keeping the profile alive.
+func (wp *WorkloadProfile) ResetData() {
+	wp.mu.Lock()
+	defer wp.mu.Unlock()
+	now := time.Now()
+	for i := range wp.buckets {
+		wp.buckets[i].Reset(now)
+	}
+	wp.lastRotation = now
+}
+
 // RecordPageFault adds a page fault event to the current bucket.
 func (wp *WorkloadProfile) RecordPageFault(nodeName string) {
 	wp.mu.Lock()
@@ -143,6 +154,26 @@ func (wp *WorkloadProfile) RecordLockContention(durationNs int64, nodeName strin
 	wp.maybeRotate()
 	wp.buckets[wp.currentIdx].LockDurationNs += durationNs
 	wp.buckets[wp.currentIdx].EventCount++
+	wp.nodeLocations[nodeName] = struct{}{}
+}
+
+// RecordBulk adds multiple events to the current bucket efficiently.
+func (wp *WorkloadProfile) RecordBulk(pageFaults, cacheMisses, ctxSwitches int, lockNs int64, nodeName string) {
+	wp.mu.Lock()
+	defer wp.mu.Unlock()
+	wp.maybeRotate()
+	
+	wp.buckets[wp.currentIdx].PageFaults += int64(pageFaults)
+	wp.buckets[wp.currentIdx].CacheMisses += int64(cacheMisses)
+	wp.buckets[wp.currentIdx].LockDurationNs += lockNs
+	wp.buckets[wp.currentIdx].CtxSwitches += int64(ctxSwitches)
+	
+	// Add total events count for confidence
+	wp.buckets[wp.currentIdx].EventCount += int64(pageFaults + cacheMisses + ctxSwitches)
+	if lockNs > 0 {
+		wp.buckets[wp.currentIdx].EventCount++
+	}
+	
 	wp.nodeLocations[nodeName] = struct{}{}
 }
 

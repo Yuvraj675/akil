@@ -51,7 +51,7 @@ export default function ScaleControl() {
             Live Demo: Workload Scaling
           </h2>
           <p className="text-sm text-slate-400 max-w-xl">
-            Scale the <code className="text-xs bg-slate-800 px-1 py-0.5 rounded text-blue-300">demo-workload</code> deployment from 1 to 4 pods. Watch the metrics in the dashboard react in real-time as the simulated noisy neighbor effect causes cache thrashing and lock contention to rise exponentially.
+            Watch the real-time physical allocation of pods across the Node. You can manually scale the <code className="text-xs bg-slate-800 px-1 py-0.5 rounded text-blue-300">demo-workload</code> deployment from 1 to 4 pods by clicking the numbers below.
           </p>
         </div>
 
@@ -93,8 +93,11 @@ export default function ScaleControl() {
         >
           <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${autoScalingEnabled ? 'translate-x-6' : 'translate-x-1'}`} />
         </button>
-        <span className="text-sm text-slate-300 font-medium">Enable eBPF Adaptive Autoscaling (Max 5 Pods)</span>
+        <span className="text-sm text-slate-300 font-medium">Enable eBPF Adaptive Autoscaling</span>
       </div>
+      <p className="text-xs text-slate-400 mt-1 max-w-2xl">
+        When enabled, the Aggregator constantly watches the telemetry. If any workload experiences high memory pressure or CPU contention, it will automatically scale UP (max 5 pods) to handle the load, or scale DOWN (min 1 pod) when metrics return to normal.
+      </p>
       
       {/* Visual representation */}
       <div className="mt-6 pt-6 border-t border-slate-800">

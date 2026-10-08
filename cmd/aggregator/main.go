@@ -105,6 +105,8 @@ func main() {
 	mux.HandleFunc("/api/simulate-events", func(w http.ResponseWriter, r *http.Request) {
 		// Allows frontend to trigger simulated telemetry without needing a real collector running
 		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 		if r.Method == "OPTIONS" {
 			w.WriteHeader(http.StatusOK)
 			return
@@ -125,10 +127,31 @@ func main() {
 		}
 		
 		wp := store.GetOrCreate(req.WorkloadKey)
-		for i := 0; i < req.PageFaults; i++ { wp.RecordPageFault(req.NodeName) }
-		if req.CacheMisses > 0 { wp.RecordCacheMiss(int64(req.CacheMisses), req.NodeName) }
-		if req.LockNs > 0 { wp.RecordLockContention(req.LockNs, req.NodeName) }
-		for i := 0; i < req.CtxSwitches; i++ { wp.RecordCtxSwitch(req.NodeName) }
+		wp.RecordBulk(req.PageFaults, req.CacheMisses, req.CtxSwitches, req.LockNs, req.NodeName)
+		
+		json.NewEncoder(w).Encode(map[string]bool{"success": true})
+	})
+
+	mux.HandleFunc("/api/reset-profile", func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+		
+		type ResetReq struct {
+			WorkloadKey string `json:"workload_key"`
+		}
+		var req ResetReq
+		if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
+		}
+		
+		wp := store.GetOrCreate(req.WorkloadKey)
+		wp.ResetData()
 		
 		json.NewEncoder(w).Encode(map[string]bool{"success": true})
 	})
@@ -148,6 +171,7 @@ func main() {
 	mux.HandleFunc("/api/scale", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 		w.Header().Set("Content-Type", "application/json")
 		
 		if r.Method == "OPTIONS" {
@@ -225,6 +249,7 @@ func main() {
 	mux.HandleFunc("/api/pods/create", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 		if r.Method == "OPTIONS" { return }
 		
 		name := r.URL.Query().Get("name")

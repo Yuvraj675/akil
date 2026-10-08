@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ChevronRight, Terminal, Server, BarChart3, Database } from 'lucide-react';
+import { ChevronRight, Terminal, Zap, Server, Activity } from 'lucide-react';
 
 export default function Walkthrough() {
   const [step, setStep] = useState(1);
@@ -8,27 +8,27 @@ export default function Walkthrough() {
   const steps = [
     {
       id: 1,
-      title: "1. The Single Docker Node (Kind)",
-      icon: <Terminal className="w-5 h-5 text-emerald-400" />,
-      content: "You might have noticed only one Docker container running (`akil-demo-control-plane`). This is because we are using Kind (Kubernetes in Docker). Kind runs a full Kubernetes cluster inside a single Docker container. All your scaling (Pods) happens natively inside this Kubernetes environment, handled by containerd.",
+      title: "1. The Single Docker Node",
+      icon: <Server className="w-5 h-5 text-purple-400" />,
+      content: "Why do you only see one Docker container running on your machine? Because we use Kind (Kubernetes in Docker). Kind runs an entire Kubernetes cluster inside that single container. All the Pod scaling happens natively inside this isolated environment.",
     },
     {
       id: 2,
-      title: "2. The eBPF Collector",
-      icon: <Database className="w-5 h-5 text-blue-400" />,
-      content: "Deep inside this node's Linux kernel, the AKIL Collector attaches eBPF probes to kernel tracepoints. It silently monitors low-level events like Page Faults and Context Switches. Because it's at the kernel level, it requires zero changes to your application code.",
+      title: "2. Visualizing Scale",
+      icon: <Terminal className="w-5 h-5 text-emerald-400" />,
+      content: "The 'Live Demo: Workload Scaling' panel shows you the exact number of Pods currently running in the cluster. You can manually scale the default demo workload from 1 to 4 pods, and watch them appear physically on the 'Node Allocation' map.",
     },
     {
       id: 3,
-      title: "3. The Aggregator & Scale",
-      icon: <Server className="w-5 h-5 text-purple-400" />,
-      content: "The eBPF collector streams these raw kernel events to the Aggregator (Control Plane), which maps the raw Cgroup IDs to actual Kubernetes Pod names (like `demo-workload`). When you scale the pods below, watch how the real kernel telemetry instantly spikes on the graphs due to 'noisy neighbor' interference.",
+      title: "3. Simulating Stress",
+      icon: <Zap className="w-5 h-5 text-amber-400" />,
+      content: "The 'Workload Stress Simulator' lets you target a specific Pod (or create a brand new one). Clicking a button like 'Memory Leak' injects simulated eBPF telemetry directly into the aggregator. You will immediately see the graphs below spike, completely safely without actually stressing your laptop's CPU/RAM.",
     },
     {
       id: 4,
-      title: "4. The Scheduler",
-      icon: <BarChart3 className="w-5 h-5 text-rose-400" />,
-      content: "AKIL uses this live telemetry to make smarter scheduling decisions. If a node is experiencing high Page Faults or Context Switches (as seen below when scaled to 4 pods), the Scheduler will penalize that node and place future pods elsewhere, ensuring optimal performance.",
+      title: "4. Adaptive Autoscaling",
+      icon: <Activity className="w-5 h-5 text-rose-400" />,
+      content: "If you toggle the 'Enable eBPF Adaptive Autoscaling' switch to ON, the backend constantly watches the telemetry. If you inject a 'Memory Leak', the system detects the spike in Page Faults (>5000/s) and automatically scales the Pod UP to handle the load. You can watch exactly why it scales in the 'Live Autoscaler Logs' panel on the right.",
     }
   ];
 
@@ -42,7 +42,7 @@ export default function Walkthrough() {
         <span className="bg-emerald-500/20 text-emerald-400 p-1.5 rounded-lg border border-emerald-500/30">
           <ChevronRight className="w-5 h-5" />
         </span>
-        How this works (Step-by-Step)
+        How to use this Demo (Step-by-Step)
       </h2>
       
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 relative z-10">
