@@ -1,28 +1,45 @@
 # Binaries
 bin/
+collector
+aggregator
 *.exe
 
 # Go
 *.test
 *.out
 
-# IDE
+# LaTeX intermediate build files (keep .pdf and .tex)
+*.aux
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.toc
+*.nav
+*.snm
+*.vrb
+
+# IDE & Editor
 .idea/
 .vscode/
 *.swp
 *.swo
 *~
 
-# OS
+# OS & Environment
 .DS_Store
 Thumbs.db
+.env
+.env.local
 
-# eBPF generated (keep committed, but track regeneration)
-# pkg/ebpf/akil_bpfel.go
-# pkg/ebpf/akil_bpfeb.go
-# pkg/ebpf/akil_bpfel.o
-# pkg/ebpf/akil_bpfeb.o
+# Frontend & Node
+frontend/dist/
+frontend/.vite/
+scratch/
 
-# Temporary
+# Temporary & Logs
 /tmp/
 *.log
+test.log
+test2.log

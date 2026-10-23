@@ -1,0 +1,5001 @@
+seed,config,latency_ms
+0,Isolated (Clean),11.211
+0,Isolated (Clean),11.936
+0,Isolated (Clean),9.667
+0,Isolated (Clean),7.115
+0,Isolated (Clean),9.105
+0,Isolated (Clean),12.456
+0,Isolated (Clean),7.022
+0,Isolated (Clean),11.898
+0,Isolated (Clean),9.687
+0,Isolated (Clean),12.126
+0,Isolated (Clean),8.205
+0,Isolated (Clean),8.905
+0,Isolated (Clean),9.889
+0,Isolated (Clean),7.111
+0,Isolated (Clean),11.941
+0,Isolated (Clean),11.295
+0,Isolated (Clean),14.434
+0,Isolated (Clean),13.629
+0,Isolated (Clean),7.661
+0,Isolated (Clean),7.794
+0,Isolated (Clean),14.817
+0,Isolated (Clean),10.682
+0,Isolated (Clean),7.697
+0,Isolated (Clean),8.227
+0,Isolated (Clean),9.389
+0,Isolated (Clean),11.737
+0,Isolated (Clean),8.718
+0,Isolated (Clean),7.319
+0,Isolated (Clean),11.181
+0,Isolated (Clean),11.33
+0,Isolated (Clean),7.477
+0,Isolated (Clean),8.481
+0,Isolated (Clean),10.011
+0,Isolated (Clean),9.684
+0,Isolated (Clean),11.045
+0,Isolated (Clean),7.902
+0,Isolated (Clean),9.524
+0,Isolated (Clean),10.76
+0,Isolated (Clean),8.804
+0,Isolated (Clean),11.242
+0,Isolated (Clean),10.394
+0,Isolated (Clean),12.697
+0,Isolated (Clean),8.742
+0,Isolated (Clean),17.088
+0,Isolated (Clean),7.301
+0,Isolated (Clean),8.092
+0,Isolated (Clean),7.563
+0,Isolated (Clean),8.867
+0,Isolated (Clean),10.764
+0,Isolated (Clean),11.971
+0,Isolated (Clean),9.656
+0,Isolated (Clean),11.727
+0,Isolated (Clean),7.668
+0,Isolated (Clean),9.104
+0,Isolated (Clean),9.155
+0,Isolated (Clean),5.836
+0,Isolated (Clean),9.169
+0,Isolated (Clean),10.502
+0,Isolated (Clean),9.534
+0,Isolated (Clean),9.649
+0,Isolated (Clean),11.447
+0,Isolated (Clean),10.792
+0,Isolated (Clean),12.641
+0,Isolated (Clean),8.468
+0,Isolated (Clean),12.166
+0,Isolated (Clean),8.935
+0,Isolated (Clean),8.69
+0,Isolated (Clean),8.827
+0,Isolated (Clean),10.574
+0,Isolated (Clean),10.814
+0,Isolated (Clean),14.15
+0,Isolated (Clean),10.865
+0,Isolated (Clean),6.122
+0,Isolated (Clean),12.283
+0,Isolated (Clean),7.997
+0,Isolated (Clean),12.524
+0,Isolated (Clean),8.009
+0,Isolated (Clean),10.234
+0,Isolated (Clean),9.135
+0,Isolated (Clean),10.415
+0,Isolated (Clean),8.901
+0,Isolated (Clean),7.541
+0,Isolated (Clean),6.934
+0,Isolated (Clean),7.823
+0,Isolated (Clean),8.245
+0,Isolated (Clean),10.95
+0,Isolated (Clean),6.866
+0,Isolated (Clean),11.431
+0,Isolated (Clean),5.791
+0,Isolated (Clean),8.985
+0,Isolated (Clean),8.228
+0,Isolated (Clean),7.966
+0,Isolated (Clean),12.501
+0,Isolated (Clean),14.55
+0,Isolated (Clean),9.205
+0,Isolated (Clean),8.347
+0,Isolated (Clean),10.831
+0,Isolated (Clean),12.159
+0,Isolated (Clean),11.226
+0,Isolated (Clean),10.5
+0,Isolated (Clean),8.673
+0,Isolated (Clean),7.86
+0,Isolated (Clean),5.191
+0,Isolated (Clean),10.591
+0,Isolated (Clean),8.011
+0,Isolated (Clean),13.343
+0,Isolated (Clean),10.356
+0,Isolated (Clean),8.448
+0,Isolated (Clean),9.23
+0,Isolated (Clean),8.692
+0,Isolated (Clean),10.192
+0,Isolated (Clean),7.306
+0,Isolated (Clean),9.649
+0,Isolated (Clean),22.247
+0,Isolated (Clean),12.212
+0,Isolated (Clean),10.071
+0,Isolated (Clean),9.565
+0,Isolated (Clean),7.667
+0,Isolated (Clean),10.374
+0,Isolated (Clean),10.394
+0,Isolated (Clean),8.102
+0,Isolated (Clean),8.811
+0,Isolated (Clean),8.0
+0,Isolated (Clean),8.425
+0,Isolated (Clean),14.018
+0,Isolated (Clean),10.026
+0,Isolated (Clean),9.213
+0,Isolated (Clean),10.937
+0,Isolated (Clean),15.361
+0,Isolated (Clean),11.155
+0,Isolated (Clean),14.695
+0,Isolated (Clean),10.766
+0,Isolated (Clean),13.088
+0,Isolated (Clean),7.38
+0,Isolated (Clean),13.096
+0,Isolated (Clean),6.6
+0,Isolated (Clean),8.388
+0,Isolated (Clean),7.87
+0,Isolated (Clean),13.132
+0,Isolated (Clean),9.051
+0,Isolated (Clean),8.496
+0,Isolated (Clean),8.798
+0,Isolated (Clean),13.004
+0,Isolated (Clean),8.483
+0,Isolated (Clean),11.556
+0,Isolated (Clean),9.287
+0,Isolated (Clean),9.547
+0,Isolated (Clean),4.74
+0,Isolated (Clean),6.434
+0,Isolated (Clean),7.444
+0,Isolated (Clean),8.007
+0,Isolated (Clean),8.621
+0,Isolated (Clean),14.064
+0,Isolated (Clean),8.764
+0,Isolated (Clean),8.055
+0,Isolated (Clean),9.67
+0,Isolated (Clean),9.038
+0,Isolated (Clean),17.334
+0,Isolated (Clean),10.562
+0,Isolated (Clean),7.376
+0,Isolated (Clean),8.63
+0,Isolated (Clean),9.059
+0,Isolated (Clean),13.546
+0,Isolated (Clean),8.708
+0,Isolated (Clean),11.877
+0,Isolated (Clean),7.405
+0,Isolated (Clean),8.62
+0,Isolated (Clean),14.968
+0,Isolated (Clean),9.532
+0,Isolated (Clean),8.066
+0,Isolated (Clean),5.767
+0,Isolated (Clean),8.371
+0,Isolated (Clean),8.305
+0,Isolated (Clean),12.537
+0,Isolated (Clean),7.639
+0,Isolated (Clean),8.332
+0,Isolated (Clean),14.73
+0,Isolated (Clean),8.679
+0,Isolated (Clean),12.316
+0,Isolated (Clean),8.543
+0,Isolated (Clean),12.253
+0,Isolated (Clean),10.942
+0,Isolated (Clean),9.05
+0,Isolated (Clean),9.264
+0,Isolated (Clean),16.302
+0,Isolated (Clean),10.722
+0,Isolated (Clean),10.156
+0,Isolated (Clean),8.353
+0,Isolated (Clean),5.002
+0,Isolated (Clean),16.004
+0,Isolated (Clean),9.244
+0,Isolated (Clean),9.119
+0,Isolated (Clean),7.47
+0,Isolated (Clean),10.455
+0,Isolated (Clean),12.583
+0,Isolated (Clean),16.74
+0,Isolated (Clean),7.219
+0,Isolated (Clean),9.225
+0,Isolated (Clean),11.958
+0,Isolated (Clean),8.563
+0,Isolated (Clean),7.535
+0,Isolated (Clean),7.668
+0,Isolated (Clean),10.976
+0,Isolated (Clean),9.984
+0,Isolated (Clean),9.602
+0,Isolated (Clean),8.072
+0,Isolated (Clean),9.404
+0,Isolated (Clean),11.989
+0,Isolated (Clean),13.672
+0,Isolated (Clean),10.613
+0,Isolated (Clean),8.566
+0,Isolated (Clean),15.378
+0,Isolated (Clean),9.781
+0,Isolated (Clean),11.45
+0,Isolated (Clean),12.603
+0,Isolated (Clean),13.517
+0,Isolated (Clean),6.893
+0,Isolated (Clean),8.969
+0,Isolated (Clean),8.292
+0,Isolated (Clean),9.806
+0,Isolated (Clean),9.144
+0,Isolated (Clean),6.384
+0,Isolated (Clean),5.929
+0,Isolated (Clean),11.335
+0,Isolated (Clean),8.269
+0,Isolated (Clean),16.343
+0,Isolated (Clean),11.863
+0,Isolated (Clean),8.717
+0,Isolated (Clean),9.49
+0,Isolated (Clean),9.115
+0,Isolated (Clean),8.503
+0,Isolated (Clean),10.071
+0,Isolated (Clean),10.011
+0,Isolated (Clean),9.132
+0,Isolated (Clean),10.043
+0,Isolated (Clean),12.465
+0,Isolated (Clean),10.106
+0,Isolated (Clean),12.708
+0,Isolated (Clean),10.002
+0,Isolated (Clean),9.429
+0,Isolated (Clean),15.411
+0,Isolated (Clean),11.096
+0,Isolated (Clean),12.716
+0,Isolated (Clean),11.214
+0,Isolated (Clean),13.323
+0,Isolated (Clean),8.628
+0,Isolated (Clean),8.036
+0,Isolated (Clean),9.075
+0,Isolated (Clean),8.85
+0,Isolated (Clean),9.608
+0,Isolated (Clean),10.656
+0,Isolated (Clean),7.773
+0,Isolated (Clean),13.765
+0,Isolated (Clean),11.093
+0,Isolated (Clean),10.306
+0,Isolated (Clean),10.263
+0,Isolated (Clean),11.989
+0,Isolated (Clean),8.733
+0,Isolated (Clean),9.519
+0,Isolated (Clean),8.343
+0,Isolated (Clean),7.664
+0,Isolated (Clean),11.915
+0,Isolated (Clean),9.833
+0,Isolated (Clean),10.609
+0,Isolated (Clean),12.162
+0,Isolated (Clean),7.868
+0,Isolated (Clean),9.658
+0,Isolated (Clean),10.823
+0,Isolated (Clean),8.185
+0,Isolated (Clean),11.167
+0,Isolated (Clean),8.965
+0,Isolated (Clean),11.329
+0,Isolated (Clean),8.007
+0,Isolated (Clean),7.863
+0,Isolated (Clean),9.934
+0,Isolated (Clean),12.097
+0,Isolated (Clean),11.315
+0,Isolated (Clean),11.103
+0,Isolated (Clean),10.027
+0,Isolated (Clean),7.671
+0,Isolated (Clean),8.938
+0,Isolated (Clean),8.197
+0,Isolated (Clean),7.103
+0,Isolated (Clean),7.51
+0,Isolated (Clean),10.525
+0,Isolated (Clean),15.421
+0,Isolated (Clean),11.525
+0,Isolated (Clean),16.543
+0,Isolated (Clean),7.251
+0,Isolated (Clean),8.988
+0,Isolated (Clean),12.49
+0,Isolated (Clean),7.581
+0,Isolated (Clean),8.897
+0,Isolated (Clean),7.39
+0,Isolated (Clean),7.978
+0,Isolated (Clean),7.735
+0,Isolated (Clean),14.849
+0,Isolated (Clean),8.301
+0,Isolated (Clean),7.47
+0,Isolated (Clean),10.521
+0,Isolated (Clean),6.292
+0,Isolated (Clean),13.036
+0,Isolated (Clean),11.858
+0,Isolated (Clean),9.47
+0,Isolated (Clean),11.484
+0,Isolated (Clean),9.044
+0,Isolated (Clean),9.705
+0,Isolated (Clean),9.465
+0,Isolated (Clean),13.048
+0,Isolated (Clean),7.019
+0,Isolated (Clean),7.266
+0,Isolated (Clean),13.594
+0,Isolated (Clean),6.941
+0,Isolated (Clean),10.961
+0,Isolated (Clean),8.382
+0,Isolated (Clean),8.848
+0,Isolated (Clean),8.322
+0,Isolated (Clean),12.01
+0,Isolated (Clean),8.608
+0,Isolated (Clean),11.511
+0,Isolated (Clean),10.125
+0,Isolated (Clean),10.717
+0,Isolated (Clean),17.339
+0,Isolated (Clean),12.212
+0,Isolated (Clean),11.175
+0,Isolated (Clean),12.242
+0,Isolated (Clean),8.388
+0,Isolated (Clean),9.86
+0,Isolated (Clean),6.242
+0,Isolated (Clean),8.028
+0,Isolated (Clean),9.996
+0,Isolated (Clean),16.673
+0,Isolated (Clean),10.276
+0,Isolated (Clean),7.722
+0,Isolated (Clean),9.321
+0,Isolated (Clean),9.521
+0,Isolated (Clean),10.528
+0,Isolated (Clean),9.723
+0,Isolated (Clean),12.311
+0,Isolated (Clean),9.896
+0,Isolated (Clean),7.295
+0,Isolated (Clean),8.934
+0,Isolated (Clean),7.231
+0,Isolated (Clean),21.468
+0,Isolated (Clean),9.545
+0,Isolated (Clean),8.818
+0,Isolated (Clean),12.464
+0,Isolated (Clean),7.017
+0,Isolated (Clean),10.353
+0,Isolated (Clean),10.24
+0,Isolated (Clean),14.257
+0,Isolated (Clean),8.064
+0,Isolated (Clean),8.539
+0,Isolated (Clean),9.474
+0,Isolated (Clean),6.187
+0,Isolated (Clean),15.289
+0,Isolated (Clean),9.271
+0,Isolated (Clean),11.607
+0,Isolated (Clean),8.002
+0,Isolated (Clean),14.974
+0,Isolated (Clean),11.689
+0,Isolated (Clean),11.475
+0,Isolated (Clean),11.42
+0,Isolated (Clean),11.23
+0,Isolated (Clean),8.472
+0,Isolated (Clean),10.784
+0,Isolated (Clean),13.737
+0,Isolated (Clean),12.553
+0,Isolated (Clean),8.717
+0,Isolated (Clean),10.32
+0,Isolated (Clean),11.312
+0,Isolated (Clean),8.485
+0,Isolated (Clean),9.628
+0,Isolated (Clean),7.214
+0,Isolated (Clean),8.341
+0,Isolated (Clean),10.274
+0,Isolated (Clean),11.857
+0,Isolated (Clean),9.951
+0,Isolated (Clean),7.749
+0,Isolated (Clean),9.42
+0,Isolated (Clean),18.991
+0,Isolated (Clean),12.136
+0,Isolated (Clean),8.693
+0,Isolated (Clean),11.614
+0,Isolated (Clean),11.394
+0,Isolated (Clean),8.431
+0,Isolated (Clean),12.04
+0,Isolated (Clean),7.495
+0,Isolated (Clean),11.49
+0,Isolated (Clean),8.543
+0,Isolated (Clean),15.943
+0,Isolated (Clean),8.421
+0,Isolated (Clean),9.919
+0,Isolated (Clean),9.1
+0,Isolated (Clean),15.53
+0,Isolated (Clean),8.189
+0,Isolated (Clean),8.073
+0,Isolated (Clean),9.406
+0,Isolated (Clean),8.625
+0,Isolated (Clean),12.917
+0,Isolated (Clean),13.075
+0,Isolated (Clean),8.036
+0,Isolated (Clean),17.685
+0,Isolated (Clean),9.32
+0,Isolated (Clean),8.871
+0,Isolated (Clean),9.454
+0,Isolated (Clean),9.277
+0,Isolated (Clean),8.733
+0,Isolated (Clean),13.726
+0,Isolated (Clean),9.152
+0,Isolated (Clean),8.31
+0,Isolated (Clean),10.735
+0,Isolated (Clean),11.934
+0,Isolated (Clean),13.927
+0,Isolated (Clean),8.172
+0,Isolated (Clean),6.621
+0,Isolated (Clean),8.542
+0,Isolated (Clean),13.697
+0,Isolated (Clean),8.439
+0,Isolated (Clean),7.676
+0,Isolated (Clean),6.348
+0,Isolated (Clean),13.614
+0,Isolated (Clean),9.524
+0,Isolated (Clean),14.715
+0,Isolated (Clean),9.866
+0,Isolated (Clean),8.955
+0,Isolated (Clean),12.337
+0,Isolated (Clean),10.021
+0,Isolated (Clean),8.801
+0,Isolated (Clean),7.869
+0,Isolated (Clean),10.784
+0,Isolated (Clean),5.758
+0,Isolated (Clean),11.325
+0,Isolated (Clean),6.233
+0,Isolated (Clean),9.873
+0,Isolated (Clean),6.336
+0,Isolated (Clean),7.526
+0,Isolated (Clean),8.99
+0,Isolated (Clean),10.628
+0,Isolated (Clean),9.039
+0,Isolated (Clean),6.659
+0,Isolated (Clean),10.01
+0,Isolated (Clean),10.0
+0,Isolated (Clean),15.854
+0,Isolated (Clean),8.495
+0,Isolated (Clean),8.931
+0,Isolated (Clean),8.462
+0,Isolated (Clean),6.287
+0,Isolated (Clean),8.466
+0,Isolated (Clean),11.591
+0,Isolated (Clean),11.719
+0,Isolated (Clean),9.472
+0,Isolated (Clean),13.469
+0,Isolated (Clean),11.32
+0,Isolated (Clean),9.72
+0,Isolated (Clean),7.84
+0,Isolated (Clean),17.263
+0,Isolated (Clean),15.198
+0,Isolated (Clean),9.282
+0,Isolated (Clean),8.136
+0,Isolated (Clean),9.936
+0,Isolated (Clean),8.327
+0,Isolated (Clean),7.543
+0,Isolated (Clean),8.503
+0,Isolated (Clean),9.131
+0,Isolated (Clean),9.155
+0,Isolated (Clean),12.942
+0,Isolated (Clean),11.787
+0,Isolated (Clean),9.643
+0,Isolated (Clean),11.209
+0,Isolated (Clean),12.951
+0,Isolated (Clean),8.932
+0,Isolated (Clean),13.092
+0,Isolated (Clean),13.112
+0,Isolated (Clean),10.818
+0,Isolated (Clean),7.526
+0,Isolated (Clean),9.588
+0,Isolated (Clean),9.438
+0,Isolated (Clean),6.841
+0,Isolated (Clean),10.517
+0,Isolated (Clean),10.113
+0,Isolated (Clean),11.108
+0,Isolated (Clean),12.528
+0,Isolated (Clean),9.375
+0,Isolated (Clean),5.834
+0,Isolated (Clean),10.927
+0,Isolated (Clean),7.211
+0,Isolated (Clean),10.641
+0,Isolated (Clean),19.55
+0,Isolated (Clean),8.856
+0,Isolated (Clean),11.988
+0,Isolated (Clean),9.181
+0,Isolated (Clean),9.294
+0,Isolated (Clean),10.306
+0,Isolated (Clean),12.463
+0,Isolated (Clean),7.852
+0,Isolated (Clean),10.509
+0,Isolated (Clean),6.811
+0,Isolated (Clean),11.645
+0,Isolated (Clean),7.43
+0,Isolated (Clean),12.635
+0,Isolated (Clean),8.101
+0,Isolated (Clean),8.182
+0,Isolated (Clean),10.334
+0,Isolated (Clean),8.967
+0,Isolated (Clean),9.043
+0,Isolated (Clean),9.112
+0,Isolated (Clean),7.15
+0,Isolated (Clean),7.848
+0,Isolated (Clean),10.092
+0,Isolated (Clean),8.081
+0,Isolated (Clean),9.332
+0,Isolated (Clean),7.595
+0,Isolated (Clean),10.229
+0,Isolated (Clean),7.468
+0,Isolated (Clean),7.979
+0,Isolated (Clean),8.307
+0,Isolated (Clean),10.098
+0,Isolated (Clean),9.09
+0,Isolated (Clean),7.666
+0,Isolated (Clean),7.514
+0,Isolated (Clean),13.434
+0,Isolated (Clean),7.381
+0,Isolated (Clean),7.097
+0,Isolated (Clean),8.7
+0,Isolated (Clean),8.842
+0,Isolated (Clean),9.564
+0,Isolated (Clean),7.132
+0,Isolated (Clean),9.152
+0,Isolated (Clean),7.652
+0,Isolated (Clean),19.575
+0,Isolated (Clean),10.367
+0,Isolated (Clean),9.735
+0,Isolated (Clean),9.507
+0,Isolated (Clean),10.4
+0,Isolated (Clean),10.261
+0,Isolated (Clean),6.622
+0,Isolated (Clean),6.335
+0,Isolated (Clean),7.237
+0,Isolated (Clean),12.743
+0,Isolated (Clean),7.118
+0,Isolated (Clean),6.534
+0,Isolated (Clean),7.966
+0,Isolated (Clean),10.309
+0,Isolated (Clean),13.602
+0,Isolated (Clean),8.13
+0,Isolated (Clean),8.59
+0,Isolated (Clean),8.656
+0,Isolated (Clean),8.416
+0,Isolated (Clean),11.551
+0,Isolated (Clean),9.292
+0,Isolated (Clean),10.373
+0,Isolated (Clean),8.941
+0,Isolated (Clean),7.977
+0,Isolated (Clean),15.437
+0,Isolated (Clean),9.058
+0,Isolated (Clean),10.536
+0,Isolated (Clean),8.657
+0,Isolated (Clean),9.625
+0,Isolated (Clean),11.919
+0,Isolated (Clean),7.819
+0,Isolated (Clean),10.114
+0,Isolated (Clean),10.388
+0,Isolated (Clean),9.784
+0,Isolated (Clean),10.027
+0,Isolated (Clean),6.141
+0,Isolated (Clean),5.373
+0,Isolated (Clean),10.449
+0,Isolated (Clean),9.647
+0,Isolated (Clean),8.336
+0,Isolated (Clean),8.924
+0,Isolated (Clean),7.96
+0,Isolated (Clean),12.727
+0,Isolated (Clean),9.648
+0,Isolated (Clean),11.07
+0,Isolated (Clean),13.069
+0,Isolated (Clean),10.097
+0,Isolated (Clean),15.154
+0,Isolated (Clean),10.172
+0,Isolated (Clean),6.965
+0,Isolated (Clean),9.714
+0,Isolated (Clean),14.699
+0,Isolated (Clean),12.881
+0,Isolated (Clean),10.46
+0,Isolated (Clean),8.101
+0,Isolated (Clean),7.602
+0,Isolated (Clean),10.775
+0,Isolated (Clean),14.834
+0,Isolated (Clean),11.521
+0,Isolated (Clean),6.437
+0,Isolated (Clean),9.783
+0,Isolated (Clean),6.103
+0,Isolated (Clean),13.261
+0,Isolated (Clean),10.378
+0,Isolated (Clean),9.262
+0,Isolated (Clean),11.322
+0,Isolated (Clean),11.463
+0,Isolated (Clean),9.462
+0,Isolated (Clean),9.527
+0,Isolated (Clean),11.371
+0,Isolated (Clean),9.816
+0,Isolated (Clean),7.402
+0,Isolated (Clean),10.05
+0,Isolated (Clean),10.551
+0,Isolated (Clean),7.67
+0,Isolated (Clean),9.05
+0,Isolated (Clean),10.925
+0,Isolated (Clean),9.992
+0,Isolated (Clean),8.538
+0,Isolated (Clean),10.573
+0,Isolated (Clean),7.241
+0,Isolated (Clean),8.423
+0,Isolated (Clean),8.838
+0,Isolated (Clean),9.27
+0,Isolated (Clean),10.086
+0,Isolated (Clean),10.297
+0,Isolated (Clean),10.863
+0,Isolated (Clean),11.66
+0,Isolated (Clean),11.906
+0,Isolated (Clean),9.231
+0,Isolated (Clean),10.525
+0,Isolated (Clean),11.625
+0,Isolated (Clean),8.445
+0,Isolated (Clean),7.599
+0,Isolated (Clean),8.012
+0,Isolated (Clean),7.792
+0,Isolated (Clean),10.917
+0,Isolated (Clean),9.195
+0,Isolated (Clean),12.976
+0,Isolated (Clean),10.711
+0,Isolated (Clean),11.466
+0,Isolated (Clean),11.546
+0,Isolated (Clean),12.125
+0,Isolated (Clean),6.245
+0,Isolated (Clean),9.162
+0,Isolated (Clean),9.035
+0,Isolated (Clean),17.647
+0,Isolated (Clean),12.702
+0,Isolated (Clean),18.085
+0,Isolated (Clean),7.614
+0,Isolated (Clean),11.478
+0,Isolated (Clean),11.291
+0,Isolated (Clean),8.67
+0,Isolated (Clean),7.722
+0,Isolated (Clean),14.458
+0,Isolated (Clean),7.632
+0,Isolated (Clean),8.764
+0,Isolated (Clean),11.981
+0,Isolated (Clean),9.328
+0,Isolated (Clean),11.133
+0,Isolated (Clean),8.882
+0,Isolated (Clean),7.842
+0,Isolated (Clean),7.359
+0,Isolated (Clean),10.293
+0,Isolated (Clean),9.504
+0,Isolated (Clean),6.729
+0,Isolated (Clean),9.386
+0,Isolated (Clean),7.036
+0,Isolated (Clean),9.873
+0,Isolated (Clean),8.319
+0,Isolated (Clean),7.913
+0,Isolated (Clean),9.942
+0,Isolated (Clean),9.099
+0,Isolated (Clean),11.257
+0,Isolated (Clean),7.278
+0,Isolated (Clean),9.457
+0,Isolated (Clean),10.341
+0,Isolated (Clean),10.503
+0,Isolated (Clean),9.061
+0,Isolated (Clean),11.791
+0,Isolated (Clean),7.551
+0,Isolated (Clean),9.003
+0,Isolated (Clean),9.674
+0,Isolated (Clean),10.099
+0,Isolated (Clean),8.828
+0,Isolated (Clean),8.27
+0,Isolated (Clean),11.117
+0,Isolated (Clean),6.336
+0,Isolated (Clean),9.151
+0,Isolated (Clean),8.332
+0,Isolated (Clean),9.326
+0,Isolated (Clean),11.538
+0,Isolated (Clean),9.135
+0,Isolated (Clean),9.77
+0,Isolated (Clean),9.651
+0,Isolated (Clean),12.099
+0,Isolated (Clean),11.041
+0,Isolated (Clean),7.627
+0,Isolated (Clean),13.303
+0,Isolated (Clean),10.217
+0,Isolated (Clean),7.371
+0,Isolated (Clean),8.914
+0,Isolated (Clean),12.75
+0,Isolated (Clean),6.959
+0,Isolated (Clean),10.313
+0,Isolated (Clean),8.063
+0,Isolated (Clean),10.814
+0,Isolated (Clean),8.394
+0,Isolated (Clean),8.21
+0,Isolated (Clean),7.02
+0,Isolated (Clean),15.147
+0,Isolated (Clean),5.66
+0,Isolated (Clean),9.397
+0,Isolated (Clean),14.676
+0,Isolated (Clean),15.387
+0,Isolated (Clean),8.478
+0,Isolated (Clean),8.354
+0,Isolated (Clean),9.454
+0,Isolated (Clean),6.778
+0,Isolated (Clean),8.479
+0,Isolated (Clean),13.483
+0,Isolated (Clean),7.951
+0,Isolated (Clean),6.003
+0,Isolated (Clean),9.562
+0,Isolated (Clean),8.239
+0,Isolated (Clean),9.34
+0,Isolated (Clean),11.227
+0,Isolated (Clean),7.724
+0,Isolated (Clean),10.468
+0,Isolated (Clean),7.865
+0,Isolated (Clean),8.639
+0,Isolated (Clean),8.625
+0,Isolated (Clean),9.22
+0,Isolated (Clean),8.296
+0,Isolated (Clean),10.103
+0,Isolated (Clean),9.626
+0,Isolated (Clean),9.645
+0,Isolated (Clean),10.975
+0,Isolated (Clean),7.764
+0,Isolated (Clean),9.918
+0,Isolated (Clean),10.901
+0,Isolated (Clean),10.794
+0,Isolated (Clean),7.583
+0,Isolated (Clean),9.664
+0,Isolated (Clean),8.13
+0,Isolated (Clean),9.73
+0,Isolated (Clean),9.554
+0,Isolated (Clean),12.004
+0,Isolated (Clean),9.2
+0,Isolated (Clean),9.856
+0,Isolated (Clean),8.843
+0,Isolated (Clean),9.118
+0,Isolated (Clean),10.833
+0,Isolated (Clean),9.915
+0,Isolated (Clean),8.615
+0,Isolated (Clean),8.483
+0,Isolated (Clean),10.504
+0,Isolated (Clean),8.155
+0,Isolated (Clean),8.286
+0,Isolated (Clean),8.975
+0,Isolated (Clean),7.59
+0,Isolated (Clean),9.194
+0,Isolated (Clean),9.611
+0,Isolated (Clean),8.845
+0,Isolated (Clean),12.655
+0,Isolated (Clean),10.632
+0,Isolated (Clean),10.503
+0,Isolated (Clean),13.607
+0,Isolated (Clean),9.984
+0,Isolated (Clean),10.0
+0,Isolated (Clean),5.693
+0,Isolated (Clean),11.709
+0,Isolated (Clean),9.487
+0,Isolated (Clean),9.131
+0,Isolated (Clean),9.573
+0,Isolated (Clean),9.828
+0,Isolated (Clean),12.964
+0,Isolated (Clean),9.236
+0,Isolated (Clean),7.948
+0,Isolated (Clean),10.452
+0,Isolated (Clean),11.696
+0,Isolated (Clean),10.319
+0,Isolated (Clean),6.972
+0,Isolated (Clean),10.426
+0,Isolated (Clean),11.849
+0,Isolated (Clean),6.992
+0,Isolated (Clean),13.061
+0,Isolated (Clean),8.947
+0,Isolated (Clean),7.305
+0,Isolated (Clean),11.451
+0,Isolated (Clean),8.125
+0,Isolated (Clean),10.423
+0,Isolated (Clean),7.71
+0,Isolated (Clean),7.839
+0,Isolated (Clean),6.476
+0,Isolated (Clean),9.523
+0,Isolated (Clean),9.796
+0,Isolated (Clean),10.593
+0,Isolated (Clean),8.598
+0,Isolated (Clean),9.74
+0,Isolated (Clean),6.893
+0,Isolated (Clean),9.198
+0,Isolated (Clean),11.271
+0,Isolated (Clean),10.143
+0,Isolated (Clean),10.122
+0,Isolated (Clean),7.243
+0,Isolated (Clean),8.529
+0,Isolated (Clean),9.523
+0,Isolated (Clean),15.878
+0,Isolated (Clean),12.781
+0,Isolated (Clean),4.818
+0,Isolated (Clean),8.599
+0,Isolated (Clean),7.853
+0,Isolated (Clean),7.358
+0,Isolated (Clean),8.832
+0,Isolated (Clean),9.312
+0,Isolated (Clean),19.773
+0,Isolated (Clean),11.584
+0,Isolated (Clean),14.637
+0,Isolated (Clean),10.047
+0,Isolated (Clean),12.151
+0,Isolated (Clean),9.648
+0,Isolated (Clean),7.912
+0,Isolated (Clean),7.641
+0,Isolated (Clean),9.848
+0,Isolated (Clean),7.756
+0,Isolated (Clean),7.562
+0,Isolated (Clean),9.956
+0,Isolated (Clean),8.265
+0,Isolated (Clean),9.608
+0,Isolated (Clean),12.86
+0,Isolated (Clean),7.141
+0,Isolated (Clean),10.703
+0,Isolated (Clean),9.35
+0,Isolated (Clean),8.477
+0,Isolated (Clean),10.187
+0,Isolated (Clean),8.401
+0,Isolated (Clean),11.681
+0,Isolated (Clean),9.641
+0,Isolated (Clean),8.731
+0,Isolated (Clean),8.616
+0,Isolated (Clean),8.484
+0,Isolated (Clean),9.985
+0,Isolated (Clean),9.463
+0,Isolated (Clean),10.362
+0,Isolated (Clean),11.475
+0,Isolated (Clean),13.037
+0,Isolated (Clean),9.67
+0,Isolated (Clean),12.758
+0,Isolated (Clean),9.49
+0,Isolated (Clean),10.06
+0,Isolated (Clean),7.994
+0,Isolated (Clean),11.648
+0,Isolated (Clean),10.736
+0,Isolated (Clean),11.244
+0,Isolated (Clean),9.789
+0,Isolated (Clean),8.601
+0,Isolated (Clean),12.431
+0,Isolated (Clean),11.281
+0,Isolated (Clean),9.666
+0,Isolated (Clean),10.721
+0,Isolated (Clean),10.412
+0,Isolated (Clean),11.537
+0,Isolated (Clean),7.829
+0,Isolated (Clean),9.838
+0,Isolated (Clean),7.106
+0,Isolated (Clean),8.783
+0,Isolated (Clean),7.962
+0,Isolated (Clean),10.9
+0,Isolated (Clean),19.047
+0,Isolated (Clean),13.2
+0,Isolated (Clean),9.406
+0,Isolated (Clean),11.146
+0,Isolated (Clean),11.25
+0,Isolated (Clean),8.043
+0,Isolated (Clean),9.612
+0,Isolated (Clean),9.169
+0,Isolated (Clean),8.572
+0,Isolated (Clean),10.261
+0,Isolated (Clean),11.735
+0,Isolated (Clean),10.96
+0,Isolated (Clean),9.856
+0,Isolated (Clean),8.275
+0,Isolated (Clean),11.387
+0,Isolated (Clean),10.012
+0,Isolated (Clean),11.968
+0,Isolated (Clean),7.947
+0,Isolated (Clean),7.641
+0,Isolated (Clean),10.832
+0,Isolated (Clean),8.009
+0,Isolated (Clean),8.567
+0,Isolated (Clean),10.073
+0,Isolated (Clean),11.722
+0,Isolated (Clean),9.687
+0,Isolated (Clean),13.975
+0,Isolated (Clean),13.377
+0,Isolated (Clean),8.354
+0,Isolated (Clean),10.116
+0,Isolated (Clean),9.965
+0,Isolated (Clean),8.155
+0,Isolated (Clean),12.99
+0,Isolated (Clean),10.827
+0,Isolated (Clean),9.523
+0,Isolated (Clean),9.525
+0,Isolated (Clean),11.913
+0,Isolated (Clean),12.867
+0,Isolated (Clean),8.866
+0,Isolated (Clean),11.139
+0,Isolated (Clean),11.157
+0,Isolated (Clean),10.989
+0,Isolated (Clean),9.279
+0,Isolated (Clean),7.092
+0,Isolated (Clean),10.433
+0,Isolated (Clean),11.283
+0,Isolated (Clean),8.167
+0,Isolated (Clean),10.216
+0,Isolated (Clean),10.427
+0,Isolated (Clean),8.532
+0,Isolated (Clean),7.785
+0,Isolated (Clean),12.049
+0,Isolated (Clean),7.707
+0,Isolated (Clean),13.675
+0,Isolated (Clean),11.43
+0,Isolated (Clean),8.248
+0,Isolated (Clean),7.98
+0,Isolated (Clean),10.848
+0,Isolated (Clean),7.688
+0,Isolated (Clean),12.578
+0,Isolated (Clean),18.662
+0,Isolated (Clean),5.573
+0,Isolated (Clean),14.945
+0,Isolated (Clean),11.08
+0,Isolated (Clean),11.204
+0,Isolated (Clean),9.566
+0,Isolated (Clean),8.474
+0,Isolated (Clean),8.951
+0,Isolated (Clean),12.488
+0,Isolated (Clean),8.771
+0,Isolated (Clean),16.31
+0,Isolated (Clean),11.261
+0,Isolated (Clean),8.85
+0,Isolated (Clean),7.194
+0,Isolated (Clean),9.186
+0,Isolated (Clean),12.284
+0,Isolated (Clean),12.396
+0,Isolated (Clean),10.61
+0,Isolated (Clean),9.66
+0,Isolated (Clean),10.939
+0,Isolated (Clean),8.498
+0,Isolated (Clean),9.319
+0,Isolated (Clean),7.834
+0,Isolated (Clean),7.419
+0,Isolated (Clean),6.184
+0,Isolated (Clean),11.368
+0,Isolated (Clean),12.391
+0,Isolated (Clean),6.582
+0,Isolated (Clean),10.084
+0,Isolated (Clean),8.48
+0,Isolated (Clean),8.983
+0,Isolated (Clean),9.369
+0,Isolated (Clean),7.805
+0,Isolated (Clean),12.756
+0,Isolated (Clean),7.802
+0,Isolated (Clean),11.234
+0,Isolated (Clean),9.792
+0,Isolated (Clean),8.603
+0,Isolated (Clean),8.478
+0,Isolated (Clean),9.28
+0,Isolated (Clean),7.318
+0,Isolated (Clean),7.956
+0,Isolated (Clean),9.425
+0,Isolated (Clean),13.113
+0,Isolated (Clean),8.611
+0,Isolated (Clean),8.144
+0,Isolated (Clean),10.84
+0,Isolated (Clean),10.608
+0,Isolated (Clean),10.0
+0,Isolated (Clean),5.831
+0,Isolated (Clean),13.508
+0,Isolated (Clean),7.903
+0,Isolated (Clean),7.605
+0,Isolated (Clean),7.402
+0,Isolated (Clean),7.476
+0,Isolated (Clean),15.112
+0,Isolated (Clean),12.115
+0,Isolated (Clean),10.159
+0,Isolated (Clean),10.313
+0,Isolated (Clean),7.294
+0,Isolated (Clean),5.762
+0,Isolated (Clean),11.79
+0,Isolated (Clean),14.35
+0,Isolated (Clean),7.879
+0,Isolated (Clean),6.378
+0,Isolated (Clean),14.152
+0,Isolated (Clean),13.352
+0,Isolated (Clean),9.521
+0,Isolated (Clean),8.898
+0,Isolated (Clean),9.034
+0,Isolated (Clean),9.734
+0,Isolated (Clean),8.683
+0,Isolated (Clean),11.14
+0,Isolated (Clean),10.982
+0,Isolated (Clean),8.975
+0,Isolated (Clean),8.508
+0,Isolated (Clean),7.327
+0,Isolated (Clean),6.466
+0,Isolated (Clean),7.305
+0,Isolated (Clean),7.006
+0,Isolated (Clean),8.515
+0,Isolated (Clean),9.966
+0,Default-K8s,32.26
+0,Default-K8s,31.349
+0,Default-K8s,33.839
+0,Default-K8s,33.956
+0,Default-K8s,24.778
+0,Default-K8s,45.607
+0,Default-K8s,36.379
+0,Default-K8s,38.172
+0,Default-K8s,43.039
+0,Default-K8s,37.735
+0,Default-K8s,35.345
+0,Default-K8s,39.596
+0,Default-K8s,36.609
+0,Default-K8s,31.326
+0,Default-K8s,39.066
+0,Default-K8s,46.653
+0,Default-K8s,47.286
+0,Default-K8s,19.622
+0,Default-K8s,51.721
+0,Default-K8s,36.722
+0,Default-K8s,46.079
+0,Default-K8s,29.808
+0,Default-K8s,33.926
+0,Default-K8s,36.656
+0,Default-K8s,24.845
+0,Default-K8s,53.166
+0,Default-K8s,34.806
+0,Default-K8s,26.698
+0,Default-K8s,37.799
+0,Default-K8s,40.129
+0,Default-K8s,33.065
+0,Default-K8s,38.258
+0,Default-K8s,42.952
+0,Default-K8s,42.547
+0,Default-K8s,33.467
+0,Default-K8s,40.904
+0,Default-K8s,29.165
+0,Default-K8s,30.974
+0,Default-K8s,38.658
+0,Default-K8s,27.271
+0,Default-K8s,31.171
+0,Default-K8s,46.866
+0,Default-K8s,26.07
+0,Default-K8s,40.409
+0,Default-K8s,43.715
+0,Default-K8s,44.054
+0,Default-K8s,35.655
+0,Default-K8s,44.253
+0,Default-K8s,39.801
+0,Default-K8s,35.946
+0,Default-K8s,33.202
+0,Default-K8s,36.775
+0,Default-K8s,37.576
+0,Default-K8s,29.495
+0,Default-K8s,46.158
+0,Default-K8s,37.81
+0,Default-K8s,32.999
+0,Default-K8s,36.573
+0,Default-K8s,30.374
+0,Default-K8s,26.559
+0,Default-K8s,54.067
+0,Default-K8s,33.593
+0,Default-K8s,61.865
+0,Default-K8s,40.451
+0,Default-K8s,41.579
+0,Default-K8s,41.969
+0,Default-K8s,40.339
+0,Default-K8s,40.541
+0,Default-K8s,36.345
+0,Default-K8s,30.163
+0,Default-K8s,23.183
+0,Default-K8s,30.936
+0,Default-K8s,36.717
+0,Default-K8s,30.755
+0,Default-K8s,47.012
+0,Default-K8s,43.993
+0,Default-K8s,45.329
+0,Default-K8s,43.766
+0,Default-K8s,52.046
+0,Default-K8s,27.919
+0,Default-K8s,30.687
+0,Default-K8s,30.614
+0,Default-K8s,39.147
+0,Default-K8s,38.525
+0,Default-K8s,49.494
+0,Default-K8s,42.059
+0,Default-K8s,32.635
+0,Default-K8s,37.193
+0,Default-K8s,62.372
+0,Default-K8s,25.917
+0,Default-K8s,23.874
+0,Default-K8s,34.176
+0,Default-K8s,60.7
+0,Default-K8s,31.911
+0,Default-K8s,40.485
+0,Default-K8s,47.038
+0,Default-K8s,48.574
+0,Default-K8s,39.027
+0,Default-K8s,46.634
+0,Default-K8s,36.991
+0,Default-K8s,31.994
+0,Default-K8s,44.07
+0,Default-K8s,46.178
+0,Default-K8s,42.553
+0,Default-K8s,29.135
+0,Default-K8s,40.151
+0,Default-K8s,42.161
+0,Default-K8s,34.884
+0,Default-K8s,33.683
+0,Default-K8s,40.577
+0,Default-K8s,44.739
+0,Default-K8s,38.022
+0,Default-K8s,32.263
+0,Default-K8s,42.83
+0,Default-K8s,33.407
+0,Default-K8s,43.577
+0,Default-K8s,42.718
+0,Default-K8s,42.319
+0,Default-K8s,38.743
+0,Default-K8s,41.105
+0,Default-K8s,49.386
+0,Default-K8s,40.432
+0,Default-K8s,44.913
+0,Default-K8s,41.011
+0,Default-K8s,31.459
+0,Default-K8s,28.914
+0,Default-K8s,33.153
+0,Default-K8s,28.898
+0,Default-K8s,47.505
+0,Default-K8s,33.476
+0,Default-K8s,40.51
+0,Default-K8s,32.309
+0,Default-K8s,45.512
+0,Default-K8s,39.996
+0,Default-K8s,43.384
+0,Default-K8s,42.932
+0,Default-K8s,33.052
+0,Default-K8s,36.325
+0,Default-K8s,43.063
+0,Default-K8s,40.303
+0,Default-K8s,36.977
+0,Default-K8s,32.244
+0,Default-K8s,39.84
+0,Default-K8s,35.43
+0,Default-K8s,41.929
+0,Default-K8s,29.295
+0,Default-K8s,41.246
+0,Default-K8s,40.601
+0,Default-K8s,44.159
+0,Default-K8s,35.975
+0,Default-K8s,38.467
+0,Default-K8s,33.788
+0,Default-K8s,34.311
+0,Default-K8s,46.463
+0,Default-K8s,38.129
+0,Default-K8s,30.648
+0,Default-K8s,29.822
+0,Default-K8s,44.821
+0,Default-K8s,31.635
+0,Default-K8s,44.248
+0,Default-K8s,35.332
+0,Default-K8s,37.644
+0,Default-K8s,50.315
+0,Default-K8s,40.497
+0,Default-K8s,32.983
+0,Default-K8s,26.213
+0,Default-K8s,28.711
+0,Default-K8s,33.402
+0,Default-K8s,24.732
+0,Default-K8s,30.592
+0,Default-K8s,45.514
+0,Default-K8s,20.181
+0,Default-K8s,31.917
+0,Default-K8s,44.441
+0,Default-K8s,36.774
+0,Default-K8s,42.711
+0,Default-K8s,35.108
+0,Default-K8s,57.676
+0,Default-K8s,39.335
+0,Default-K8s,50.81
+0,Default-K8s,35.569
+0,Default-K8s,33.263
+0,Default-K8s,37.219
+0,Default-K8s,38.584
+0,Default-K8s,31.934
+0,Default-K8s,57.552
+0,Default-K8s,44.622
+0,Default-K8s,48.396
+0,Default-K8s,41.108
+0,Default-K8s,29.325
+0,Default-K8s,33.009
+0,Default-K8s,56.059
+0,Default-K8s,39.074
+0,Default-K8s,39.047
+0,Default-K8s,47.111
+0,Default-K8s,47.12
+0,Default-K8s,17.207
+0,Default-K8s,42.458
+0,Default-K8s,28.405
+0,Default-K8s,35.213
+0,Default-K8s,41.982
+0,Default-K8s,48.351
+0,Default-K8s,46.874
+0,Default-K8s,31.849
+0,Default-K8s,28.303
+0,Default-K8s,35.443
+0,Default-K8s,31.995
+0,Default-K8s,32.939
+0,Default-K8s,28.566
+0,Default-K8s,40.911
+0,Default-K8s,42.827
+0,Default-K8s,40.851
+0,Default-K8s,27.212
+0,Default-K8s,31.063
+0,Default-K8s,63.469
+0,Default-K8s,32.038
+0,Default-K8s,43.038
+0,Default-K8s,50.261
+0,Default-K8s,27.254
+0,Default-K8s,41.263
+0,Default-K8s,33.705
+0,Default-K8s,44.81
+0,Default-K8s,35.812
+0,Default-K8s,35.577
+0,Default-K8s,40.368
+0,Default-K8s,49.809
+0,Default-K8s,41.819
+0,Default-K8s,50.38
+0,Default-K8s,44.021
+0,Default-K8s,34.417
+0,Default-K8s,53.865
+0,Default-K8s,35.487
+0,Default-K8s,45.308
+0,Default-K8s,40.914
+0,Default-K8s,31.283
+0,Default-K8s,25.296
+0,Default-K8s,39.69
+0,Default-K8s,31.271
+0,Default-K8s,37.561
+0,Default-K8s,28.998
+0,Default-K8s,47.178
+0,Default-K8s,43.942
+0,Default-K8s,37.613
+0,Default-K8s,40.493
+0,Default-K8s,34.169
+0,Default-K8s,32.014
+0,Default-K8s,32.847
+0,Default-K8s,47.939
+0,Default-K8s,36.117
+0,Default-K8s,37.105
+0,Default-K8s,27.92
+0,Default-K8s,42.189
+0,Default-K8s,33.406
+0,Default-K8s,42.07
+0,Default-K8s,39.429
+0,Default-K8s,47.717
+0,Default-K8s,39.31
+0,Default-K8s,45.542
+0,Default-K8s,27.523
+0,Default-K8s,31.103
+0,Default-K8s,32.747
+0,Default-K8s,23.055
+0,Default-K8s,43.764
+0,Default-K8s,33.42
+0,Default-K8s,36.198
+0,Default-K8s,45.652
+0,Default-K8s,33.995
+0,Default-K8s,35.328
+0,Default-K8s,41.089
+0,Default-K8s,28.668
+0,Default-K8s,32.135
+0,Default-K8s,37.528
+0,Default-K8s,53.373
+0,Default-K8s,29.204
+0,Default-K8s,47.101
+0,Default-K8s,34.12
+0,Default-K8s,46.259
+0,Default-K8s,41.229
+0,Default-K8s,43.642
+0,Default-K8s,37.315
+0,Default-K8s,39.241
+0,Default-K8s,45.413
+0,Default-K8s,30.548
+0,Default-K8s,36.264
+0,Default-K8s,41.413
+0,Default-K8s,31.751
+0,Default-K8s,32.019
+0,Default-K8s,32.11
+0,Default-K8s,51.204
+0,Default-K8s,40.501
+0,Default-K8s,36.66
+0,Default-K8s,35.62
+0,Default-K8s,40.085
+0,Default-K8s,60.665
+0,Default-K8s,27.897
+0,Default-K8s,45.663
+0,Default-K8s,44.335
+0,Default-K8s,34.935
+0,Default-K8s,49.815
+0,Default-K8s,56.671
+0,Default-K8s,35.976
+0,Default-K8s,68.184
+0,Default-K8s,36.788
+0,Default-K8s,54.143
+0,Default-K8s,45.899
+0,Default-K8s,39.475
+0,Default-K8s,49.082
+0,Default-K8s,45.736
+0,Default-K8s,27.68
+0,Default-K8s,36.167
+0,Default-K8s,44.913
+0,Default-K8s,51.595
+0,Default-K8s,44.286
+0,Default-K8s,31.762
+0,Default-K8s,26.304
+0,Default-K8s,43.874
+0,Default-K8s,24.478
+0,Default-K8s,41.354
+0,Default-K8s,34.102
+0,Default-K8s,44.902
+0,Default-K8s,44.526
+0,Default-K8s,28.611
+0,Default-K8s,38.673
+0,Default-K8s,46.398
+0,Default-K8s,36.364
+0,Default-K8s,52.639
+0,Default-K8s,35.008
+0,Default-K8s,33.388
+0,Default-K8s,25.438
+0,Default-K8s,34.406
+0,Default-K8s,34.441
+0,Default-K8s,38.253
+0,Default-K8s,56.499
+0,Default-K8s,52.353
+0,Default-K8s,44.105
+0,Default-K8s,31.946
+0,Default-K8s,26.57
+0,Default-K8s,43.11
+0,Default-K8s,53.499
+0,Default-K8s,34.076
+0,Default-K8s,28.576
+0,Default-K8s,39.535
+0,Default-K8s,52.441
+0,Default-K8s,31.879
+0,Default-K8s,32.675
+0,Default-K8s,52.211
+0,Default-K8s,41.521
+0,Default-K8s,39.571
+0,Default-K8s,41.441
+0,Default-K8s,37.701
+0,Default-K8s,56.733
+0,Default-K8s,28.714
+0,Default-K8s,36.398
+0,Default-K8s,55.344
+0,Default-K8s,44.626
+0,Default-K8s,55.921
+0,Default-K8s,44.389
+0,Default-K8s,28.669
+0,Default-K8s,46.072
+0,Default-K8s,28.375
+0,Default-K8s,62.108
+0,Default-K8s,40.102
+0,Default-K8s,54.132
+0,Default-K8s,60.225
+0,Default-K8s,41.816
+0,Default-K8s,41.377
+0,Default-K8s,42.511
+0,Default-K8s,40.327
+0,Default-K8s,33.99
+0,Default-K8s,45.571
+0,Default-K8s,40.174
+0,Default-K8s,38.403
+0,Default-K8s,33.049
+0,Default-K8s,34.41
+0,Default-K8s,50.822
+0,Default-K8s,26.25
+0,Default-K8s,43.144
+0,Default-K8s,48.908
+0,Default-K8s,48.819
+0,Default-K8s,30.944
+0,Default-K8s,57.533
+0,Default-K8s,30.955
+0,Default-K8s,51.495
+0,Default-K8s,24.039
+0,Default-K8s,27.723
+0,Default-K8s,44.76
+0,Default-K8s,35.401
+0,Default-K8s,30.715
+0,Default-K8s,46.407
+0,Default-K8s,37.515
+0,Default-K8s,34.434
+0,Default-K8s,26.744
+0,Default-K8s,32.927
+0,Default-K8s,36.592
+0,Default-K8s,32.333
+0,Default-K8s,45.382
+0,Default-K8s,33.359
+0,Default-K8s,20.982
+0,Default-K8s,32.719
+0,Default-K8s,44.672
+0,Default-K8s,50.984
+0,Default-K8s,52.124
+0,Default-K8s,31.097
+0,Default-K8s,39.795
+0,Default-K8s,39.172
+0,Default-K8s,59.733
+0,Default-K8s,27.167
+0,Default-K8s,37.042
+0,Default-K8s,34.91
+0,Default-K8s,55.933
+0,Default-K8s,41.292
+0,Default-K8s,38.338
+0,Default-K8s,38.53
+0,Default-K8s,33.086
+0,Default-K8s,33.178
+0,Default-K8s,38.342
+0,Default-K8s,33.785
+0,Default-K8s,68.03
+0,Default-K8s,31.821
+0,Default-K8s,46.287
+0,Default-K8s,29.485
+0,Default-K8s,35.137
+0,Default-K8s,37.44
+0,Default-K8s,50.864
+0,Default-K8s,27.443
+0,Default-K8s,35.024
+0,Default-K8s,45.643
+0,Default-K8s,41.593
+0,Default-K8s,39.304
+0,Default-K8s,34.708
+0,Default-K8s,28.14
+0,Default-K8s,36.699
+0,Default-K8s,35.303
+0,Default-K8s,27.752
+0,Default-K8s,40.359
+0,Default-K8s,34.186
+0,Default-K8s,46.692
+0,Default-K8s,39.398
+0,Default-K8s,47.993
+0,Default-K8s,36.29
+0,Default-K8s,32.1
+0,Default-K8s,40.732
+0,Default-K8s,37.74
+0,Default-K8s,34.291
+0,Default-K8s,25.516
+0,Default-K8s,26.839
+0,Default-K8s,58.021
+0,Default-K8s,25.302
+0,Default-K8s,26.514
+0,Default-K8s,35.013
+0,Default-K8s,33.872
+0,Default-K8s,34.251
+0,Default-K8s,57.704
+0,Default-K8s,38.024
+0,Default-K8s,45.128
+0,Default-K8s,36.09
+0,Default-K8s,23.849
+0,Default-K8s,59.098
+0,Default-K8s,40.114
+0,Default-K8s,30.495
+0,Default-K8s,43.189
+0,Default-K8s,28.366
+0,Default-K8s,26.158
+0,Default-K8s,40.489
+0,Default-K8s,43.624
+0,Default-K8s,27.496
+0,Default-K8s,40.844
+0,Default-K8s,41.205
+0,Default-K8s,49.571
+0,Default-K8s,32.663
+0,Default-K8s,40.146
+0,Default-K8s,42.316
+0,Default-K8s,42.206
+0,Default-K8s,30.12
+0,Default-K8s,43.938
+0,Default-K8s,35.418
+0,Default-K8s,26.124
+0,Default-K8s,46.66
+0,Default-K8s,44.746
+0,Default-K8s,29.39
+0,Default-K8s,46.568
+0,Default-K8s,36.508
+0,Default-K8s,31.199
+0,Default-K8s,44.221
+0,Default-K8s,40.811
+0,Default-K8s,36.439
+0,Default-K8s,45.642
+0,Default-K8s,29.086
+0,Default-K8s,51.026
+0,Default-K8s,26.242
+0,Default-K8s,46.415
+0,Default-K8s,41.825
+0,Default-K8s,44.262
+0,Default-K8s,50.358
+0,Default-K8s,33.096
+0,Default-K8s,32.192
+0,Default-K8s,25.862
+0,Default-K8s,28.763
+0,Default-K8s,33.008
+0,Default-K8s,35.407
+0,Default-K8s,50.592
+0,Default-K8s,31.713
+0,Default-K8s,35.027
+0,Default-K8s,25.121
+0,Default-K8s,40.618
+0,Default-K8s,45.399
+0,Default-K8s,41.71
+0,Default-K8s,36.252
+0,Default-K8s,39.866
+0,Default-K8s,34.81
+0,Default-K8s,64.005
+0,Default-K8s,39.134
+0,Default-K8s,53.029
+0,Default-K8s,34.675
+0,Default-K8s,63.591
+0,Default-K8s,26.459
+0,Default-K8s,43.039
+0,Default-K8s,24.221
+0,Default-K8s,38.157
+0,Default-K8s,28.665
+0,Default-K8s,42.985
+0,Default-K8s,23.688
+0,Default-K8s,54.366
+0,Default-K8s,41.979
+0,Default-K8s,35.352
+0,Default-K8s,41.156
+0,Default-K8s,26.756
+0,Default-K8s,28.024
+0,Default-K8s,40.394
+0,Default-K8s,38.13
+0,Default-K8s,39.362
+0,Default-K8s,54.292
+0,Default-K8s,46.914
+0,Default-K8s,50.462
+0,Default-K8s,35.084
+0,Default-K8s,48.701
+0,Default-K8s,30.227
+0,Default-K8s,37.251
+0,Default-K8s,24.352
+0,Default-K8s,52.355
+0,Default-K8s,34.931
+0,Default-K8s,23.778
+0,Default-K8s,60.922
+0,Default-K8s,53.388
+0,Default-K8s,36.349
+0,Default-K8s,40.628
+0,Default-K8s,54.447
+0,Default-K8s,34.378
+0,Default-K8s,51.924
+0,Default-K8s,43.216
+0,Default-K8s,43.523
+0,Default-K8s,46.199
+0,Default-K8s,50.648
+0,Default-K8s,34.502
+0,Default-K8s,50.053
+0,Default-K8s,43.32
+0,Default-K8s,22.145
+0,Default-K8s,55.061
+0,Default-K8s,41.589
+0,Default-K8s,35.504
+0,Default-K8s,38.798
+0,Default-K8s,35.687
+0,Default-K8s,46.954
+0,Default-K8s,35.761
+0,Default-K8s,37.784
+0,Default-K8s,36.846
+0,Default-K8s,59.46
+0,Default-K8s,31.718
+0,Default-K8s,34.822
+0,Default-K8s,43.56
+0,Default-K8s,29.983
+0,Default-K8s,46.924
+0,Default-K8s,45.412
+0,Default-K8s,39.382
+0,Default-K8s,27.386
+0,Default-K8s,32.437
+0,Default-K8s,30.504
+0,Default-K8s,46.298
+0,Default-K8s,47.875
+0,Default-K8s,29.911
+0,Default-K8s,29.358
+0,Default-K8s,35.42
+0,Default-K8s,45.972
+0,Default-K8s,47.122
+0,Default-K8s,56.19
+0,Default-K8s,51.187
+0,Default-K8s,28.234
+0,Default-K8s,40.614
+0,Default-K8s,50.758
+0,Default-K8s,40.697
+0,Default-K8s,47.327
+0,Default-K8s,34.292
+0,Default-K8s,34.94
+0,Default-K8s,54.448
+0,Default-K8s,41.738
+0,Default-K8s,36.747
+0,Default-K8s,35.361
+0,Default-K8s,34.506
+0,Default-K8s,33.024
+0,Default-K8s,30.903
+0,Default-K8s,34.567
+0,Default-K8s,39.454
+0,Default-K8s,49.372
+0,Default-K8s,40.643
+0,Default-K8s,36.003
+0,Default-K8s,37.821
+0,Default-K8s,35.092
+0,Default-K8s,36.938
+0,Default-K8s,36.638
+0,Default-K8s,25.54
+0,Default-K8s,23.995
+0,Default-K8s,55.083
+0,Default-K8s,42.675
+0,Default-K8s,42.853
+0,Default-K8s,50.405
+0,Default-K8s,43.157
+0,Default-K8s,35.77
+0,Default-K8s,39.912
+0,Default-K8s,42.145
+0,Default-K8s,38.119
+0,Default-K8s,37.428
+0,Default-K8s,38.567
+0,Default-K8s,31.721
+0,Default-K8s,47.105
+0,Default-K8s,46.618
+0,Default-K8s,47.492
+0,Default-K8s,38.0
+0,Default-K8s,39.013
+0,Default-K8s,41.993
+0,Default-K8s,37.276
+0,Default-K8s,36.101
+0,Default-K8s,38.765
+0,Default-K8s,29.561
+0,Default-K8s,27.659
+0,Default-K8s,41.924
+0,Default-K8s,22.344
+0,Default-K8s,34.397
+0,Default-K8s,29.063
+0,Default-K8s,40.043
+0,Default-K8s,39.466
+0,Default-K8s,21.985
+0,Default-K8s,39.935
+0,Default-K8s,33.113
+0,Default-K8s,31.002
+0,Default-K8s,35.748
+0,Default-K8s,49.145
+0,Default-K8s,26.755
+0,Default-K8s,43.571
+0,Default-K8s,36.228
+0,Default-K8s,35.838
+0,Default-K8s,35.097
+0,Default-K8s,36.328
+0,Default-K8s,37.213
+0,Default-K8s,44.038
+0,Default-K8s,39.155
+0,Default-K8s,32.427
+0,Default-K8s,36.352
+0,Default-K8s,40.022
+0,Default-K8s,40.856
+0,Default-K8s,53.046
+0,Default-K8s,36.031
+0,Default-K8s,33.399
+0,Default-K8s,41.526
+0,Default-K8s,35.309
+0,Default-K8s,17.801
+0,Default-K8s,43.575
+0,Default-K8s,26.418
+0,Default-K8s,31.179
+0,Default-K8s,30.873
+0,Default-K8s,46.685
+0,Default-K8s,47.672
+0,Default-K8s,44.306
+0,Default-K8s,41.571
+0,Default-K8s,30.713
+0,Default-K8s,41.952
+0,Default-K8s,49.065
+0,Default-K8s,28.335
+0,Default-K8s,35.156
+0,Default-K8s,35.65
+0,Default-K8s,35.612
+0,Default-K8s,35.172
+0,Default-K8s,49.665
+0,Default-K8s,34.067
+0,Default-K8s,44.061
+0,Default-K8s,41.79
+0,Default-K8s,37.892
+0,Default-K8s,29.068
+0,Default-K8s,38.413
+0,Default-K8s,40.286
+0,Default-K8s,36.545
+0,Default-K8s,25.238
+0,Default-K8s,39.374
+0,Default-K8s,35.916
+0,Default-K8s,23.006
+0,Default-K8s,44.021
+0,Default-K8s,36.317
+0,Default-K8s,31.086
+0,Default-K8s,45.591
+0,Default-K8s,45.608
+0,Default-K8s,40.983
+0,Default-K8s,63.758
+0,Default-K8s,41.4
+0,Default-K8s,26.271
+0,Default-K8s,32.762
+0,Default-K8s,34.69
+0,Default-K8s,51.85
+0,Default-K8s,35.329
+0,Default-K8s,32.893
+0,Default-K8s,38.238
+0,Default-K8s,49.821
+0,Default-K8s,39.053
+0,Default-K8s,32.516
+0,Default-K8s,35.69
+0,Default-K8s,38.34
+0,Default-K8s,34.172
+0,Default-K8s,27.432
+0,Default-K8s,42.118
+0,Default-K8s,52.989
+0,Default-K8s,53.266
+0,Default-K8s,41.123
+0,Default-K8s,38.697
+0,Default-K8s,53.39
+0,Default-K8s,42.048
+0,Default-K8s,24.925
+0,Default-K8s,26.604
+0,Default-K8s,30.082
+0,Default-K8s,28.714
+0,Default-K8s,47.134
+0,Default-K8s,43.545
+0,Default-K8s,29.225
+0,Default-K8s,42.065
+0,Default-K8s,40.214
+0,Default-K8s,47.457
+0,Default-K8s,39.166
+0,Default-K8s,33.89
+0,Default-K8s,42.789
+0,Default-K8s,54.507
+0,Default-K8s,35.496
+0,Default-K8s,36.207
+0,Default-K8s,48.73
+0,Default-K8s,42.45
+0,Default-K8s,33.446
+0,Default-K8s,34.824
+0,Default-K8s,37.865
+0,Default-K8s,44.81
+0,Default-K8s,35.782
+0,Default-K8s,41.744
+0,Default-K8s,35.971
+0,Default-K8s,34.462
+0,Default-K8s,24.689
+0,Default-K8s,32.942
+0,Default-K8s,40.667
+0,Default-K8s,34.074
+0,Default-K8s,26.71
+0,Default-K8s,31.794
+0,Default-K8s,39.978
+0,Default-K8s,30.729
+0,Default-K8s,43.603
+0,Default-K8s,58.321
+0,Default-K8s,52.216
+0,Default-K8s,31.252
+0,Default-K8s,31.184
+0,Default-K8s,36.603
+0,Default-K8s,42.058
+0,Default-K8s,47.645
+0,Default-K8s,54.688
+0,Default-K8s,30.64
+0,Default-K8s,46.315
+0,Default-K8s,20.817
+0,Default-K8s,46.728
+0,Default-K8s,26.37
+0,Default-K8s,29.791
+0,Default-K8s,30.142
+0,Default-K8s,43.846
+0,Default-K8s,44.071
+0,Default-K8s,46.676
+0,Default-K8s,23.449
+0,Default-K8s,22.876
+0,Default-K8s,20.569
+0,Default-K8s,43.467
+0,Default-K8s,46.753
+0,Default-K8s,37.189
+0,Default-K8s,37.707
+0,Default-K8s,51.134
+0,Default-K8s,41.25
+0,Default-K8s,49.194
+0,Default-K8s,39.798
+0,Default-K8s,36.815
+0,Default-K8s,34.895
+0,Default-K8s,29.81
+0,Default-K8s,32.473
+0,Default-K8s,36.918
+0,Default-K8s,36.784
+0,Default-K8s,49.623
+0,Default-K8s,37.545
+0,Default-K8s,40.582
+0,Default-K8s,26.183
+0,Default-K8s,34.069
+0,Default-K8s,45.133
+0,Default-K8s,57.077
+0,Default-K8s,44.132
+0,Default-K8s,37.499
+0,Default-K8s,23.251
+0,Default-K8s,40.334
+0,Default-K8s,54.588
+0,Default-K8s,34.82
+0,Default-K8s,34.344
+0,Default-K8s,41.724
+0,Default-K8s,34.994
+0,Default-K8s,28.224
+0,Default-K8s,50.322
+0,Default-K8s,35.132
+0,Default-K8s,49.405
+0,Default-K8s,40.58
+0,Default-K8s,45.411
+0,Default-K8s,32.184
+0,Default-K8s,41.09
+0,Default-K8s,52.021
+0,Default-K8s,29.692
+0,Default-K8s,39.976
+0,Default-K8s,44.287
+0,Default-K8s,44.135
+0,Default-K8s,42.242
+0,Default-K8s,38.504
+0,Default-K8s,42.515
+0,Default-K8s,41.008
+0,Default-K8s,55.151
+0,Default-K8s,54.305
+0,Default-K8s,33.267
+0,Default-K8s,38.45
+0,Default-K8s,34.826
+0,Default-K8s,35.281
+0,Default-K8s,40.367
+0,Default-K8s,38.695
+0,Default-K8s,26.911
+0,Default-K8s,33.053
+0,Default-K8s,49.361
+0,Default-K8s,40.492
+0,Default-K8s,48.363
+0,Default-K8s,18.914
+0,Default-K8s,35.253
+0,Default-K8s,43.117
+0,Default-K8s,31.023
+0,Default-K8s,33.504
+0,Default-K8s,75.326
+0,Default-K8s,46.991
+0,Default-K8s,48.853
+0,Default-K8s,35.008
+0,Default-K8s,56.381
+0,Default-K8s,48.433
+0,Default-K8s,37.121
+0,Default-K8s,25.621
+0,Default-K8s,52.559
+0,Default-K8s,33.049
+0,Default-K8s,48.179
+0,Default-K8s,41.205
+0,Default-K8s,41.75
+0,Default-K8s,32.73
+0,Default-K8s,37.985
+0,Default-K8s,46.996
+0,Default-K8s,36.472
+0,Default-K8s,61.626
+0,Default-K8s,39.006
+0,Default-K8s,39.295
+0,Default-K8s,33.839
+0,Default-K8s,21.404
+0,Default-K8s,31.755
+0,Default-K8s,26.892
+0,Default-K8s,37.997
+0,Default-K8s,31.052
+0,Default-K8s,37.577
+0,Default-K8s,37.534
+0,Default-K8s,37.544
+0,Default-K8s,38.376
+0,Default-K8s,40.904
+0,Default-K8s,64.172
+0,Default-K8s,34.751
+0,Default-K8s,40.007
+0,Default-K8s,39.196
+0,Default-K8s,42.266
+0,Default-K8s,34.9
+0,Default-K8s,54.429
+0,Default-K8s,42.647
+0,Default-K8s,46.0
+0,Default-K8s,31.892
+0,Default-K8s,41.101
+0,Default-K8s,41.197
+0,Default-K8s,38.669
+0,Default-K8s,47.749
+0,Default-K8s,27.951
+0,Default-K8s,33.768
+0,Default-K8s,38.298
+0,Default-K8s,37.609
+0,Default-K8s,43.591
+0,Default-K8s,35.158
+0,Default-K8s,57.2
+0,Default-K8s,38.443
+0,Default-K8s,40.473
+0,Default-K8s,55.131
+0,Default-K8s,39.41
+0,Default-K8s,33.162
+0,Default-K8s,42.169
+0,Default-K8s,42.551
+0,Default-K8s,43.133
+0,Default-K8s,37.993
+0,Default-K8s,37.477
+0,Default-K8s,44.654
+0,Default-K8s,33.767
+0,Default-K8s,32.91
+0,Default-K8s,61.017
+0,Default-K8s,37.844
+0,Default-K8s,41.148
+0,Default-K8s,31.568
+0,Default-K8s,46.519
+0,Default-K8s,38.336
+0,Default-K8s,39.615
+0,Default-K8s,34.313
+0,Default-K8s,29.55
+0,Default-K8s,57.175
+0,Default-K8s,29.38
+0,Default-K8s,35.956
+0,Default-K8s,42.598
+0,Default-K8s,39.222
+0,Default-K8s,43.462
+0,Default-K8s,33.346
+0,Default-K8s,49.085
+0,Default-K8s,47.385
+0,Default-K8s,29.744
+0,Default-K8s,31.69
+0,Default-K8s,35.595
+0,Default-K8s,24.693
+0,Default-K8s,33.098
+0,Default-K8s,43.416
+0,Default-K8s,35.652
+0,Default-K8s,29.395
+0,Default-K8s,46.448
+0,Default-K8s,18.859
+0,Default-K8s,51.187
+0,Default-K8s,31.726
+0,Default-K8s,51.729
+0,Default-K8s,29.06
+0,Default-K8s,29.742
+0,Default-K8s,41.722
+0,Default-K8s,43.345
+0,Default-K8s,46.909
+0,Default-K8s,35.25
+0,Default-K8s,42.231
+0,Default-K8s,26.603
+0,Default-K8s,32.423
+0,Default-K8s,33.599
+0,Default-K8s,62.802
+0,Default-K8s,40.62
+0,Default-K8s,37.494
+0,Default-K8s,36.968
+0,Default-K8s,48.039
+0,Default-K8s,36.921
+0,Default-K8s,31.592
+0,Default-K8s,42.817
+0,Default-K8s,46.546
+0,Default-K8s,45.765
+0,Default-K8s,27.551
+0,Default-K8s,34.658
+0,Default-K8s,40.03
+0,Default-K8s,34.871
+0,Default-K8s,43.211
+0,Default-K8s,42.624
+0,Default-K8s,45.557
+0,Default-K8s,30.286
+0,Default-K8s,31.099
+0,Default-K8s,38.586
+0,Default-K8s,39.807
+0,Default-K8s,29.302
+0,Default-K8s,39.037
+0,Default-K8s,30.8
+0,Default-K8s,43.434
+0,Default-K8s,25.237
+0,Default-K8s,45.072
+0,Default-K8s,21.586
+0,Default-K8s,24.978
+0,Default-K8s,39.35
+0,Default-K8s,36.872
+0,Default-K8s,40.951
+0,Default-K8s,47.24
+0,Default-K8s,43.163
+0,Default-K8s,28.321
+0,Default-K8s,43.529
+0,Default-K8s,31.423
+0,Default-K8s,36.598
+0,Default-K8s,29.349
+0,Default-K8s,40.898
+0,Default-K8s,48.517
+0,Default-K8s,37.677
+0,Default-K8s,37.002
+0,Default-K8s,28.434
+0,Default-K8s,37.059
+0,Default-K8s,32.01
+0,Default-K8s,38.204
+0,Default-K8s,48.199
+0,Default-K8s,43.128
+0,Default-K8s,27.007
+0,Static-AntiAffinity,13.392
+0,Static-AntiAffinity,10.167
+0,Static-AntiAffinity,8.365
+0,Static-AntiAffinity,15.256
+0,Static-AntiAffinity,10.491
+0,Static-AntiAffinity,13.938
+0,Static-AntiAffinity,12.399
+0,Static-AntiAffinity,11.717
+0,Static-AntiAffinity,6.973
+0,Static-AntiAffinity,10.904
+0,Static-AntiAffinity,10.093
+0,Static-AntiAffinity,9.259
+0,Static-AntiAffinity,9.314
+0,Static-AntiAffinity,10.223
+0,Static-AntiAffinity,13.566
+0,Static-AntiAffinity,8.89
+0,Static-AntiAffinity,8.668
+0,Static-AntiAffinity,9.818
+0,Static-AntiAffinity,14.158
+0,Static-AntiAffinity,10.682
+0,Static-AntiAffinity,15.561
+0,Static-AntiAffinity,12.34
+0,Static-AntiAffinity,11.183
+0,Static-AntiAffinity,18.91
+0,Static-AntiAffinity,9.69
+0,Static-AntiAffinity,11.294
+0,Static-AntiAffinity,10.972
+0,Static-AntiAffinity,14.175
+0,Static-AntiAffinity,12.621
+0,Static-AntiAffinity,11.935
+0,Static-AntiAffinity,15.749
+0,Static-AntiAffinity,13.036
+0,Static-AntiAffinity,16.445
+0,Static-AntiAffinity,12.945
+0,Static-AntiAffinity,12.389
+0,Static-AntiAffinity,10.523
+0,Static-AntiAffinity,15.017
+0,Static-AntiAffinity,16.387
+0,Static-AntiAffinity,13.125
+0,Static-AntiAffinity,9.458
+0,Static-AntiAffinity,8.533
+0,Static-AntiAffinity,11.501
+0,Static-AntiAffinity,12.452
+0,Static-AntiAffinity,12.015
+0,Static-AntiAffinity,12.209
+0,Static-AntiAffinity,14.194
+0,Static-AntiAffinity,14.096
+0,Static-AntiAffinity,7.358
+0,Static-AntiAffinity,11.15
+0,Static-AntiAffinity,14.926
+0,Static-AntiAffinity,13.953
+0,Static-AntiAffinity,9.927
+0,Static-AntiAffinity,10.28
+0,Static-AntiAffinity,11.452
+0,Static-AntiAffinity,9.029
+0,Static-AntiAffinity,17.597
+0,Static-AntiAffinity,25.378
+0,Static-AntiAffinity,13.189
+0,Static-AntiAffinity,9.836
+0,Static-AntiAffinity,12.434
+0,Static-AntiAffinity,9.396
+0,Static-AntiAffinity,8.716
+0,Static-AntiAffinity,17.206
+0,Static-AntiAffinity,13.65
+0,Static-AntiAffinity,16.429
+0,Static-AntiAffinity,10.202
+0,Static-AntiAffinity,8.383
+0,Static-AntiAffinity,12.914
+0,Static-AntiAffinity,8.116
+0,Static-AntiAffinity,8.887
+0,Static-AntiAffinity,12.032
+0,Static-AntiAffinity,11.539
+0,Static-AntiAffinity,15.707
+0,Static-AntiAffinity,11.688
+0,Static-AntiAffinity,8.981
+0,Static-AntiAffinity,14.176
+0,Static-AntiAffinity,8.49
+0,Static-AntiAffinity,7.354
+0,Static-AntiAffinity,8.762
+0,Static-AntiAffinity,16.282
+0,Static-AntiAffinity,11.26
+0,Static-AntiAffinity,9.238
+0,Static-AntiAffinity,10.633
+0,Static-AntiAffinity,8.041
+0,Static-AntiAffinity,13.075
+0,Static-AntiAffinity,7.428
+0,Static-AntiAffinity,6.873
+0,Static-AntiAffinity,13.285
+0,Static-AntiAffinity,10.08
+0,Static-AntiAffinity,8.906
+0,Static-AntiAffinity,10.515
+0,Static-AntiAffinity,12.83
+0,Static-AntiAffinity,13.303
+0,Static-AntiAffinity,9.342
+0,Static-AntiAffinity,9.599
+0,Static-AntiAffinity,13.722
+0,Static-AntiAffinity,7.442
+0,Static-AntiAffinity,13.039
+0,Static-AntiAffinity,9.779
+0,Static-AntiAffinity,9.364
+0,Static-AntiAffinity,11.862
+0,Static-AntiAffinity,9.471
+0,Static-AntiAffinity,13.091
+0,Static-AntiAffinity,11.397
+0,Static-AntiAffinity,7.759
+0,Static-AntiAffinity,12.812
+0,Static-AntiAffinity,10.629
+0,Static-AntiAffinity,12.507
+0,Static-AntiAffinity,12.48
+0,Static-AntiAffinity,12.815
+0,Static-AntiAffinity,9.039
+0,Static-AntiAffinity,11.244
+0,Static-AntiAffinity,12.039
+0,Static-AntiAffinity,9.207
+0,Static-AntiAffinity,13.801
+0,Static-AntiAffinity,12.655
+0,Static-AntiAffinity,14.523
+0,Static-AntiAffinity,14.137
+0,Static-AntiAffinity,13.089
+0,Static-AntiAffinity,12.232
+0,Static-AntiAffinity,11.726
+0,Static-AntiAffinity,14.695
+0,Static-AntiAffinity,12.263
+0,Static-AntiAffinity,15.51
+0,Static-AntiAffinity,16.138
+0,Static-AntiAffinity,15.021
+0,Static-AntiAffinity,9.523
+0,Static-AntiAffinity,13.999
+0,Static-AntiAffinity,13.198
+0,Static-AntiAffinity,13.635
+0,Static-AntiAffinity,10.476
+0,Static-AntiAffinity,8.698
+0,Static-AntiAffinity,13.365
+0,Static-AntiAffinity,16.307
+0,Static-AntiAffinity,10.588
+0,Static-AntiAffinity,11.564
+0,Static-AntiAffinity,11.28
+0,Static-AntiAffinity,12.217
+0,Static-AntiAffinity,11.707
+0,Static-AntiAffinity,11.546
+0,Static-AntiAffinity,8.723
+0,Static-AntiAffinity,10.294
+0,Static-AntiAffinity,16.688
+0,Static-AntiAffinity,10.533
+0,Static-AntiAffinity,9.422
+0,Static-AntiAffinity,7.483
+0,Static-AntiAffinity,13.274
+0,Static-AntiAffinity,12.099
+0,Static-AntiAffinity,12.482
+0,Static-AntiAffinity,12.81
+0,Static-AntiAffinity,6.83
+0,Static-AntiAffinity,12.337
+0,Static-AntiAffinity,12.023
+0,Static-AntiAffinity,10.329
+0,Static-AntiAffinity,10.634
+0,Static-AntiAffinity,11.626
+0,Static-AntiAffinity,17.206
+0,Static-AntiAffinity,12.576
+0,Static-AntiAffinity,10.847
+0,Static-AntiAffinity,11.344
+0,Static-AntiAffinity,14.857
+0,Static-AntiAffinity,12.039
+0,Static-AntiAffinity,16.534
+0,Static-AntiAffinity,8.366
+0,Static-AntiAffinity,12.287
+0,Static-AntiAffinity,13.591
+0,Static-AntiAffinity,8.187
+0,Static-AntiAffinity,18.226
+0,Static-AntiAffinity,12.977
+0,Static-AntiAffinity,10.841
+0,Static-AntiAffinity,12.898
+0,Static-AntiAffinity,11.851
+0,Static-AntiAffinity,14.741
+0,Static-AntiAffinity,16.62
+0,Static-AntiAffinity,10.586
+0,Static-AntiAffinity,9.14
+0,Static-AntiAffinity,15.071
+0,Static-AntiAffinity,13.846
+0,Static-AntiAffinity,20.229
+0,Static-AntiAffinity,12.297
+0,Static-AntiAffinity,13.875
+0,Static-AntiAffinity,16.766
+0,Static-AntiAffinity,9.508
+0,Static-AntiAffinity,15.831
+0,Static-AntiAffinity,13.968
+0,Static-AntiAffinity,7.731
+0,Static-AntiAffinity,9.891
+0,Static-AntiAffinity,19.44
+0,Static-AntiAffinity,11.598
+0,Static-AntiAffinity,10.719
+0,Static-AntiAffinity,16.591
+0,Static-AntiAffinity,15.325
+0,Static-AntiAffinity,16.504
+0,Static-AntiAffinity,13.708
+0,Static-AntiAffinity,9.909
+0,Static-AntiAffinity,11.307
+0,Static-AntiAffinity,13.475
+0,Static-AntiAffinity,13.112
+0,Static-AntiAffinity,11.561
+0,Static-AntiAffinity,8.249
+0,Static-AntiAffinity,11.852
+0,Static-AntiAffinity,11.188
+0,Static-AntiAffinity,10.191
+0,Static-AntiAffinity,10.996
+0,Static-AntiAffinity,12.471
+0,Static-AntiAffinity,12.465
+0,Static-AntiAffinity,14.487
+0,Static-AntiAffinity,15.547
+0,Static-AntiAffinity,8.822
+0,Static-AntiAffinity,13.326
+0,Static-AntiAffinity,9.097
+0,Static-AntiAffinity,7.691
+0,Static-AntiAffinity,6.687
+0,Static-AntiAffinity,8.52
+0,Static-AntiAffinity,9.714
+0,Static-AntiAffinity,11.947
+0,Static-AntiAffinity,13.352
+0,Static-AntiAffinity,12.501
+0,Static-AntiAffinity,10.436
+0,Static-AntiAffinity,12.885
+0,Static-AntiAffinity,15.263
+0,Static-AntiAffinity,14.615
+0,Static-AntiAffinity,8.089
+0,Static-AntiAffinity,12.093
+0,Static-AntiAffinity,11.373
+0,Static-AntiAffinity,11.934
+0,Static-AntiAffinity,9.758
+0,Static-AntiAffinity,12.227
+0,Static-AntiAffinity,12.691
+0,Static-AntiAffinity,12.613
+0,Static-AntiAffinity,14.003
+0,Static-AntiAffinity,10.933
+0,Static-AntiAffinity,11.294
+0,Static-AntiAffinity,12.686
+0,Static-AntiAffinity,14.7
+0,Static-AntiAffinity,11.372
+0,Static-AntiAffinity,9.694
+0,Static-AntiAffinity,13.921
+0,Static-AntiAffinity,17.638
+0,Static-AntiAffinity,16.979
+0,Static-AntiAffinity,12.289
+0,Static-AntiAffinity,13.222
+0,Static-AntiAffinity,12.063
+0,Static-AntiAffinity,13.279
+0,Static-AntiAffinity,9.909
+0,Static-AntiAffinity,7.982
+0,Static-AntiAffinity,9.584
+0,Static-AntiAffinity,14.515
+0,Static-AntiAffinity,18.119
+0,Static-AntiAffinity,13.017
+0,Static-AntiAffinity,12.796
+0,Static-AntiAffinity,12.084
+0,Static-AntiAffinity,18.231
+0,Static-AntiAffinity,9.25
+0,Static-AntiAffinity,15.767
+0,Static-AntiAffinity,10.775
+0,Static-AntiAffinity,14.472
+0,Static-AntiAffinity,8.886
+0,Static-AntiAffinity,10.469
+0,Static-AntiAffinity,8.375
+0,Static-AntiAffinity,14.743
+0,Static-AntiAffinity,12.874
+0,Static-AntiAffinity,12.275
+0,Static-AntiAffinity,13.227
+0,Static-AntiAffinity,9.205
+0,Static-AntiAffinity,21.484
+0,Static-AntiAffinity,8.292
+0,Static-AntiAffinity,11.926
+0,Static-AntiAffinity,6.535
+0,Static-AntiAffinity,11.775
+0,Static-AntiAffinity,10.198
+0,Static-AntiAffinity,12.754
+0,Static-AntiAffinity,19.435
+0,Static-AntiAffinity,9.535
+0,Static-AntiAffinity,9.359
+0,Static-AntiAffinity,7.265
+0,Static-AntiAffinity,16.734
+0,Static-AntiAffinity,11.813
+0,Static-AntiAffinity,10.569
+0,Static-AntiAffinity,14.598
+0,Static-AntiAffinity,13.317
+0,Static-AntiAffinity,9.455
+0,Static-AntiAffinity,9.972
+0,Static-AntiAffinity,15.725
+0,Static-AntiAffinity,10.217
+0,Static-AntiAffinity,14.578
+0,Static-AntiAffinity,15.889
+0,Static-AntiAffinity,13.676
+0,Static-AntiAffinity,8.576
+0,Static-AntiAffinity,10.084
+0,Static-AntiAffinity,15.068
+0,Static-AntiAffinity,11.584
+0,Static-AntiAffinity,9.53
+0,Static-AntiAffinity,17.309
+0,Static-AntiAffinity,9.055
+0,Static-AntiAffinity,10.676
+0,Static-AntiAffinity,8.547
+0,Static-AntiAffinity,10.524
+0,Static-AntiAffinity,13.537
+0,Static-AntiAffinity,10.695
+0,Static-AntiAffinity,10.863
+0,Static-AntiAffinity,13.748
+0,Static-AntiAffinity,17.492
+0,Static-AntiAffinity,13.745
+0,Static-AntiAffinity,9.915
+0,Static-AntiAffinity,9.74
+0,Static-AntiAffinity,17.181
+0,Static-AntiAffinity,15.841
+0,Static-AntiAffinity,15.577
+0,Static-AntiAffinity,9.912
+0,Static-AntiAffinity,17.527
+0,Static-AntiAffinity,7.323
+0,Static-AntiAffinity,14.571
+0,Static-AntiAffinity,13.545
+0,Static-AntiAffinity,10.985
+0,Static-AntiAffinity,11.475
+0,Static-AntiAffinity,14.755
+0,Static-AntiAffinity,11.335
+0,Static-AntiAffinity,21.292
+0,Static-AntiAffinity,10.165
+0,Static-AntiAffinity,8.732
+0,Static-AntiAffinity,17.26
+0,Static-AntiAffinity,17.784
+0,Static-AntiAffinity,16.835
+0,Static-AntiAffinity,14.993
+0,Static-AntiAffinity,20.866
+0,Static-AntiAffinity,11.327
+0,Static-AntiAffinity,10.168
+0,Static-AntiAffinity,10.759
+0,Static-AntiAffinity,9.991
+0,Static-AntiAffinity,15.59
+0,Static-AntiAffinity,10.4
+0,Static-AntiAffinity,17.349
+0,Static-AntiAffinity,13.088
+0,Static-AntiAffinity,12.232
+0,Static-AntiAffinity,6.964
+0,Static-AntiAffinity,11.784
+0,Static-AntiAffinity,12.981
+0,Static-AntiAffinity,9.12
+0,Static-AntiAffinity,14.627
+0,Static-AntiAffinity,11.248
+0,Static-AntiAffinity,10.898
+0,Static-AntiAffinity,9.726
+0,Static-AntiAffinity,9.909
+0,Static-AntiAffinity,10.906
+0,Static-AntiAffinity,12.664
+0,Static-AntiAffinity,9.397
+0,Static-AntiAffinity,12.136
+0,Static-AntiAffinity,13.829
+0,Static-AntiAffinity,14.035
+0,Static-AntiAffinity,14.364
+0,Static-AntiAffinity,8.591
+0,Static-AntiAffinity,14.899
+0,Static-AntiAffinity,12.793
+0,Static-AntiAffinity,13.34
+0,Static-AntiAffinity,10.601
+0,Static-AntiAffinity,10.924
+0,Static-AntiAffinity,13.346
+0,Static-AntiAffinity,14.314
+0,Static-AntiAffinity,13.766
+0,Static-AntiAffinity,15.116
+0,Static-AntiAffinity,9.8
+0,Static-AntiAffinity,14.372
+0,Static-AntiAffinity,14.406
+0,Static-AntiAffinity,9.858
+0,Static-AntiAffinity,11.758
+0,Static-AntiAffinity,13.436
+0,Static-AntiAffinity,13.232
+0,Static-AntiAffinity,11.094
+0,Static-AntiAffinity,12.942
+0,Static-AntiAffinity,15.203
+0,Static-AntiAffinity,10.915
+0,Static-AntiAffinity,10.644
+0,Static-AntiAffinity,11.36
+0,Static-AntiAffinity,7.187
+0,Static-AntiAffinity,12.863
+0,Static-AntiAffinity,13.139
+0,Static-AntiAffinity,10.453
+0,Static-AntiAffinity,9.407
+0,Static-AntiAffinity,7.622
+0,Static-AntiAffinity,9.681
+0,Static-AntiAffinity,7.822
+0,Static-AntiAffinity,12.373
+0,Static-AntiAffinity,12.353
+0,Static-AntiAffinity,12.955
+0,Static-AntiAffinity,12.822
+0,Static-AntiAffinity,9.723
+0,Static-AntiAffinity,14.606
+0,Static-AntiAffinity,9.886
+0,Static-AntiAffinity,8.889
+0,Static-AntiAffinity,15.252
+0,Static-AntiAffinity,19.848
+0,Static-AntiAffinity,10.847
+0,Static-AntiAffinity,16.465
+0,Static-AntiAffinity,11.063
+0,Static-AntiAffinity,13.925
+0,Static-AntiAffinity,19.114
+0,Static-AntiAffinity,10.675
+0,Static-AntiAffinity,8.282
+0,Static-AntiAffinity,10.649
+0,Static-AntiAffinity,11.985
+0,Static-AntiAffinity,16.757
+0,Static-AntiAffinity,12.94
+0,Static-AntiAffinity,12.778
+0,Static-AntiAffinity,12.273
+0,Static-AntiAffinity,16.341
+0,Static-AntiAffinity,10.782
+0,Static-AntiAffinity,11.963
+0,Static-AntiAffinity,12.496
+0,Static-AntiAffinity,9.15
+0,Static-AntiAffinity,12.731
+0,Static-AntiAffinity,13.644
+0,Static-AntiAffinity,13.83
+0,Static-AntiAffinity,19.904
+0,Static-AntiAffinity,9.004
+0,Static-AntiAffinity,13.303
+0,Static-AntiAffinity,11.642
+0,Static-AntiAffinity,9.803
+0,Static-AntiAffinity,15.044
+0,Static-AntiAffinity,13.802
+0,Static-AntiAffinity,13.488
+0,Static-AntiAffinity,10.083
+0,Static-AntiAffinity,20.308
+0,Static-AntiAffinity,12.914
+0,Static-AntiAffinity,12.271
+0,Static-AntiAffinity,10.572
+0,Static-AntiAffinity,10.366
+0,Static-AntiAffinity,12.007
+0,Static-AntiAffinity,7.113
+0,Static-AntiAffinity,15.458
+0,Static-AntiAffinity,8.388
+0,Static-AntiAffinity,10.671
+0,Static-AntiAffinity,10.056
+0,Static-AntiAffinity,11.562
+0,Static-AntiAffinity,12.707
+0,Static-AntiAffinity,12.705
+0,Static-AntiAffinity,10.448
+0,Static-AntiAffinity,13.53
+0,Static-AntiAffinity,16.173
+0,Static-AntiAffinity,13.678
+0,Static-AntiAffinity,13.24
+0,Static-AntiAffinity,10.167
+0,Static-AntiAffinity,10.96
+0,Static-AntiAffinity,9.456
+0,Static-AntiAffinity,8.195
+0,Static-AntiAffinity,14.043
+0,Static-AntiAffinity,12.067
+0,Static-AntiAffinity,12.943
+0,Static-AntiAffinity,15.472
+0,Static-AntiAffinity,15.096
+0,Static-AntiAffinity,16.274
+0,Static-AntiAffinity,8.784
+0,Static-AntiAffinity,12.502
+0,Static-AntiAffinity,17.141
+0,Static-AntiAffinity,11.945
+0,Static-AntiAffinity,17.106
+0,Static-AntiAffinity,20.829
+0,Static-AntiAffinity,9.12
+0,Static-AntiAffinity,14.445
+0,Static-AntiAffinity,20.403
+0,Static-AntiAffinity,10.166
+0,Static-AntiAffinity,11.394
+0,Static-AntiAffinity,18.053
+0,Static-AntiAffinity,10.577
+0,Static-AntiAffinity,19.222
+0,Static-AntiAffinity,15.375
+0,Static-AntiAffinity,13.218
+0,Static-AntiAffinity,10.37
+0,Static-AntiAffinity,16.058
+0,Static-AntiAffinity,15.499
+0,Static-AntiAffinity,12.345
+0,Static-AntiAffinity,17.377
+0,Static-AntiAffinity,11.377
+0,Static-AntiAffinity,10.487
+0,Static-AntiAffinity,13.412
+0,Static-AntiAffinity,12.234
+0,Static-AntiAffinity,12.236
+0,Static-AntiAffinity,11.648
+0,Static-AntiAffinity,13.065
+0,Static-AntiAffinity,13.881
+0,Static-AntiAffinity,8.64
+0,Static-AntiAffinity,18.662
+0,Static-AntiAffinity,14.836
+0,Static-AntiAffinity,10.675
+0,Static-AntiAffinity,9.178
+0,Static-AntiAffinity,13.95
+0,Static-AntiAffinity,14.506
+0,Static-AntiAffinity,13.823
+0,Static-AntiAffinity,9.629
+0,Static-AntiAffinity,13.403
+0,Static-AntiAffinity,9.582
+0,Static-AntiAffinity,10.744
+0,Static-AntiAffinity,13.09
+0,Static-AntiAffinity,9.571
+0,Static-AntiAffinity,13.131
+0,Static-AntiAffinity,17.619
+0,Static-AntiAffinity,13.417
+0,Static-AntiAffinity,9.507
+0,Static-AntiAffinity,14.877
+0,Static-AntiAffinity,18.268
+0,Static-AntiAffinity,15.139
+0,Static-AntiAffinity,11.56
+0,Static-AntiAffinity,12.787
+0,Static-AntiAffinity,14.237
+0,Static-AntiAffinity,9.596
+0,Static-AntiAffinity,10.002
+0,Static-AntiAffinity,13.31
+0,Static-AntiAffinity,13.215
+0,Static-AntiAffinity,15.894
+0,Static-AntiAffinity,11.694
+0,Static-AntiAffinity,11.77
+0,Static-AntiAffinity,12.337
+0,Static-AntiAffinity,7.889
+0,Static-AntiAffinity,12.963
+0,Static-AntiAffinity,12.022
+0,Static-AntiAffinity,13.511
+0,Static-AntiAffinity,7.912
+0,Static-AntiAffinity,6.855
+0,Static-AntiAffinity,10.89
+0,Static-AntiAffinity,12.539
+0,Static-AntiAffinity,16.583
+0,Static-AntiAffinity,15.197
+0,Static-AntiAffinity,7.982
+0,Static-AntiAffinity,13.4
+0,Static-AntiAffinity,11.686
+0,Static-AntiAffinity,11.576
+0,Static-AntiAffinity,9.053
+0,Static-AntiAffinity,9.378
+0,Static-AntiAffinity,12.018
+0,Static-AntiAffinity,16.352
+0,Static-AntiAffinity,14.997
+0,Static-AntiAffinity,12.114
+0,Static-AntiAffinity,10.094
+0,Static-AntiAffinity,13.962
+0,Static-AntiAffinity,14.575
+0,Static-AntiAffinity,11.75
+0,Static-AntiAffinity,13.852
+0,Static-AntiAffinity,26.546
+0,Static-AntiAffinity,17.994
+0,Static-AntiAffinity,7.769
+0,Static-AntiAffinity,12.224
+0,Static-AntiAffinity,9.423
+0,Static-AntiAffinity,15.031
+0,Static-AntiAffinity,11.304
+0,Static-AntiAffinity,12.986
+0,Static-AntiAffinity,12.728
+0,Static-AntiAffinity,11.606
+0,Static-AntiAffinity,6.993
+0,Static-AntiAffinity,10.27
+0,Static-AntiAffinity,19.066
+0,Static-AntiAffinity,12.003
+0,Static-AntiAffinity,8.852
+0,Static-AntiAffinity,17.185
+0,Static-AntiAffinity,13.669
+0,Static-AntiAffinity,25.064
+0,Static-AntiAffinity,18.35
+0,Static-AntiAffinity,12.811
+0,Static-AntiAffinity,9.229
+0,Static-AntiAffinity,10.88
+0,Static-AntiAffinity,12.755
+0,Static-AntiAffinity,10.88
+0,Static-AntiAffinity,11.074
+0,Static-AntiAffinity,11.558
+0,Static-AntiAffinity,12.826
+0,Static-AntiAffinity,11.416
+0,Static-AntiAffinity,12.605
+0,Static-AntiAffinity,11.656
+0,Static-AntiAffinity,9.517
+0,Static-AntiAffinity,12.438
+0,Static-AntiAffinity,16.949
+0,Static-AntiAffinity,12.413
+0,Static-AntiAffinity,11.957
+0,Static-AntiAffinity,13.635
+0,Static-AntiAffinity,12.979
+0,Static-AntiAffinity,15.02
+0,Static-AntiAffinity,21.093
+0,Static-AntiAffinity,10.084
+0,Static-AntiAffinity,13.928
+0,Static-AntiAffinity,12.261
+0,Static-AntiAffinity,12.289
+0,Static-AntiAffinity,12.998
+0,Static-AntiAffinity,15.309
+0,Static-AntiAffinity,11.103
+0,Static-AntiAffinity,17.874
+0,Static-AntiAffinity,9.903
+0,Static-AntiAffinity,15.656
+0,Static-AntiAffinity,10.046
+0,Static-AntiAffinity,11.261
+0,Static-AntiAffinity,9.848
+0,Static-AntiAffinity,10.788
+0,Static-AntiAffinity,11.661
+0,Static-AntiAffinity,10.287
+0,Static-AntiAffinity,10.885
+0,Static-AntiAffinity,10.205
+0,Static-AntiAffinity,10.046
+0,Static-AntiAffinity,10.522
+0,Static-AntiAffinity,13.026
+0,Static-AntiAffinity,15.189
+0,Static-AntiAffinity,10.64
+0,Static-AntiAffinity,9.559
+0,Static-AntiAffinity,10.993
+0,Static-AntiAffinity,20.94
+0,Static-AntiAffinity,9.803
+0,Static-AntiAffinity,12.963
+0,Static-AntiAffinity,11.559
+0,Static-AntiAffinity,12.279
+0,Static-AntiAffinity,10.788
+0,Static-AntiAffinity,10.095
+0,Static-AntiAffinity,14.141
+0,Static-AntiAffinity,7.615
+0,Static-AntiAffinity,11.471
+0,Static-AntiAffinity,11.545
+0,Static-AntiAffinity,13.176
+0,Static-AntiAffinity,12.428
+0,Static-AntiAffinity,12.251
+0,Static-AntiAffinity,13.742
+0,Static-AntiAffinity,18.687
+0,Static-AntiAffinity,18.058
+0,Static-AntiAffinity,9.213
+0,Static-AntiAffinity,12.081
+0,Static-AntiAffinity,11.658
+0,Static-AntiAffinity,9.456
+0,Static-AntiAffinity,8.894
+0,Static-AntiAffinity,10.028
+0,Static-AntiAffinity,12.695
+0,Static-AntiAffinity,11.675
+0,Static-AntiAffinity,19.693
+0,Static-AntiAffinity,10.74
+0,Static-AntiAffinity,12.015
+0,Static-AntiAffinity,9.977
+0,Static-AntiAffinity,15.386
+0,Static-AntiAffinity,13.341
+0,Static-AntiAffinity,12.99
+0,Static-AntiAffinity,11.564
+0,Static-AntiAffinity,11.536
+0,Static-AntiAffinity,7.884
+0,Static-AntiAffinity,10.217
+0,Static-AntiAffinity,7.037
+0,Static-AntiAffinity,10.79
+0,Static-AntiAffinity,9.936
+0,Static-AntiAffinity,15.959
+0,Static-AntiAffinity,10.882
+0,Static-AntiAffinity,12.146
+0,Static-AntiAffinity,12.338
+0,Static-AntiAffinity,11.952
+0,Static-AntiAffinity,10.351
+0,Static-AntiAffinity,11.829
+0,Static-AntiAffinity,12.022
+0,Static-AntiAffinity,17.249
+0,Static-AntiAffinity,13.828
+0,Static-AntiAffinity,9.936
+0,Static-AntiAffinity,10.466
+0,Static-AntiAffinity,11.209
+0,Static-AntiAffinity,13.927
+0,Static-AntiAffinity,9.655
+0,Static-AntiAffinity,23.592
+0,Static-AntiAffinity,9.762
+0,Static-AntiAffinity,8.54
+0,Static-AntiAffinity,10.576
+0,Static-AntiAffinity,13.788
+0,Static-AntiAffinity,13.492
+0,Static-AntiAffinity,10.705
+0,Static-AntiAffinity,13.441
+0,Static-AntiAffinity,14.284
+0,Static-AntiAffinity,8.664
+0,Static-AntiAffinity,12.473
+0,Static-AntiAffinity,6.579
+0,Static-AntiAffinity,10.685
+0,Static-AntiAffinity,11.62
+0,Static-AntiAffinity,14.385
+0,Static-AntiAffinity,11.34
+0,Static-AntiAffinity,12.805
+0,Static-AntiAffinity,10.122
+0,Static-AntiAffinity,17.894
+0,Static-AntiAffinity,14.304
+0,Static-AntiAffinity,10.991
+0,Static-AntiAffinity,10.063
+0,Static-AntiAffinity,12.058
+0,Static-AntiAffinity,9.397
+0,Static-AntiAffinity,7.163
+0,Static-AntiAffinity,11.997
+0,Static-AntiAffinity,8.277
+0,Static-AntiAffinity,10.367
+0,Static-AntiAffinity,18.349
+0,Static-AntiAffinity,11.511
+0,Static-AntiAffinity,8.138
+0,Static-AntiAffinity,12.881
+0,Static-AntiAffinity,8.605
+0,Static-AntiAffinity,9.103
+0,Static-AntiAffinity,16.146
+0,Static-AntiAffinity,11.416
+0,Static-AntiAffinity,17.308
+0,Static-AntiAffinity,9.51
+0,Static-AntiAffinity,14.293
+0,Static-AntiAffinity,7.909
+0,Static-AntiAffinity,15.815
+0,Static-AntiAffinity,14.945
+0,Static-AntiAffinity,11.497
+0,Static-AntiAffinity,15.398
+0,Static-AntiAffinity,9.305
+0,Static-AntiAffinity,12.635
+0,Static-AntiAffinity,14.539
+0,Static-AntiAffinity,9.352
+0,Static-AntiAffinity,15.169
+0,Static-AntiAffinity,8.124
+0,Static-AntiAffinity,12.2
+0,Static-AntiAffinity,13.226
+0,Static-AntiAffinity,9.863
+0,Static-AntiAffinity,13.02
+0,Static-AntiAffinity,8.165
+0,Static-AntiAffinity,8.711
+0,Static-AntiAffinity,9.603
+0,Static-AntiAffinity,11.321
+0,Static-AntiAffinity,12.802
+0,Static-AntiAffinity,10.048
+0,Static-AntiAffinity,9.254
+0,Static-AntiAffinity,11.593
+0,Static-AntiAffinity,16.251
+0,Static-AntiAffinity,11.685
+0,Static-AntiAffinity,14.126
+0,Static-AntiAffinity,13.869
+0,Static-AntiAffinity,8.828
+0,Static-AntiAffinity,10.781
+0,Static-AntiAffinity,10.45
+0,Static-AntiAffinity,11.656
+0,Static-AntiAffinity,8.349
+0,Static-AntiAffinity,8.605
+0,Static-AntiAffinity,8.401
+0,Static-AntiAffinity,16.565
+0,Static-AntiAffinity,13.252
+0,Static-AntiAffinity,20.741
+0,Static-AntiAffinity,13.798
+0,Static-AntiAffinity,18.775
+0,Static-AntiAffinity,11.838
+0,Static-AntiAffinity,12.394
+0,Static-AntiAffinity,13.33
+0,Static-AntiAffinity,11.283
+0,Static-AntiAffinity,8.905
+0,Static-AntiAffinity,6.922
+0,Static-AntiAffinity,16.321
+0,Static-AntiAffinity,9.945
+0,Static-AntiAffinity,10.906
+0,Static-AntiAffinity,11.965
+0,Static-AntiAffinity,10.884
+0,Static-AntiAffinity,12.238
+0,Static-AntiAffinity,11.217
+0,Static-AntiAffinity,14.072
+0,Static-AntiAffinity,8.575
+0,Static-AntiAffinity,17.699
+0,Static-AntiAffinity,15.232
+0,Static-AntiAffinity,13.623
+0,Static-AntiAffinity,13.541
+0,Static-AntiAffinity,8.821
+0,Static-AntiAffinity,11.355
+0,Static-AntiAffinity,13.338
+0,Static-AntiAffinity,10.944
+0,Static-AntiAffinity,10.081
+0,Static-AntiAffinity,13.65
+0,Static-AntiAffinity,13.679
+0,Static-AntiAffinity,11.003
+0,Static-AntiAffinity,8.181
+0,Static-AntiAffinity,8.178
+0,Static-AntiAffinity,10.85
+0,Static-AntiAffinity,17.503
+0,Static-AntiAffinity,14.437
+0,Static-AntiAffinity,11.823
+0,Static-AntiAffinity,14.681
+0,Static-AntiAffinity,9.426
+0,Static-AntiAffinity,10.842
+0,Static-AntiAffinity,21.041
+0,Static-AntiAffinity,9.758
+0,Static-AntiAffinity,12.745
+0,Static-AntiAffinity,16.488
+0,Static-AntiAffinity,16.844
+0,Static-AntiAffinity,14.819
+0,Static-AntiAffinity,12.347
+0,Static-AntiAffinity,6.923
+0,Static-AntiAffinity,14.72
+0,Static-AntiAffinity,10.346
+0,Static-AntiAffinity,10.607
+0,Static-AntiAffinity,9.364
+0,Static-AntiAffinity,9.82
+0,Static-AntiAffinity,16.338
+0,Static-AntiAffinity,13.053
+0,Static-AntiAffinity,9.97
+0,Static-AntiAffinity,12.062
+0,Static-AntiAffinity,13.091
+0,Static-AntiAffinity,15.822
+0,Static-AntiAffinity,17.195
+0,Static-AntiAffinity,13.952
+0,Static-AntiAffinity,12.015
+0,Static-AntiAffinity,11.682
+0,Static-AntiAffinity,10.415
+0,Static-AntiAffinity,9.993
+0,Static-AntiAffinity,8.326
+0,Static-AntiAffinity,18.396
+0,Static-AntiAffinity,9.178
+0,Static-AntiAffinity,11.598
+0,Static-AntiAffinity,13.654
+0,Static-AntiAffinity,9.517
+0,Static-AntiAffinity,12.18
+0,Static-AntiAffinity,10.457
+0,Static-AntiAffinity,12.131
+0,Static-AntiAffinity,14.003
+0,Static-AntiAffinity,13.948
+0,Static-AntiAffinity,9.66
+0,Static-AntiAffinity,15.017
+0,Static-AntiAffinity,10.13
+0,Static-AntiAffinity,18.033
+0,Static-AntiAffinity,10.423
+0,Static-AntiAffinity,12.407
+0,Static-AntiAffinity,11.188
+0,Static-AntiAffinity,15.252
+0,Static-AntiAffinity,11.839
+0,Static-AntiAffinity,9.589
+0,Static-AntiAffinity,10.393
+0,Static-AntiAffinity,7.998
+0,Static-AntiAffinity,13.849
+0,Static-AntiAffinity,16.211
+0,Static-AntiAffinity,12.089
+0,Static-AntiAffinity,8.718
+0,Static-AntiAffinity,8.496
+0,Static-AntiAffinity,10.967
+0,Static-AntiAffinity,10.755
+0,Static-AntiAffinity,14.357
+0,Static-AntiAffinity,14.394
+0,Static-AntiAffinity,11.899
+0,Static-AntiAffinity,11.006
+0,Static-AntiAffinity,8.631
+0,Static-AntiAffinity,9.148
+0,Static-AntiAffinity,10.144
+0,Static-AntiAffinity,10.982
+0,Static-AntiAffinity,12.181
+0,Static-AntiAffinity,16.411
+0,Static-AntiAffinity,8.331
+0,Static-AntiAffinity,13.527
+0,Static-AntiAffinity,12.431
+0,Static-AntiAffinity,11.071
+0,Static-AntiAffinity,10.73
+0,Static-AntiAffinity,10.083
+0,Static-AntiAffinity,9.291
+0,Static-AntiAffinity,11.298
+0,Static-AntiAffinity,10.914
+0,Static-AntiAffinity,11.573
+0,Static-AntiAffinity,17.736
+0,Static-AntiAffinity,13.177
+0,Static-AntiAffinity,17.996
+0,Static-AntiAffinity,13.745
+0,Static-AntiAffinity,11.91
+0,Static-AntiAffinity,12.704
+0,Static-AntiAffinity,12.698
+0,Static-AntiAffinity,6.834
+0,Static-AntiAffinity,9.389
+0,Static-AntiAffinity,10.752
+0,Static-AntiAffinity,11.348
+0,Static-AntiAffinity,10.984
+0,Static-AntiAffinity,10.673
+0,Static-AntiAffinity,11.99
+0,Static-AntiAffinity,10.712
+0,Static-AntiAffinity,10.488
+0,Static-AntiAffinity,9.697
+0,Static-AntiAffinity,14.268
+0,Static-AntiAffinity,14.474
+0,Static-AntiAffinity,13.81
+0,Static-AntiAffinity,9.351
+0,Static-AntiAffinity,15.824
+0,Static-AntiAffinity,14.233
+0,Static-AntiAffinity,19.011
+0,Static-AntiAffinity,11.52
+0,Static-AntiAffinity,9.244
+0,Static-AntiAffinity,10.666
+0,Static-AntiAffinity,9.687
+0,Static-AntiAffinity,15.12
+0,Static-AntiAffinity,8.482
+0,Static-AntiAffinity,11.493
+0,Static-AntiAffinity,10.162
+0,Static-AntiAffinity,11.888
+0,Static-AntiAffinity,9.535
+0,Static-AntiAffinity,8.758
+0,Static-AntiAffinity,16.202
+0,Static-AntiAffinity,10.903
+0,Static-AntiAffinity,12.921
+0,Static-AntiAffinity,10.944
+0,Static-AntiAffinity,15.448
+0,Static-AntiAffinity,8.911
+0,Static-AntiAffinity,8.713
+0,Static-AntiAffinity,9.123
+0,Static-AntiAffinity,11.828
+0,Static-AntiAffinity,9.437
+0,Static-AntiAffinity,18.393
+0,Static-AntiAffinity,12.08
+0,Static-AntiAffinity,12.27
+0,Static-AntiAffinity,10.439
+0,Static-AntiAffinity,11.413
+0,Static-AntiAffinity,8.993
+0,Static-AntiAffinity,13.7
+0,Static-AntiAffinity,10.483
+0,Static-AntiAffinity,10.052
+0,Static-AntiAffinity,14.355
+0,Static-AntiAffinity,8.459
+0,Static-AntiAffinity,13.964
+0,Static-AntiAffinity,12.946
+0,Static-AntiAffinity,8.329
+0,Static-AntiAffinity,10.597
+0,Static-AntiAffinity,13.069
+0,Static-AntiAffinity,15.921
+0,Static-AntiAffinity,10.123
+0,Static-AntiAffinity,13.13
+0,Static-AntiAffinity,19.812
+0,Static-AntiAffinity,9.818
+0,Static-AntiAffinity,11.671
+0,Static-AntiAffinity,14.625
+0,Static-AntiAffinity,10.023
+0,Static-AntiAffinity,11.734
+0,Static-AntiAffinity,10.062
+0,Static-AntiAffinity,13.247
+0,Static-AntiAffinity,8.615
+0,Static-AntiAffinity,12.841
+0,Static-AntiAffinity,10.607
+0,Static-AntiAffinity,11.91
+0,Static-AntiAffinity,15.375
+0,Static-AntiAffinity,7.838
+0,Static-AntiAffinity,9.897
+0,Static-AntiAffinity,12.637
+0,Static-AntiAffinity,10.041
+0,Static-AntiAffinity,13.121
+0,Static-AntiAffinity,13.268
+0,Static-AntiAffinity,13.656
+0,Static-AntiAffinity,17.436
+0,Static-AntiAffinity,10.665
+0,Static-AntiAffinity,13.178
+0,Static-AntiAffinity,12.447
+0,Static-AntiAffinity,16.797
+0,Static-AntiAffinity,9.917
+0,Static-AntiAffinity,14.522
+0,Static-AntiAffinity,7.82
+0,Static-AntiAffinity,10.411
+0,Static-AntiAffinity,13.106
+0,Static-AntiAffinity,10.225
+0,Static-AntiAffinity,8.237
+0,Static-AntiAffinity,14.573
+0,Static-AntiAffinity,11.176
+0,Static-AntiAffinity,15.693
+0,Static-AntiAffinity,11.02
+0,Static-AntiAffinity,15.573
+0,Static-AntiAffinity,20.798
+0,Static-AntiAffinity,8.328
+0,Static-AntiAffinity,13.549
+0,Static-AntiAffinity,12.366
+0,Static-AntiAffinity,12.662
+0,Static-AntiAffinity,11.061
+0,Static-AntiAffinity,14.516
+0,Static-AntiAffinity,11.604
+0,Static-AntiAffinity,8.999
+0,Static-AntiAffinity,9.305
+0,Static-AntiAffinity,11.135
+0,Static-AntiAffinity,9.121
+0,Static-AntiAffinity,10.484
+0,Static-AntiAffinity,10.781
+0,Static-AntiAffinity,10.168
+0,Static-AntiAffinity,10.74
+0,Static-AntiAffinity,10.054
+0,Static-AntiAffinity,19.191
+0,Static-AntiAffinity,15.196
+0,Static-AntiAffinity,13.345
+0,Static-AntiAffinity,12.995
+0,Static-AntiAffinity,13.779
+0,Static-AntiAffinity,19.208
+0,Static-AntiAffinity,13.015
+0,Static-AntiAffinity,8.228
+0,Static-AntiAffinity,10.789
+0,Static-AntiAffinity,16.867
+0,Static-AntiAffinity,13.14
+0,Static-AntiAffinity,10.745
+0,Static-AntiAffinity,13.583
+0,Static-AntiAffinity,13.413
+0,Static-AntiAffinity,12.171
+0,Static-AntiAffinity,14.161
+0,Static-AntiAffinity,10.928
+0,Static-AntiAffinity,9.231
+0,Static-AntiAffinity,16.984
+0,Static-AntiAffinity,7.43
+0,Static-AntiAffinity,10.392
+0,Static-AntiAffinity,7.973
+0,Static-AntiAffinity,8.237
+0,Static-AntiAffinity,10.004
+0,Static-AntiAffinity,11.877
+0,Static-AntiAffinity,9.375
+0,Static-AntiAffinity,8.912
+0,Static-AntiAffinity,17.022
+0,Static-AntiAffinity,9.899
+0,Static-AntiAffinity,14.213
+0,Static-AntiAffinity,10.959
+0,Static-AntiAffinity,12.402
+0,Static-AntiAffinity,9.733
+0,Static-AntiAffinity,12.364
+0,Static-AntiAffinity,10.84
+0,Static-AntiAffinity,9.132
+0,Static-AntiAffinity,12.374
+0,Static-AntiAffinity,9.022
+0,Reactive-Descheduler,34.633
+0,Reactive-Descheduler,28.933
+0,Reactive-Descheduler,18.267
+0,Reactive-Descheduler,22.805
+0,Reactive-Descheduler,21.424
+0,Reactive-Descheduler,17.339
+0,Reactive-Descheduler,31.163
+0,Reactive-Descheduler,10.417
+0,Reactive-Descheduler,29.248
+0,Reactive-Descheduler,18.535
+0,Reactive-Descheduler,23.081
+0,Reactive-Descheduler,23.865
+0,Reactive-Descheduler,18.589
+0,Reactive-Descheduler,26.003
+0,Reactive-Descheduler,21.571
+0,Reactive-Descheduler,40.116
+0,Reactive-Descheduler,32.319
+0,Reactive-Descheduler,18.643
+0,Reactive-Descheduler,21.279
+0,Reactive-Descheduler,22.351
+0,Reactive-Descheduler,24.274
+0,Reactive-Descheduler,25.909
+0,Reactive-Descheduler,11.43
+0,Reactive-Descheduler,13.649
+0,Reactive-Descheduler,24.029
+0,Reactive-Descheduler,14.194
+0,Reactive-Descheduler,17.12
+0,Reactive-Descheduler,31.491
+0,Reactive-Descheduler,21.595
+0,Reactive-Descheduler,30.083
+0,Reactive-Descheduler,27.385
+0,Reactive-Descheduler,18.886
+0,Reactive-Descheduler,24.181
+0,Reactive-Descheduler,23.919
+0,Reactive-Descheduler,20.11
+0,Reactive-Descheduler,23.181
+0,Reactive-Descheduler,22.427
+0,Reactive-Descheduler,30.099
+0,Reactive-Descheduler,39.984
+0,Reactive-Descheduler,26.127
+0,Reactive-Descheduler,26.653
+0,Reactive-Descheduler,23.546
+0,Reactive-Descheduler,23.037
+0,Reactive-Descheduler,18.611
+0,Reactive-Descheduler,30.246
+0,Reactive-Descheduler,8.978
+0,Reactive-Descheduler,16.902
+0,Reactive-Descheduler,42.476
+0,Reactive-Descheduler,21.729
+0,Reactive-Descheduler,20.182
+0,Reactive-Descheduler,18.005
+0,Reactive-Descheduler,25.596
+0,Reactive-Descheduler,29.915
+0,Reactive-Descheduler,20.112
+0,Reactive-Descheduler,16.182
+0,Reactive-Descheduler,27.826
+0,Reactive-Descheduler,23.223
+0,Reactive-Descheduler,26.659
+0,Reactive-Descheduler,39.076
+0,Reactive-Descheduler,20.943
+0,Reactive-Descheduler,29.168
+0,Reactive-Descheduler,29.512
+0,Reactive-Descheduler,27.579
+0,Reactive-Descheduler,25.586
+0,Reactive-Descheduler,18.278
+0,Reactive-Descheduler,16.301
+0,Reactive-Descheduler,24.919
+0,Reactive-Descheduler,27.378
+0,Reactive-Descheduler,32.784
+0,Reactive-Descheduler,15.541
+0,Reactive-Descheduler,26.782
+0,Reactive-Descheduler,33.304
+0,Reactive-Descheduler,23.044
+0,Reactive-Descheduler,45.577
+0,Reactive-Descheduler,22.106
+0,Reactive-Descheduler,29.329
+0,Reactive-Descheduler,19.929
+0,Reactive-Descheduler,36.467
+0,Reactive-Descheduler,26.616
+0,Reactive-Descheduler,11.982
+0,Reactive-Descheduler,35.532
+0,Reactive-Descheduler,27.188
+0,Reactive-Descheduler,22.924
+0,Reactive-Descheduler,30.149
+0,Reactive-Descheduler,16.845
+0,Reactive-Descheduler,22.507
+0,Reactive-Descheduler,9.978
+0,Reactive-Descheduler,23.465
+0,Reactive-Descheduler,22.912
+0,Reactive-Descheduler,22.364
+0,Reactive-Descheduler,15.51
+0,Reactive-Descheduler,26.615
+0,Reactive-Descheduler,20.774
+0,Reactive-Descheduler,24.229
+0,Reactive-Descheduler,40.233
+0,Reactive-Descheduler,12.342
+0,Reactive-Descheduler,29.932
+0,Reactive-Descheduler,19.866
+0,Reactive-Descheduler,29.35
+0,Reactive-Descheduler,26.988
+0,Reactive-Descheduler,21.71
+0,Reactive-Descheduler,27.617
+0,Reactive-Descheduler,36.769
+0,Reactive-Descheduler,32.966
+0,Reactive-Descheduler,27.478
+0,Reactive-Descheduler,12.021
+0,Reactive-Descheduler,28.252
+0,Reactive-Descheduler,23.076
+0,Reactive-Descheduler,14.298
+0,Reactive-Descheduler,36.579
+0,Reactive-Descheduler,19.368
+0,Reactive-Descheduler,16.905
+0,Reactive-Descheduler,24.481
+0,Reactive-Descheduler,12.551
+0,Reactive-Descheduler,24.783
+0,Reactive-Descheduler,26.746
+0,Reactive-Descheduler,23.913
+0,Reactive-Descheduler,24.512
+0,Reactive-Descheduler,35.364
+0,Reactive-Descheduler,15.942
+0,Reactive-Descheduler,25.778
+0,Reactive-Descheduler,27.135
+0,Reactive-Descheduler,33.062
+0,Reactive-Descheduler,38.613
+0,Reactive-Descheduler,24.748
+0,Reactive-Descheduler,13.973
+0,Reactive-Descheduler,32.815
+0,Reactive-Descheduler,28.275
+0,Reactive-Descheduler,22.188
+0,Reactive-Descheduler,19.055
+0,Reactive-Descheduler,27.939
+0,Reactive-Descheduler,16.116
+0,Reactive-Descheduler,37.107
+0,Reactive-Descheduler,18.717
+0,Reactive-Descheduler,18.033
+0,Reactive-Descheduler,35.496
+0,Reactive-Descheduler,31.731
+0,Reactive-Descheduler,15.627
+0,Reactive-Descheduler,22.965
+0,Reactive-Descheduler,40.802
+0,Reactive-Descheduler,23.331
+0,Reactive-Descheduler,20.955
+0,Reactive-Descheduler,18.028
+0,Reactive-Descheduler,22.986
+0,Reactive-Descheduler,18.472
+0,Reactive-Descheduler,18.731
+0,Reactive-Descheduler,33.938
+0,Reactive-Descheduler,19.603
+0,Reactive-Descheduler,23.32
+0,Reactive-Descheduler,22.199
+0,Reactive-Descheduler,22.518
+0,Reactive-Descheduler,21.493
+0,Reactive-Descheduler,28.174
+0,Reactive-Descheduler,25.536
+0,Reactive-Descheduler,22.307
+0,Reactive-Descheduler,19.666
+0,Reactive-Descheduler,30.974
+0,Reactive-Descheduler,35.025
+0,Reactive-Descheduler,16.84
+0,Reactive-Descheduler,42.672
+0,Reactive-Descheduler,34.518
+0,Reactive-Descheduler,28.045
+0,Reactive-Descheduler,23.628
+0,Reactive-Descheduler,19.704
+0,Reactive-Descheduler,25.491
+0,Reactive-Descheduler,24.23
+0,Reactive-Descheduler,30.035
+0,Reactive-Descheduler,23.334
+0,Reactive-Descheduler,26.046
+0,Reactive-Descheduler,26.654
+0,Reactive-Descheduler,26.07
+0,Reactive-Descheduler,13.115
+0,Reactive-Descheduler,15.466
+0,Reactive-Descheduler,25.325
+0,Reactive-Descheduler,24.885
+0,Reactive-Descheduler,36.694
+0,Reactive-Descheduler,26.009
+0,Reactive-Descheduler,24.818
+0,Reactive-Descheduler,13.644
+0,Reactive-Descheduler,27.752
+0,Reactive-Descheduler,24.493
+0,Reactive-Descheduler,22.285
+0,Reactive-Descheduler,23.243
+0,Reactive-Descheduler,22.597
+0,Reactive-Descheduler,39.985
+0,Reactive-Descheduler,33.124
+0,Reactive-Descheduler,22.791
+0,Reactive-Descheduler,29.709
+0,Reactive-Descheduler,20.869
+0,Reactive-Descheduler,13.905
+0,Reactive-Descheduler,14.535
+0,Reactive-Descheduler,25.452
+0,Reactive-Descheduler,24.941
+0,Reactive-Descheduler,25.671
+0,Reactive-Descheduler,25.832
+0,Reactive-Descheduler,28.446
+0,Reactive-Descheduler,23.816
+0,Reactive-Descheduler,18.145
+0,Reactive-Descheduler,21.869
+0,Reactive-Descheduler,13.739
+0,Reactive-Descheduler,15.64
+0,Reactive-Descheduler,24.188
+0,Reactive-Descheduler,38.591
+0,Reactive-Descheduler,17.723
+0,Reactive-Descheduler,15.068
+0,Reactive-Descheduler,29.751
+0,Reactive-Descheduler,11.228
+0,Reactive-Descheduler,25.371
+0,Reactive-Descheduler,34.164
+0,Reactive-Descheduler,20.634
+0,Reactive-Descheduler,22.661
+0,Reactive-Descheduler,18.613
+0,Reactive-Descheduler,18.769
+0,Reactive-Descheduler,39.351
+0,Reactive-Descheduler,23.581
+0,Reactive-Descheduler,19.629
+0,Reactive-Descheduler,16.228
+0,Reactive-Descheduler,31.637
+0,Reactive-Descheduler,33.275
+0,Reactive-Descheduler,19.128
+0,Reactive-Descheduler,36.643
+0,Reactive-Descheduler,20.032
+0,Reactive-Descheduler,32.836
+0,Reactive-Descheduler,16.482
+0,Reactive-Descheduler,10.199
+0,Reactive-Descheduler,25.37
+0,Reactive-Descheduler,25.491
+0,Reactive-Descheduler,15.352
+0,Reactive-Descheduler,12.703
+0,Reactive-Descheduler,21.496
+0,Reactive-Descheduler,33.816
+0,Reactive-Descheduler,34.701
+0,Reactive-Descheduler,26.809
+0,Reactive-Descheduler,18.911
+0,Reactive-Descheduler,30.052
+0,Reactive-Descheduler,21.421
+0,Reactive-Descheduler,18.894
+0,Reactive-Descheduler,22.852
+0,Reactive-Descheduler,18.593
+0,Reactive-Descheduler,23.074
+0,Reactive-Descheduler,26.45
+0,Reactive-Descheduler,33.293
+0,Reactive-Descheduler,35.515
+0,Reactive-Descheduler,28.878
+0,Reactive-Descheduler,26.39
+0,Reactive-Descheduler,35.852
+0,Reactive-Descheduler,15.165
+0,Reactive-Descheduler,25.874
+0,Reactive-Descheduler,16.624
+0,Reactive-Descheduler,29.877
+0,Reactive-Descheduler,24.639
+0,Reactive-Descheduler,25.081
+0,Reactive-Descheduler,16.916
+0,Reactive-Descheduler,30.021
+0,Reactive-Descheduler,28.535
+0,Reactive-Descheduler,19.839
+0,Reactive-Descheduler,22.628
+0,Reactive-Descheduler,35.751
+0,Reactive-Descheduler,24.685
+0,Reactive-Descheduler,25.009
+0,Reactive-Descheduler,26.834
+0,Reactive-Descheduler,25.517
+0,Reactive-Descheduler,36.838
+0,Reactive-Descheduler,31.576
+0,Reactive-Descheduler,31.682
+0,Reactive-Descheduler,17.804
+0,Reactive-Descheduler,21.148
+0,Reactive-Descheduler,24.489
+0,Reactive-Descheduler,26.406
+0,Reactive-Descheduler,41.241
+0,Reactive-Descheduler,31.431
+0,Reactive-Descheduler,24.31
+0,Reactive-Descheduler,19.52
+0,Reactive-Descheduler,28.808
+0,Reactive-Descheduler,31.048
+0,Reactive-Descheduler,13.342
+0,Reactive-Descheduler,21.439
+0,Reactive-Descheduler,21.195
+0,Reactive-Descheduler,26.239
+0,Reactive-Descheduler,31.743
+0,Reactive-Descheduler,29.484
+0,Reactive-Descheduler,21.031
+0,Reactive-Descheduler,12.612
+0,Reactive-Descheduler,24.732
+0,Reactive-Descheduler,26.711
+0,Reactive-Descheduler,29.457
+0,Reactive-Descheduler,34.76
+0,Reactive-Descheduler,14.051
+0,Reactive-Descheduler,33.215
+0,Reactive-Descheduler,21.959
+0,Reactive-Descheduler,19.273
+0,Reactive-Descheduler,31.355
+0,Reactive-Descheduler,40.612
+0,Reactive-Descheduler,30.842
+0,Reactive-Descheduler,37.308
+0,Reactive-Descheduler,23.09
+0,Reactive-Descheduler,16.806
+0,Reactive-Descheduler,31.075
+0,Reactive-Descheduler,20.111
+0,Reactive-Descheduler,16.478
+0,Reactive-Descheduler,17.18
+0,Reactive-Descheduler,29.056
+0,Reactive-Descheduler,24.75
+0,Reactive-Descheduler,30.583
+0,Reactive-Descheduler,28.922
+0,Reactive-Descheduler,22.185
+0,Reactive-Descheduler,22.828
+0,Reactive-Descheduler,20.943
+0,Reactive-Descheduler,17.895
+0,Reactive-Descheduler,34.907
+0,Reactive-Descheduler,32.143
+0,Reactive-Descheduler,13.803
+0,Reactive-Descheduler,18.731
+0,Reactive-Descheduler,20.03
+0,Reactive-Descheduler,39.481
+0,Reactive-Descheduler,27.315
+0,Reactive-Descheduler,34.998
+0,Reactive-Descheduler,19.152
+0,Reactive-Descheduler,15.646
+0,Reactive-Descheduler,26.118
+0,Reactive-Descheduler,24.087
+0,Reactive-Descheduler,17.746
+0,Reactive-Descheduler,23.776
+0,Reactive-Descheduler,12.472
+0,Reactive-Descheduler,29.614
+0,Reactive-Descheduler,17.943
+0,Reactive-Descheduler,30.811
+0,Reactive-Descheduler,20.648
+0,Reactive-Descheduler,27.322
+0,Reactive-Descheduler,24.442
+0,Reactive-Descheduler,25.348
+0,Reactive-Descheduler,27.876
+0,Reactive-Descheduler,44.246
+0,Reactive-Descheduler,28.313
+0,Reactive-Descheduler,26.205
+0,Reactive-Descheduler,31.696
+0,Reactive-Descheduler,15.122
+0,Reactive-Descheduler,22.494
+0,Reactive-Descheduler,25.348
+0,Reactive-Descheduler,26.867
+0,Reactive-Descheduler,22.657
+0,Reactive-Descheduler,22.118
+0,Reactive-Descheduler,21.762
+0,Reactive-Descheduler,28.206
+0,Reactive-Descheduler,13.457
+0,Reactive-Descheduler,21.213
+0,Reactive-Descheduler,30.26
+0,Reactive-Descheduler,28.006
+0,Reactive-Descheduler,24.447
+0,Reactive-Descheduler,25.034
+0,Reactive-Descheduler,24.169
+0,Reactive-Descheduler,18.991
+0,Reactive-Descheduler,20.914
+0,Reactive-Descheduler,31.711
+0,Reactive-Descheduler,22.042
+0,Reactive-Descheduler,15.969
+0,Reactive-Descheduler,20.409
+0,Reactive-Descheduler,19.747
+0,Reactive-Descheduler,21.601
+0,Reactive-Descheduler,25.808
+0,Reactive-Descheduler,14.154
+0,Reactive-Descheduler,32.35
+0,Reactive-Descheduler,16.811
+0,Reactive-Descheduler,24.364
+0,Reactive-Descheduler,19.937
+0,Reactive-Descheduler,20.724
+0,Reactive-Descheduler,13.072
+0,Reactive-Descheduler,19.308
+0,Reactive-Descheduler,27.518
+0,Reactive-Descheduler,26.074
+0,Reactive-Descheduler,26.329
+0,Reactive-Descheduler,26.956
+0,Reactive-Descheduler,27.289
+0,Reactive-Descheduler,33.708
+0,Reactive-Descheduler,28.833
+0,Reactive-Descheduler,27.842
+0,Reactive-Descheduler,26.722
+0,Reactive-Descheduler,24.624
+0,Reactive-Descheduler,25.17
+0,Reactive-Descheduler,27.251
+0,Reactive-Descheduler,18.811
+0,Reactive-Descheduler,20.179
+0,Reactive-Descheduler,26.019
+0,Reactive-Descheduler,31.29
+0,Reactive-Descheduler,26.441
+0,Reactive-Descheduler,18.28
+0,Reactive-Descheduler,17.944
+0,Reactive-Descheduler,21.099
+0,Reactive-Descheduler,20.951
+0,Reactive-Descheduler,28.99
+0,Reactive-Descheduler,17.264
+0,Reactive-Descheduler,21.452
+0,Reactive-Descheduler,20.408
+0,Reactive-Descheduler,28.663
+0,Reactive-Descheduler,20.571
+0,Reactive-Descheduler,30.811
+0,Reactive-Descheduler,23.571
+0,Reactive-Descheduler,22.46
+0,Reactive-Descheduler,28.17
+0,Reactive-Descheduler,21.5
+0,Reactive-Descheduler,12.693
+0,Reactive-Descheduler,26.206
+0,Reactive-Descheduler,17.704
+0,Reactive-Descheduler,19.761
+0,Reactive-Descheduler,24.538
+0,Reactive-Descheduler,20.477
+0,Reactive-Descheduler,31.055
+0,Reactive-Descheduler,18.879
+0,Reactive-Descheduler,21.868
+0,Reactive-Descheduler,20.33
+0,Reactive-Descheduler,23.549
+0,Reactive-Descheduler,35.164
+0,Reactive-Descheduler,26.642
+0,Reactive-Descheduler,18.307
+0,Reactive-Descheduler,7.672
+0,Reactive-Descheduler,36.273
+0,Reactive-Descheduler,26.267
+0,Reactive-Descheduler,23.348
+0,Reactive-Descheduler,29.002
+0,Reactive-Descheduler,30.414
+0,Reactive-Descheduler,25.886
+0,Reactive-Descheduler,40.613
+0,Reactive-Descheduler,24.126
+0,Reactive-Descheduler,19.196
+0,Reactive-Descheduler,22.275
+0,Reactive-Descheduler,16.051
+0,Reactive-Descheduler,14.646
+0,Reactive-Descheduler,16.93
+0,Reactive-Descheduler,16.947
+0,Reactive-Descheduler,35.757
+0,Reactive-Descheduler,15.615
+0,Reactive-Descheduler,37.947
+0,Reactive-Descheduler,13.699
+0,Reactive-Descheduler,20.7
+0,Reactive-Descheduler,26.887
+0,Reactive-Descheduler,26.175
+0,Reactive-Descheduler,28.358
+0,Reactive-Descheduler,15.406
+0,Reactive-Descheduler,19.442
+0,Reactive-Descheduler,26.17
+0,Reactive-Descheduler,34.237
+0,Reactive-Descheduler,22.828
+0,Reactive-Descheduler,19.515
+0,Reactive-Descheduler,35.664
+0,Reactive-Descheduler,28.56
+0,Reactive-Descheduler,9.101
+0,Reactive-Descheduler,19.87
+0,Reactive-Descheduler,24.471
+0,Reactive-Descheduler,18.599
+0,Reactive-Descheduler,22.569
+0,Reactive-Descheduler,19.709
+0,Reactive-Descheduler,21.574
+0,Reactive-Descheduler,17.829
+0,Reactive-Descheduler,19.223
+0,Reactive-Descheduler,33.082
+0,Reactive-Descheduler,16.055
+0,Reactive-Descheduler,28.128
+0,Reactive-Descheduler,23.85
+0,Reactive-Descheduler,24.211
+0,Reactive-Descheduler,24.228
+0,Reactive-Descheduler,17.59
+0,Reactive-Descheduler,25.28
+0,Reactive-Descheduler,26.655
+0,Reactive-Descheduler,26.97
+0,Reactive-Descheduler,27.154
+0,Reactive-Descheduler,25.421
+0,Reactive-Descheduler,40.805
+0,Reactive-Descheduler,26.201
+0,Reactive-Descheduler,23.559
+0,Reactive-Descheduler,27.262
+0,Reactive-Descheduler,21.816
+0,Reactive-Descheduler,19.039
+0,Reactive-Descheduler,31.369
+0,Reactive-Descheduler,17.909
+0,Reactive-Descheduler,34.45
+0,Reactive-Descheduler,22.902
+0,Reactive-Descheduler,35.997
+0,Reactive-Descheduler,31.401
+0,Reactive-Descheduler,27.292
+0,Reactive-Descheduler,20.928
+0,Reactive-Descheduler,33.66
+0,Reactive-Descheduler,14.522
+0,Reactive-Descheduler,29.204
+0,Reactive-Descheduler,25.666
+0,Reactive-Descheduler,16.499
+0,Reactive-Descheduler,26.766
+0,Reactive-Descheduler,18.638
+0,Reactive-Descheduler,17.376
+0,Reactive-Descheduler,25.318
+0,Reactive-Descheduler,14.958
+0,Reactive-Descheduler,17.031
+0,Reactive-Descheduler,16.062
+0,Reactive-Descheduler,27.586
+0,Reactive-Descheduler,18.371
+0,Reactive-Descheduler,9.576
+0,Reactive-Descheduler,27.001
+0,Reactive-Descheduler,26.794
+0,Reactive-Descheduler,28.297
+0,Reactive-Descheduler,25.88
+0,Reactive-Descheduler,40.679
+0,Reactive-Descheduler,15.674
+0,Reactive-Descheduler,24.328
+0,Reactive-Descheduler,27.345
+0,Reactive-Descheduler,26.259
+0,Reactive-Descheduler,22.297
+0,Reactive-Descheduler,18.502
+0,Reactive-Descheduler,26.051
+0,Reactive-Descheduler,24.161
+0,Reactive-Descheduler,15.641
+0,Reactive-Descheduler,21.13
+0,Reactive-Descheduler,14.427
+0,Reactive-Descheduler,16.039
+0,Reactive-Descheduler,31.362
+0,Reactive-Descheduler,22.214
+0,Reactive-Descheduler,10.424
+0,Reactive-Descheduler,18.163
+0,Reactive-Descheduler,16.918
+0,Reactive-Descheduler,23.278
+0,Reactive-Descheduler,26.325
+0,Reactive-Descheduler,29.655
+0,Reactive-Descheduler,14.905
+0,Reactive-Descheduler,27.573
+0,Reactive-Descheduler,36.85
+0,Reactive-Descheduler,24.398
+0,Reactive-Descheduler,13.363
+0,Reactive-Descheduler,15.056
+0,Reactive-Descheduler,24.584
+0,Reactive-Descheduler,28.804
+0,Reactive-Descheduler,26.201
+0,Reactive-Descheduler,23.554
+0,Reactive-Descheduler,33.91
+0,Reactive-Descheduler,31.962
+0,Reactive-Descheduler,29.325
+0,Reactive-Descheduler,27.508
+0,Reactive-Descheduler,30.253
+0,Reactive-Descheduler,25.432
+0,Reactive-Descheduler,19.747
+0,Reactive-Descheduler,24.799
+0,Reactive-Descheduler,17.582
+0,Reactive-Descheduler,19.094
+0,Reactive-Descheduler,15.344
+0,Reactive-Descheduler,11.85
+0,Reactive-Descheduler,41.799
+0,Reactive-Descheduler,24.025
+0,Reactive-Descheduler,20.525
+0,Reactive-Descheduler,21.451
+0,Reactive-Descheduler,36.259
+0,Reactive-Descheduler,31.825
+0,Reactive-Descheduler,26.445
+0,Reactive-Descheduler,30.6
+0,Reactive-Descheduler,22.379
+0,Reactive-Descheduler,17.24
+0,Reactive-Descheduler,26.013
+0,Reactive-Descheduler,11.499
+0,Reactive-Descheduler,17.376
+0,Reactive-Descheduler,27.826
+0,Reactive-Descheduler,24.118
+0,Reactive-Descheduler,19.374
+0,Reactive-Descheduler,21.876
+0,Reactive-Descheduler,20.814
+0,Reactive-Descheduler,24.605
+0,Reactive-Descheduler,26.739
+0,Reactive-Descheduler,24.505
+0,Reactive-Descheduler,17.496
+0,Reactive-Descheduler,18.321
+0,Reactive-Descheduler,29.538
+0,Reactive-Descheduler,35.101
+0,Reactive-Descheduler,16.252
+0,Reactive-Descheduler,37.077
+0,Reactive-Descheduler,17.792
+0,Reactive-Descheduler,20.024
+0,Reactive-Descheduler,14.321
+0,Reactive-Descheduler,19.85
+0,Reactive-Descheduler,10.698
+0,Reactive-Descheduler,23.738
+0,Reactive-Descheduler,22.329
+0,Reactive-Descheduler,22.69
+0,Reactive-Descheduler,22.407
+0,Reactive-Descheduler,21.377
+0,Reactive-Descheduler,29.972
+0,Reactive-Descheduler,26.333
+0,Reactive-Descheduler,23.918
+0,Reactive-Descheduler,35.173
+0,Reactive-Descheduler,24.941
+0,Reactive-Descheduler,23.983
+0,Reactive-Descheduler,29.581
+0,Reactive-Descheduler,23.945
+0,Reactive-Descheduler,17.488
+0,Reactive-Descheduler,26.204
+0,Reactive-Descheduler,26.621
+0,Reactive-Descheduler,21.135
+0,Reactive-Descheduler,26.877
+0,Reactive-Descheduler,32.33
+0,Reactive-Descheduler,18.611
+0,Reactive-Descheduler,25.952
+0,Reactive-Descheduler,14.833
+0,Reactive-Descheduler,25.674
+0,Reactive-Descheduler,27.503
+0,Reactive-Descheduler,16.863
+0,Reactive-Descheduler,24.692
+0,Reactive-Descheduler,14.922
+0,Reactive-Descheduler,25.505
+0,Reactive-Descheduler,35.248
+0,Reactive-Descheduler,18.806
+0,Reactive-Descheduler,15.204
+0,Reactive-Descheduler,36.818
+0,Reactive-Descheduler,19.136
+0,Reactive-Descheduler,21.146
+0,Reactive-Descheduler,19.422
+0,Reactive-Descheduler,16.514
+0,Reactive-Descheduler,20.279
+0,Reactive-Descheduler,26.478
+0,Reactive-Descheduler,23.495
+0,Reactive-Descheduler,24.634
+0,Reactive-Descheduler,27.684
+0,Reactive-Descheduler,22.463
+0,Reactive-Descheduler,27.04
+0,Reactive-Descheduler,18.853
+0,Reactive-Descheduler,19.407
+0,Reactive-Descheduler,15.835
+0,Reactive-Descheduler,21.691
+0,Reactive-Descheduler,11.831
+0,Reactive-Descheduler,37.324
+0,Reactive-Descheduler,26.455
+0,Reactive-Descheduler,22.862
+0,Reactive-Descheduler,31.535
+0,Reactive-Descheduler,29.433
+0,Reactive-Descheduler,18.688
+0,Reactive-Descheduler,21.459
+0,Reactive-Descheduler,28.104
+0,Reactive-Descheduler,16.676
+0,Reactive-Descheduler,23.439
+0,Reactive-Descheduler,23.887
+0,Reactive-Descheduler,21.055
+0,Reactive-Descheduler,18.94
+0,Reactive-Descheduler,25.817
+0,Reactive-Descheduler,25.035
+0,Reactive-Descheduler,30.412
+0,Reactive-Descheduler,28.018
+0,Reactive-Descheduler,19.539
+0,Reactive-Descheduler,21.41
+0,Reactive-Descheduler,24.182
+0,Reactive-Descheduler,19.366
+0,Reactive-Descheduler,22.589
+0,Reactive-Descheduler,19.33
+0,Reactive-Descheduler,21.26
+0,Reactive-Descheduler,16.275
+0,Reactive-Descheduler,12.046
+0,Reactive-Descheduler,25.644
+0,Reactive-Descheduler,27.723
+0,Reactive-Descheduler,26.507
+0,Reactive-Descheduler,16.756
+0,Reactive-Descheduler,25.51
+0,Reactive-Descheduler,21.578
+0,Reactive-Descheduler,21.058
+0,Reactive-Descheduler,21.573
+0,Reactive-Descheduler,20.546
+0,Reactive-Descheduler,15.312
+0,Reactive-Descheduler,21.545
+0,Reactive-Descheduler,18.227
+0,Reactive-Descheduler,26.856
+0,Reactive-Descheduler,24.21
+0,Reactive-Descheduler,23.337
+0,Reactive-Descheduler,26.728
+0,Reactive-Descheduler,31.215
+0,Reactive-Descheduler,18.02
+0,Reactive-Descheduler,20.331
+0,Reactive-Descheduler,23.978
+0,Reactive-Descheduler,30.047
+0,Reactive-Descheduler,19.045
+0,Reactive-Descheduler,17.433
+0,Reactive-Descheduler,19.524
+0,Reactive-Descheduler,35.796
+0,Reactive-Descheduler,24.781
+0,Reactive-Descheduler,21.78
+0,Reactive-Descheduler,22.298
+0,Reactive-Descheduler,21.019
+0,Reactive-Descheduler,19.975
+0,Reactive-Descheduler,23.388
+0,Reactive-Descheduler,35.035
+0,Reactive-Descheduler,19.718
+0,Reactive-Descheduler,28.813
+0,Reactive-Descheduler,28.764
+0,Reactive-Descheduler,37.412
+0,Reactive-Descheduler,23.705
+0,Reactive-Descheduler,32.071
+0,Reactive-Descheduler,24.897
+0,Reactive-Descheduler,13.828
+0,Reactive-Descheduler,16.158
+0,Reactive-Descheduler,12.706
+0,Reactive-Descheduler,16.847
+0,Reactive-Descheduler,17.117
+0,Reactive-Descheduler,26.887
+0,Reactive-Descheduler,38.862
+0,Reactive-Descheduler,29.676
+0,Reactive-Descheduler,18.941
+0,Reactive-Descheduler,38.422
+0,Reactive-Descheduler,21.436
+0,Reactive-Descheduler,22.657
+0,Reactive-Descheduler,20.838
+0,Reactive-Descheduler,25.115
+0,Reactive-Descheduler,35.029
+0,Reactive-Descheduler,24.564
+0,Reactive-Descheduler,27.034
+0,Reactive-Descheduler,26.235
+0,Reactive-Descheduler,32.458
+0,Reactive-Descheduler,22.695
+0,Reactive-Descheduler,25.592
+0,Reactive-Descheduler,17.849
+0,Reactive-Descheduler,16.25
+0,Reactive-Descheduler,15.944
+0,Reactive-Descheduler,34.157
+0,Reactive-Descheduler,21.24
+0,Reactive-Descheduler,24.499
+0,Reactive-Descheduler,26.599
+0,Reactive-Descheduler,24.087
+0,Reactive-Descheduler,28.965
+0,Reactive-Descheduler,19.763
+0,Reactive-Descheduler,21.822
+0,Reactive-Descheduler,24.345
+0,Reactive-Descheduler,23.228
+0,Reactive-Descheduler,30.405
+0,Reactive-Descheduler,14.959
+0,Reactive-Descheduler,22.83
+0,Reactive-Descheduler,18.249
+0,Reactive-Descheduler,31.64
+0,Reactive-Descheduler,30.233
+0,Reactive-Descheduler,19.578
+0,Reactive-Descheduler,28.081
+0,Reactive-Descheduler,21.905
+0,Reactive-Descheduler,19.606
+0,Reactive-Descheduler,37.042
+0,Reactive-Descheduler,38.303
+0,Reactive-Descheduler,23.218
+0,Reactive-Descheduler,27.981
+0,Reactive-Descheduler,26.07
+0,Reactive-Descheduler,27.929
+0,Reactive-Descheduler,28.672
+0,Reactive-Descheduler,20.014
+0,Reactive-Descheduler,21.41
+0,Reactive-Descheduler,30.646
+0,Reactive-Descheduler,21.79
+0,Reactive-Descheduler,22.385
+0,Reactive-Descheduler,16.332
+0,Reactive-Descheduler,29.228
+0,Reactive-Descheduler,31.894
+0,Reactive-Descheduler,16.308
+0,Reactive-Descheduler,32.742
+0,Reactive-Descheduler,25.336
+0,Reactive-Descheduler,25.546
+0,Reactive-Descheduler,29.394
+0,Reactive-Descheduler,27.935
+0,Reactive-Descheduler,35.085
+0,Reactive-Descheduler,24.286
+0,Reactive-Descheduler,30.35
+0,Reactive-Descheduler,19.664
+0,Reactive-Descheduler,22.387
+0,Reactive-Descheduler,21.285
+0,Reactive-Descheduler,17.579
+0,Reactive-Descheduler,24.911
+0,Reactive-Descheduler,17.457
+0,Reactive-Descheduler,26.445
+0,Reactive-Descheduler,16.378
+0,Reactive-Descheduler,28.221
+0,Reactive-Descheduler,25.139
+0,Reactive-Descheduler,19.306
+0,Reactive-Descheduler,26.217
+0,Reactive-Descheduler,18.441
+0,Reactive-Descheduler,31.862
+0,Reactive-Descheduler,15.435
+0,Reactive-Descheduler,23.422
+0,Reactive-Descheduler,16.259
+0,Reactive-Descheduler,32.404
+0,Reactive-Descheduler,16.861
+0,Reactive-Descheduler,20.185
+0,Reactive-Descheduler,25.41
+0,Reactive-Descheduler,21.435
+0,Reactive-Descheduler,23.579
+0,Reactive-Descheduler,19.208
+0,Reactive-Descheduler,26.811
+0,Reactive-Descheduler,22.726
+0,Reactive-Descheduler,19.696
+0,Reactive-Descheduler,30.945
+0,Reactive-Descheduler,29.068
+0,Reactive-Descheduler,26.988
+0,Reactive-Descheduler,25.309
+0,Reactive-Descheduler,18.294
+0,Reactive-Descheduler,22.741
+0,Reactive-Descheduler,10.385
+0,Reactive-Descheduler,34.336
+0,Reactive-Descheduler,28.457
+0,Reactive-Descheduler,22.077
+0,Reactive-Descheduler,23.189
+0,Reactive-Descheduler,25.573
+0,Reactive-Descheduler,29.072
+0,Reactive-Descheduler,24.801
+0,Reactive-Descheduler,15.106
+0,Reactive-Descheduler,27.669
+0,Reactive-Descheduler,21.414
+0,Reactive-Descheduler,23.662
+0,Reactive-Descheduler,24.966
+0,Reactive-Descheduler,22.591
+0,Reactive-Descheduler,27.486
+0,Reactive-Descheduler,24.144
+0,Reactive-Descheduler,12.418
+0,Reactive-Descheduler,16.358
+0,Reactive-Descheduler,22.498
+0,Reactive-Descheduler,24.996
+0,Reactive-Descheduler,24.925
+0,Reactive-Descheduler,22.269
+0,Reactive-Descheduler,24.032
+0,Reactive-Descheduler,21.842
+0,Reactive-Descheduler,33.181
+0,Reactive-Descheduler,16.175
+0,Reactive-Descheduler,16.022
+0,Reactive-Descheduler,14.625
+0,Reactive-Descheduler,17.112
+0,Reactive-Descheduler,27.754
+0,Reactive-Descheduler,40.696
+0,Reactive-Descheduler,22.42
+0,Reactive-Descheduler,23.211
+0,Reactive-Descheduler,20.864
+0,Reactive-Descheduler,30.619
+0,Reactive-Descheduler,19.461
+0,Reactive-Descheduler,16.783
+0,Reactive-Descheduler,28.589
+0,Reactive-Descheduler,29.566
+0,Reactive-Descheduler,28.784
+0,Reactive-Descheduler,16.764
+0,Reactive-Descheduler,20.599
+0,Reactive-Descheduler,16.571
+0,Reactive-Descheduler,21.902
+0,Reactive-Descheduler,23.761
+0,Reactive-Descheduler,13.794
+0,Reactive-Descheduler,19.693
+0,Reactive-Descheduler,34.407
+0,Reactive-Descheduler,18.488
+0,Reactive-Descheduler,15.937
+0,Reactive-Descheduler,14.895
+0,Reactive-Descheduler,22.306
+0,Reactive-Descheduler,29.37
+0,Reactive-Descheduler,21.78
+0,Reactive-Descheduler,23.054
+0,Reactive-Descheduler,21.455
+0,Reactive-Descheduler,20.318
+0,Reactive-Descheduler,15.411
+0,Reactive-Descheduler,22.74
+0,Reactive-Descheduler,26.329
+0,Reactive-Descheduler,19.073
+0,Reactive-Descheduler,15.727
+0,Reactive-Descheduler,28.909
+0,Reactive-Descheduler,19.723
+0,Reactive-Descheduler,22.189
+0,Reactive-Descheduler,21.524
+0,Reactive-Descheduler,30.156
+0,Reactive-Descheduler,23.789
+0,Reactive-Descheduler,19.8
+0,Reactive-Descheduler,28.008
+0,Reactive-Descheduler,27.558
+0,Reactive-Descheduler,20.504
+0,Reactive-Descheduler,27.686
+0,Reactive-Descheduler,25.271
+0,Reactive-Descheduler,28.799
+0,Reactive-Descheduler,19.082
+0,Reactive-Descheduler,18.234
+0,Reactive-Descheduler,23.352
+0,Reactive-Descheduler,30.896
+0,Reactive-Descheduler,20.215
+0,Reactive-Descheduler,24.402
+0,Reactive-Descheduler,19.492
+0,Reactive-Descheduler,18.018
+0,Reactive-Descheduler,33.283
+0,Reactive-Descheduler,17.694
+0,Reactive-Descheduler,35.148
+0,Reactive-Descheduler,28.531
+0,Reactive-Descheduler,19.539
+0,Reactive-Descheduler,21.813
+0,Reactive-Descheduler,31.065
+0,Reactive-Descheduler,20.768
+0,Reactive-Descheduler,20.034
+0,Reactive-Descheduler,26.888
+0,Reactive-Descheduler,15.714
+0,Reactive-Descheduler,20.855
+0,Reactive-Descheduler,30.239
+0,Reactive-Descheduler,23.709
+0,Reactive-Descheduler,22.051
+0,Reactive-Descheduler,27.754
+0,Reactive-Descheduler,21.917
+0,Reactive-Descheduler,24.313
+0,Reactive-Descheduler,26.078
+0,Reactive-Descheduler,36.12
+0,Reactive-Descheduler,31.253
+0,Reactive-Descheduler,30.455
+0,Reactive-Descheduler,22.0
+0,Reactive-Descheduler,27.943
+0,Reactive-Descheduler,14.488
+0,Reactive-Descheduler,21.41
+0,Reactive-Descheduler,30.507
+0,Reactive-Descheduler,17.73
+0,Reactive-Descheduler,18.812
+0,Reactive-Descheduler,24.397
+0,Reactive-Descheduler,28.331
+0,Reactive-Descheduler,25.89
+0,Reactive-Descheduler,25.355
+0,Reactive-Descheduler,37.438
+0,Reactive-Descheduler,29.094
+0,Reactive-Descheduler,23.692
+0,Reactive-Descheduler,30.465
+0,Reactive-Descheduler,21.154
+0,Reactive-Descheduler,29.289
+0,Reactive-Descheduler,17.296
+0,Reactive-Descheduler,34.114
+0,Reactive-Descheduler,19.842
+0,Reactive-Descheduler,30.41
+0,Reactive-Descheduler,37.218
+0,Reactive-Descheduler,33.907
+0,Reactive-Descheduler,22.956
+0,Reactive-Descheduler,22.859
+0,Reactive-Descheduler,20.403
+0,Reactive-Descheduler,17.588
+0,Reactive-Descheduler,27.065
+0,Reactive-Descheduler,22.053
+0,Reactive-Descheduler,27.067
+0,Reactive-Descheduler,25.96
+0,Reactive-Descheduler,30.574
+0,Reactive-Descheduler,24.423
+0,Reactive-Descheduler,14.777
+0,Reactive-Descheduler,21.822
+0,Reactive-Descheduler,19.101
+0,Reactive-Descheduler,22.229
+0,Reactive-Descheduler,23.917
+0,Reactive-Descheduler,21.463
+0,Reactive-Descheduler,27.635
+0,Reactive-Descheduler,21.255
+0,Reactive-Descheduler,18.775
+0,Reactive-Descheduler,31.909
+0,Reactive-Descheduler,16.373
+0,Reactive-Descheduler,29.035
+0,Reactive-Descheduler,18.494
+0,Reactive-Descheduler,21.946
+0,Reactive-Descheduler,19.872
+0,Reactive-Descheduler,19.098
+0,Reactive-Descheduler,22.957
+0,Reactive-Descheduler,38.508
+0,Reactive-Descheduler,32.086
+0,Reactive-Descheduler,26.466
+0,Reactive-Descheduler,30.28
+0,Reactive-Descheduler,31.274
+0,Reactive-Descheduler,29.489
+0,Reactive-Descheduler,22.199
+0,Reactive-Descheduler,21.536
+0,Reactive-Descheduler,11.629
+0,Reactive-Descheduler,21.1
+0,Reactive-Descheduler,21.757
+0,Reactive-Descheduler,23.916
+0,Reactive-Descheduler,34.041
+0,Reactive-Descheduler,26.047
+0,Reactive-Descheduler,18.846
+0,Reactive-Descheduler,32.419
+0,Reactive-Descheduler,16.245
+0,Reactive-Descheduler,21.041
+0,Reactive-Descheduler,25.943
+0,Reactive-Descheduler,38.292
+0,Reactive-Descheduler,27.518
+0,Reactive-Descheduler,30.813
+0,Reactive-Descheduler,17.368
+0,Reactive-Descheduler,23.473
+0,Reactive-Descheduler,21.128
+0,Reactive-Descheduler,21.588
+0,Reactive-Descheduler,32.605
+0,Reactive-Descheduler,21.622
+0,Reactive-Descheduler,20.471
+0,Reactive-Descheduler,28.508
+0,Reactive-Descheduler,21.233
+0,Reactive-Descheduler,29.036
+0,Reactive-Descheduler,25.384
+0,Reactive-Descheduler,26.129
+0,Reactive-Descheduler,16.244
+0,Reactive-Descheduler,19.614
+0,Reactive-Descheduler,27.195
+0,Reactive-Descheduler,17.461
+0,Reactive-Descheduler,25.762
+0,Reactive-Descheduler,31.519
+0,Reactive-Descheduler,38.24
+0,Reactive-Descheduler,18.735
+0,Reactive-Descheduler,23.476
+0,Reactive-Descheduler,15.533
+0,Reactive-Descheduler,23.257
+0,Reactive-Descheduler,23.322
+0,Reactive-Descheduler,30.006
+0,Reactive-Descheduler,32.666
+0,Reactive-Descheduler,26.426
+0,Reactive-Descheduler,16.108
+0,Reactive-Descheduler,30.552
+0,Reactive-Descheduler,49.992
+0,Reactive-Descheduler,28.676
+0,Reactive-Descheduler,24.657
+0,Reactive-Descheduler,21.971
+0,Reactive-Descheduler,19.422
+0,Reactive-Descheduler,19.106
+0,AKIL,12.339
+0,AKIL,11.021
+0,AKIL,8.119
+0,AKIL,10.826
+0,AKIL,9.717
+0,AKIL,9.703
+0,AKIL,12.688
+0,AKIL,9.599
+0,AKIL,14.174
+0,AKIL,9.464
+0,AKIL,10.187
+0,AKIL,13.993
+0,AKIL,14.002
+0,AKIL,9.32
+0,AKIL,10.47
+0,AKIL,8.81
+0,AKIL,13.124
+0,AKIL,13.421
+0,AKIL,11.92
+0,AKIL,9.909
+0,AKIL,13.18
+0,AKIL,11.498
+0,AKIL,9.596
+0,AKIL,16.835
+0,AKIL,12.598
+0,AKIL,10.045
+0,AKIL,12.19
+0,AKIL,9.83
+0,AKIL,8.533
+0,AKIL,13.517
+0,AKIL,8.425
+0,AKIL,12.633
+0,AKIL,13.208
+0,AKIL,15.524
+0,AKIL,8.913
+0,AKIL,11.18
+0,AKIL,7.839
+0,AKIL,10.154
+0,AKIL,13.205
+0,AKIL,15.024
+0,AKIL,11.398
+0,AKIL,18.907
+0,AKIL,10.093
+0,AKIL,12.33
+0,AKIL,12.394
+0,AKIL,11.746
+0,AKIL,8.318
+0,AKIL,10.175
+0,AKIL,18.227
+0,AKIL,8.548
+0,AKIL,12.096
+0,AKIL,11.285
+0,AKIL,14.713
+0,AKIL,9.9
+0,AKIL,10.969
+0,AKIL,12.392
+0,AKIL,7.379
+0,AKIL,11.063
+0,AKIL,15.183
+0,AKIL,13.416
+0,AKIL,12.311
+0,AKIL,11.231
+0,AKIL,11.995
+0,AKIL,9.416
+0,AKIL,15.418
+0,AKIL,12.576
+0,AKIL,14.145
+0,AKIL,9.803
+0,AKIL,9.145
+0,AKIL,10.257
+0,AKIL,20.535
+0,AKIL,9.199
+0,AKIL,12.888
+0,AKIL,10.095
+0,AKIL,10.191
+0,AKIL,10.236
+0,AKIL,12.707
+0,AKIL,9.306
+0,AKIL,11.078
+0,AKIL,10.307
+0,AKIL,10.759
+0,AKIL,11.033
+0,AKIL,9.182
+0,AKIL,11.166
+0,AKIL,9.925
+0,AKIL,13.625
+0,AKIL,8.955
+0,AKIL,11.684
+0,AKIL,9.526
+0,AKIL,8.278
+0,AKIL,14.47
+0,AKIL,8.656
+0,AKIL,11.664
+0,AKIL,10.985
+0,AKIL,14.8
+0,AKIL,9.012
+0,AKIL,10.765
+0,AKIL,10.953
+0,AKIL,12.26
+0,AKIL,11.001
+0,AKIL,8.339
+0,AKIL,10.688
+0,AKIL,8.37
+0,AKIL,6.911
+0,AKIL,13.811
+0,AKIL,12.489
+0,AKIL,13.059
+0,AKIL,7.243
+0,AKIL,7.581
+0,AKIL,8.951
+0,AKIL,12.63
+0,AKIL,14.211
+0,AKIL,9.6
+0,AKIL,9.562
+0,AKIL,12.425
+0,AKIL,8.911
+0,AKIL,12.134
+0,AKIL,9.098
+0,AKIL,8.698
+0,AKIL,10.823
+0,AKIL,9.755
+0,AKIL,11.347
+0,AKIL,12.911
+0,AKIL,16.293
+0,AKIL,11.821
+0,AKIL,11.92
+0,AKIL,15.968
+0,AKIL,12.322
+0,AKIL,12.088
+0,AKIL,8.762
+0,AKIL,13.696
+0,AKIL,12.175
+0,AKIL,10.932
+0,AKIL,13.125
+0,AKIL,10.63
+0,AKIL,8.577
+0,AKIL,10.207
+0,AKIL,12.39
+0,AKIL,13.264
+0,AKIL,9.828
+0,AKIL,17.179
+0,AKIL,12.829
+0,AKIL,7.505
+0,AKIL,10.735
+0,AKIL,6.466
+0,AKIL,14.971
+0,AKIL,11.015
+0,AKIL,12.545
+0,AKIL,11.82
+0,AKIL,13.561
+0,AKIL,12.233
+0,AKIL,13.574
+0,AKIL,7.774
+0,AKIL,15.717
+0,AKIL,15.528
+0,AKIL,14.776
+0,AKIL,8.362
+0,AKIL,9.475
+0,AKIL,10.454
+0,AKIL,11.228
+0,AKIL,10.106
+0,AKIL,9.891
+0,AKIL,13.216
+0,AKIL,10.155
+0,AKIL,14.1
+0,AKIL,9.738
+0,AKIL,10.715
+0,AKIL,11.786
+0,AKIL,15.573
+0,AKIL,10.03
+0,AKIL,7.48
+0,AKIL,17.792
+0,AKIL,10.27
+0,AKIL,15.355
+0,AKIL,9.239
+0,AKIL,14.811
+0,AKIL,12.475
+0,AKIL,11.923
+0,AKIL,9.084
+0,AKIL,13.173
+0,AKIL,13.415
+0,AKIL,10.051
+0,AKIL,10.57
+0,AKIL,10.817
+0,AKIL,13.128
+0,AKIL,9.782
+0,AKIL,13.06
+0,AKIL,7.491
+0,AKIL,10.168
+0,AKIL,13.843
+0,AKIL,8.203
+0,AKIL,12.521
+0,AKIL,11.737
+0,AKIL,10.028
+0,AKIL,14.433
+0,AKIL,12.561
+0,AKIL,18.141
+0,AKIL,13.209
+0,AKIL,12.77
+0,AKIL,16.364
+0,AKIL,11.148
+0,AKIL,20.808
+0,AKIL,10.619
+0,AKIL,17.291
+0,AKIL,10.611
+0,AKIL,13.205
+0,AKIL,9.874
+0,AKIL,11.014
+0,AKIL,17.907
+0,AKIL,9.757
+0,AKIL,14.144
+0,AKIL,13.425
+0,AKIL,10.544
+0,AKIL,13.161
+0,AKIL,8.414
+0,AKIL,10.942
+0,AKIL,10.597
+0,AKIL,10.734
+0,AKIL,12.182
+0,AKIL,10.441
+0,AKIL,11.674
+0,AKIL,14.05
+0,AKIL,11.854
+0,AKIL,15.003
+0,AKIL,10.49
+0,AKIL,11.298
+0,AKIL,9.652
+0,AKIL,11.668
+0,AKIL,15.661
+0,AKIL,12.947
+0,AKIL,8.514
+0,AKIL,11.957
+0,AKIL,8.408
+0,AKIL,11.78
+0,AKIL,14.822
+0,AKIL,7.049
+0,AKIL,15.605
+0,AKIL,10.863
+0,AKIL,22.108
+0,AKIL,14.782
+0,AKIL,10.451
+0,AKIL,14.041
+0,AKIL,8.85
+0,AKIL,14.934
+0,AKIL,8.557
+0,AKIL,9.983
+0,AKIL,11.857
+0,AKIL,10.382
+0,AKIL,11.707
+0,AKIL,9.532
+0,AKIL,12.9
+0,AKIL,7.797
+0,AKIL,11.482
+0,AKIL,12.078
+0,AKIL,8.333
+0,AKIL,11.262
+0,AKIL,13.101
+0,AKIL,9.259
+0,AKIL,10.901
+0,AKIL,8.766
+0,AKIL,11.009
+0,AKIL,11.457
+0,AKIL,16.496
+0,AKIL,10.127
+0,AKIL,9.84
+0,AKIL,9.703
+0,AKIL,8.68
+0,AKIL,9.939
+0,AKIL,11.452
+0,AKIL,9.856
+0,AKIL,15.607
+0,AKIL,14.245
+0,AKIL,10.384
+0,AKIL,12.14
+0,AKIL,10.759
+0,AKIL,14.043
+0,AKIL,18.908
+0,AKIL,13.542
+0,AKIL,10.958
+0,AKIL,11.517
+0,AKIL,10.561
+0,AKIL,8.339
+0,AKIL,10.171
+0,AKIL,11.315
+0,AKIL,11.043
+0,AKIL,13.474
+0,AKIL,10.172
+0,AKIL,10.528
+0,AKIL,9.674
+0,AKIL,11.86
+0,AKIL,11.472
+0,AKIL,13.576
+0,AKIL,25.233
+0,AKIL,12.107
+0,AKIL,10.532
+0,AKIL,14.314
+0,AKIL,11.615
+0,AKIL,12.018
+0,AKIL,8.997
+0,AKIL,15.712
+0,AKIL,9.248
+0,AKIL,9.821
+0,AKIL,25.235
+0,AKIL,16.154
+0,AKIL,11.216
+0,AKIL,12.644
+0,AKIL,10.614
+0,AKIL,8.695
+0,AKIL,12.763
+0,AKIL,12.794
+0,AKIL,11.32
+0,AKIL,14.085
+0,AKIL,11.711
+0,AKIL,10.245
+0,AKIL,10.102
+0,AKIL,11.497
+0,AKIL,11.408
+0,AKIL,11.445
+0,AKIL,11.695
+0,AKIL,14.056
+0,AKIL,11.684
+0,AKIL,20.339
+0,AKIL,13.505
+0,AKIL,10.816
+0,AKIL,10.236
+0,AKIL,10.595
+0,AKIL,19.678
+0,AKIL,10.204
+0,AKIL,9.657
+0,AKIL,11.48
+0,AKIL,9.599
+0,AKIL,11.214
+0,AKIL,13.434
+0,AKIL,8.69
+0,AKIL,12.347
+0,AKIL,11.195
+0,AKIL,18.889
+0,AKIL,19.188
+0,AKIL,7.997
+0,AKIL,10.966
+0,AKIL,16.851
+0,AKIL,15.687
+0,AKIL,15.345
+0,AKIL,8.561
+0,AKIL,9.692
+0,AKIL,15.894
+0,AKIL,16.092
+0,AKIL,10.493
+0,AKIL,17.069
+0,AKIL,7.514
+0,AKIL,8.585
+0,AKIL,12.389
+0,AKIL,8.098
+0,AKIL,11.381
+0,AKIL,10.249
+0,AKIL,9.427
+0,AKIL,11.372
+0,AKIL,11.999
+0,AKIL,9.895
+0,AKIL,11.525
+0,AKIL,14.702
+0,AKIL,11.591
+0,AKIL,10.753
+0,AKIL,10.731
+0,AKIL,11.463
+0,AKIL,14.323
+0,AKIL,10.08
+0,AKIL,12.711
+0,AKIL,9.347
+0,AKIL,11.111
+0,AKIL,10.498
+0,AKIL,10.166
+0,AKIL,13.285
+0,AKIL,11.774
+0,AKIL,11.887
+0,AKIL,12.623
+0,AKIL,11.544
+0,AKIL,14.286
+0,AKIL,8.863
+0,AKIL,14.258
+0,AKIL,15.951
+0,AKIL,14.652
+0,AKIL,11.681
+0,AKIL,9.121
+0,AKIL,11.431
+0,AKIL,9.064
+0,AKIL,9.911
+0,AKIL,11.866
+0,AKIL,11.696
+0,AKIL,10.703
+0,AKIL,12.65
+0,AKIL,11.531
+0,AKIL,11.655
+0,AKIL,17.196
+0,AKIL,12.418
+0,AKIL,11.607
+0,AKIL,9.784
+0,AKIL,13.425
+0,AKIL,11.54
+0,AKIL,9.561
+0,AKIL,12.532
+0,AKIL,9.445
+0,AKIL,12.301
+0,AKIL,11.348
+0,AKIL,12.314
+0,AKIL,18.17
+0,AKIL,10.897
+0,AKIL,11.181
+0,AKIL,8.99
+0,AKIL,9.346
+0,AKIL,9.681
+0,AKIL,8.292
+0,AKIL,15.186
+0,AKIL,17.25
+0,AKIL,10.968
+0,AKIL,8.314
+0,AKIL,11.272
+0,AKIL,14.91
+0,AKIL,9.655
+0,AKIL,11.535
+0,AKIL,12.584
+0,AKIL,9.895
+0,AKIL,16.491
+0,AKIL,9.254
+0,AKIL,10.411
+0,AKIL,10.588
+0,AKIL,8.076
+0,AKIL,12.994
+0,AKIL,10.937
+0,AKIL,20.13
+0,AKIL,13.146
+0,AKIL,9.529
+0,AKIL,14.14
+0,AKIL,9.224
+0,AKIL,8.638
+0,AKIL,10.462
+0,AKIL,18.024
+0,AKIL,14.761
+0,AKIL,12.314
+0,AKIL,15.698
+0,AKIL,8.843
+0,AKIL,13.635
+0,AKIL,9.752
+0,AKIL,8.624
+0,AKIL,8.045
+0,AKIL,10.664
+0,AKIL,11.653
+0,AKIL,8.436
+0,AKIL,10.748
+0,AKIL,8.76
+0,AKIL,12.435
+0,AKIL,10.367
+0,AKIL,12.592
+0,AKIL,9.362
+0,AKIL,12.089
+0,AKIL,13.712
+0,AKIL,9.907
+0,AKIL,13.467
+0,AKIL,13.83
+0,AKIL,10.322
+0,AKIL,14.691
+0,AKIL,13.037
+0,AKIL,9.13
+0,AKIL,11.469
+0,AKIL,11.746
+0,AKIL,11.163
+0,AKIL,9.648
+0,AKIL,10.739
+0,AKIL,9.95
+0,AKIL,10.019
+0,AKIL,10.843
+0,AKIL,10.136
+0,AKIL,13.603
+0,AKIL,11.74
+0,AKIL,9.188
+0,AKIL,13.784
+0,AKIL,14.59
+0,AKIL,8.091
+0,AKIL,14.363
+0,AKIL,15.459
+0,AKIL,8.993
+0,AKIL,7.429
+0,AKIL,7.539
+0,AKIL,14.726
+0,AKIL,13.151
+0,AKIL,10.062
+0,AKIL,9.39
+0,AKIL,13.197
+0,AKIL,15.074
+0,AKIL,10.939
+0,AKIL,10.88
+0,AKIL,8.4
+0,AKIL,12.731
+0,AKIL,10.567
+0,AKIL,12.222
+0,AKIL,12.044
+0,AKIL,12.973
+0,AKIL,11.88
+0,AKIL,10.426
+0,AKIL,13.957
+0,AKIL,17.73
+0,AKIL,8.952
+0,AKIL,11.735
+0,AKIL,13.496
+0,AKIL,11.971
+0,AKIL,12.386
+0,AKIL,12.105
+0,AKIL,12.615
+0,AKIL,6.655
+0,AKIL,13.329
+0,AKIL,8.038
+0,AKIL,13.041
+0,AKIL,9.909
+0,AKIL,17.014
+0,AKIL,14.907
+0,AKIL,11.787
+0,AKIL,9.702
+0,AKIL,16.006
+0,AKIL,11.853
+0,AKIL,11.898
+0,AKIL,14.311
+0,AKIL,11.408
+0,AKIL,8.406
+0,AKIL,7.853
+0,AKIL,9.583
+0,AKIL,12.901
+0,AKIL,11.185
+0,AKIL,7.972
+0,AKIL,13.784
+0,AKIL,9.769
+0,AKIL,11.858
+0,AKIL,12.772
+0,AKIL,17.614
+0,AKIL,19.739
+0,AKIL,11.512
+0,AKIL,9.421
+0,AKIL,10.101
+0,AKIL,11.085
+0,AKIL,7.398
+0,AKIL,15.778
+0,AKIL,13.526
+0,AKIL,9.988
+0,AKIL,11.802
+0,AKIL,9.688
+0,AKIL,12.447
+0,AKIL,12.009
+0,AKIL,10.248
+0,AKIL,16.36
+0,AKIL,12.136
+0,AKIL,10.843
+0,AKIL,10.467
+0,AKIL,10.863
+0,AKIL,9.712
+0,AKIL,11.264
+0,AKIL,12.547
+0,AKIL,7.992
+0,AKIL,9.947
+0,AKIL,11.932
+0,AKIL,14.671
+0,AKIL,14.54
+0,AKIL,8.955
+0,AKIL,7.569
+0,AKIL,17.987
+0,AKIL,18.054
+0,AKIL,8.124
+0,AKIL,10.941
+0,AKIL,10.366
+0,AKIL,9.636
+0,AKIL,12.033
+0,AKIL,10.023
+0,AKIL,11.88
+0,AKIL,10.703
+0,AKIL,11.35
+0,AKIL,12.081
+0,AKIL,12.391
+0,AKIL,10.124
+0,AKIL,14.382
+0,AKIL,9.841
+0,AKIL,10.138
+0,AKIL,13.041
+0,AKIL,11.313
+0,AKIL,13.766
+0,AKIL,7.391
+0,AKIL,8.821
+0,AKIL,16.599
+0,AKIL,7.65
+0,AKIL,12.203
+0,AKIL,14.985
+0,AKIL,10.513
+0,AKIL,11.219
+0,AKIL,14.998
+0,AKIL,13.179
+0,AKIL,16.305
+0,AKIL,15.203
+0,AKIL,11.047
+0,AKIL,8.365
+0,AKIL,12.088
+0,AKIL,11.756
+0,AKIL,12.202
+0,AKIL,6.916
+0,AKIL,20.302
+0,AKIL,12.936
+0,AKIL,13.578
+0,AKIL,8.757
+0,AKIL,14.307
+0,AKIL,14.587
+0,AKIL,8.924
+0,AKIL,8.522
+0,AKIL,8.6
+0,AKIL,10.933
+0,AKIL,13.824
+0,AKIL,19.368
+0,AKIL,10.743
+0,AKIL,22.41
+0,AKIL,9.495
+0,AKIL,10.634
+0,AKIL,12.269
+0,AKIL,10.817
+0,AKIL,8.326
+0,AKIL,9.995
+0,AKIL,12.637
+0,AKIL,9.22
+0,AKIL,11.533
+0,AKIL,10.233
+0,AKIL,16.05
+0,AKIL,11.603
+0,AKIL,7.155
+0,AKIL,10.342
+0,AKIL,11.834
+0,AKIL,11.27
+0,AKIL,8.258
+0,AKIL,10.73
+0,AKIL,12.766
+0,AKIL,13.013
+0,AKIL,13.886
+0,AKIL,14.672
+0,AKIL,10.433
+0,AKIL,9.513
+0,AKIL,14.157
+0,AKIL,12.807
+0,AKIL,12.31
+0,AKIL,7.493
+0,AKIL,10.058
+0,AKIL,17.077
+0,AKIL,9.443
+0,AKIL,10.594
+0,AKIL,12.051
+0,AKIL,10.826
+0,AKIL,12.538
+0,AKIL,8.762
+0,AKIL,7.727
+0,AKIL,14.461
+0,AKIL,13.182
+0,AKIL,13.501
+0,AKIL,8.839
+0,AKIL,23.902
+0,AKIL,13.011
+0,AKIL,9.462
+0,AKIL,11.448
+0,AKIL,8.004
+0,AKIL,12.257
+0,AKIL,9.688
+0,AKIL,11.361
+0,AKIL,9.4
+0,AKIL,11.775
+0,AKIL,10.64
+0,AKIL,16.152
+0,AKIL,12.128
+0,AKIL,15.143
+0,AKIL,13.886
+0,AKIL,13.048
+0,AKIL,10.0
+0,AKIL,11.085
+0,AKIL,12.939
+0,AKIL,9.558
+0,AKIL,8.666
+0,AKIL,15.979
+0,AKIL,9.936
+0,AKIL,14.706
+0,AKIL,12.014
+0,AKIL,8.876
+0,AKIL,12.556
+0,AKIL,8.499
+0,AKIL,9.673
+0,AKIL,17.367
+0,AKIL,10.69
+0,AKIL,9.949
+0,AKIL,14.679
+0,AKIL,12.299
+0,AKIL,18.797
+0,AKIL,9.225
+0,AKIL,9.483
+0,AKIL,11.707
+0,AKIL,9.557
+0,AKIL,12.035
+0,AKIL,11.847
+0,AKIL,10.097
+0,AKIL,9.633
+0,AKIL,13.616
+0,AKIL,11.807
+0,AKIL,12.955
+0,AKIL,9.156
+0,AKIL,15.921
+0,AKIL,9.921
+0,AKIL,9.721
+0,AKIL,7.67
+0,AKIL,12.85
+0,AKIL,9.694
+0,AKIL,9.047
+0,AKIL,12.258
+0,AKIL,11.32
+0,AKIL,13.138
+0,AKIL,8.212
+0,AKIL,11.166
+0,AKIL,10.576
+0,AKIL,10.4
+0,AKIL,12.59
+0,AKIL,13.141
+0,AKIL,20.524
+0,AKIL,15.135
+0,AKIL,12.733
+0,AKIL,16.412
+0,AKIL,12.002
+0,AKIL,9.18
+0,AKIL,11.809
+0,AKIL,12.002
+0,AKIL,11.136
+0,AKIL,10.646
+0,AKIL,13.462
+0,AKIL,10.64
+0,AKIL,11.229
+0,AKIL,16.199
+0,AKIL,14.853
+0,AKIL,12.366
+0,AKIL,10.247
+0,AKIL,12.139
+0,AKIL,11.517
+0,AKIL,9.431
+0,AKIL,16.207
+0,AKIL,14.33
+0,AKIL,10.169
+0,AKIL,7.851
+0,AKIL,12.485
+0,AKIL,11.623
+0,AKIL,9.066
+0,AKIL,13.811
+0,AKIL,14.549
+0,AKIL,13.972
+0,AKIL,10.82
+0,AKIL,10.627
+0,AKIL,10.58
+0,AKIL,12.235
+0,AKIL,12.275
+0,AKIL,14.744
+0,AKIL,8.121
+0,AKIL,10.331
+0,AKIL,11.664
+0,AKIL,11.648
+0,AKIL,13.749
+0,AKIL,14.204
+0,AKIL,15.926
+0,AKIL,9.691
+0,AKIL,14.49
+0,AKIL,13.682
+0,AKIL,9.918
+0,AKIL,13.985
+0,AKIL,9.55
+0,AKIL,14.157
+0,AKIL,14.544
+0,AKIL,10.51
+0,AKIL,9.175
+0,AKIL,12.136
+0,AKIL,12.616
+0,AKIL,12.249
+0,AKIL,12.208
+0,AKIL,12.216
+0,AKIL,9.625
+0,AKIL,13.377
+0,AKIL,13.761
+0,AKIL,12.936
+0,AKIL,8.238
+0,AKIL,11.622
+0,AKIL,12.101
+0,AKIL,13.412
+0,AKIL,10.783
+0,AKIL,10.564
+0,AKIL,12.176
+0,AKIL,13.16
+0,AKIL,11.143
+0,AKIL,9.821
+0,AKIL,13.271
+0,AKIL,8.69
+0,AKIL,8.447
+0,AKIL,11.459
+0,AKIL,9.986
+0,AKIL,9.87
+0,AKIL,9.316
+0,AKIL,10.722
+0,AKIL,12.656
+0,AKIL,9.106
+0,AKIL,10.202
+0,AKIL,10.766
+0,AKIL,14.395
+0,AKIL,11.851
+0,AKIL,13.357
+0,AKIL,10.493
+0,AKIL,9.767
+0,AKIL,15.016
+0,AKIL,10.249
+0,AKIL,9.47
+0,AKIL,9.7
+0,AKIL,13.678
+0,AKIL,9.049
+0,AKIL,12.81
+0,AKIL,16.239
+0,AKIL,11.329
+0,AKIL,11.06
+0,AKIL,11.096
+0,AKIL,9.501
+0,AKIL,9.318
+0,AKIL,9.584
+0,AKIL,8.961
+0,AKIL,9.954
+0,AKIL,9.976
+0,AKIL,15.149
+0,AKIL,9.143
+0,AKIL,11.216
+0,AKIL,19.888
+0,AKIL,11.058
+0,AKIL,10.908
+0,AKIL,8.235
+0,AKIL,9.486
+0,AKIL,10.509
+0,AKIL,12.773
+0,AKIL,13.553
+0,AKIL,7.116
+0,AKIL,13.129
+0,AKIL,8.635
+0,AKIL,11.054
+0,AKIL,8.025
+0,AKIL,12.216
+0,AKIL,9.24
+0,AKIL,9.888
+0,AKIL,15.406
+0,AKIL,14.187
+0,AKIL,14.184
+0,AKIL,10.869
+0,AKIL,10.325
+0,AKIL,8.495
+0,AKIL,12.369
+0,AKIL,13.839
+0,AKIL,13.262
+0,AKIL,15.252
+0,AKIL,12.12
+0,AKIL,8.03
+0,AKIL,8.28
+0,AKIL,18.931
+0,AKIL,9.562
+0,AKIL,13.811
+0,AKIL,15.186
+0,AKIL,15.186
+0,AKIL,7.815
+0,AKIL,11.099
+0,AKIL,12.448
+0,AKIL,14.673
+0,AKIL,15.281
+0,AKIL,14.719
+0,AKIL,11.944
+0,AKIL,11.596
+0,AKIL,11.958
+0,AKIL,9.566
+0,AKIL,10.82
+0,AKIL,8.846
+0,AKIL,8.755
+0,AKIL,12.306
+0,AKIL,14.771
+0,AKIL,10.761
+0,AKIL,21.146
+0,AKIL,11.289
+0,AKIL,10.881
+0,AKIL,14.089
+0,AKIL,10.38
+0,AKIL,10.277
+0,AKIL,9.383
+0,AKIL,10.464
+0,AKIL,12.91
+0,AKIL,11.103
+0,AKIL,15.22
+0,AKIL,9.711
+0,AKIL,12.23
+0,AKIL,11.825
+0,AKIL,9.339
+0,AKIL,9.277
+0,AKIL,10.796
+0,AKIL,10.97
+0,AKIL,18.722
+0,AKIL,12.682
+0,AKIL,7.513
+0,AKIL,9.239
+0,AKIL,11.157
+0,AKIL,14.486
+0,AKIL,9.264
+0,AKIL,13.572
+0,AKIL,11.968
+0,AKIL,11.232
+0,AKIL,9.238
+0,AKIL,15.712
+0,AKIL,12.085
+0,AKIL,11.261
+0,AKIL,20.18
+0,AKIL,11.395
+0,AKIL,13.609
+0,AKIL,10.312
+0,AKIL,10.29
+0,AKIL,14.763
+0,AKIL,9.906
+0,AKIL,10.62
+0,AKIL,9.194
+0,AKIL,11.495
+0,AKIL,11.992
+0,AKIL,12.18
+0,AKIL,12.999
+0,AKIL,10.481
+0,AKIL,11.313
+0,AKIL,7.668
+0,AKIL,8.608
+0,AKIL,12.437
+0,AKIL,10.114
+0,AKIL,11.922
+0,AKIL,10.123
+0,AKIL,8.654
+0,AKIL,12.943
+0,AKIL,23.324
+0,AKIL,13.853
+0,AKIL,9.555
+0,AKIL,12.768
+0,AKIL,16.262
+0,AKIL,8.122
+0,AKIL,13.599
+0,AKIL,8.071
+0,AKIL,9.763
+0,AKIL,10.435
+0,AKIL,12.876
+0,AKIL,9.227
+0,AKIL,7.434
+0,AKIL,11.459
+0,AKIL,16.734
+0,AKIL,14.946
+0,AKIL,12.421
+0,AKIL,12.913
+0,AKIL,18.289
+0,AKIL,7.998
+0,AKIL,14.295
+0,AKIL,8.774
+0,AKIL,11.721
+0,AKIL,7.869
+0,AKIL,14.239
+0,AKIL,9.256
+0,AKIL,10.627
+0,AKIL,12.762
+0,AKIL,10.394
+0,AKIL,10.625
+0,AKIL,8.378
+0,AKIL,12.687
+0,AKIL,7.668
+0,AKIL,10.249
+0,AKIL,10.835
+0,AKIL,9.911
+0,AKIL,12.568
+0,AKIL,15.665
+0,AKIL,11.295
+0,AKIL,11.449
+0,AKIL,13.402
+0,AKIL,14.443
+0,AKIL,11.349
+0,AKIL,10.723
+0,AKIL,12.529
+0,AKIL,10.691
+0,AKIL,9.839
+0,AKIL,10.108
+0,AKIL,13.716
+0,AKIL,10.549
+0,AKIL,15.055
+0,AKIL,9.479
+0,AKIL,10.576
+0,AKIL,10.105
+0,AKIL,13.474
+0,AKIL,12.93
+0,AKIL,6.875
+0,AKIL,14.21
+0,AKIL,15.842
+0,AKIL,9.519
+0,AKIL,11.708
+0,AKIL,9.71
+0,AKIL,8.493
+0,AKIL,10.948
+0,AKIL,9.187
+0,AKIL,12.703
+0,AKIL,13.075
+0,AKIL,8.632

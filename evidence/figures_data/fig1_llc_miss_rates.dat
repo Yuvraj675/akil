@@ -1,0 +1,4 @@
+# Workload	Default_K8s	AKIL
+cache-stress	85.0	84.0
+lock-stress	48.0	44.0
+baseline-web	62.4	41.8

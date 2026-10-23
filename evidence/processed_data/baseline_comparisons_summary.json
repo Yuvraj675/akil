@@ -1,0 +1,282 @@
+{
+  "metadata": {
+    "generated_at": "2026-10-23T20:48:25.547098",
+    "target_conference": "IEEE Cloud / EuroSys / ACM SoCC",
+    "cluster_nodes": 5,
+    "benchmark_iterations": 10
+  },
+  "cluster_colocation_summary": {
+    "Default-K8s": {
+      "total_web_scheduled": 241,
+      "pathological_colocations": 86,
+      "colocation_rate_pct": 35.68,
+      "unplaced_pod_fragmentation_pct": 0.0,
+      "evictions": 0
+    },
+    "Static-AntiAffinity": {
+      "total_web_scheduled": 241,
+      "pathological_colocations": 0,
+      "colocation_rate_pct": 0.0,
+      "unplaced_pod_fragmentation_pct": 0.4,
+      "evictions": 0
+    },
+    "Reactive-Descheduler": {
+      "total_web_scheduled": 241,
+      "pathological_colocations": 82,
+      "colocation_rate_pct": 34.02,
+      "unplaced_pod_fragmentation_pct": 0.0,
+      "evictions": 92
+    },
+    "AKIL": {
+      "total_web_scheduled": 241,
+      "pathological_colocations": 88,
+      "colocation_rate_pct": 36.51,
+      "unplaced_pod_fragmentation_pct": 0.0,
+      "evictions": 0
+    }
+  },
+  "latency_and_slo_summary": {
+    "Isolated (Clean)": {
+      "p50": {
+        "mean": 9.5,
+        "sd": 0.06,
+        "ci95": 0.04
+      },
+      "p75": {
+        "mean": 11.11,
+        "sd": 0.1,
+        "ci95": 0.06
+      },
+      "p90": {
+        "mean": 12.98,
+        "sd": 0.1,
+        "ci95": 0.06
+      },
+      "p95": {
+        "mean": 14.35,
+        "sd": 0.23,
+        "ci95": 0.14
+      },
+      "p99": {
+        "mean": 17.51,
+        "sd": 0.77,
+        "ci95": 0.48
+      },
+      "p999": {
+        "mean": 23.74,
+        "sd": 1.81,
+        "ci95": 1.12
+      },
+      "slo_pct": {
+        "mean": 3.43,
+        "sd": 0.47,
+        "ci95": 0.29
+      },
+      "llc_miss_rate": {
+        "mean": 38.0,
+        "sd": 0.0,
+        "ci95": 0.0
+      }
+    },
+    "Default-K8s": {
+      "p50": {
+        "mean": 37.87,
+        "sd": 0.38,
+        "ci95": 0.24
+      },
+      "p75": {
+        "mean": 43.94,
+        "sd": 0.47,
+        "ci95": 0.29
+      },
+      "p90": {
+        "mean": 50.13,
+        "sd": 0.44,
+        "ci95": 0.27
+      },
+      "p95": {
+        "mean": 54.14,
+        "sd": 1.04,
+        "ci95": 0.65
+      },
+      "p99": {
+        "mean": 63.1,
+        "sd": 2.45,
+        "ci95": 1.52
+      },
+      "p999": {
+        "mean": 74.29,
+        "sd": 4.12,
+        "ci95": 2.55
+      },
+      "slo_pct": {
+        "mean": 99.98,
+        "sd": 0.04,
+        "ci95": 0.03
+      },
+      "llc_miss_rate": {
+        "mean": 62.4,
+        "sd": 0.0,
+        "ci95": 0.0
+      }
+    },
+    "Static-AntiAffinity": {
+      "p50": {
+        "mean": 11.62,
+        "sd": 0.14,
+        "ci95": 0.09
+      },
+      "p75": {
+        "mean": 13.54,
+        "sd": 0.16,
+        "ci95": 0.1
+      },
+      "p90": {
+        "mean": 15.83,
+        "sd": 0.33,
+        "ci95": 0.21
+      },
+      "p95": {
+        "mean": 17.54,
+        "sd": 0.42,
+        "ci95": 0.26
+      },
+      "p99": {
+        "mean": 20.88,
+        "sd": 0.58,
+        "ci95": 0.36
+      },
+      "p999": {
+        "mean": 27.39,
+        "sd": 2.54,
+        "ci95": 1.57
+      },
+      "slo_pct": {
+        "mean": 14.05,
+        "sd": 1.31,
+        "ci95": 0.81
+      },
+      "llc_miss_rate": {
+        "mean": 42.1,
+        "sd": 0.0,
+        "ci95": 0.0
+      }
+    },
+    "Reactive-Descheduler": {
+      "p50": {
+        "mean": 23.76,
+        "sd": 0.21,
+        "ci95": 0.13
+      },
+      "p75": {
+        "mean": 28.42,
+        "sd": 0.33,
+        "ci95": 0.2
+      },
+      "p90": {
+        "mean": 33.25,
+        "sd": 0.5,
+        "ci95": 0.31
+      },
+      "p95": {
+        "mean": 36.53,
+        "sd": 0.61,
+        "ci95": 0.38
+      },
+      "p99": {
+        "mean": 43.72,
+        "sd": 1.71,
+        "ci95": 1.06
+      },
+      "p999": {
+        "mean": 54.24,
+        "sd": 3.49,
+        "ci95": 2.16
+      },
+      "slo_pct": {
+        "mean": 94.04,
+        "sd": 0.87,
+        "ci95": 0.54
+      },
+      "llc_miss_rate": {
+        "mean": 54.8,
+        "sd": 0.0,
+        "ci95": 0.0
+      }
+    },
+    "AKIL": {
+      "p50": {
+        "mean": 11.22,
+        "sd": 0.09,
+        "ci95": 0.06
+      },
+      "p75": {
+        "mean": 13.04,
+        "sd": 0.14,
+        "ci95": 0.08
+      },
+      "p90": {
+        "mean": 15.32,
+        "sd": 0.27,
+        "ci95": 0.17
+      },
+      "p95": {
+        "mean": 16.79,
+        "sd": 0.35,
+        "ci95": 0.22
+      },
+      "p99": {
+        "mean": 20.4,
+        "sd": 0.61,
+        "ci95": 0.38
+      },
+      "p999": {
+        "mean": 26.22,
+        "sd": 2.54,
+        "ci95": 1.58
+      },
+      "slo_pct": {
+        "mean": 11.32,
+        "sd": 1.05,
+        "ci95": 0.65
+      },
+      "llc_miss_rate": {
+        "mean": 41.8,
+        "sd": 0.0,
+        "ci95": 0.0
+      }
+    }
+  },
+  "overhead_benchmarks": [
+    {
+      "colocated_pods": 1,
+      "pure_scoring_algo_us": 0.44,
+      "end_to_end_k8s_score_ms": 0.31
+    },
+    {
+      "colocated_pods": 5,
+      "pure_scoring_algo_us": 2.93,
+      "end_to_end_k8s_score_ms": 0.31
+    },
+    {
+      "colocated_pods": 10,
+      "pure_scoring_algo_us": 3.02,
+      "end_to_end_k8s_score_ms": 0.31
+    },
+    {
+      "colocated_pods": 20,
+      "pure_scoring_algo_us": 6.37,
+      "end_to_end_k8s_score_ms": 0.311
+    },
+    {
+      "colocated_pods": 50,
+      "pure_scoring_algo_us": 16.79,
+      "end_to_end_k8s_score_ms": 0.313
+    },
+    {
+      "colocated_pods": 100,
+      "pure_scoring_algo_us": 54.52,
+      "end_to_end_k8s_score_ms": 0.318
+    }
+  ]
+}

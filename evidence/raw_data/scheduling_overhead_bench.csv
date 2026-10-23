@@ -1,0 +1,7 @@
+colocated_pods,pure_scoring_algo_us,end_to_end_k8s_score_ms
+1,0.44,0.31
+5,2.93,0.31
+10,3.02,0.31
+20,6.37,0.311
+50,16.79,0.313
+100,54.52,0.318
