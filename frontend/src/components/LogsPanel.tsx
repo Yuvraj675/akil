@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { Terminal, Activity, ArrowUpRight, ArrowDownRight, Info } from 'lucide-react';
+import { Terminal } from 'lucide-react';
 
 interface ScalingLog {
   timestamp: string;
@@ -36,37 +36,31 @@ export default function LogsPanel() {
   }, [logs]);
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-5 shadow-sm flex flex-col h-[400px]">
-      <div className="flex items-center gap-2 mb-4">
-        <Terminal className="text-emerald-400 w-5 h-5" />
-        <h3 className="font-semibold text-slate-100">Live Autoscaler Logs</h3>
+    <div className="border border-zinc-800 bg-zinc-950 rounded-lg p-5 flex flex-col h-[340px]">
+      <div className="flex items-center justify-between mb-3 pb-3 border-b border-zinc-800/80">
+        <div className="flex items-center gap-2">
+          <Terminal className="text-zinc-400 w-4 h-4" />
+          <h3 className="text-xs font-mono font-semibold text-zinc-200 uppercase tracking-wider">
+            Adaptive Autoscaling Engine Logs
+          </h3>
+        </div>
+        <span className="text-[10px] font-mono text-zinc-500">Live Buffer</span>
       </div>
       
       <div 
         ref={scrollRef}
-        className="flex-1 overflow-y-auto bg-slate-950 rounded-lg p-4 font-mono text-xs md:text-sm border border-slate-800 space-y-3 scroll-smooth"
+        className="flex-1 overflow-y-auto bg-black rounded p-3 font-mono text-xs border border-zinc-900 space-y-2.5"
       >
         {logs.length === 0 && (
-          <div className="text-slate-500 italic h-full flex items-center justify-center">
-            Waiting for scaling events...
+          <div className="text-zinc-600 italic h-full flex items-center justify-center font-mono text-xs">
+            Awaiting telemetry-triggered scaling events...
           </div>
         )}
         
         {logs.map((log, idx) => {
-          let Icon = Info;
-          let color = "text-blue-400";
-          let bg = "bg-blue-400/10";
+          const isUp = log.action.includes("SCALE UP");
+          const isDown = log.action.includes("SCALE DOWN");
           
-          if (log.action.includes("SCALE UP")) {
-            Icon = ArrowUpRight;
-            color = "text-rose-400";
-            bg = "bg-rose-400/10";
-          } else if (log.action.includes("SCALE DOWN")) {
-            Icon = ArrowDownRight;
-            color = "text-emerald-400";
-            bg = "bg-emerald-400/10";
-          }
-
           const timeStr = new Date(log.timestamp).toLocaleTimeString([], { 
             hour12: false, 
             hour: '2-digit',
@@ -75,23 +69,19 @@ export default function LogsPanel() {
           });
 
           return (
-            <div key={idx} className={`p-3 rounded border border-slate-800/50 ${bg} flex gap-3`}>
-              <div className={`mt-0.5 ${color}`}>
-                <Icon className="w-4 h-4" />
+            <div key={idx} className="p-2.5 rounded border border-zinc-800/60 bg-zinc-900/30 font-mono text-xs">
+              <div className="flex items-center justify-between mb-1">
+                <span className={`font-semibold ${isUp ? 'text-rose-400' : isDown ? 'text-emerald-400' : 'text-zinc-300'}`}>
+                  [{log.action}]
+                </span>
+                <span className="text-zinc-500 text-[10px]">{timeStr}</span>
               </div>
-              <div className="flex-1">
-                <div className="flex items-center justify-between mb-1">
-                  <span className={`font-semibold ${color}`}>{log.action}</span>
-                  <span className="text-slate-500 text-xs">{timeStr}</span>
+              <p className="text-zinc-400 text-[11px] leading-relaxed">{log.reason}</p>
+              {log.replicas >= 0 && (
+                <div className="mt-1 text-[10px] text-zinc-500">
+                  Target Replicas: <strong className="text-zinc-300">{log.replicas}</strong>
                 </div>
-                <p className="text-slate-300">{log.reason}</p>
-                {log.replicas >= 0 && (
-                  <div className="mt-2 text-xs text-slate-400 flex items-center gap-1">
-                    <Activity className="w-3 h-3" />
-                    Target Replicas: {log.replicas}
-                  </div>
-                )}
-              </div>
+              )}
             </div>
           );
         })}

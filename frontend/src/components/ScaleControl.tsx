@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion } from 'framer-motion';
-import { Server, Zap, Activity, HardDrive } from 'lucide-react';
+import { Server } from 'lucide-react';
 
 export default function ScaleControl() {
   const [replicas, setReplicas] = useState(1);
@@ -18,7 +17,7 @@ export default function ScaleControl() {
         const dataAuto = await resAuto.json();
         setAutoScalingEnabled(dataAuto.enabled || false);
       } catch (err) {
-        console.error("Failed to fetch scale data", err);
+        // Silent catch
       }
     };
     
@@ -43,100 +42,56 @@ export default function ScaleControl() {
   };
 
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-sm mb-6">
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+    <div className="border border-zinc-800 bg-zinc-950 rounded-lg p-5">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4 pb-4 border-b border-zinc-800/80">
         <div>
-          <h2 className="text-xl font-semibold text-slate-100 flex items-center gap-2 mb-2">
-            <Server className="text-blue-400" />
-            Live Demo: Workload Scaling
-          </h2>
-          <p className="text-sm text-slate-400 max-w-xl">
-            Watch the real-time physical allocation of pods across the Node. You can manually scale the <code className="text-xs bg-slate-800 px-1 py-0.5 rounded text-blue-300">demo-workload</code> deployment from 1 to 4 pods by clicking the numbers below.
-          </p>
+          <div className="text-[10px] font-mono text-zinc-500 uppercase tracking-widest mb-0.5">
+            KUBERNETES WORKLOAD CONTROLLER
+          </div>
+          <h3 className="text-sm font-semibold text-zinc-200 flex items-center gap-2">
+            <Server className="w-4 h-4 text-zinc-400" />
+            Deployment Replica Allocation
+          </h3>
         </div>
 
-        <div className="flex items-center gap-4 bg-slate-950 p-4 rounded-lg border border-slate-800">
-          <div className="flex flex-col items-center justify-center mr-4">
-            <span className="text-xs text-slate-500 uppercase font-semibold tracking-wider mb-1">Replicas</span>
-            <span className="text-3xl font-bold text-slate-100">{replicas}</span>
-          </div>
-
-          <div className="flex gap-2">
-            {[1, 2, 3, 4].map(num => (
-              <motion.button
+        <div className="flex items-center gap-2">
+          <span className="text-xs font-mono text-zinc-400">Target Replicas:</span>
+          <div className="flex gap-1">
+            {[1, 2, 3, 4, 5].map(num => (
+              <button
                 key={num}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
                 disabled={loading || autoScalingEnabled}
                 onClick={() => handleScale(num)}
-                className={`w-12 h-12 rounded-lg font-medium text-lg flex items-center justify-center transition-colors ${
+                className={`w-8 h-8 rounded text-xs font-mono transition-colors border ${
                   replicas === num
-                    ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/20 border border-blue-400'
-                    : 'bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700'
+                    ? 'bg-zinc-100 text-black font-semibold border-zinc-100'
+                    : 'bg-zinc-900/60 text-zinc-400 border-zinc-800 hover:border-zinc-700 hover:text-zinc-200'
                 } ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
               >
                 {num}
-              </motion.button>
+              </button>
             ))}
           </div>
         </div>
       </div>
 
-      <div className="mt-4 flex items-center gap-3">
-        <button
-          onClick={async () => {
-            const newState = !autoScalingEnabled;
-            setAutoScalingEnabled(newState);
-            await fetch(`http://localhost:8080/api/autoscale/${newState ? 'enable' : 'disable'}`, { method: 'POST' });
-          }}
-          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${autoScalingEnabled ? 'bg-emerald-500' : 'bg-slate-700'}`}
-        >
-          <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${autoScalingEnabled ? 'translate-x-6' : 'translate-x-1'}`} />
-        </button>
-        <span className="text-sm text-slate-300 font-medium">Enable eBPF Adaptive Autoscaling</span>
-      </div>
-      <p className="text-xs text-slate-400 mt-1 max-w-2xl">
-        When enabled, the Aggregator constantly watches the telemetry. If any workload experiences high memory pressure or CPU contention, it will automatically scale UP (max 5 pods) to handle the load, or scale DOWN (min 1 pod) when metrics return to normal.
-      </p>
-      
-      {/* Visual representation */}
-      <div className="mt-6 pt-6 border-t border-slate-800">
-        <h3 className="text-sm font-medium text-slate-400 mb-4">Node Allocation</h3>
-        <div className="flex gap-3 flex-wrap">
-          <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4 flex-1 min-w-[200px]">
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-sm font-semibold text-slate-300">akil-demo-control-plane</span>
-              <Activity className={`w-4 h-4 ${replicas > 2 ? 'text-rose-400 animate-pulse' : 'text-emerald-400'}`} />
-            </div>
-            <div className="flex gap-2 flex-wrap">
-              {Array.from({ length: replicas }).map((_, i) => (
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  key={i}
-                  className={`px-3 py-2 rounded border flex items-center gap-2 ${
-                    replicas > 3 ? 'bg-rose-500/10 border-rose-500/30 text-rose-300' :
-                    replicas > 2 ? 'bg-amber-500/10 border-amber-500/30 text-amber-300' :
-                    'bg-emerald-500/10 border-emerald-500/30 text-emerald-300'
-                  }`}
-                >
-                  <HardDrive className="w-4 h-4" />
-                  <span className="text-xs font-medium">Pod-{i+1}</span>
-                </motion.div>
-              ))}
-            </div>
-            
-            {replicas > 2 && (
-              <motion.p 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="text-xs text-rose-400 mt-3 flex items-center gap-1"
-              >
-                <Zap className="w-3 h-3" /> High contention detected
-              </motion.p>
-            )}
-          </div>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+        <div className="flex items-center gap-3">
+          <button
+            onClick={async () => {
+              const newState = !autoScalingEnabled;
+              setAutoScalingEnabled(newState);
+              await fetch(`http://localhost:8080/api/autoscale/${newState ? 'enable' : 'disable'}`, { method: 'POST' });
+            }}
+            className={`w-9 h-5 rounded-full transition-colors relative flex items-center p-0.5 ${autoScalingEnabled ? 'bg-zinc-200' : 'bg-zinc-800'}`}
+          >
+            <span className={`w-4 h-4 rounded-full bg-zinc-950 transition-transform ${autoScalingEnabled ? 'translate-x-4' : 'translate-x-0'}`} />
+          </button>
+          <span className="text-zinc-300 font-mono text-xs">eBPF Telemetry-Driven Adaptive Autoscaling</span>
         </div>
+        <span className="text-[11px] font-mono text-zinc-500">
+          Thresholds: CtxSw &gt; 100/s · PF &gt; 5000/s · Cache &gt; 1000/s
+        </span>
       </div>
     </div>
   );

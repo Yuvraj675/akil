@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { BarChart3, TrendingDown, Clock, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, BarChart, Bar, Legend } from 'recharts';
 
 export default function EvidenceExplorer() {
-  const [selectedMetric, setSelectedMetric] = useState<'latency' | 'cache' | 'slo'>('latency');
+  const [selectedView, setSelectedView] = useState<'cdf' | 'llc' | 'overhead'>('cdf');
 
   // Empirical data from evidence/figures_data/fig2_tail_latency_cdf.dat
   const cdfData = [
@@ -31,7 +30,7 @@ export default function EvidenceExplorer() {
     { workload: 'baseline-web (Target)', defaultK8s: 62.4, akil: 41.8 },
   ];
 
-  // Overhead benchmark data
+  // Overhead benchmark data from evidence/raw_data/scheduling_overhead_bench.csv
   const overheadData = [
     { pods: '1 pod', pureMathUs: 0.44, endToEndMs: 0.310 },
     { pods: '5 pods', pureMathUs: 2.93, endToEndMs: 0.310 },
@@ -43,287 +42,289 @@ export default function EvidenceExplorer() {
 
   return (
     <div className="space-y-6">
-      {/* Top Banner */}
-      <div className="bg-gradient-to-r from-slate-900 via-indigo-950/40 to-slate-900 border border-indigo-500/30 rounded-2xl p-6 shadow-xl relative overflow-hidden">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 relative z-10">
+      {/* Top Section */}
+      <div className="border border-zinc-800 bg-zinc-950 rounded-lg p-6">
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 mb-2">
-              <span className="bg-indigo-500/20 text-indigo-400 text-xs font-semibold px-2.5 py-1 rounded-full border border-indigo-500/30 flex items-center gap-1.5">
-                <BarChart3 className="w-3.5 h-3.5" /> IEEE Conference Evaluation Dataset
-              </span>
-              <span className="text-slate-400 text-xs">N = 10 Trials | 95% Confidence Intervals</span>
+            <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest mb-1">
+              BENCHMARK EVALUATION EVIDENCE · 95% CONFIDENCE INTERVALS
             </div>
-            <h2 className="text-2xl font-bold text-slate-100">
-              Comparative Benchmark Evidence
+            <h2 className="text-xl font-semibold text-zinc-100 tracking-tight">
+              Empirical Comparative Analysis Across Schedulers
             </h2>
-            <p className="text-sm text-slate-400 mt-1 max-w-2xl">
-              Rigorous experimental results evaluating AKIL against the standard Kubernetes scheduler, static anti-affinity label rules, and reactive descheduling under identical 5-node cluster load.
+            <p className="text-xs text-zinc-400 mt-1 max-w-2xl leading-relaxed">
+              Measured on a 5-node cluster running adversarial noisy neighbors alongside latency-critical microservices. Baseline configurations evaluated across N = 10 randomized trials.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 bg-slate-950/60 p-1.5 rounded-xl border border-slate-800">
+          <div className="flex items-center gap-1.5 border border-zinc-800 bg-zinc-900/60 p-1 rounded">
             <button
-              onClick={() => setSelectedMetric('latency')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                selectedMetric === 'latency'
-                  ? 'bg-indigo-600 text-white shadow'
-                  : 'text-slate-400 hover:text-slate-200'
+              onClick={() => setSelectedView('cdf')}
+              className={`px-3 py-1.5 rounded text-xs font-mono transition-colors ${
+                selectedView === 'cdf'
+                  ? 'bg-zinc-100 text-black font-semibold'
+                  : 'text-zinc-400 hover:text-zinc-200'
               }`}
             >
-              Tail Latency CDF
+              Tail CDF
             </button>
             <button
-              onClick={() => setSelectedMetric('cache')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                selectedMetric === 'cache'
-                  ? 'bg-indigo-600 text-white shadow'
-                  : 'text-slate-400 hover:text-slate-200'
+              onClick={() => setSelectedView('llc')}
+              className={`px-3 py-1.5 rounded text-xs font-mono transition-colors ${
+                selectedView === 'llc'
+                  ? 'bg-zinc-100 text-black font-semibold'
+                  : 'text-zinc-400 hover:text-zinc-200'
               }`}
             >
               LLC Miss Rate
             </button>
             <button
-              onClick={() => setSelectedMetric('slo')}
-              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
-                selectedMetric === 'slo'
-                  ? 'bg-indigo-600 text-white shadow'
-                  : 'text-slate-400 hover:text-slate-200'
+              onClick={() => setSelectedView('overhead')}
+              className={`px-3 py-1.5 rounded text-xs font-mono transition-colors ${
+                selectedView === 'overhead'
+                  ? 'bg-zinc-100 text-black font-semibold'
+                  : 'text-zinc-400 hover:text-zinc-200'
               }`}
             >
-              Scheduling Overhead
+              Overhead
             </button>
           </div>
         </div>
       </div>
 
-      {/* Primary KPI Highlights */}
+      {/* Primary KPI Grid (Monochrome, Vercel-style) */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-5 shadow-sm">
-          <div className="flex items-center justify-between text-slate-400 text-xs font-medium mb-2">
-            <span>LLC Cache Miss Rate</span>
-            <TrendingDown className="w-4 h-4 text-emerald-400" />
+        <div className="border border-zinc-800 bg-zinc-950 rounded-lg p-4">
+          <div className="text-[11px] font-mono text-zinc-500 uppercase">LLC Miss Rate (Target Web)</div>
+          <div className="text-2xl font-mono font-semibold text-zinc-100 mt-2">41.8%</div>
+          <div className="text-xs text-zinc-400 mt-1 font-mono">
+            -33.0% vs. Default K8s (62.4%)
           </div>
-          <div className="text-2xl font-bold text-slate-100">41.8%</div>
-          <p className="text-xs text-emerald-400 mt-1 font-medium">-33.0% vs. Default K8s (62.4%)</p>
-          <div className="text-[11px] text-slate-500 mt-2">Target web microservice under stress</div>
+          <div className="text-[10px] text-zinc-600 mt-2 border-t border-zinc-900 pt-2 font-mono">
+            CI95: [40.6%, 43.0%]
+          </div>
         </div>
 
-        <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-5 shadow-sm">
-          <div className="flex items-center justify-between text-slate-400 text-xs font-medium mb-2">
-            <span>p99 Tail Latency</span>
-            <Clock className="w-4 h-4 text-emerald-400" />
+        <div className="border border-zinc-800 bg-zinc-950 rounded-lg p-4">
+          <div className="text-[11px] font-mono text-zinc-500 uppercase">p99 Request Tail Latency</div>
+          <div className="text-2xl font-mono font-semibold text-zinc-100 mt-2">20.40 ms</div>
+          <div className="text-xs text-zinc-400 mt-1 font-mono">
+            -67.7% vs. Default K8s (63.10 ms)
           </div>
-          <div className="text-2xl font-bold text-slate-100">20.40 ms</div>
-          <p className="text-xs text-emerald-400 mt-1 font-medium">-67.7% vs. Default K8s (63.1 ms)</p>
-          <div className="text-[11px] text-slate-500 mt-2">95% CI: [20.02, 20.78] ms</div>
+          <div className="text-[10px] text-zinc-600 mt-2 border-t border-zinc-900 pt-2 font-mono">
+            CI95: [20.02, 20.78] ms
+          </div>
         </div>
 
-        <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-5 shadow-sm">
-          <div className="flex items-center justify-between text-slate-400 text-xs font-medium mb-2">
-            <span>SLO Violations (&gt;15ms)</span>
-            <ShieldCheck className="w-4 h-4 text-emerald-400" />
+        <div className="border border-zinc-800 bg-zinc-950 rounded-lg p-4">
+          <div className="text-[11px] font-mono text-zinc-500 uppercase">SLO Violations (&gt;15ms)</div>
+          <div className="text-2xl font-mono font-semibold text-zinc-100 mt-2">11.32%</div>
+          <div className="text-xs text-zinc-400 mt-1 font-mono">
+            Default K8s incurs 99.98% breach
           </div>
-          <div className="text-2xl font-bold text-slate-100">11.32%</div>
-          <p className="text-xs text-emerald-400 mt-1 font-medium">-88.7% reduction vs Default</p>
-          <div className="text-[11px] text-slate-500 mt-2">Default K8s incurs 99.98% breach</div>
+          <div className="text-[10px] text-zinc-600 mt-2 border-t border-zinc-900 pt-2 font-mono">
+            Matches static anti-affinity (14.05%)
+          </div>
         </div>
 
-        <div className="bg-slate-900/80 border border-slate-800 rounded-xl p-5 shadow-sm">
-          <div className="flex items-center justify-between text-slate-400 text-xs font-medium mb-2">
-            <span>Score Phase Overhead</span>
-            <CheckCircle2 className="w-4 h-4 text-cyan-400" />
+        <div className="border border-zinc-800 bg-zinc-950 rounded-lg p-4">
+          <div className="text-[11px] font-mono text-zinc-500 uppercase">Hot-Path Scoring Latency</div>
+          <div className="text-2xl font-mono font-semibold text-zinc-100 mt-2">0.318 ms</div>
+          <div className="text-xs text-zinc-400 mt-1 font-mono">
+            93.6% Headroom in 5.0ms Budget
           </div>
-          <div className="text-2xl font-bold text-slate-100">0.318 ms</div>
-          <p className="text-xs text-cyan-400 mt-1 font-medium">93.6% Headroom in 5ms Budget</p>
-          <div className="text-[11px] text-slate-500 mt-2">Even with 100 co-located pods</div>
+          <div className="text-[10px] text-zinc-600 mt-2 border-t border-zinc-900 pt-2 font-mono">
+            O(M) scaling up to 100 resident pods
+          </div>
         </div>
       </div>
 
-      {/* Chart Visualization Area */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-md">
-        {selectedMetric === 'latency' && (
+      {/* Main Chart Card */}
+      <div className="border border-zinc-800 bg-zinc-950 rounded-lg p-6">
+        {selectedView === 'cdf' && (
           <div>
             <div className="flex items-center justify-between mb-4">
               <div>
-                <h3 className="text-base font-semibold text-slate-100">
+                <h3 className="text-sm font-semibold text-zinc-200">
                   Request Latency Cumulative Distribution Function (CDF)
                 </h3>
-                <p className="text-xs text-slate-400 mt-0.5">
-                  Percentage of requests completed within target latency threshold (ms). Steeper curves towards the left indicate superior QoS.
+                <p className="text-xs text-zinc-500 font-mono mt-0.5">
+                  X-Axis: Response Time (ms) · Y-Axis: Cumulative Completion (%) · N = 10,000 requests per policy
                 </p>
               </div>
-              <div className="text-xs bg-slate-800 text-slate-300 px-3 py-1.5 rounded-lg border border-slate-700">
-                SLO Deadline: <span className="font-semibold text-rose-400">15.0 ms</span>
+              <div className="text-xs font-mono text-zinc-400 border border-zinc-800 px-2 py-1 rounded bg-zinc-900">
+                SLO: 15.0 ms
               </div>
             </div>
 
-            <div className="h-80 w-full">
+            <div className="h-72 w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={cdfData} margin={{ top: 10, right: 30, left: 0, bottom: 20 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                  <XAxis dataKey="latency" unit=" ms" stroke="#64748b" tick={{ fontSize: 12 }} />
-                  <YAxis unit="%" stroke="#64748b" domain={[0, 100]} tick={{ fontSize: 12 }} />
+                <LineChart data={cdfData} margin={{ top: 10, right: 20, left: -20, bottom: 10 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
+                  <XAxis dataKey="latency" unit=" ms" stroke="#52525b" tick={{ fontSize: 11 }} />
+                  <YAxis unit="%" stroke="#52525b" domain={[0, 100]} tick={{ fontSize: 11 }} />
                   <Tooltip
-                    contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '0.75rem', fontSize: '12px' }}
-                    formatter={(val: any) => [`${val}% of requests`, '']}
-                    labelFormatter={(label) => `Response Time ≤ ${label} ms`}
+                    contentStyle={{ backgroundColor: '#09090b', borderColor: '#27272a', borderRadius: '4px', fontSize: '11px', fontFamily: 'monospace' }}
+                    formatter={(val: any) => [`${val}%`, '']}
                   />
-                  <Legend verticalAlign="top" height={36} />
-                  <Line type="monotone" dataKey="akil" name="AKIL (Proposed Closed-Loop)" stroke="#10b981" strokeWidth={3} dot={{ r: 3 }} />
-                  <Line type="monotone" dataKey="antiAffinity" name="Static Anti-Affinity (SRE Baseline)" stroke="#38bdf8" strokeWidth={2} strokeDasharray="5 5" />
-                  <Line type="monotone" dataKey="descheduler" name="Reactive Descheduler" stroke="#fbbf24" strokeWidth={2} />
-                  <Line type="monotone" dataKey="defaultK8s" name="Default kube-scheduler" stroke="#f43f5e" strokeWidth={2} strokeDasharray="3 3" />
+                  <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', fontFamily: 'monospace' }} />
+                  <Line type="monotone" dataKey="akil" name="AKIL (Proposed)" stroke="#ffffff" strokeWidth={2.5} dot={{ r: 2 }} />
+                  <Line type="monotone" dataKey="antiAffinity" name="Static Anti-Affinity" stroke="#a1a1aa" strokeWidth={1.5} strokeDasharray="4 4" />
+                  <Line type="monotone" dataKey="descheduler" name="Reactive Descheduler" stroke="#eab308" strokeWidth={1.5} />
+                  <Line type="monotone" dataKey="defaultK8s" name="Default kube-scheduler" stroke="#f43f5e" strokeWidth={1.5} strokeDasharray="2 2" />
                 </LineChart>
               </ResponsiveContainer>
             </div>
-            <div className="flex items-center justify-between text-xs text-slate-500 pt-2 border-t border-slate-800/80">
+            <div className="flex items-center justify-between text-[11px] font-mono text-zinc-600 pt-3 border-t border-zinc-900">
               <span>Source: evidence/figures_data/fig2_tail_latency_cdf.dat</span>
-              <span>Notice: AKIL matches rigid Anti-Affinity without node capacity fragmentation</span>
+              <span>Notice: AKIL matches rigid Anti-Affinity without causing node fragmentation</span>
             </div>
           </div>
         )}
 
-        {selectedMetric === 'cache' && (
+        {selectedView === 'llc' && (
           <div>
             <div className="mb-4">
-              <h3 className="text-base font-semibold text-slate-100">
-                Last-Level Cache (LLC) Miss Rate Under Adversarial Co-location
+              <h3 className="text-sm font-semibold text-zinc-200">
+                Last-Level Cache (LLC) Miss Rate Across Workloads
               </h3>
-              <p className="text-xs text-slate-400 mt-0.5">
-                Hardware performance counter measurements (PERF_COUNT_HW_CACHE_MISSES) normalized per workload.
+              <p className="text-xs text-zinc-500 font-mono mt-0.5">
+                Hardware Performance Counter PERF_COUNT_HW_CACHE_MISSES Normalized Per Container
               </p>
             </div>
 
-            <div className="h-80 w-full">
+            <div className="h-72 w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={cacheMissData} margin={{ top: 20, right: 30, left: 10, bottom: 20 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                  <XAxis dataKey="workload" stroke="#64748b" tick={{ fontSize: 12 }} />
-                  <YAxis unit="%" stroke="#64748b" domain={[0, 100]} tick={{ fontSize: 12 }} />
+                <BarChart data={cacheMissData} margin={{ top: 20, right: 20, left: -20, bottom: 10 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
+                  <XAxis dataKey="workload" stroke="#52525b" tick={{ fontSize: 11 }} />
+                  <YAxis unit="%" stroke="#52525b" domain={[0, 100]} tick={{ fontSize: 11 }} />
                   <Tooltip
-                    contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '0.75rem', fontSize: '12px' }}
-                    formatter={(val: any) => [`${val}% miss rate`, '']}
+                    contentStyle={{ backgroundColor: '#09090b', borderColor: '#27272a', borderRadius: '4px', fontSize: '11px', fontFamily: 'monospace' }}
+                    formatter={(val: any) => [`${val}%`, 'Miss Rate']}
                   />
-                  <Legend verticalAlign="top" height={36} />
-                  <Bar dataKey="defaultK8s" name="Default kube-scheduler" fill="#f43f5e" radius={[4, 4, 0, 0]} />
-                  <Bar dataKey="akil" name="AKIL Score Plugin" fill="#10b981" radius={[4, 4, 0, 0]} />
+                  <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', fontFamily: 'monospace' }} />
+                  <Bar dataKey="defaultK8s" name="Default kube-scheduler" fill="#f43f5e" radius={[2, 2, 0, 0]} />
+                  <Bar dataKey="akil" name="AKIL Score Plugin" fill="#ffffff" radius={[2, 2, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
-            <div className="flex items-center justify-between text-xs text-slate-500 pt-2 border-t border-slate-800/80">
+            <div className="flex items-center justify-between text-[11px] font-mono text-zinc-600 pt-3 border-t border-zinc-900">
               <span>Source: evidence/figures_data/fig1_llc_miss_rates.dat</span>
-              <span>AKIL reduces target web microservice LLC miss rate by 33.0% by steering away from cache thrashers</span>
+              <span>AKIL reduces target web microservice LLC miss rate by 33.0%</span>
             </div>
           </div>
         )}
 
-        {selectedMetric === 'slo' && (
+        {selectedView === 'overhead' && (
           <div>
             <div className="mb-4">
-              <h3 className="text-base font-semibold text-slate-100">
-                Scheduler Score() Latency Budget Compliance ($&lt; 5.0$ ms)
+              <h3 className="text-sm font-semibold text-zinc-200">
+                Scheduling Score() Execution Time vs Resident Pod Count (M = 1 to 100)
               </h3>
-              <p className="text-xs text-slate-400 mt-0.5">
-                Latency of scoring computation as resident containers scale from 1 to 100 pods per physical node.
+              <p className="text-xs text-zinc-500 font-mono mt-0.5">
+                Demonstrates O(M) scalability against the Kubernetes Scheduling Framework &lt;5.0ms hot-path budget
               </p>
             </div>
 
-            <div className="h-80 w-full">
+            <div className="h-72 w-full">
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={overheadData} margin={{ top: 20, right: 30, left: 10, bottom: 20 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                  <XAxis dataKey="pods" stroke="#64748b" tick={{ fontSize: 12 }} />
-                  <YAxis unit=" ms" stroke="#64748b" domain={[0, 5]} tick={{ fontSize: 12 }} />
+                <BarChart data={overheadData} margin={{ top: 20, right: 20, left: -20, bottom: 10 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
+                  <XAxis dataKey="pods" stroke="#52525b" tick={{ fontSize: 11 }} />
+                  <YAxis unit=" ms" stroke="#52525b" domain={[0, 1]} tick={{ fontSize: 11 }} />
                   <Tooltip
-                    contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '0.75rem', fontSize: '12px' }}
+                    contentStyle={{ backgroundColor: '#09090b', borderColor: '#27272a', borderRadius: '4px', fontSize: '11px', fontFamily: 'monospace' }}
                     formatter={(val: any) => [`${val} ms`, 'Score Latency']}
                   />
-                  <Legend verticalAlign="top" height={36} />
-                  <Bar dataKey="endToEndMs" name="Measured End-to-End Score Phase Latency (ms)" fill="#38bdf8" radius={[4, 4, 0, 0]} />
+                  <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '11px', fontFamily: 'monospace' }} />
+                  <Bar dataKey="endToEndMs" name="Measured End-to-End Score Phase Latency (ms)" fill="#ffffff" radius={[2, 2, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             </div>
-            <div className="flex items-center justify-between text-xs text-slate-500 pt-2 border-t border-slate-800/80">
+            <div className="flex items-center justify-between text-[11px] font-mono text-zinc-600 pt-3 border-t border-zinc-900">
               <span>Source: evidence/raw_data/scheduling_overhead_bench.csv</span>
-              <span className="text-emerald-400 font-medium">93.6% Headroom remains within K8s 5.0ms threshold</span>
+              <span className="text-zinc-300 font-medium">93.6% Headroom remains within K8s 5.0ms threshold</span>
             </div>
           </div>
         )}
       </div>
 
-      {/* Comprehensive Statistical Significance Table */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-md overflow-hidden">
-        <h3 className="text-base font-semibold text-slate-100 mb-1">
-          Full Comparative Matrix Across Baselines (N = 10 Runs, 95% CI)
-        </h3>
-        <p className="text-xs text-slate-400 mb-4">
-          Exact statistical data matching Table IV in the IEEE conference manuscript.
-        </p>
+      {/* Comprehensive Statistical Significance Table (Matching Table IV of Paper) */}
+      <div className="border border-zinc-800 bg-zinc-950 rounded-lg p-6">
+        <div className="mb-3">
+          <h3 className="text-sm font-semibold text-zinc-200">
+            Comparative Benchmark Matrix Across Baselines (N = 10 Runs, 95% CI)
+          </h3>
+          <p className="text-xs text-zinc-500 font-mono">
+            Exact empirical data matching Table IV in the IEEE conference manuscript.
+          </p>
+        </div>
 
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs text-slate-300">
-            <thead className="bg-slate-950/80 text-slate-400 uppercase tracking-wider text-[11px] border-b border-slate-800">
+          <table className="w-full text-left text-xs font-mono">
+            <thead className="bg-zinc-900/80 text-zinc-400 uppercase text-[10px] tracking-wider border-b border-zinc-800">
               <tr>
-                <th className="py-3 px-4">Placement Architecture</th>
-                <th className="py-3 px-4">LLC Miss Rate</th>
-                <th className="py-3 px-4">p50 Latency</th>
-                <th className="py-3 px-4">p99 Tail Latency</th>
-                <th className="py-3 px-4">p99.9 Extreme</th>
-                <th className="py-3 px-4">SLO Violations</th>
-                <th className="py-3 px-4">Pod Restarts</th>
-                <th className="py-3 px-4">Capacity Waste</th>
+                <th className="py-2.5 px-3 font-sans">Placement Architecture</th>
+                <th className="py-2.5 px-3">LLC Miss Rate</th>
+                <th className="py-2.5 px-3">p50 Latency</th>
+                <th className="py-2.5 px-3">p99 Tail</th>
+                <th className="py-2.5 px-3">p99.9 Extreme</th>
+                <th className="py-2.5 px-3">SLO Violations</th>
+                <th className="py-2.5 px-3">Evictions</th>
+                <th className="py-2.5 px-3">Fragmentation</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60 font-mono">
-              <tr className="hover:bg-slate-800/30">
-                <td className="py-3.5 px-4 font-sans font-medium text-slate-400">Isolated (Clean Oracle)</td>
-                <td className="py-3.5 px-4">38.0%</td>
-                <td className="py-3.5 px-4">9.50 ± 0.04 ms</td>
-                <td className="py-3.5 px-4">17.51 ± 0.48 ms</td>
-                <td className="py-3.5 px-4">23.74 ± 1.12 ms</td>
-                <td className="py-3.5 px-4 text-emerald-400">3.43%</td>
-                <td className="py-3.5 px-4">0</td>
-                <td className="py-3.5 px-4">0%</td>
+            <tbody className="divide-y divide-zinc-800/60">
+              <tr className="hover:bg-zinc-900/30">
+                <td className="py-2.5 px-3 font-sans text-zinc-400">Isolated (Clean Oracle)</td>
+                <td className="py-2.5 px-3 text-zinc-400">38.0%</td>
+                <td className="py-2.5 px-3 text-zinc-400">9.50 ± 0.04 ms</td>
+                <td className="py-2.5 px-3 text-zinc-400">17.51 ± 0.48 ms</td>
+                <td className="py-2.5 px-3 text-zinc-400">23.74 ± 1.12 ms</td>
+                <td className="py-2.5 px-3 text-zinc-400">3.43%</td>
+                <td className="py-2.5 px-3 text-zinc-400">0</td>
+                <td className="py-2.5 px-3 text-zinc-400">0%</td>
               </tr>
-              <tr className="hover:bg-slate-800/30">
-                <td className="py-3.5 px-4 font-sans font-medium text-rose-400">Default kube-scheduler</td>
-                <td className="py-3.5 px-4 text-rose-400">62.4%</td>
-                <td className="py-3.5 px-4">37.87 ± 0.24 ms</td>
-                <td className="py-3.5 px-4 text-rose-400 font-bold">63.10 ± 1.52 ms</td>
-                <td className="py-3.5 px-4">74.29 ± 2.55 ms</td>
-                <td className="py-3.5 px-4 text-rose-400 font-bold">99.98%</td>
-                <td className="py-3.5 px-4">0</td>
-                <td className="py-3.5 px-4">0%</td>
+              <tr className="hover:bg-zinc-900/30">
+                <td className="py-2.5 px-3 font-sans text-rose-400">Default kube-scheduler</td>
+                <td className="py-2.5 px-3 text-rose-400">62.4%</td>
+                <td className="py-2.5 px-3 text-zinc-300">37.87 ± 0.24 ms</td>
+                <td className="py-2.5 px-3 text-rose-400 font-semibold">63.10 ± 1.52 ms</td>
+                <td className="py-2.5 px-3 text-zinc-300">74.29 ± 2.55 ms</td>
+                <td className="py-2.5 px-3 text-rose-400 font-semibold">99.98%</td>
+                <td className="py-2.5 px-3 text-zinc-300">0</td>
+                <td className="py-2.5 px-3 text-zinc-300">0%</td>
               </tr>
-              <tr className="hover:bg-slate-800/30">
-                <td className="py-3.5 px-4 font-sans font-medium text-sky-400">Static Anti-Affinity</td>
-                <td className="py-3.5 px-4">42.1%</td>
-                <td className="py-3.5 px-4">11.62 ± 0.09 ms</td>
-                <td className="py-3.5 px-4">20.88 ± 0.36 ms</td>
-                <td className="py-3.5 px-4">27.39 ± 1.57 ms</td>
-                <td className="py-3.5 px-4">14.05%</td>
-                <td className="py-3.5 px-4">0</td>
-                <td className="py-3.5 px-4 text-amber-400 font-bold">0.4% (Frags under load)</td>
+              <tr className="hover:bg-zinc-900/30">
+                <td className="py-2.5 px-3 font-sans text-zinc-300">Static Anti-Affinity</td>
+                <td className="py-2.5 px-3 text-zinc-300">42.1%</td>
+                <td className="py-2.5 px-3 text-zinc-300">11.62 ± 0.09 ms</td>
+                <td className="py-2.5 px-3 text-zinc-300">20.88 ± 0.36 ms</td>
+                <td className="py-2.5 px-3 text-zinc-300">27.39 ± 1.57 ms</td>
+                <td className="py-2.5 px-3 text-zinc-300">14.05%</td>
+                <td className="py-2.5 px-3 text-zinc-300">0</td>
+                <td className="py-2.5 px-3 text-amber-400">0.4% (Frags under load)</td>
               </tr>
-              <tr className="hover:bg-slate-800/30">
-                <td className="py-3.5 px-4 font-sans font-medium text-amber-400">Reactive Descheduler</td>
-                <td className="py-3.5 px-4">54.8%</td>
-                <td className="py-3.5 px-4">23.76 ± 0.13 ms</td>
-                <td className="py-3.5 px-4">43.72 ± 1.06 ms</td>
-                <td className="py-3.5 px-4">54.24 ± 2.16 ms</td>
-                <td className="py-3.5 px-4">94.04%</td>
-                <td className="py-3.5 px-4 text-rose-400 font-bold">92 evictions (Churn)</td>
-                <td className="py-3.5 px-4">0%</td>
+              <tr className="hover:bg-zinc-900/30">
+                <td className="py-2.5 px-3 font-sans text-amber-400">Reactive Descheduler</td>
+                <td className="py-2.5 px-3 text-zinc-300">54.8%</td>
+                <td className="py-2.5 px-3 text-zinc-300">23.76 ± 0.13 ms</td>
+                <td className="py-2.5 px-3 text-zinc-300">43.72 ± 1.06 ms</td>
+                <td className="py-2.5 px-3 text-zinc-300">54.24 ± 2.16 ms</td>
+                <td className="py-2.5 px-3 text-rose-400">94.04%</td>
+                <td className="py-2.5 px-3 text-rose-400 font-semibold">92 evictions</td>
+                <td className="py-2.5 px-3 text-zinc-300">0%</td>
               </tr>
-              <tr className="bg-emerald-950/20 hover:bg-emerald-950/30 border-l-2 border-emerald-500">
-                <td className="py-3.5 px-4 font-sans font-bold text-emerald-400">AKIL (Proposed)</td>
-                <td className="py-3.5 px-4 font-bold text-emerald-400">41.8%</td>
-                <td className="py-3.5 px-4 font-bold text-emerald-400">11.22 ± 0.06 ms</td>
-                <td className="py-3.5 px-4 font-bold text-emerald-400">20.40 ± 0.38 ms</td>
-                <td className="py-3.5 px-4 font-bold text-emerald-400">26.22 ± 1.58 ms</td>
-                <td className="py-3.5 px-4 font-bold text-emerald-400">11.32%</td>
-                <td className="py-3.5 px-4 text-emerald-400 font-bold">0 (Zero churn)</td>
-                <td className="py-3.5 px-4 text-emerald-400 font-bold">0% (Zero waste)</td>
+              <tr className="bg-zinc-900/80 border-l-2 border-zinc-200">
+                <td className="py-2.5 px-3 font-sans font-semibold text-zinc-100">AKIL (Proposed)</td>
+                <td className="py-2.5 px-3 font-semibold text-zinc-100">41.8%</td>
+                <td className="py-2.5 px-3 font-semibold text-zinc-100">11.22 ± 0.06 ms</td>
+                <td className="py-2.5 px-3 font-semibold text-zinc-100">20.40 ± 0.38 ms</td>
+                <td className="py-2.5 px-3 font-semibold text-zinc-100">26.22 ± 1.58 ms</td>
+                <td className="py-2.5 px-3 font-semibold text-zinc-100">11.32%</td>
+                <td className="py-2.5 px-3 font-semibold text-zinc-100">0</td>
+                <td className="py-2.5 px-3 font-semibold text-zinc-100">0%</td>
               </tr>
             </tbody>
           </table>
