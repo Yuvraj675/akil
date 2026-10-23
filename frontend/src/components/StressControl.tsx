@@ -20,13 +20,11 @@ export default function StressControl() {
           const keys = profiles.map((p: any) => p.WorkloadKey);
           setWorkloads(keys);
           
-          setWorkloads(prev => {
-            if (!selectedWorkload && keys.length > 0) {
-              const demo = keys.find((k: string) => k.includes('demo-workload'));
-              setSelectedWorkload(demo || keys[0]);
-            }
-            return keys;
-          });
+          if (!selectedWorkload && keys.length > 0) {
+            const demo = keys.find((k: string) => k.includes('demo-workload'));
+            setSelectedWorkload(demo || keys[0]);
+          }
+          setWorkloads(keys);
         }
       } catch (err) {
         // silent
