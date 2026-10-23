@@ -184,7 +184,7 @@ func main() {
 
 		if r.Method == "GET" {
 			if clientset == nil {
-				json.NewEncoder(w).Encode(map[string]int{"replicas": 1})
+				json.NewEncoder(w).Encode(map[string]int32{"replicas": getReplicas()})
 				return
 			}
 			scale, err := clientset.AppsV1().Deployments(namespace).GetScale(context.Background(), deploymentName, metav1.GetOptions{})
@@ -197,14 +197,16 @@ func main() {
 		}
 
 		if r.Method == "POST" {
-			if clientset == nil {
-				json.NewEncoder(w).Encode(map[string]bool{"success": true, "simulated": true})
-				return
-			}
 			replicasStr := r.URL.Query().Get("replicas")
 			replicas, err := strconv.Atoi(replicasStr)
-			if err != nil || replicas < 0 || replicas > 10 {
+			if err != nil || replicas < 1 || replicas > 10 {
 				http.Error(w, "invalid replicas", http.StatusBadRequest)
+				return
+			}
+
+			if clientset == nil {
+				setReplicas(int32(replicas))
+				json.NewEncoder(w).Encode(map[string]bool{"success": true, "simulated": true})
 				return
 			}
 			

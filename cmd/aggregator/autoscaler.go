@@ -19,10 +19,23 @@ type ScalingLog struct {
 }
 
 var (
-	autoscalingEnabled bool
+	autoscalingEnabled bool = true
 	autoMu             sync.Mutex
 	scalingLogs        []ScalingLog
+	simulatedReplicas  int32 = 2
 )
+
+func setReplicas(n int32) {
+	autoMu.Lock()
+	defer autoMu.Unlock()
+	simulatedReplicas = n
+}
+
+func getReplicas() int32 {
+	autoMu.Lock()
+	defer autoMu.Unlock()
+	return simulatedReplicas
+}
 
 func setAutoscaling(enabled bool) {
 	autoMu.Lock()
@@ -60,12 +73,62 @@ func startAutoscalerLoop(ctx context.Context, store *profile.Store, client *kube
 		case <-ctx.Done():
 			return
 		case <-ticker.C:
-			if !getAutoscaling() || client == nil {
+			if !getAutoscaling() {
 				continue
 			}
 			
 			// Iterate over all active profiles
 			keys := store.Keys()
+
+			if client == nil {
+				currentReplicas := getReplicas()
+				newReplicas := currentReplicas
+				var reason string
+
+				for _, k := range keys {
+					prof := store.QueryProfile(k)
+					if prof.ContextSwitchRate > 100 {
+						newReplicas++
+						reason = "High Context Switch Rate detected (>100/s) for " + k + ". Scaling UP to relieve CPU contention."
+						break
+					} else if prof.PageFaultRate > 5000 {
+						newReplicas++
+						reason = "High Page Fault Rate detected (>5000/s) for " + k + ". Scaling UP to distribute memory pressure."
+						break
+					} else if prof.CacheMissRate > 1000 {
+						newReplicas++
+						reason = "High Cache Miss Rate detected (>1000/s) for " + k + ". Scaling UP to improve cache locality."
+						break
+					} else if prof.ContextSwitchRate < 50 && prof.PageFaultRate < 2000 && prof.CacheMissRate < 500 && currentReplicas > 1 {
+						newReplicas--
+						reason = "Metrics nominal for " + k + ". Scaling DOWN to conserve resources."
+						break
+					}
+				}
+
+				if newReplicas > 6 {
+					newReplicas = 6
+				}
+				if newReplicas < 1 {
+					newReplicas = 1
+				}
+
+				if newReplicas != currentReplicas {
+					setReplicas(newReplicas)
+					autoMu.Lock()
+					scalingLogs = append(scalingLogs, ScalingLog{
+						Timestamp: time.Now().Format(time.RFC3339),
+						Action:    map[bool]string{true: "SCALE UP", false: "SCALE DOWN"}[newReplicas > currentReplicas],
+						Reason:    reason,
+						Replicas:  newReplicas,
+					})
+					if len(scalingLogs) > 50 {
+						scalingLogs = scalingLogs[1:]
+					}
+					autoMu.Unlock()
+				}
+				continue
+			}
 			
 			// Track processed deployments to avoid scaling multiple times for different pods of same deployment
 			processedDeployments := make(map[string]bool)
