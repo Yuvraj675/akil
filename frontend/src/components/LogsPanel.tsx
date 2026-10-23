@@ -49,7 +49,7 @@ export default function LogsPanel() {
       
       <div 
         ref={scrollRef}
-        className="flex-1 overflow-y-auto bg-black rounded p-3 font-mono text-xs border border-zinc-900 space-y-2.5"
+        className="flex-1 overflow-y-auto bg-surface-code rounded p-3 font-mono text-xs border border-zinc-800 space-y-2.5"
       >
         {logs.length === 0 && (
           <div className="text-zinc-600 italic h-full flex items-center justify-center font-mono text-xs">

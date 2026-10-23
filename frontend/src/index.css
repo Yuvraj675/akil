@@ -10,43 +10,52 @@
 }
 
 body {
-  background-color: #000000;
-  color: #ededed;
+  /* Softened dark obsidian charcoal instead of pitch #000000 to prevent eye fatigue */
+  background-color: #0e1117;
+  color: #e2e8f0;
   font-family: var(--font-sans);
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Hairline border utility */
+/* Diluted subtle borders */
 .border-subtle {
   border-color: rgba(255, 255, 255, 0.08);
 }
 
+.bg-surface-root {
+  background-color: #0e1117;
+}
+
 .bg-surface-1 {
-  background-color: #09090b;
+  background-color: #151922;
 }
 
 .bg-surface-2 {
-  background-color: #121215;
+  background-color: #1b2230;
 }
 
 .bg-surface-3 {
-  background-color: #18181b;
+  background-color: #232b3d;
 }
 
-/* Vercel / Obsidian custom scrollbars */
+.bg-surface-code {
+  background-color: #0b0e14;
+}
+
+/* Clean, soft custom scrollbars */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #000000;
+  background: #0e1117;
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: #2a3346;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: #3b4760;
 }

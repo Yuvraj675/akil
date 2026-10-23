@@ -178,7 +178,7 @@ export default function SchedulingSim() {
               </select>
             </div>
 
-            <div className="border border-zinc-900 bg-black rounded p-3 text-xs font-mono space-y-1.5">
+            <div className="border border-zinc-800/80 bg-surface-code rounded p-3 text-xs font-mono space-y-1.5">
               <div className="flex justify-between text-zinc-400">
                 <span>Cache Miss Rate:</span>
                 <span className="text-zinc-200">{WORKLOAD_PROFILES[candidate].cacheMisses.toLocaleString()} /s</span>

@@ -248,7 +248,7 @@ export default function SystemAnatomy() {
             <span className="text-[10px] font-mono text-zinc-500">Read-Only</span>
           </div>
 
-          <pre className="flex-1 bg-black p-4 rounded border border-zinc-900 text-[11px] font-mono text-zinc-300 leading-relaxed overflow-x-auto whitespace-pre selection:bg-zinc-800">
+          <pre className="flex-1 bg-surface-code p-4 rounded border border-zinc-800 text-[11px] font-mono text-zinc-300 leading-relaxed overflow-x-auto whitespace-pre selection:bg-zinc-800">
             {activeLayer.codeSnippet}
           </pre>
 
