@@ -85,25 +85,31 @@ func startAutoscalerLoop(ctx context.Context, store *profile.Store, client *kube
 				newReplicas := currentReplicas
 				var reason string
 
+				// Scale up if ANY workload is hot; scale down only when ALL are nominal.
+				// (sync.Map iteration order is random, so breaking on the first match
+				// would let a calm workload mask a noisy one.)
+				allNominal := len(keys) > 0
 				for _, k := range keys {
 					prof := store.QueryProfile(k)
 					if prof.ContextSwitchRate > 100 {
-						newReplicas++
 						reason = "High Context Switch Rate detected (>100/s) for " + k + ". Scaling UP to relieve CPU contention."
-						break
 					} else if prof.PageFaultRate > 5000 {
-						newReplicas++
 						reason = "High Page Fault Rate detected (>5000/s) for " + k + ". Scaling UP to distribute memory pressure."
-						break
 					} else if prof.CacheMissRate > 1000 {
-						newReplicas++
 						reason = "High Cache Miss Rate detected (>1000/s) for " + k + ". Scaling UP to improve cache locality."
-						break
-					} else if prof.ContextSwitchRate < 50 && prof.PageFaultRate < 2000 && prof.CacheMissRate < 500 && currentReplicas > 1 {
-						newReplicas--
-						reason = "Metrics nominal for " + k + ". Scaling DOWN to conserve resources."
+					}
+					if reason != "" {
+						newReplicas++
+						allNominal = false
 						break
 					}
+					if !(prof.ContextSwitchRate < 50 && prof.PageFaultRate < 2000 && prof.CacheMissRate < 500) {
+						allNominal = false
+					}
+				}
+				if allNominal && currentReplicas > 1 {
+					newReplicas--
+					reason = "All workload metrics nominal. Scaling DOWN to conserve resources."
 				}
 
 				if newReplicas > 6 {

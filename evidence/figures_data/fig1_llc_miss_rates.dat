@@ -1,4 +1,8 @@
-# Workload	Default_K8s	AKIL
-cache-stress	85.0	84.0
-lock-stress	48.0	44.0
-baseline-web	62.4	41.8
+# Configuration	LLC_miss_pct	ci95
+Default-K8s	50.04	0.59
+Static-AntiAffinity	43.54	0.12
+Reactive-Descheduler	45.24	0.21
+AKIL	51.21	0.53
+AKIL-calibrated	50.98	0.63
+AKIL-ablation-neighbour-cache	48.99	0.47
+Isolated (Clean)	38.0	0.0

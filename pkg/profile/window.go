@@ -189,8 +189,11 @@ func (wp *WorkloadProfile) RecordCtxSwitch(nodeName string) {
 
 // ComputeProfile computes the RuntimeProfile from all buckets in the window.
 func (wp *WorkloadProfile) ComputeProfile() RuntimeProfile {
-	wp.mu.RLock()
-	defer wp.mu.RUnlock()
+	// Write lock: rotate on read too, so a workload that stops emitting events
+	// ages out of the window instead of reporting its last rates forever.
+	wp.mu.Lock()
+	defer wp.mu.Unlock()
+	wp.maybeRotate()
 
 	var totalFaults, totalMisses, totalLockNs, totalSwitches, totalEvents int64
 	var windowStart, windowEnd time.Time

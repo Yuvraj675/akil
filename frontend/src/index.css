@@ -1,61 +1,58 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --color-paper: #f3f5f7;
+  --color-surface: #ffffff;
+  --color-ink: #142030;
+  --color-muted: #5b6878;
+  --color-line: #d9dee5;
+
+  /* One colour per kernel signal, used identically everywhere */
+  --color-cache: #2e5bff;
+  --color-lock: #d98200;
+  --color-fault: #8b3fd9;
+  --color-ctx: #0e8c7f;
+
+  --color-bad: #d33a2c;
+  --color-good: #1f8a4c;
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
-  /* Softened dark obsidian charcoal instead of pitch #000000 to prevent eye fatigue */
-  background-color: #0e1117;
-  color: #e2e8f0;
+  background: var(--color-paper);
+  color: var(--color-ink);
   font-family: var(--font-sans);
   margin: 0;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Diluted subtle borders */
-.border-subtle {
-  border-color: rgba(255, 255, 255, 0.08);
+.tabular {
+  font-variant-numeric: tabular-nums;
 }
 
-.bg-surface-root {
-  background-color: #0e1117;
-}
-
-.bg-surface-1 {
-  background-color: #151922;
-}
-
-.bg-surface-2 {
-  background-color: #1b2230;
-}
-
-.bg-surface-3 {
-  background-color: #232b3d;
-}
-
-.bg-surface-code {
-  background-color: #0b0e14;
-}
-
-/* Clean, soft custom scrollbars */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #0e1117;
-}
-::-webkit-scrollbar-thumb {
-  background: #2a3346;
+:focus-visible {
+  outline: 2px solid var(--color-cache);
+  outline-offset: 2px;
   border-radius: 4px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #3b4760;
+
+@keyframes land {
+  from { transform: translateY(-14px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+.land {
+  animation: land 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

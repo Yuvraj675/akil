@@ -1,110 +1,55 @@
-# AKIL Experimental Evidence & Evaluation Artifacts
+# AKIL evaluation evidence
 
-This directory contains empirical performance statistics, comparative baselines, and microarchitectural datasets for the paper:
-
-> **AKIL: Adaptive Kernel Intelligence Layer for eBPF-Driven, Behaviorally-Aware Kubernetes Scheduling**
-
-All simulations and benchmark computations adhere to systems research methodology (as expected by conferences like IEEE Cloud, EuroSys, ACM SoCC, and USENIX ATC). Execution runs featured real-time thermal and system state monitoring to ensure hardware safety.
-
----
-
-## 1. Directory Structure
-
-```
-evidence/
-├── raw_data/
-│   ├── cluster_simulation_runs.csv     # Granular placement decisions per epoch across 4 baselines
-│   ├── latency_percentiles_raw.csv     # Request latency distribution samples across 10 evaluation seeds
-│   ├── weight_sensitivity_sweep.csv    # Scoring weight combinations vs placement accuracy
-│   └── scheduling_overhead_bench.csv   # Pure math vs end-to-end score time across co-located pods
-├── processed_data/
-│   ├── baseline_comparisons_summary.json  # Comprehensive summary JSON with metadata
-│   └── statistical_significance_ci95.csv  # Mean, standard deviation, and 95% Confidence Intervals
-├── figures_data/
-│   ├── fig1_llc_miss_rates.dat            # Data for Figure 1: LLC Miss Rate Reduction
-│   ├── fig2_tail_latency_cdf.dat          # Data for Figure 2: Latency Cumulative Distribution Function (CDF)
-│   ├── fig3_colocation_rate_vs_load.dat   # Data for Figure 3: Colocation probability vs cluster utilization
-│   └── fig4_weight_sensitivity_pareto.dat # Data for Figure 4: Weight sweep sensitivity Pareto curve
-├── thermal_monitoring/
-│   └── thermal_and_resource_log.json      # Checkpoints of CPU temp, loadavg, and memory during execution
-└── README.md                              # This document
-```
-
----
-
-## 2. Baselines & Comparative Methodology
-
-Four distinct scheduling architectures were benchmarked under identical cluster topologies (5 nodes, 4 vCPU / 8 GB RAM per node, 50 scheduling epochs):
-
-1. **Default `kube-scheduler`**:
-   - Standard Kubernetes algorithm (`LeastAllocated`).
-   - Oblivious to microarchitectural state; packs workloads based purely on declared CPU/memory request integers.
-2. **Static Anti-Affinity (SRE Baseline)**:
-   - Rigid `podAntiAffinity` rules forbidding co-location of latency-sensitive web services with cache-intensive workloads.
-   - Eliminates interference at the cost of **node fragmentation** (unschedulable pods when nodes fill up).
-3. **Reactive Descheduler**:
-   - Standard initial placement followed by post-hoc eviction when node contention or latency degradation is detected.
-   - Suffers from **pod churn, container restart overhead, and cold-cache latency spikes**.
-4. **AKIL (Proposed Closed-Loop Architecture)**:
-   - Continuous eBPF kernel telemetry $\to$ in-memory circular sliding-window profile $\to$ synchronous `ScorePlugin` co-location penalty.
-   - Prevents destructive co-location **proactively** with zero application modifications and zero evictions.
-
----
-
-## 3. Key Experimental Results & Statistical Significance (95% CI)
-
-The table below reflects data from `evidence/processed_data/statistical_significance_ci95.csv` across $N = 10$ randomized evaluation seeds:
-
-| Metric | Isolated Baseline | Default `kube-scheduler` | Static Anti-Affinity | Reactive Descheduler | **AKIL (Ours)** | **Improvement (AKIL vs Default)** |
-|---|---|---|---|---|---|---|
-| **LLC Cache Miss Rate (%)** | $38.0\%$ | $62.4\%$ | $42.1\%$ | $54.8\%$ | $\mathbf{41.8\%}$ | **$-33.0\%$ (Relative)** |
-| **p50 Median Latency (ms)** | $9.50 \pm 0.04$ | $37.87 \pm 0.24$ | $11.62 \pm 0.09$ | $23.76 \pm 0.13$ | $\mathbf{11.22 \pm 0.06}$ | **$-70.4\%$** |
-| **p90 Tail Latency (ms)** | $13.80 \pm 0.12$ | $52.40 \pm 0.85$ | $16.90 \pm 0.22$ | $36.50 \pm 0.74$ | $\mathbf{16.10 \pm 0.18}$ | **$-69.3\%$** |
-| **p99 Tail Latency (ms)** | $17.51 \pm 0.48$ | $63.10 \pm 1.52$ | $20.88 \pm 0.36$ | $43.72 \pm 1.06$ | $\mathbf{20.40 \pm 0.38}$ | **$-67.7\%$** |
-| **p99.9 Extreme Tail (ms)** | $23.74 \pm 1.12$ | $74.29 \pm 2.55$ | $27.39 \pm 1.57$ | $54.24 \pm 2.16$ | $\mathbf{26.22 \pm 1.58}$ | **$-64.7\%$** |
-| **SLO Violations ($>15$ ms)** | $3.43 \pm 0.29\%$ | $99.98 \pm 0.03\%$ | $14.05 \pm 0.81\%$ | $94.04 \pm 0.54\%$ | $\mathbf{11.32 \pm 0.65\%}$ | **$-88.7\%$** |
-| **Pod Fragmentation / Unplaced** | $0.0\%$ | $0.0\%$ | $0.4\%$ (High under load) | $0.0\%$ | $\mathbf{0.0\%}$ | **Zero capacity wasted** |
-| **Pod Evictions / Restarts** | $0$ | $0$ | $0$ | $92$ (Heavy churn) | $\mathbf{0}$ | **Zero service disruption** |
-
----
-
-## 4. Scheduling Hot-Path Overhead & Scalability
-
-From `evidence/raw_data/scheduling_overhead_bench.csv`:
-
-| Co-located Pods per Node ($M$) | Pure Scoring Math ($\mu$s) | End-to-End Score Phase Latency (ms) | Budget Compliance ($<5.0$ ms) |
-|---|---|---|---|
-| **1** | $0.44\,\mu\text{s}$ | $0.310\,\text{ms}$ | 93.8% Headroom |
-| **5** | $2.93\,\mu\text{s}$ | $0.310\,\text{ms}$ | 93.8% Headroom |
-| **10** | $3.02\,\mu\text{s}$ | $0.310\,\text{ms}$ | 93.8% Headroom |
-| **20** | $6.37\,\mu\text{s}$ | $0.311\,\text{ms}$ | 93.8% Headroom |
-| **50** | $16.79\,\mu\text{s}$ | $0.313\,\text{ms}$ | 93.7% Headroom |
-| **100** | $54.52\,\mu\text{s}$ | $0.318\,\text{ms}$ | 93.6% Headroom |
-
-*Takeaway*: The $O(M)$ complexity of the pairwise penalty function contributes negligible overhead compared to the gRPC network transport ($\sim 300\,\mu\text{s}$), comfortably meeting the $<5\,\text{ms}$ p99 scheduling budget.
-
----
-
-## 5. Hardware Safety & Thermal Log
-
-All executions were monitored by `scripts/run_evidence_simulations.py`:
-- Initial Package Temperature: **88.0°C**
-- Final Package Temperature: **86.0°C**
-- Peak Memory RSS: $< 65\,\text{MB}$
-- Total execution time: **$\sim 4.2$ seconds**
-- Safe throttling kept core thermals strictly below critical thresholds ($<95.0^\circ\text{C}$).
-
----
-
-## 6. How to Reproduce
-
-To regenerate all datasets from scratch:
+Everything in this folder is generated by one command:
 
 ```bash
-# 1. Run the safe evidence generator
 python3 scripts/run_evidence_simulations.py
-
-# 2. Inspect generated datasets
-cat evidence/processed_data/statistical_significance_ci95.csv
-cat evidence/figures_data/fig2_tail_latency_cdf.dat
 ```
+
+The run takes a few minutes. It needs Go to be installed for the overhead benchmarks.
+
+## What is simulated, modelled and measured
+
+| Part | Status | How |
+|---|---|---|
+| Pod placement | **Simulated** | 10 seeds × 50 epochs × 15 arrivals on five 2-core nodes. The AKIL scorer is a line-for-line port of `pkg/scoring/scorer.go`, combined with `LeastAllocated` at plugin weight 25 (`deploy/kubernetes/scheduler-config.yaml`). |
+| Latency, LLC miss rate | **Modelled** | Derived per web pod from the neighbours it was actually placed with. The per-neighbour interference coefficients (`INTERFERENCE` in the script) are assumptions and are the same for every scheduler. |
+| Scoring overhead | **Measured** | Go benchmarks: `BenchmarkScore` (scorer maths) and `BenchmarkScoreQueries` (real gRPC queries to the aggregator over loopback). |
+| eBPF overhead, collector footprint, ingest rate, live-cluster latency | **Not measured** | Future work. |
+
+## Headline results (mean ± 95% CI, 10 seeds)
+
+| Configuration | Web pods next to cache-stress | LLC miss % | p99 ms | SLO violations % | Evictions |
+|---|---|---|---|---|---|
+| Isolated (oracle) | – | 38.0 | 17.53 ± 0.05 | 3.6 | 0 |
+| Default K8s | 36.0% | 50.0 | 62.68 ± 4.58 | 61.8 | 0 |
+| Static anti-affinity | 0.0% | 43.5 | **26.20 ± 0.24** | **35.6** | 0 (0.19% pending) |
+| Reactive descheduler | 0.7% | 45.2 | 29.52 ± 1.54 | 51.3 | 882 |
+| **AKIL** | 46.2% | 51.2 | 48.89 ± 2.24 | 67.3 | 0 |
+| AKIL, calibrated normalisation | 46.5% | 51.0 | 49.93 ± 2.40 | 65.6 | 0 |
+| AKIL, post-hoc cache-term ablation | 28.4% | 49.0 | 49.74 ± 1.46 | 57.9 | 0 |
+
+- AKIL's p99 latency is 22% lower than the default scheduler's.
+- AKIL is worse than the default on co-location with cache-stress, LLC miss rate, median latency and SLO violations.
+- Both alternative baselines beat AKIL on p99 latency.
+
+**Root cause:** the cache penalty `min(candidate, neighbour)` caps a thrashing neighbour's cost at the victim's own miss rate. The paper (§ Evaluation) has the analysis.
+
+**Measured overhead per `Score()` call** (i5-13500H): scoring maths 11–489 ns, and aggregator gRPC queries 0.12–0.28 ms over loopback, for 1–100 co-located pods.
+
+## Files
+
+```
+raw_data/cluster_simulation_runs.csv       placements for seed 0
+raw_data/latency_percentiles_raw.csv       latency samples for seed 0
+raw_data/weight_sensitivity_sweep.csv      50 weight vectors × {Go defaults, calibrated, ablation}
+raw_data/scheduling_overhead_bench.csv     Go benchmark medians
+processed_data/baseline_comparisons_summary.json
+processed_data/statistical_significance_ci95.csv
+figures_data/fig1_llc_miss_rates.dat
+figures_data/fig2_p99_latency.dat
+```
+
+## History
+
+An earlier version of this folder reported a 68% p99 reduction and a 33% LLC reduction for AKIL. Those numbers were inputs to the old script, not results: per-scheduler miss rates and contention factors were hard-coded, and AKIL's scheduler never ran in the latency experiment. They were replaced on 2026-10-25.

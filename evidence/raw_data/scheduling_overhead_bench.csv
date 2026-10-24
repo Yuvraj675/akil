@@ -1,7 +1,7 @@
-colocated_pods,pure_scoring_algo_us,end_to_end_k8s_score_ms
-1,0.44,0.31
-5,2.93,0.31
-10,3.02,0.31
-20,6.37,0.311
-50,16.79,0.313
-100,54.52,0.318
+colocated_pods,scorer_math_ns_median,grpc_queries_us_median,grpc_queries_us_max
+1,12.7,148.8,153.8
+5,36.8,164.4,166.7
+10,65.4,175.7,187.2
+20,126.2,187.8,234.3
+50,288.5,229.0,236.8
+100,574.9,288.0,328.2

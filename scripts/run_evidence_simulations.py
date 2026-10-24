@@ -1,619 +1,384 @@
 #!/usr/bin/env python3
 """
 scripts/run_evidence_simulations.py
-Adaptive Kernel Intelligence Layer (AKIL) — Evidence & Evaluation Simulator
-Generates empirical performance statistics, comparative baselines, and sensitivity analysis.
-Features strict thermal throttling and CPU monitoring to preserve hardware safety.
+AKIL evaluation: trace-driven placement simulation + interference latency model.
+
+What is simulated vs measured
+-----------------------------
+* Placement (Exp. 1) is simulated: each scheduler places the same random pod
+  arrivals onto a 5-node cluster. The AKIL scorer is a line-for-line port of
+  pkg/scoring/scorer.go (same weights, same normalisation constants), combined
+  with the default LeastAllocated score using the plugin weight from
+  deploy/kubernetes/scheduler-config.yaml.
+* Latency and LLC miss rate (Exp. 2) are MODEL OUTPUTS, derived per web pod from
+  the neighbours that scheduler actually placed next to it. The per-neighbour
+  interference coefficients in INTERFERENCE are assumptions, identical for every
+  scheduler; they are not measured on hardware.
+* Scheduling overhead (Exp. 4) is MEASURED by running the Go benchmarks in
+  pkg/scoring and cmd/aggregator (scorer math + real gRPC round-trips over loopback).
+
+Three AKIL variants are reported:
+  AKIL            — scorer.go defaults (MaxCacheMissRate 1e6, MaxPageFaultRate 1e4, MaxCtxSwitchRate 1e4)
+  AKIL-calibrated — normalisation set to the maximum rate observed among the
+                    workload profiles, as the ScorerConfig comment recommends
+                    ("should be calibrated based on cluster-wide observations").
+  AKIL-ablation-neighbour-cache — POST-HOC diagnostic, not the implemented design:
+                    the cache term uses the neighbour's own miss rate instead of
+                    min(candidate, neighbour).
 """
 
-import os
-import re
 import csv
 import json
 import math
-import time
+import os
 import random
+import re
 import subprocess
 from datetime import datetime
 
-# ---------------------------------------------------------------------------
-# Thermal & System State Monitoring
-# ---------------------------------------------------------------------------
-class SystemMonitor:
-    def __init__(self, log_path="evidence/thermal_monitoring/thermal_and_resource_log.json"):
-        self.log_path = log_path
-        self.history = []
-
-    def check_and_throttle(self, stage_name=""):
-        temp = 0.0
-        try:
-            out = subprocess.check_output(['sensors'], stderr=subprocess.DEVNULL).decode()
-            m = re.search(r'Package id 0:\s+\+([\d\.]+)°C', out)
-            if m:
-                temp = float(m.group(1))
-        except Exception:
-            try:
-                with open("/sys/class/thermal/thermal_zone0/temp", "r") as f:
-                    temp = float(f.read().strip()) / 1000.0
-            except Exception:
-                temp = 75.0
-
-        loadavg = [0.0, 0.0, 0.0]
-        try:
-            with open("/proc/loadavg", "r") as f:
-                parts = f.read().split()
-                loadavg = [float(parts[0]), float(parts[1]), float(parts[2])]
-        except Exception:
-            pass
-
-        mem_avail_mb = 0
-        try:
-            with open("/proc/meminfo", "r") as f:
-                for line in f:
-                    if line.startswith("MemAvailable:"):
-                        mem_avail_mb = int(line.split()[1]) // 1024
-                        break
-        except Exception:
-            pass
-
-        record = {
-            "timestamp": datetime.now().isoformat(),
-            "stage": stage_name,
-            "cpu_temp_c": temp,
-            "load_1m": loadavg[0],
-            "mem_avail_mb": mem_avail_mb
-        }
-        self.history.append(record)
-
-        # Thermal throttling policy
-        if temp >= 95.0:
-            print(f"  [THERMAL ALERT] CPU temp is {temp}°C (>= 95°C). Throttling execution for 3.0s...")
-            time.sleep(3.0)
-        elif temp >= 90.0:
-            time.sleep(0.5)
-        else:
-            time.sleep(0.05)
-
-        return temp
-
-    def flush(self):
-        os.makedirs(os.path.dirname(self.log_path), exist_ok=True)
-        with open(self.log_path, "w") as f:
-            json.dump(self.history, f, indent=2)
-
-monitor = SystemMonitor()
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+EVID = os.path.join(ROOT, "evidence")
 
 # ---------------------------------------------------------------------------
-# Calibrated Workload & Interference Mathematical Models
+# Workloads: requests from benchmarks/synthetic-workloads.yaml; kernel profiles
+# are the per-workload rates used throughout the paper.
 # ---------------------------------------------------------------------------
-WORKLOAD_SPECS = {
-    "baseline-web": {
-        "cpu_req_m": 100,
-        "mem_req_mb": 128,
-        "base_cache_miss_rate": 120000,
-        "base_lock_ratio": 0.04,
-        "base_page_fault_rate": 350,
-        "base_ctx_switch_rate": 2500,
-        "latency_sensitive": True,
-        "target_slo_ms": 15.0
-    },
-    "cache-stress": {
-        "cpu_req_m": 100,
-        "mem_req_mb": 128,
-        "base_cache_miss_rate": 900000,
-        "base_lock_ratio": 0.08,
-        "base_page_fault_rate": 1200,
-        "base_ctx_switch_rate": 4000,
-        "latency_sensitive": False,
-        "target_slo_ms": None
-    },
-    "lock-stress": {
-        "cpu_req_m": 100,
-        "mem_req_mb": 128,
-        "base_cache_miss_rate": 200000,
-        "base_lock_ratio": 0.65,
-        "base_page_fault_rate": 500,
-        "base_ctx_switch_rate": 9500,
-        "latency_sensitive": False,
-        "target_slo_ms": None
-    },
-    "batch-worker": {
-        "cpu_req_m": 200,
-        "mem_req_mb": 256,
-        "base_cache_miss_rate": 150000,
-        "base_lock_ratio": 0.05,
-        "base_page_fault_rate": 7500,
-        "base_ctx_switch_rate": 1800,
-        "latency_sensitive": False,
-        "target_slo_ms": None
-    }
+WORKLOADS = {
+    "baseline-web": {"cpu": 100, "mem": 128, "cache": 120_000, "lock": 0.04, "pf": 350,   "cs": 2500},
+    "cache-stress": {"cpu": 100, "mem": 128, "cache": 900_000, "lock": 0.08, "pf": 1200,  "cs": 4000},
+    "lock-stress":  {"cpu": 100, "mem": 128, "cache": 200_000, "lock": 0.65, "pf": 500,   "cs": 9500},
+    "batch-worker": {"cpu": 200, "mem": 256, "cache": 150_000, "lock": 0.05, "pf": 7500,  "cs": 1800},
 }
+NODE_CPU, NODE_MEM = 2000, 4096
+WEB_SLO_MS = 15.0
 
-class SimulatedNode:
-    def __init__(self, name, cpu_capacity_m=2000, mem_capacity_mb=4096):
-        self.name = name
-        self.cpu_capacity_m = cpu_capacity_m
-        self.mem_capacity_mb = mem_capacity_mb
-        self.resident_pods = []
-
-    def can_fit(self, pod):
-        curr_cpu = sum(WORKLOAD_SPECS[p]["cpu_req_m"] for p in self.resident_pods)
-        curr_mem = sum(WORKLOAD_SPECS[p]["mem_req_mb"] for p in self.resident_pods)
-        spec = WORKLOAD_SPECS[pod]
-        return (curr_cpu + spec["cpu_req_m"] <= self.cpu_capacity_m and
-                curr_mem + spec["mem_req_mb"] <= self.mem_capacity_mb)
-
-    def add_pod(self, pod):
-        self.resident_pods.append(pod)
-
-    def remove_pod(self, pod):
-        if pod in self.resident_pods:
-            self.resident_pods.remove(pod)
+# Interference a neighbour of each type inflicts on a baseline-web pod (model assumption).
+#   llc:  fraction of the web pod's remaining LLC hits turned into misses
+#   bus:  additive memory-bus / run-queue contention factor
+INTERFERENCE = {
+    "cache-stress": {"llc": 0.30, "bus": 0.80},
+    "lock-stress":  {"llc": 0.03, "bus": 0.35},
+    "batch-worker": {"llc": 0.08, "bus": 0.25},
+    "baseline-web": {"llc": 0.02, "bus": 0.05},
+}
+ISOLATED_LLC = 0.38
 
 # ---------------------------------------------------------------------------
-# Schedulers Implementation
+# Scorer: port of pkg/scoring/scorer.go
 # ---------------------------------------------------------------------------
-def compute_akil_score(candidate_pod, node, weights=(35, 30, 20, 15)):
-    if not node.resident_pods:
-        return 100.0, 0.0, (0.0, 0.0, 0.0, 0.0)
+WEIGHTS = (35, 30, 20, 15)
+GO_MAX = {"cache": 1e6, "pf": 1e4, "cs": 1e4}
+CALIBRATED_MAX = {k: max(w[k] for w in WORKLOADS.values()) for k in ("cache", "pf", "cs")}
+AKIL_PLUGIN_WEIGHT = 25  # deploy/kubernetes/scheduler-config.yaml
 
-    cand_spec = WORKLOAD_SPECS[candidate_pod]
-    w_cache, w_lock, w_pf, w_ctx = weights
-    
-    # Cluster calibrated normalization ceilings
-    R_cache = 150000.0
-    R_pf = 8000.0
-    R_ctx = 8000.0
 
-    total_penalty = 0.0
-    c_sum = l_sum = p_sum = s_sum = 0.0
+def akil_score(candidate, residents, mx=GO_MAX, weights=WEIGHTS, cache_term="min"):
+    if not residents:
+        return 100.0
+    c = WORKLOADS[candidate]
+    wc, wl, wp, ws = weights
+    penalty = 0.0
+    for r in residents:
+        p = WORKLOADS[r]
+        # scorer.go uses min(candidate, neighbour); the post-hoc ablation uses the neighbour's own rate
+        cache = min(c["cache"], p["cache"]) if cache_term == "min" else p["cache"]
+        penalty += cache / mx["cache"] * wc
+        penalty += (c["lock"] + p["lock"]) * wl
+        penalty += (c["pf"] + p["pf"]) / mx["pf"] * wp
+        penalty += (c["cs"] + p["cs"]) / mx["cs"] * ws
+    return max(0.0, min(100.0, round(100.0 - penalty)))
 
-    for r_pod in node.resident_pods:
-        r_spec = WORKLOAD_SPECS[r_pod]
-        # Pairwise cache penalty: min captures destructive mutual thrashing
-        c_pen = (min(cand_spec["base_cache_miss_rate"], r_spec["base_cache_miss_rate"]) / R_cache) * w_cache
-        # Pairwise lock penalty: sum of contention ratios
-        l_pen = (cand_spec["base_lock_ratio"] + r_spec["base_lock_ratio"]) * w_lock
-        # Page fault penalty
-        p_pen = ((cand_spec["base_page_fault_rate"] + r_spec["base_page_fault_rate"]) / R_pf) * w_pf
-        # Context switch penalty
-        s_pen = ((cand_spec["base_ctx_switch_rate"] + r_spec["base_ctx_switch_rate"]) / R_ctx) * w_ctx
 
-        total_penalty += (c_pen + l_pen + p_pen + s_pen)
-        c_sum += c_pen
-        l_sum += l_pen
-        p_sum += p_pen
-        s_sum += s_pen
+class Node:
+    def __init__(self, name):
+        self.name, self.pods = name, []
 
-    final_score = max(0.0, 100.0 - total_penalty)
-    return final_score, total_penalty, (c_sum, l_sum, p_sum, s_sum)
+    def cpu_used(self):
+        return sum(WORKLOADS[p]["cpu"] for p in self.pods)
 
-def schedule_default(candidate, nodes, rng):
-    feasible = [n for n in nodes if n.can_fit(candidate)]
+    def fits(self, pod):
+        mem = sum(WORKLOADS[p]["mem"] for p in self.pods)
+        return self.cpu_used() + WORKLOADS[pod]["cpu"] <= NODE_CPU and mem + WORKLOADS[pod]["mem"] <= NODE_MEM
+
+    def least_allocated(self, pod):
+        return (NODE_CPU - self.cpu_used() - WORKLOADS[pod]["cpu"]) / NODE_CPU * 100
+
+
+def pick_default(pod, nodes, rng):
+    feasible = [n for n in nodes if n.fits(pod)]
     if not feasible:
         return None
-    # LeastAllocated based on CPU requests
-    feasible.sort(key=lambda n: (sum(WORKLOAD_SPECS[p]["cpu_req_m"] for p in n.resident_pods), rng.random()))
-    return feasible[0]
+    return max(feasible, key=lambda n: (n.least_allocated(pod), rng.random()))
 
-def schedule_anti_affinity(candidate, nodes):
-    feasible = [n for n in nodes if n.can_fit(candidate)]
+
+def pick_anti_affinity(pod, nodes, rng):
+    feasible = [n for n in nodes if n.fits(pod)]
+    if pod == "baseline-web":
+        feasible = [n for n in feasible if "cache-stress" not in n.pods]
+    elif pod == "cache-stress":
+        feasible = [n for n in feasible if "baseline-web" not in n.pods]
+    if not feasible:
+        return None  # pending: the rule cannot be satisfied
+    return max(feasible, key=lambda n: (n.least_allocated(pod), rng.random()))
+
+
+def pick_akil(pod, nodes, rng, mx=GO_MAX, weights=WEIGHTS, cache_term="min"):
+    feasible = [n for n in nodes if n.fits(pod)]
     if not feasible:
         return None
-    # Hard rule: do not co-locate latency-sensitive with cache-stress
-    if WORKLOAD_SPECS[candidate]["latency_sensitive"]:
-        clean_nodes = [n for n in feasible if "cache-stress" not in n.resident_pods]
-        if clean_nodes:
-            clean_nodes.sort(key=lambda n: len(n.resident_pods))
-            return clean_nodes[0]
-        return None # Unschedulable / Pod Pending due to rigid anti-affinity rule
-    else:
-        if candidate == "cache-stress":
-            avoid_web = [n for n in feasible if "baseline-web" not in n.resident_pods]
-            if avoid_web:
-                avoid_web.sort(key=lambda n: len(n.resident_pods))
-                return avoid_web[0]
-            return None # Fragmented / cannot place without violating rule
-        feasible.sort(key=lambda n: len(n.resident_pods))
-        return feasible[0]
+    return max(feasible, key=lambda n: (AKIL_PLUGIN_WEIGHT * akil_score(pod, n.pods, mx, weights, cache_term) + n.least_allocated(pod), rng.random()))
 
-def schedule_descheduler(candidate, nodes, rng):
-    return schedule_default(candidate, nodes, rng)
 
-def schedule_akil(candidate, nodes, weights=(35, 30, 20, 15)):
-    feasible = [n for n in nodes if n.can_fit(candidate)]
-    if not feasible:
-        return None
-    best_node = None
-    best_score = -1.0
-    for n in feasible:
-        score, _, _ = compute_akil_score(candidate, n, weights=weights)
-        if score > best_score:
-            best_score = score
-            best_node = n
-    return best_node
+SCHEDULERS = ["Default-K8s", "Static-AntiAffinity", "Reactive-Descheduler", "AKIL", "AKIL-calibrated", "AKIL-ablation-neighbour-cache"]
 
-# ---------------------------------------------------------------------------
-# Experiment 1: Cluster Placement Simulation (50 Epochs, 4 Baselines)
-# ---------------------------------------------------------------------------
-def run_cluster_simulation(num_epochs=50, num_nodes=5):
-    print("[*] Starting Experiment 1: Cluster Placement Simulation...")
-    monitor.check_and_throttle("exp1_start")
 
-    schedulers = ["Default-K8s", "Static-AntiAffinity", "Reactive-Descheduler", "AKIL"]
-    colocation_counts = {s: 0 for s in schedulers}
-    unplaced_counts = {s: 0 for s in schedulers}
-    total_web_pods = {s: 0 for s in schedulers}
-    descheduler_evictions = 0
+def place(arrivals, scheduler, rng, num_nodes=5):
+    """Place arrivals in order. Returns (nodes, unplaced, evictions)."""
+    nodes = [Node(f"node-{i+1}") for i in range(num_nodes)]
+    unplaced = evictions = 0
+    for pod in arrivals:
+        if scheduler in ("Default-K8s", "Reactive-Descheduler"):
+            n = pick_default(pod, nodes, rng)
+        elif scheduler == "Static-AntiAffinity":
+            n = pick_anti_affinity(pod, nodes, rng)
+        elif scheduler == "AKIL":
+            n = pick_akil(pod, nodes, rng)
+        elif scheduler == "AKIL-calibrated":
+            n = pick_akil(pod, nodes, rng, mx=CALIBRATED_MAX)
+        else:
+            n = pick_akil(pod, nodes, rng, cache_term="neighbour")
+        if n is None:
+            unplaced += 1
+        else:
+            n.pods.append(pod)
+    if scheduler == "Reactive-Descheduler":
+        # Post-hoc: evict web pods sharing a node with cache-stress and re-place them
+        # on a node without it (the descheduler acts after interference is observed).
+        for n in nodes:
+            while "baseline-web" in n.pods and "cache-stress" in n.pods:
+                n.pods.remove("baseline-web")
+                evictions += 1
+                clean = [m for m in nodes if m is not n and m.fits("baseline-web") and "cache-stress" not in m.pods]
+                (max(clean, key=lambda m: m.least_allocated("baseline-web")) if clean else n).pods.append("baseline-web")
+                if not clean:
+                    break
+    return nodes, unplaced, evictions
 
-    rng = random.Random(42)
-    workload_pool = ["cache-stress", "lock-stress", "batch-worker", "baseline-web", "baseline-web", "batch-worker"]
-    raw_rows = []
-
-    for epoch in range(num_epochs):
-        if epoch % 10 == 0:
-            monitor.check_and_throttle(f"exp1_epoch_{epoch}")
-
-        arrivals = [rng.choice(workload_pool) for _ in range(15)]
-
-        for s_name in schedulers:
-            nodes = [SimulatedNode(f"node-{i+1}") for i in range(num_nodes)]
-
-            for pod_idx, pod in enumerate(arrivals):
-                if pod == "baseline-web":
-                    total_web_pods[s_name] += 1
-
-                selected_node = None
-                if s_name == "Default-K8s":
-                    selected_node = schedule_default(pod, nodes, rng)
-                elif s_name == "Static-AntiAffinity":
-                    selected_node = schedule_anti_affinity(pod, nodes)
-                elif s_name == "Reactive-Descheduler":
-                    selected_node = schedule_descheduler(pod, nodes, rng)
-                    # Reactive policy: if cache-stress and web meet, evict one with 75% probability
-                    if selected_node and "cache-stress" in selected_node.resident_pods and "baseline-web" in selected_node.resident_pods:
-                        descheduler_evictions += 1
-                        # Evict to another feasible node if possible
-                        other_nodes = [n for n in nodes if n != selected_node and n.can_fit(pod)]
-                        if other_nodes:
-                            selected_node = rng.choice(other_nodes)
-                elif s_name == "AKIL":
-                    selected_node = schedule_akil(pod, nodes)
-
-                if selected_node is not None:
-                    selected_node.add_pod(pod)
-                    is_colocated = ("baseline-web" in selected_node.resident_pods and "cache-stress" in selected_node.resident_pods)
-                else:
-                    unplaced_counts[s_name] += 1
-                    is_colocated = False
-
-                raw_rows.append({
-                    "epoch": epoch,
-                    "scheduler": s_name,
-                    "pod_type": pod,
-                    "node_assigned": selected_node.name if selected_node else "UNPLACED",
-                    "colocated_with_cache_stress": is_colocated
-                })
-
-            # Check co-location frequency
-            for n in nodes:
-                if "baseline-web" in n.resident_pods and "cache-stress" in n.resident_pods:
-                    web_count = n.resident_pods.count("baseline-web")
-                    colocation_counts[s_name] += web_count
-
-    with open("evidence/raw_data/cluster_simulation_runs.csv", "w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=raw_rows[0].keys())
-        writer.writeheader()
-        writer.writerows(raw_rows)
-
-    summary = {}
-    for s in schedulers:
-        tot_web = max(1, total_web_pods[s])
-        coloc_rate = (colocation_counts[s] / tot_web) * 100.0
-        frag_rate = (unplaced_counts[s] / (num_epochs * 15)) * 100.0
-        summary[s] = {
-            "total_web_scheduled": tot_web,
-            "pathological_colocations": colocation_counts[s],
-            "colocation_rate_pct": round(coloc_rate, 2),
-            "unplaced_pod_fragmentation_pct": round(frag_rate, 2),
-            "evictions": descheduler_evictions if s == "Reactive-Descheduler" else 0
-        }
-
-    print("  -> Experiment 1 Summary:", summary)
-    return summary
 
 # ---------------------------------------------------------------------------
-# Experiment 2: Microarchitectural Latency & Memory Interference Model
+# Latency model: per web pod, from its actual neighbours
 # ---------------------------------------------------------------------------
-def run_latency_simulation(num_samples=10000, num_seeds=10):
-    print("[*] Starting Experiment 2: Tail Latency & Memory Stall Simulation...")
-    monitor.check_and_throttle("exp2_start")
+def web_pod_condition(node, web_index):
+    neighbours = list(node.pods)
+    neighbours.remove("baseline-web")  # the pod itself
+    hit = 1.0 - ISOLATED_LLC
+    bus = 1.0
+    for nb in neighbours:
+        hit *= 1.0 - INTERFERENCE[nb]["llc"]
+        bus += INTERFERENCE[nb]["bus"]
+    return 1.0 - hit, bus
 
-    configs = {
-        "Isolated (Clean)": {"llc_miss_mean": 0.38, "llc_miss_sd": 0.04, "bus_contention": 1.0},
-        "Default-K8s":      {"llc_miss_mean": 0.624, "llc_miss_sd": 0.07, "bus_contention": 2.4},
-        "Static-AntiAffinity": {"llc_miss_mean": 0.421, "llc_miss_sd": 0.05, "bus_contention": 1.15},
-        "Reactive-Descheduler": {"llc_miss_mean": 0.548, "llc_miss_sd": 0.08, "bus_contention": 1.8},
-        "AKIL":             {"llc_miss_mean": 0.418, "llc_miss_sd": 0.04, "bus_contention": 1.12}
-    }
 
-    raw_latency_data = []
-    stats_by_config = {cfg: [] for cfg in configs}
+def sample_latency(rng, llc_mean, bus):
+    base = rng.lognormvariate(math.log(3.5), 0.25)
+    llc = max(0.1, min(0.99, rng.gauss(llc_mean, 0.04)))
+    stall = (llc ** 2.2) * 35.0 * bus
+    jitter = rng.expovariate(1.0 / (2.0 * bus))
+    return base + stall + jitter
+
+
+def pct(sorted_vals, q):
+    return sorted_vals[min(len(sorted_vals) - 1, int(len(sorted_vals) * q))]
+
+
+def mean_sd_ci(vals):
+    m = sum(vals) / len(vals)
+    sd = math.sqrt(sum((v - m) ** 2 for v in vals) / max(1, len(vals) - 1))
+    return {"mean": round(m, 2), "sd": round(sd, 2), "ci95": round(2.262 * sd / math.sqrt(len(vals)), 2)}  # t(0.975, 9)
+
+
+def run_main_experiment(num_seeds=10, epochs=50, arrivals_per_epoch=15, samples_per_web_pod=200):
+    print("[*] Exp 1+2: placement simulation and derived latency")
+    pool = ["cache-stress", "lock-stress", "batch-worker", "baseline-web", "baseline-web", "batch-worker"]
+    per_seed = {s: [] for s in SCHEDULERS + ["Isolated (Clean)"]}
+    placement_rows, latency_rows = [], []
+    coloc_totals = {s: {"web": 0, "coloc": 0, "unplaced": 0, "pods": 0, "evictions": 0} for s in SCHEDULERS}
 
     for seed in range(num_seeds):
-        rng = random.Random(1000 + seed)
-        if seed % 3 == 0:
-            monitor.check_and_throttle(f"exp2_seed_{seed}")
+        wl_rng = random.Random(seed)
+        epochs_arrivals = [[wl_rng.choice(pool) for _ in range(arrivals_per_epoch)] for _ in range(epochs)]
+        for s in SCHEDULERS:
+            rng = random.Random(10_000 + seed)
+            lat, llcs, cs_load = [], [], []
+            for e, arrivals in enumerate(epochs_arrivals):
+                nodes, unplaced, ev = place(arrivals, s, rng)
+                t = coloc_totals[s]
+                t["unplaced"] += unplaced
+                t["pods"] += len(arrivals)
+                t["evictions"] += ev
+                for n in nodes:
+                    webs = n.pods.count("baseline-web")
+                    t["web"] += webs
+                    if "cache-stress" in n.pods:
+                        t["coloc"] += webs
+                    for i in range(webs):
+                        llc, bus = web_pod_condition(n, i)
+                        llcs.append(llc)
+                        cs_load.append(sum(WORKLOADS[p]["cs"] for p in n.pods))
+                        for _ in range(samples_per_web_pod):
+                            lat.append(sample_latency(rng, llc, bus))
+                    if seed == 0:
+                        for p in n.pods:
+                            placement_rows.append({"seed": seed, "epoch": e, "scheduler": s, "pod_type": p, "node": n.name,
+                                                   "colocated_with_cache_stress": p == "baseline-web" and "cache-stress" in n.pods})
+            per_seed[s].append(summarise(lat, llcs, cs_load))
+            if seed == 0:
+                latency_rows += [{"seed": seed, "config": s, "latency_ms": round(x, 3)} for x in lat[:1000]]
 
-        for cfg, p in configs.items():
-            latencies = []
-            for _ in range(num_samples // num_seeds):
-                # Service time in ms (lognormal distribution)
-                base_t = rng.lognormvariate(math.log(3.5), 0.25)
-                # Sample LLC miss rate
-                llc_miss = max(0.1, rng.gauss(p["llc_miss_mean"], p["llc_miss_sd"]))
-                # Memory stall overhead from cache misses
-                stall = (llc_miss ** 2.2) * 35.0 * p["bus_contention"]
-                # Queuing jitter
-                jitter = rng.expovariate(1.0 / (2.0 * p["bus_contention"]))
-                total_lat = base_t + stall + jitter
+        # Oracle: every web pod alone on its own node
+        rng = random.Random(20_000 + seed)
+        n_web = sum(a.count("baseline-web") for a in epochs_arrivals)
+        lat = [sample_latency(rng, ISOLATED_LLC, 1.0) for _ in range(n_web * samples_per_web_pod)]
+        per_seed["Isolated (Clean)"].append(summarise(lat, [ISOLATED_LLC] * n_web, [WORKLOADS["baseline-web"]["cs"]] * n_web))
+        if seed == 0:
+            latency_rows += [{"seed": seed, "config": "Isolated (Clean)", "latency_ms": round(x, 3)} for x in lat[:1000]]
 
-                latencies.append(total_lat)
-                if len(raw_latency_data) < 5000:
-                    raw_latency_data.append({"seed": seed, "config": cfg, "latency_ms": round(total_lat, 3)})
+    stats = {cfg: {m: mean_sd_ci([r[m] for r in runs]) for m in runs[0]} for cfg, runs in per_seed.items()}
+    coloc = {s: {
+        "web_pods_scheduled": t["web"],
+        "web_pods_colocated_with_cache_stress": t["coloc"],
+        "colocation_rate_pct": round(100 * t["coloc"] / max(1, t["web"]), 2),
+        "unplaced_pct": round(100 * t["unplaced"] / max(1, t["pods"]), 2),
+        "evictions": t["evictions"],
+    } for s, t in coloc_totals.items()}
 
-            latencies.sort()
-            n = len(latencies)
-            p50 = latencies[int(n * 0.50)]
-            p75 = latencies[int(n * 0.75)]
-            p90 = latencies[int(n * 0.90)]
-            p95 = latencies[int(n * 0.95)]
-            p99 = latencies[int(n * 0.99)]
-            p999 = latencies[int(n * 0.999)]
-            slo_violations = sum(1 for x in latencies if x > 15.0) / n * 100.0
+    write_csv("raw_data/cluster_simulation_runs.csv", placement_rows)
+    write_csv("raw_data/latency_percentiles_raw.csv", latency_rows)
+    return stats, coloc
 
-            stats_by_config[cfg].append({
-                "p50": p50,
-                "p75": p75,
-                "p90": p90,
-                "p95": p95,
-                "p99": p99,
-                "p999": p999,
-                "slo_pct": slo_violations,
-                "llc_miss_rate": p["llc_miss_mean"] * 100.0
-            })
 
-    with open("evidence/raw_data/latency_percentiles_raw.csv", "w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=raw_latency_data[0].keys())
-        writer.writeheader()
-        writer.writerows(raw_latency_data)
-
-    summary_stats = {}
-    for cfg, runs in stats_by_config.items():
-        summary_stats[cfg] = {}
-        for metric in ["p50", "p75", "p90", "p95", "p99", "p999", "slo_pct", "llc_miss_rate"]:
-            vals = [r[metric] for r in runs]
-            mean_val = sum(vals) / len(vals)
-            var_val = sum((v - mean_val) ** 2 for v in vals) / max(1, len(vals) - 1)
-            sd_val = math.sqrt(var_val)
-            ci95 = 1.96 * (sd_val / math.sqrt(len(vals)))
-            summary_stats[cfg][metric] = {
-                "mean": round(mean_val, 2),
-                "sd": round(sd_val, 2),
-                "ci95": round(ci95, 2)
-            }
-
-    # Generate CDF table for plotting (figures_data/fig2_tail_latency_cdf.dat)
-    cdf_points = [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 8.0, 10.0, 12.0, 15.0, 20.0, 25.0, 30.0, 40.0, 50.0, 60.0, 80.0, 100.0, 120.0, 150.0]
-    with open("evidence/figures_data/fig2_tail_latency_cdf.dat", "w") as f:
-        f.write("# Latency_ms\tDefault_K8s\tStatic_AntiAffinity\tReactive_Descheduler\tAKIL\n")
-        for l_ms in cdf_points:
-            line = f"{l_ms:.1f}"
-            for cfg in ["Default-K8s", "Static-AntiAffinity", "Reactive-Descheduler", "AKIL"]:
-                m = summary_stats[cfg]["p50"]["mean"]
-                p99 = summary_stats[cfg]["p99"]["mean"]
-                if l_ms < m * 0.5:
-                    pct = 0.01
-                elif l_ms <= m:
-                    pct = 0.50 * (l_ms / m)
-                elif l_ms <= p99:
-                    pct = 0.50 + 0.49 * ((l_ms - m) / (p99 - m))
-                else:
-                    pct = min(1.0, 0.99 + 0.01 * ((l_ms - p99) / (p99 * 1.5)))
-                line += f"\t{pct*100.0:.2f}"
-            f.write(line + "\n")
-
-    print("  -> Experiment 2 Summary (p99 Latency with 95% CI):")
-    for k, v in summary_stats.items():
-        print(f"     {k}: p99 = {v['p99']['mean']} ± {v['p99']['ci95']} ms | SLO Violations = {v['slo_pct']['mean']}%")
-
-    return summary_stats
-
-# ---------------------------------------------------------------------------
-# Experiment 3: Scoring Weights Sensitivity Analysis
-# ---------------------------------------------------------------------------
-def run_weight_sensitivity():
-    print("[*] Starting Experiment 3: Scoring Weight Sensitivity Sweep...")
-    monitor.check_and_throttle("exp3_start")
-
-    weight_samples = []
-    weight_samples.append((35, 30, 20, 15))
-    weight_samples.append((70, 10, 10, 10))
-    weight_samples.append((10, 70, 10, 10))
-    weight_samples.append((10, 10, 70, 10))
-    weight_samples.append((25, 25, 25, 25))
-
-    rng = random.Random(999)
-    for _ in range(45):
-        w1 = rng.randint(5, 60)
-        w2 = rng.randint(5, 50)
-        w3 = rng.randint(5, 40)
-        rem = 100 - (w1 + w2 + w3)
-        if rem >= 5:
-            weight_samples.append((w1, w2, w3, rem))
-
-    results = []
-    for idx, (wc, wl, wp, ws) in enumerate(weight_samples):
-        if idx % 10 == 0:
-            monitor.check_and_throttle(f"exp3_weight_{idx}")
-
-        misplacements = 0
-        total_trials = 30
-        for _ in range(total_trials):
-            nodes = [SimulatedNode(f"node-{i+1}") for i in range(3)]
-            nodes[0].add_pod("cache-stress")
-            nodes[1].add_pod("lock-stress")
-            nodes[2].add_pod("batch-worker")
-
-            chosen = schedule_akil("baseline-web", nodes, weights=(wc, wl, wp, ws))
-            if chosen.name == "node-1": # Misplaced on cache-stress node!
-                misplacements += 1
-
-        misplacement_rate = (misplacements / total_trials) * 100.0
-        results.append({
-            "w_cache": wc,
-            "w_lock": wl,
-            "w_pf": wp,
-            "w_ctx": ws,
-            "misplacement_rate_pct": misplacement_rate,
-            "is_default": (wc == 35 and wl == 30 and wp == 20 and ws == 15)
-        })
-
-    with open("evidence/raw_data/weight_sensitivity_sweep.csv", "w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=results[0].keys())
-        writer.writeheader()
-        writer.writerows(results)
-
-    with open("evidence/figures_data/fig4_weight_sensitivity_pareto.dat", "w") as f:
-        f.write("# w_cache\tw_lock\tw_pf\tw_ctx\tMisplacementRate_pct\n")
-        for r in results:
-            f.write(f"{r['w_cache']}\t{r['w_lock']}\t{r['w_pf']}\t{r['w_ctx']}\t{r['misplacement_rate_pct']:.1f}\n")
-
-    return results
-
-# ---------------------------------------------------------------------------
-# Experiment 4: Scheduler Overhead & Micro-benchmarks
-# ---------------------------------------------------------------------------
-def run_overhead_benchmarks():
-    print("[*] Starting Experiment 4: Scheduler & Ingestion Overhead Benchmarks...")
-    monitor.check_and_throttle("exp4_start")
-
-    resident_counts = [1, 5, 10, 20, 50, 100]
-    bench_rows = []
-
-    for m in resident_counts:
-        monitor.check_and_throttle(f"exp4_m_{m}")
-        dummy_node = SimulatedNode("bench-node", cpu_capacity_m=50000, mem_capacity_mb=100000)
-        for _ in range(m):
-            dummy_node.add_pod(random.choice(list(WORKLOAD_SPECS.keys())))
-
-        t_start = time.perf_counter()
-        for _ in range(500):
-            compute_akil_score("baseline-web", dummy_node)
-        elapsed_us = ((time.perf_counter() - t_start) / 500.0) * 1e6
-
-        # In Go/gRPC, Score() adds ~310us gRPC unary call + ~10us scoring math
-        estimated_k8s_score_us = 310.0 + (elapsed_us * 0.15)
-
-        bench_rows.append({
-            "colocated_pods": m,
-            "pure_scoring_algo_us": round(elapsed_us, 2),
-            "end_to_end_k8s_score_ms": round(estimated_k8s_score_us / 1000.0, 3)
-        })
-
-    with open("evidence/raw_data/scheduling_overhead_bench.csv", "w", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=bench_rows[0].keys())
-        writer.writeheader()
-        writer.writerows(bench_rows)
-
-    return bench_rows
-
-# ---------------------------------------------------------------------------
-# Main Execution Pipeline
-# ---------------------------------------------------------------------------
-def main():
-    print("=====================================================================")
-    print("  AKIL Research Evidence Generator & Experimental Simulator")
-    print("  Hardware-Safe Execution with Dynamic Thermal Throttling")
-    print("=====================================================================")
-
-    initial_temp = monitor.check_and_throttle("init")
-    print(f"[*] Initial CPU Package Temp: {initial_temp}°C")
-
-    # 1. Cluster simulation
-    exp1_summary = run_cluster_simulation(num_epochs=50, num_nodes=5)
-
-    # 2. Latency & Tail simulation
-    exp2_summary = run_latency_simulation(num_samples=10000, num_seeds=10)
-
-    # 3. Sensitivity analysis
-    exp3_results = run_weight_sensitivity()
-
-    # 4. Overhead benchmark
-    exp4_results = run_overhead_benchmarks()
-
-    # Generate comparative summary JSON
-    comparison_summary = {
-        "metadata": {
-            "generated_at": datetime.now().isoformat(),
-            "target_conference": "IEEE Cloud / EuroSys / ACM SoCC",
-            "cluster_nodes": 5,
-            "benchmark_iterations": 10
-        },
-        "cluster_colocation_summary": exp1_summary,
-        "latency_and_slo_summary": exp2_summary,
-        "overhead_benchmarks": exp4_results
+def summarise(lat, llcs, cs_load):
+    lat.sort()
+    return {
+        "p50": pct(lat, 0.50), "p90": pct(lat, 0.90), "p99": pct(lat, 0.99), "p999": pct(lat, 0.999),
+        "slo_pct": 100.0 * sum(1 for x in lat if x > WEB_SLO_MS) / len(lat),
+        "llc_miss_rate": 100.0 * sum(llcs) / len(llcs),
+        "node_ctx_switch_load": sum(cs_load) / len(cs_load),
     }
 
-    with open("evidence/processed_data/baseline_comparisons_summary.json", "w") as f:
-        json.dump(comparison_summary, f, indent=2)
 
-    # Generate Statistical Significance CSV (CI95)
-    with open("evidence/processed_data/statistical_significance_ci95.csv", "w", newline="") as f:
-        writer = csv.writer(f)
-        writer.writerow(["Configuration", "LLC_Miss_Mean", "LLC_Miss_CI95", "p50_ms", "p50_CI95", "p99_ms", "p99_CI95", "p999_ms", "p999_CI95", "SLO_Violations_Pct", "SLO_CI95"])
-        for cfg, metrics in exp2_summary.items():
-            writer.writerow([
-                cfg,
-                metrics["llc_miss_rate"]["mean"], metrics["llc_miss_rate"]["ci95"],
-                metrics["p50"]["mean"], metrics["p50"]["ci95"],
-                metrics["p99"]["mean"], metrics["p99"]["ci95"],
-                metrics["p999"]["mean"], metrics["p999"]["ci95"],
-                metrics["slo_pct"]["mean"], metrics["slo_pct"]["ci95"]
-            ])
+# ---------------------------------------------------------------------------
+# Exp 3: weight sensitivity on the canonical 3-node scenario
+# ---------------------------------------------------------------------------
+def run_weight_sensitivity():
+    print("[*] Exp 3: weight sensitivity")
+    samples = [(35, 30, 20, 15), (70, 10, 10, 10), (10, 70, 10, 10), (10, 10, 70, 10), (25, 25, 25, 25)]
+    rng = random.Random(999)
+    while len(samples) < 50:
+        w = (rng.randint(5, 60), rng.randint(5, 50), rng.randint(5, 40))
+        if 100 - sum(w) >= 5:
+            samples.append((*w, 100 - sum(w)))
+    rows = []
+    for w in samples:
+        row = {"w_cache": w[0], "w_lock": w[1], "w_pf": w[2], "w_ctx": w[3]}
+        for label, mx, term in (("go_defaults", GO_MAX, "min"), ("calibrated", CALIBRATED_MAX, "min"), ("ablation", GO_MAX, "neighbour")):
+            residents = {"node-1": ["cache-stress"], "node-2": ["lock-stress"], "node-3": ["batch-worker"]}
+            scores = {n: akil_score("baseline-web", r, mx, w, term) for n, r in residents.items()}
+            best = max(scores.values())
+            # Deterministic scorer: report whether the cache-stress node is (one of) the top choice(s)
+            row[f"picks_cache_stress_node_{label}"] = scores["node-1"] == best
+            row[f"scores_{label}"] = "/".join(str(int(scores[n])) for n in sorted(scores))
+        rows.append(row)
+    write_csv("raw_data/weight_sensitivity_sweep.csv", rows)
+    return rows
 
-    # Generate Dat file for Fig 1: LLC Miss Rates
-    with open("evidence/figures_data/fig1_llc_miss_rates.dat", "w") as f:
-        f.write("# Workload\tDefault_K8s\tAKIL\n")
-        f.write(f"cache-stress\t{0.85*100:.1f}\t{0.84*100:.1f}\n")
-        f.write(f"lock-stress\t{0.48*100:.1f}\t{0.44*100:.1f}\n")
-        f.write(f"baseline-web\t{exp2_summary['Default-K8s']['llc_miss_rate']['mean']:.1f}\t{exp2_summary['AKIL']['llc_miss_rate']['mean']:.1f}\n")
 
-    # Generate Dat file for Fig 3: Colocation rate vs load
-    with open("evidence/figures_data/fig3_colocation_rate_vs_load.dat", "w") as f:
-        f.write("# Cluster_Load_Pct\tDefault_K8s\tStatic_AntiAffinity\tReactive_Descheduler\tAKIL\n")
-        for load in [20, 40, 60, 80, 100]:
-            f.write(f"{load}\t{min(100.0, load * 0.85):.1f}\t{min(100.0, load * 0.12):.1f}\t{min(100.0, load * 0.62):.1f}\t{min(100.0, load * 0.18):.1f}\n")
+# ---------------------------------------------------------------------------
+# Exp 4: measured overhead (Go benchmarks)
+# ---------------------------------------------------------------------------
+def run_overhead_benchmarks():
+    print("[*] Exp 4: Go benchmarks (scorer math + gRPC round-trips)")
+    out = subprocess.run(
+        ["go", "test", "-run", "^$", "-bench", ".", "-benchtime", "2s", "-count", "5", "./pkg/scoring", "./cmd/aggregator"],
+        cwd=ROOT, capture_output=True, text=True, check=True).stdout
+    samples = {}
+    for name, m, ns in re.findall(r"Benchmark(\w+)/colocated=(\d+)-\d+\s+\d+\s+([\d.]+) ns/op", out):
+        samples.setdefault((name, int(m)), []).append(float(ns))
+    rows = []
+    for m in sorted({k[1] for k in samples}):
+        score_ns = samples[("Score", m)]
+        rpc_ns = samples[("ScoreQueries", m)]
+        rows.append({
+            "colocated_pods": m,
+            "scorer_math_ns_median": round(sorted(score_ns)[len(score_ns) // 2], 1),
+            "grpc_queries_us_median": round(sorted(rpc_ns)[len(rpc_ns) // 2] / 1000, 1),
+            "grpc_queries_us_max": round(max(rpc_ns) / 1000, 1),
+        })
+    write_csv("raw_data/scheduling_overhead_bench.csv", rows)
+    cpu = subprocess.run(["sh", "-c", "lscpu | sed -n 's/Model name: *//p'"], capture_output=True, text=True).stdout.strip()
+    return rows, cpu
 
-    final_temp = monitor.check_and_throttle("complete")
-    monitor.flush()
 
-    print("\n=====================================================================")
-    print(f"[+] All simulations completed successfully!")
-    print(f"[*] Final CPU Package Temp: {final_temp}°C (Safe & Controlled)")
-    print(f"[*] Generated Evidence Files in evidence/:")
-    print("    - evidence/raw_data/cluster_simulation_runs.csv")
-    print("    - evidence/raw_data/latency_percentiles_raw.csv")
-    print("    - evidence/raw_data/weight_sensitivity_sweep.csv")
-    print("    - evidence/raw_data/scheduling_overhead_bench.csv")
-    print("    - evidence/processed_data/baseline_comparisons_summary.json")
-    print("    - evidence/processed_data/statistical_significance_ci95.csv")
-    print("    - evidence/figures_data/fig1_llc_miss_rates.dat")
-    print("    - evidence/figures_data/fig2_tail_latency_cdf.dat")
-    print("    - evidence/figures_data/fig3_colocation_rate_vs_load.dat")
-    print("    - evidence/figures_data/fig4_weight_sensitivity_pareto.dat")
-    print("    - evidence/thermal_monitoring/thermal_and_resource_log.json")
-    print("=====================================================================")
+def write_csv(rel, rows):
+    path = os.path.join(EVID, rel)
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=rows[0].keys())
+        w.writeheader()
+        w.writerows(rows)
+
+
+def main():
+    stats, coloc = run_main_experiment()
+    sweep = run_weight_sensitivity()
+    overhead, cpu = run_overhead_benchmarks()
+
+    summary = {
+        "metadata": {
+            "generated_at": datetime.now().isoformat(timespec="seconds"),
+            "method": "trace-driven placement simulation; latency/LLC are model outputs (see INTERFERENCE); overhead measured via Go benchmarks",
+            "seeds": 10, "epochs_per_seed": 50, "arrivals_per_epoch": 15, "nodes": 5,
+            "akil_scorer": "port of pkg/scoring/scorer.go", "akil_plugin_weight": AKIL_PLUGIN_WEIGHT,
+            "calibrated_normalisation": CALIBRATED_MAX, "interference_model": INTERFERENCE,
+            "benchmark_host_cpu": cpu,
+        },
+        "placement_summary": coloc,
+        "latency_and_llc_summary": stats,
+        "weight_sensitivity": {
+            "go_defaults_pct_picking_cache_stress": round(100 * sum(r["picks_cache_stress_node_go_defaults"] for r in sweep) / len(sweep), 1),
+            "calibrated_pct_picking_cache_stress": round(100 * sum(r["picks_cache_stress_node_calibrated"] for r in sweep) / len(sweep), 1),
+            "ablation_pct_picking_cache_stress": round(100 * sum(r["picks_cache_stress_node_ablation"] for r in sweep) / len(sweep), 1),
+            "n_weight_vectors": len(sweep),
+        },
+        "overhead_benchmarks": overhead,
+    }
+    with open(os.path.join(EVID, "processed_data/baseline_comparisons_summary.json"), "w") as f:
+        json.dump(summary, f, indent=2)
+
+    rows = []
+    for cfg, m in stats.items():
+        row = {"configuration": cfg}
+        for k in ("llc_miss_rate", "p50", "p99", "p999", "slo_pct", "node_ctx_switch_load"):
+            row[f"{k}_mean"], row[f"{k}_ci95"] = m[k]["mean"], m[k]["ci95"]
+        rows.append(row)
+    write_csv("processed_data/statistical_significance_ci95.csv", rows)
+
+    with open(os.path.join(EVID, "figures_data/fig1_llc_miss_rates.dat"), "w") as f:
+        f.write("# Configuration\tLLC_miss_pct\tci95\n")
+        for cfg, m in stats.items():
+            f.write(f"{cfg}\t{m['llc_miss_rate']['mean']}\t{m['llc_miss_rate']['ci95']}\n")
+    with open(os.path.join(EVID, "figures_data/fig2_p99_latency.dat"), "w") as f:
+        f.write("# Configuration\tp99_ms\tci95\n")
+        for cfg, m in stats.items():
+            f.write(f"{cfg}\t{m['p99']['mean']}\t{m['p99']['ci95']}\n")
+
+    print(json.dumps({"placement": coloc, "weights": summary["weight_sensitivity"]}, indent=1))
+    for cfg, m in stats.items():
+        print(f"  {cfg:22s} p99={m['p99']['mean']:6.2f}±{m['p99']['ci95']:<5} LLC={m['llc_miss_rate']['mean']:5.1f}% "
+              f"SLO-viol={m['slo_pct']['mean']:5.1f}% ctx-load={m['node_ctx_switch_load']['mean']:.0f}/s")
+    for r in overhead:
+        print("  ", r)
+
 
 if __name__ == "__main__":
     main()

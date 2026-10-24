@@ -1,192 +1,62 @@
-import { useState } from 'react';
-import { Layers, Activity, BarChart3, Cpu, Sliders, Server, Info } from 'lucide-react';
-import OverviewFlow from './components/OverviewFlow';
-import PodLifecycleView from './components/PodLifecycleView';
-import EvidenceExplorer from './components/EvidenceExplorer';
-import SchedulingSim from './components/SchedulingSim';
-import TelemetryDashboard from './components/TelemetryDashboard';
-import SystemAnatomy from './components/SystemAnatomy';
-import './App.css';
+import { useEffect, useState } from 'react';
+import Problem from './chapters/Problem';
+import LiveDemo from './chapters/LiveDemo';
+import Results from './chapters/Results';
+import HowItWorks from './chapters/HowItWorks';
+
+const CHAPTERS = ['The problem', 'Live demo', 'Results', 'How it works'] as const;
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<'overview' | 'pods' | 'telemetry' | 'sandbox' | 'evidence' | 'anatomy'>('overview');
-  const [showGlobalInfo, setShowGlobalInfo] = useState(false);
+  const [chapter, setChapter] = useState(() => {
+    const n = Number(new URLSearchParams(location.search).get('c'));
+    return n >= 0 && n < CHAPTERS.length ? n : 0;
+  });
+
+  useEffect(() => {
+    history.replaceState(null, '', `?c=${chapter}`);
+    window.scrollTo({ top: 0 });
+  }, [chapter]);
+
+  // Arrow keys move between chapters, handy with a presentation clicker.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.target as HTMLElement).closest('input, textarea, select')) return;
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') setChapter((c) => Math.min(c + 1, CHAPTERS.length - 1));
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') setChapter((c) => Math.max(c - 1, 0));
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-[#0e1117] text-zinc-200 flex flex-col font-sans selection:bg-zinc-700 selection:text-zinc-100">
-      {/* Top Application Header (Softened Charcoal / Slate) */}
-      <header className="border-b border-zinc-800/80 bg-[#121620]/95 backdrop-blur sticky top-0 z-50 px-6 py-3">
-        <div className="container mx-auto flex flex-col xl:flex-row xl:items-center justify-between gap-4">
-          {/* Logo & Branding */}
-          <div className="flex items-center gap-3">
-            <div className="border border-zinc-700/80 bg-[#161c27] p-2 rounded">
-              <Layers className="text-zinc-200 w-4 h-4" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-sm font-semibold tracking-tight text-zinc-100 font-mono">
-                  AKIL
-                </span>
-                <span className="text-[10px] font-mono border border-zinc-700/60 px-1.5 py-0.2 rounded text-zinc-400 bg-[#181f2c]">
-                  CO-RE v5.8+
-                </span>
-              </div>
-              <p className="text-[11px] text-zinc-400 font-normal">
-                Adaptive Kernel Intelligence Layer for Kubernetes
-              </p>
-            </div>
-          </div>
-          
-          {/* Segmented Control Navigation */}
-          <nav className="flex items-center flex-wrap gap-1 border border-zinc-800 bg-[#151922] p-1 rounded-lg">
-            <button 
-              onClick={() => setActiveTab('overview')}
-              className={`px-3 py-1.5 rounded text-xs font-mono transition-colors flex items-center gap-1.5 ${
-                activeTab === 'overview' 
-                  ? 'bg-zinc-200 text-zinc-950 font-bold shadow-sm' 
-                  : 'text-zinc-400 hover:text-zinc-200'
-              }`}
-            >
-              <Cpu className="w-3.5 h-3.5" />
-              Overview &amp; Flow
-            </button>
-
-            <button 
-              onClick={() => setActiveTab('pods')}
-              className={`px-3 py-1.5 rounded text-xs font-mono transition-colors flex items-center gap-1.5 ${
-                activeTab === 'pods' 
-                  ? 'bg-zinc-200 text-zinc-950 font-bold shadow-sm' 
-                  : 'text-zinc-400 hover:text-zinc-200'
-              }`}
-            >
-              <Server className="w-3.5 h-3.5" />
-              Pod Scaling &amp; Lifecycle
-            </button>
-
-            <button 
-              onClick={() => setActiveTab('telemetry')}
-              className={`px-3 py-1.5 rounded text-xs font-mono transition-colors flex items-center gap-1.5 ${
-                activeTab === 'telemetry' 
-                  ? 'bg-zinc-200 text-zinc-950 font-bold shadow-sm' 
-                  : 'text-zinc-400 hover:text-zinc-200'
-              }`}
-            >
-              <Activity className="w-3.5 h-3.5" />
-              Live Telemetry
-            </button>
-
-            <button 
-              onClick={() => setActiveTab('sandbox')}
-              className={`px-3 py-1.5 rounded text-xs font-mono transition-colors flex items-center gap-1.5 ${
-                activeTab === 'sandbox' 
-                  ? 'bg-zinc-200 text-zinc-950 font-bold shadow-sm' 
-                  : 'text-zinc-400 hover:text-zinc-200'
-              }`}
-            >
-              <Sliders className="w-3.5 h-3.5" />
-              Scorer Sandbox
-            </button>
-
-            <button 
-              onClick={() => setActiveTab('evidence')}
-              className={`px-3 py-1.5 rounded text-xs font-mono transition-colors flex items-center gap-1.5 ${
-                activeTab === 'evidence' 
-                  ? 'bg-zinc-200 text-zinc-950 font-bold shadow-sm' 
-                  : 'text-zinc-400 hover:text-zinc-200'
-              }`}
-            >
-              <BarChart3 className="w-3.5 h-3.5" />
-              Evaluation Data
-            </button>
-
-            <button 
-              onClick={() => setActiveTab('anatomy')}
-              className={`px-3 py-1.5 rounded text-xs font-mono transition-colors flex items-center gap-1.5 ${
-                activeTab === 'anatomy' 
-                  ? 'bg-zinc-200 text-zinc-950 font-bold shadow-sm' 
-                  : 'text-zinc-400 hover:text-zinc-200'
-              }`}
-            >
-              <Layers className="w-3.5 h-3.5" />
-              System Anatomy
-            </button>
+    <div className="min-h-screen flex flex-col">
+      <header className="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-line">
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 h-16 flex items-center gap-6">
+          <p className="shrink-0 leading-tight">
+            <span className="font-semibold">AKIL</span>
+            <span className="hidden sm:inline text-muted text-sm ml-2">Kernel-aware scheduling for Kubernetes</span>
+          </p>
+          <nav className="ml-auto flex gap-1 overflow-x-auto" aria-label="Chapters">
+            {CHAPTERS.map((name, i) => (
+              <button key={name} onClick={() => setChapter(i)} aria-current={chapter === i ? 'step' : undefined}
+                className={`shrink-0 px-3 py-1.5 rounded-lg text-sm transition-colors ${chapter === i ? 'bg-ink text-white' : 'text-muted hover:text-ink'}`}>
+                <span className="tabular mr-1.5 opacity-60">{i + 1}</span>{name}
+              </button>
+            ))}
           </nav>
-
-          {/* Right Status & Help Toggle */}
-          <div className="flex items-center gap-4">
-            <button 
-              onClick={() => setShowGlobalInfo(!showGlobalInfo)}
-              className="text-xs font-mono text-zinc-400 hover:text-zinc-200 flex items-center gap-1 bg-[#161c27] border border-zinc-800 px-2.5 py-1.5 rounded transition-colors"
-              title="Toggle system quick guide"
-            >
-              <Info className="w-3.5 h-3.5 text-zinc-400" />
-              <span>{showGlobalInfo ? 'Close Guide' : 'System Guide'}</span>
-            </button>
-
-            <div className="hidden lg:flex items-center gap-3 text-[11px] font-mono text-zinc-400">
-              <span className="flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                Kind: <strong className="text-zinc-300 font-normal">3 Nodes</strong>
-              </span>
-              <span className="text-zinc-700">/</span>
-              <span>
-                eBPF: <strong className="text-zinc-300 font-normal">Attached</strong>
-              </span>
-              <span className="text-zinc-700">/</span>
-              <span>
-                gRPC: <strong className="text-zinc-300 font-normal">:50051</strong>
-              </span>
-            </div>
-          </div>
         </div>
-
-        {/* Global Expandable System Guide */}
-        {showGlobalInfo && (
-          <div className="mt-3 pt-3 border-t border-zinc-800/80 container mx-auto">
-            <div className="p-4 rounded-lg bg-[#151922] border border-zinc-800 text-xs text-zinc-300 grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div>
-                <strong className="text-zinc-100 font-mono block mb-1">What does this system do?</strong>
-                <p className="text-zinc-400 text-[11px] leading-relaxed">
-                  AKIL attaches lightweight eBPF kernel probes on every Kubernetes node to observe hardware memory bus contention (LLC cache misses, lock wait times, and context switches) and feeds this to the scheduler and autoscaler.
-                </p>
-              </div>
-              <div>
-                <strong className="text-zinc-100 font-mono block mb-1">Where are the Pods?</strong>
-                <p className="text-zinc-400 text-[11px] leading-relaxed">
-                  Head over to the <strong className="text-zinc-200">Pod Scaling &amp; Lifecycle</strong> tab. You will see every active pod, its host node, and can simulate contention spikes to watch new pods spawn or scale down.
-                </p>
-              </div>
-              <div>
-                <strong className="text-zinc-100 font-mono block mb-1">What are the key benefits?</strong>
-                <p className="text-zinc-400 text-[11px] leading-relaxed">
-                  Eliminates noisy-neighbor interference, reduces p99 tail latency from 63ms to 20ms (a 68% drop), and achieves sub-second autoscaling before users experience degradations.
-                </p>
-              </div>
-            </div>
-          </div>
-        )}
       </header>
 
-      {/* Main Presentation Surface */}
-      <main className="flex-1 container mx-auto px-6 py-8 overflow-auto">
-        {activeTab === 'overview' && <OverviewFlow />}
-        {activeTab === 'pods' && <PodLifecycleView />}
-        {activeTab === 'evidence' && <EvidenceExplorer />}
-        {activeTab === 'sandbox' && <SchedulingSim />}
-        {activeTab === 'telemetry' && <TelemetryDashboard />}
-        {activeTab === 'anatomy' && <SystemAnatomy />}
+      <main className="flex-1 w-full max-w-[1400px] mx-auto px-4 sm:px-8 py-10">
+        {chapter === 0 && <Problem onNext={() => setChapter(1)} />}
+        {chapter === 1 && <LiveDemo />}
+        {chapter === 2 && <Results />}
+        {chapter === 3 && <HowItWorks />}
       </main>
 
-      {/* Softened Clean Footer */}
-      <footer className="border-t border-zinc-800/80 bg-[#10131a] px-6 py-4 text-xs font-mono text-zinc-500 flex flex-col sm:flex-row justify-between items-center gap-2">
-        <div>
-          Adaptive Kernel Intelligence Layer (AKIL) · IEEE Conference Manuscript
-        </div>
-        <div className="flex items-center gap-4 text-zinc-500">
-          <span>Linux 5.8+ BTF</span>
-          <span>kube-scheduler v1.29+</span>
-          <span>16MB BPF RingBuf</span>
-        </div>
+      <footer className="max-w-[1400px] w-full mx-auto px-4 sm:px-8 py-6 text-sm text-muted flex justify-between gap-4">
+        <span>AKIL: Adaptive Kernel Intelligence Layer</span>
+        <span className="hidden sm:inline">← → to move between chapters</span>
       </footer>
     </div>
   );
