@@ -1,19 +1,25 @@
+# Go build output (the eBPF objects in pkg/ebpf/*.o are generated sources: keep them)
+bin/
+/aggregator
+/collector
+/scheduler-plugin
+*.exe
+*.test
+coverage.out
+*.coverprofile
+
 # Python
 __pycache__/
 *.py[cod]
-*$py.class
+.venv/
 
-# Binaries
-bin/
-/collector
-/aggregator
-*.exe
+# Node and frontend
+node_modules/
+frontend/dist/
+frontend/.vite/
+*.tsbuildinfo
 
-# Go
-*.test
-*.out
-
-# LaTeX intermediate build files (keep .pdf and .tex)
+# LaTeX intermediates (akil_paper.tex and akil_paper.pdf stay tracked)
 *.aux
 *.bbl
 *.blg
@@ -24,27 +30,30 @@ bin/
 *.nav
 *.snm
 *.vrb
+*.out
 
-# IDE & Editor
+# Logs and scratch work
+*.log
+/scratch/
+/tmp/
+
+# Local tool state
+.hallmark/
+.playwright-mcp/
+.claude/
+graphify-out/
+
+# Editors
 .idea/
 .vscode/
 *.swp
 *.swo
 *~
 
-# OS & Environment
+# OS and secrets
 .DS_Store
 Thumbs.db
 .env
-.env.local
-
-# Frontend & Node
-frontend/dist/
-frontend/.vite/
-scratch/
-
-# Temporary & Logs
-/tmp/
-*.log
-test.log
-test2.log
+.env.*
+!.env.example
+kubeconfig*
