@@ -1,0 +1,60 @@
+# Background neighbours for the experiment. cache-stress is the under-declared
+# neighbour: it requests 0.1 cores but runs four threads, so to kube-scheduler its
+# node looks the emptiest. lock-stress and batch-worker declare roughly what they use.
+# run.sh pins each to one worker by setting spec.template.spec.nodeName.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: cache-stress, labels: {role: noise}}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: cache-stress}}
+  template:
+    metadata: {labels: {app: cache-stress, role: noise}}
+    spec:
+      containers:
+        - name: stress
+          image: polinux/stress-ng:latest
+          imagePullPolicy: Never
+          args: ["--cache", "4", "--cache-flush", "--metrics-brief"]
+          resources: {requests: {cpu: 100m, memory: 128Mi}, limits: {memory: 256Mi}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: lock-stress, labels: {role: noise}}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: lock-stress}}
+  template:
+    metadata: {labels: {app: lock-stress, role: noise}}
+    spec:
+      containers:
+        - name: stress
+          image: polinux/stress-ng:latest
+          imagePullPolicy: Never
+          # file locks contend on in-kernel locks, which lock:contention_* can see
+          args: ["--flock", "2", "--metrics-brief"]
+          resources: {requests: {cpu: 1000m, memory: 128Mi}, limits: {memory: 256Mi}}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: batch-worker, labels: {role: noise}}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: batch-worker}}
+  template:
+    metadata: {labels: {app: batch-worker, role: noise}}
+    spec:
+      containers:
+        - name: stress
+          image: polinux/stress-ng:latest
+          imagePullPolicy: Never
+          # repeatedly maps and touches fresh memory: heavy page-fault load
+          args: ["--vm", "2", "--vm-bytes", "128M", "--metrics-brief"]
+          resources: {requests: {cpu: 1000m, memory: 300Mi}, limits: {memory: 512Mi}}
+---
+apiVersion: v1
+kind: Service
+metadata: {name: webbench}
+spec:
+  selector: {app: webbench}
+  ports: [{port: 8080}]

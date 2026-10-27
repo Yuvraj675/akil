@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"log/slog"
+	"os"
 	"strings"
 	"sync"
 	"time"
@@ -19,7 +20,9 @@ type ScalingLog struct {
 }
 
 var (
-	autoscalingEnabled bool = true
+	// Off by default: it adds replicas of any noisy deployment, which can exhaust
+	// memory on a laptop-sized cluster. Enable from the UI or with AKIL_AUTOSCALE=1.
+	autoscalingEnabled bool = os.Getenv("AKIL_AUTOSCALE") == "1"
 	autoMu             sync.Mutex
 	scalingLogs        []ScalingLog
 	simulatedReplicas  int32 = 2
@@ -181,6 +184,11 @@ func startAutoscalerLoop(ctx context.Context, store *profile.Store, client *kube
 				}
 				
 				processedDeployments[deploymentName] = true
+
+				// Only deployments that opt in are scaled, so a noisy neighbour is never cloned.
+				if d, err := client.AppsV1().Deployments("default").Get(ctx, deploymentName, metav1.GetOptions{}); err != nil || d.Labels["akil.io/autoscale"] != "true" {
+					continue
+				}
 
 				currentReplicas := scale.Spec.Replicas
 				newReplicas := currentReplicas

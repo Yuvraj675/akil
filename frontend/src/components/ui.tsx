@@ -24,10 +24,10 @@ export function SignalBar({ id, value, max }: { id: SignalId; value: number; max
   return (
     <div className="grid grid-cols-[7.5rem_1fr_4.5rem] items-center gap-2 text-[13px]">
       <span className="text-muted">{s.label}</span>
-      <span className="h-2 rounded-full bg-paper overflow-hidden">
-        <span className="block h-full rounded-full transition-[width] duration-700" style={{ width: `${pct * 100}%`, background: s.color }} />
+      <span className="h-2 rounded-full bg-track overflow-hidden">
+        <span className="block h-full w-full rounded-full origin-left transition-transform duration-700" style={{ transform: `scaleX(${pct})`, background: s.color }} />
       </span>
-      <span className="font-mono tabular text-right">{fmt(value, s.unit)}</span>
+      <span className="measured text-right">{fmt(value, s.unit)}</span>
     </div>
   );
 }
@@ -35,14 +35,9 @@ export function SignalBar({ id, value, max }: { id: SignalId; value: number; max
 export function Button({ children, onClick, variant = 'primary', disabled }: {
   children: ReactNode; onClick?: () => void; variant?: 'primary' | 'quiet' | 'danger'; disabled?: boolean;
 }) {
-  const styles = {
-    primary: 'bg-ink text-white hover:bg-[#24344a]',
-    quiet: 'bg-surface text-ink border border-line hover:border-muted',
-    danger: 'bg-bad text-white hover:bg-[#b52f23]',
-  }[variant];
+  const style = { primary: 'btn btn--primary', quiet: 'btn', danger: 'btn btn--danger' }[variant];
   return (
-    <button onClick={onClick} disabled={disabled}
-      className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-[15px] font-medium transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${styles}`}>
+    <button onClick={onClick} disabled={disabled} className={style}>
       {children}
     </button>
   );

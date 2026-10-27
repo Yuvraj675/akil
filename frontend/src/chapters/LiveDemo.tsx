@@ -61,7 +61,7 @@ export default function LiveDemo() {
     { done: decisions.some((d) => !d.noisyPresent), title: 'Schedule a web pod on a quiet cluster', say: 'With no troublemaker around, AKIL and the default scheduler agree. AKIL stays out of the way.',
       action: <Button onClick={schedule} disabled={!c.calmOn}>Schedule web-frontend</Button> },
     { done: sawNoisy, title: 'Unleash a noisy neighbour on node-1', say: 'cache-stress requests only a tenth of a core, so to Kubernetes node-1 still looks the emptiest. Watch its kernel signals climb as the 12-second window fills.',
-      action: <Button variant="danger" onClick={() => c.setNoisyOn(true)} disabled={c.noisyOn}><Zap size={16} />Start cache-stress</Button> },
+      action: <Button variant="danger" onClick={() => { c.setNoisyOn(true); c.setAutoscale(true); }} disabled={c.noisyOn}><Zap size={16} />Start cache-stress</Button> },
     { done: decisions.some((d) => d.noisyPresent && d.defaultPick !== d.akilPick), title: 'Schedule the web pod again', say: 'The default scheduler still picks node-1 because it has the most free CPU. AKIL sees the cache and lock pressure and steers away.',
       action: <Button onClick={schedule} disabled={!c.noisyOn}>Schedule web-frontend</Button> },
     { done: c.logs.some((l) => l.action === 'SCALE DOWN') && !c.noisyOn, title: 'Watch the autoscaler, then calm things down', say: 'The same telemetry drives scaling: replicas go up while contention lasts. Stop cache-stress and they come back down once its profile drains.',
@@ -75,10 +75,10 @@ export default function LiveDemo() {
 
       <div className="grid lg:grid-cols-[340px_1fr] gap-6 items-start">
         {/* Presenter script */}
-        <aside className="bg-surface border border-line rounded-2xl p-5 lg:sticky lg:top-24">
+        <aside className="bg-surface border border-line rounded-card p-5 lg:sticky lg:top-24">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-lg font-semibold">Demo script</h2>
-            <button onClick={() => { c.resetAll(); setDecisions([]); setSawNoisy(false); }} className="text-sm text-muted hover:text-ink inline-flex items-center gap-1">
+            <h2 className="text-xl">Demo script</h2>
+            <button onClick={() => { c.resetAll(); setDecisions([]); setSawNoisy(false); }} className="tab inline-flex items-center gap-1">
               <RotateCcw size={14} />Reset
             </button>
           </div>
@@ -86,9 +86,9 @@ export default function LiveDemo() {
             {steps.map((s, i) => {
               const current = i === nextStep;
               return (
-                <li key={i} className={`rounded-xl p-3 transition-colors ${current ? 'bg-paper' : ''}`}>
+                <li key={i} className={`rounded-pill p-3 transition-colors ${current ? 'bg-paper-3' : ''}`}>
                   <div className="flex gap-3">
-                    <span className={`shrink-0 grid place-items-center w-6 h-6 rounded-full text-xs font-semibold ${s.done ? 'bg-good text-white' : current ? 'bg-ink text-white' : 'border border-line text-muted'}`}>
+                    <span className={`shrink-0 grid place-items-center w-6 h-6 rounded-full text-xs font-medium ${s.done ? 'bg-ok-soft text-ok' : current ? 'bg-accent text-accent-ink' : 'border border-line text-muted'}`}>
                       {s.done ? <Check size={14} /> : i + 1}
                     </span>
                     <div className="min-w-0">
@@ -105,7 +105,7 @@ export default function LiveDemo() {
               );
             })}
           </ol>
-          {nextStep === -1 && <p className="mt-3 text-sm text-good font-medium">Demo complete. Press Reset to run it again.</p>}
+          {nextStep === -1 && <p className="mt-3 text-sm text-ok font-medium">Demo complete. Press Reset to run it again.</p>}
         </aside>
 
         <div className="space-y-6 min-w-0">
@@ -113,7 +113,7 @@ export default function LiveDemo() {
           <section>
             <div className="flex flex-wrap items-end justify-between gap-3 mb-3">
               <div>
-                <h2 className="text-xl font-semibold">The cluster</h2>
+                <h2 className="text-xl">The cluster</h2>
                 <p className="text-muted text-sm">Grey bar: CPU requested, the only thing kube-scheduler looks at. Coloured bars: what the kernel actually sees, live from eBPF.</p>
               </div>
               <div className="flex gap-2">
@@ -131,17 +131,17 @@ export default function LiveDemo() {
           </section>
 
           {/* Decision */}
-          <section className="bg-surface border border-line rounded-2xl p-5">
+          <section className="bg-surface border border-line rounded-card p-5">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <h2 className="text-xl font-semibold">Where should web-frontend go?</h2>
+                <h2 className="text-xl">Where should web-frontend go?</h2>
                 <p className="text-muted text-sm">A latency-sensitive web pod requesting 0.1 cores. Its kernel profile is already known from earlier replicas.</p>
               </div>
               <Button onClick={schedule} disabled={!c.calmOn && !c.noisyOn}>Schedule web-frontend</Button>
             </div>
             {latest ? <DecisionView d={latest} /> : (
-              <p className="mt-5 text-muted border border-dashed border-line rounded-xl p-6 text-center">
-                Start the workloads, then schedule the pod to compare both schedulers' choices.
+              <p className="mt-5 text-muted">
+                Start the workloads, then schedule the pod to compare both schedulers’ choices.
               </p>
             )}
           </section>
@@ -157,15 +157,15 @@ export default function LiveDemo() {
 function ModeBanner({ mode }: { mode: 'connecting' | 'live' | 'local' }) {
   if (mode === 'connecting') return <p className="text-sm text-muted">Connecting to the AKIL aggregator…</p>;
   if (mode === 'live') return (
-    <p className="text-sm flex items-center gap-2">
-      <span className="w-2 h-2 rounded-full bg-good" />
-      Live: telemetry is processed by the real Go aggregator at <code className="font-mono">{API}</code> (sliding window, profile store, autoscaler).
+    <p className="text-sm flex flex-wrap items-center gap-2">
+      <span className="chip chip--ok">Live</span>
+      Telemetry is processed by the real Go aggregator at <code className="measured">{API}</code> (sliding window, profile store, autoscaler).
     </p>
   );
   return (
-    <p className="text-sm bg-[#fff6e5] border border-[#f0d9a8] rounded-lg px-3 py-2">
-      The aggregator isn't reachable at <code className="font-mono">{API}</code>, so the same algorithms are running in your browser instead.
-      To run it for real, start it with <code className="font-mono">make demo</code> and reload.
+    <p className="text-sm bg-accent-soft border border-line rounded-pill px-3 py-2">
+      The aggregator isn’t reachable at <code className="measured">{API}</code>, so the same algorithms are running in your browser instead.
+      To run it for real, start it with <code className="measured">./start.sh</code> and reload.
     </p>
   );
 }
@@ -179,13 +179,13 @@ function NodeCard({ name, cpu, residents, byKey, isOn, placed, ghost }: {
   const used = residents.reduce((a, w) => a + w.cpuRequest, 0);
   const noisy = residents.includes(NOISY);
   return (
-    <div className={`bg-surface rounded-2xl border p-4 transition-colors ${noisy ? 'border-bad' : 'border-line'}`}>
+    <div className={`bg-surface rounded-card border p-4 transition-colors ${noisy ? 'border-bad' : 'border-line'}`}>
       <div className="flex items-baseline justify-between">
-        <h3 className="font-semibold font-mono">{name}</h3>
-        <span className="text-sm text-muted tabular">{((cpu - used) / 1000).toFixed(1)} of {cpu / 1000} cores free</span>
+        <h3 className="measured">{name}</h3>
+        <span className="text-sm text-muted measured">{((cpu - used) / 1000).toFixed(1)} of {cpu / 1000} cores free</span>
       </div>
-      <div className="h-2 rounded-full bg-paper mt-2 overflow-hidden">
-        <div className="h-full bg-[#9aa5b3] transition-[width] duration-500" style={{ width: `${(used / cpu) * 100}%` }} />
+      <div className="h-2 rounded-full bg-track mt-2 overflow-hidden">
+        <div className="h-full w-full bg-requested origin-left transition-transform duration-500" style={{ transform: `scaleX(${used / cpu})` }} />
       </div>
 
       <div className="mt-4 space-y-4 min-h-[7rem]">
@@ -209,12 +209,12 @@ function NodeCard({ name, cpu, residents, byKey, isOn, placed, ghost }: {
           );
         })}
         {placed && (
-          <div key={placed} className="land rounded-lg border-2 border-good bg-[#eaf6ee] px-3 py-2 text-sm font-medium">
+          <div key={placed} className="land rounded-pill border border-ok bg-ok-soft px-3 py-2 text-sm font-medium">
             web-frontend <span className="font-normal text-muted">placed by AKIL</span>
           </div>
         )}
         {ghost && (
-          <div className="rounded-lg border-2 border-dashed border-bad px-3 py-2 text-sm text-bad">
+          <div className="rounded-pill border border-dashed border-bad px-3 py-2 text-sm text-bad">
             Default kube-scheduler would have put web-frontend here
           </div>
         )}
@@ -231,18 +231,18 @@ function DecisionView({ d }: { d: Decision }) {
     <div className="mt-5 space-y-5">
       <div className="grid sm:grid-cols-2 gap-4">
         <Verdict tone={agree ? 'neutral' : 'bad'} who="Default kube-scheduler" node={d.defaultPick}
-          why={`Most free CPU: ${(defaultRow.freeCpu / 1000).toFixed(1)} cores. It can't see anything else.`} />
+          why={`Most free CPU: ${(defaultRow.freeCpu / 1000).toFixed(1)} cores. It can’t see anything else.`} />
         <Verdict tone="good" who="AKIL" node={d.akilPick}
           why={`Best score: ${akilRow.akil.score} / 100, where 100 means no expected interference.`} />
       </div>
 
       {!agree && d.noisyPresent && (
-        <p className="text-[15px] leading-relaxed max-w-3xl">
-          Here the other nodes are quiet, so AKIL's choice is easy. When every node has some noisy neighbour, the current
-          penalty model can prefer the cache-stress node. The Results chapter shows that case.
+        <p className="leading-relaxed max-w-3xl text-ink-2">
+          Both schedulers see the same free CPU. Only AKIL sees the cache pressure behind it. The Results chapter shows
+          what that choice is worth in measured latency.
         </p>
       )}
-      {agree && <p className="text-[15px] text-muted">Both schedulers agree. Without a noisy neighbour, AKIL's penalties are near zero and it doesn't change anything.</p>}
+      {agree && <p className="text-muted">Both schedulers agree. Without a noisy neighbour, AKIL’s penalties are near zero and it doesn’t change anything.</p>}
 
       <div>
         <h3 className="font-medium mb-2">How AKIL scored each node</h3>
@@ -261,12 +261,12 @@ function DecisionView({ d }: { d: Decision }) {
 }
 
 function Verdict({ tone, who, node, why }: { tone: 'good' | 'bad' | 'neutral'; who: string; node: string; why: string }) {
-  const border = { good: 'border-good', bad: 'border-bad', neutral: 'border-line' }[tone];
+  const border = { good: 'border-ok', bad: 'border-bad', neutral: 'border-line' }[tone];
   return (
-    <div className={`rounded-xl border-2 ${border} p-4`}>
+    <div className={`border-l-2 ${border} pl-4 py-1`}>
       <p className="text-sm text-muted">{who} picks</p>
-      <p className={`text-3xl font-semibold font-mono mt-0.5 ${tone === 'bad' ? 'text-bad' : tone === 'good' ? 'text-good' : ''}`}>{node}</p>
-      <p className="text-sm mt-2 leading-relaxed">{why}</p>
+      <p className={`measured text-3xl mt-1 ${tone === 'bad' ? 'text-bad' : tone === 'good' ? 'text-ok' : ''}`}>{node}</p>
+      <p className="text-sm mt-2 text-ink-2">{why}</p>
     </div>
   );
 }
@@ -275,14 +275,14 @@ function ScoreRow({ r, chosen }: { r: Decision['rows'][number]; chosen: boolean 
   const parts: [SignalId, number][] = [['cache', r.akil.cache], ['lock', r.akil.lock], ['pageFault', r.akil.pageFault], ['ctxSwitch', r.akil.ctxSwitch]];
   return (
     <div className="grid grid-cols-[4.5rem_1fr_3rem] sm:grid-cols-[5rem_1fr_3.5rem] items-center gap-3">
-      <span className={`font-mono text-sm ${chosen ? 'font-semibold' : 'text-muted'}`}>{r.node}</span>
-      <div className="h-6 rounded-md bg-paper flex overflow-hidden" title={r.residents.join(', ') || 'empty'}>
-        <div className={`h-full ${chosen ? 'bg-ink' : 'bg-[#9aa5b3]'}`} style={{ width: `${r.akil.score}%` }} />
+      <span className={`measured text-sm ${chosen ? 'text-ink' : 'text-muted'}`}>{r.node}</span>
+      <div className="h-6 rounded-pill bg-track flex overflow-hidden" title={r.residents.join(', ') || 'empty'}>
+        <div className={`h-full ${chosen ? 'bg-ink-2' : 'bg-requested'}`} style={{ width: `${r.akil.score}%` }} />
         {parts.map(([id, v]) => v > 0.05 && (
           <div key={id} className="h-full opacity-80" style={{ width: `${Math.min(v, 100)}%`, background: SIGNALS[id].color }} title={`${SIGNALS[id].label}: −${v.toFixed(1)}`} />
         ))}
       </div>
-      <span className="font-mono tabular text-right font-semibold">{r.akil.score}</span>
+      <span className="measured text-right">{r.akil.score}</span>
     </div>
   );
 }
@@ -292,31 +292,31 @@ function Autoscaler({ replicas, enabled, onToggle, logs }: {
 }) {
   const recent = logs.filter((l) => l.replicas > 0).slice(-4).reverse();
   return (
-    <section className="bg-surface border border-line rounded-2xl p-5">
+    <section className="bg-surface border border-line rounded-card p-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h2 className="text-xl font-semibold">Telemetry-driven autoscaler</h2>
+          <h2 className="text-xl">Telemetry-driven autoscaler</h2>
           <p className="text-muted text-sm max-w-2xl">Checks every workload profile every 3 seconds. Any hot signal adds a replica (up to 6). When everything is calm it removes one.</p>
         </div>
         <label className="inline-flex items-center gap-2 text-sm cursor-pointer select-none">
-          <input type="checkbox" checked={enabled} onChange={(e) => onToggle(e.target.checked)} className="w-4 h-4 accent-[var(--color-ink)]" />
+          <input type="checkbox" checked={enabled} onChange={(e) => onToggle(e.target.checked)} className="w-4 h-4 accent-accent" />
           Autoscaling on
         </label>
       </div>
       <div className="mt-4 flex items-center gap-4">
         <div className="flex gap-1.5" aria-label={`${replicas} replicas`}>
           {Array.from({ length: 6 }, (_, i) => (
-            <span key={i} className={`w-7 h-9 rounded-md border-2 transition-colors ${i < replicas ? 'bg-ink border-ink' : 'border-line border-dashed'}`} />
+            <span key={i} className={`w-7 h-9 rounded-pill border transition-colors ${i < replicas ? 'bg-cool border-cool' : 'border-line border-dashed'}`} />
           ))}
         </div>
-        <p><span className="text-2xl font-semibold font-mono tabular">{replicas}</span> <span className="text-muted">replicas</span></p>
+        <p><span className="measured text-2xl">{replicas}</span> <span className="text-muted">replicas</span></p>
       </div>
       <ul className="mt-4 space-y-1.5 text-sm">
         {recent.length === 0 && <li className="text-muted">No scaling decisions yet.</li>}
         {recent.map((l, i) => (
           <li key={l.timestamp + i} className="flex gap-3">
-            <span className="font-mono text-muted tabular shrink-0">{new Date(l.timestamp).toLocaleTimeString()}</span>
-            <span className={`shrink-0 font-medium ${l.action === 'SCALE UP' ? 'text-bad' : 'text-good'}`}>{l.action === 'SCALE UP' ? 'Up' : 'Down'} to {l.replicas}</span>
+            <span className="measured text-muted shrink-0">{new Date(l.timestamp).toLocaleTimeString()}</span>
+            <span className={`shrink-0 font-medium ${l.action === 'SCALE UP' ? 'text-bad' : 'text-ok'}`}>{l.action === 'SCALE UP' ? 'Up' : 'Down'} to {l.replicas}</span>
             <span className="text-muted truncate">{l.reason}</span>
           </li>
         ))}

@@ -1,0 +1,194 @@
+{
+  "source": "deploy/experiment/run.sh on a 4-node kind cluster (i5-13500H, 1 P-core + 2 E-cores per node)",
+  "pinned": {
+    "batch-worker": {
+      "trials": 3,
+      "requests": 3600,
+      "errors": 0,
+      "fail_open_scores": 0,
+      "p50_ms": {
+        "mean": 11.46,
+        "ci95": 2.91,
+        "min": 10.14,
+        "max": 12.38
+      },
+      "p90_ms": {
+        "mean": 16.02,
+        "ci95": 6.6,
+        "min": 12.96,
+        "max": 17.76
+      },
+      "p99_ms": {
+        "mean": 23.71,
+        "ci95": 4.57,
+        "min": 22.38,
+        "max": 25.8
+      },
+      "p999_ms": {
+        "mean": 35.18,
+        "ci95": 15.75,
+        "min": 31.11,
+        "max": 42.49
+      }
+    },
+    "cache-stress": {
+      "trials": 3,
+      "requests": 3600,
+      "errors": 0,
+      "fail_open_scores": 0,
+      "p50_ms": {
+        "mean": 9.39,
+        "ci95": 2.52,
+        "min": 8.49,
+        "max": 10.48
+      },
+      "p90_ms": {
+        "mean": 13.46,
+        "ci95": 6.62,
+        "min": 11.31,
+        "max": 16.44
+      },
+      "p99_ms": {
+        "mean": 24.55,
+        "ci95": 22.94,
+        "min": 17.83,
+        "max": 35.08
+      },
+      "p999_ms": {
+        "mean": 43.6,
+        "ci95": 45.81,
+        "min": 27.15,
+        "max": 63.53
+      }
+    },
+    "isolated": {
+      "trials": 3,
+      "requests": 3600,
+      "errors": 0,
+      "fail_open_scores": 0,
+      "p50_ms": {
+        "mean": 6.42,
+        "ci95": 0.43,
+        "min": 6.26,
+        "max": 6.61
+      },
+      "p90_ms": {
+        "mean": 7.82,
+        "ci95": 0.45,
+        "min": 7.71,
+        "max": 8.03
+      },
+      "p99_ms": {
+        "mean": 9.19,
+        "ci95": 1.23,
+        "min": 8.77,
+        "max": 9.73
+      },
+      "p999_ms": {
+        "mean": 10.45,
+        "ci95": 3.13,
+        "min": 9.2,
+        "max": 11.72
+      }
+    },
+    "lock-stress": {
+      "trials": 3,
+      "requests": 3600,
+      "errors": 0,
+      "fail_open_scores": 0,
+      "p50_ms": {
+        "mean": 6.83,
+        "ci95": 0.33,
+        "min": 6.69,
+        "max": 6.96
+      },
+      "p90_ms": {
+        "mean": 10.5,
+        "ci95": 1.55,
+        "min": 10.0,
+        "max": 11.21
+      },
+      "p99_ms": {
+        "mean": 14.97,
+        "ci95": 5.42,
+        "min": 13.29,
+        "max": 17.44
+      },
+      "p999_ms": {
+        "mean": 28.37,
+        "ci95": 34.97,
+        "min": 17.22,
+        "max": 44.19
+      }
+    }
+  },
+  "placed": {
+    "akil-scheduler": {
+      "trials": 10,
+      "requests": 12000,
+      "errors": 0,
+      "fail_open_scores": 3,
+      "p50_ms": {
+        "mean": 11.01,
+        "ci95": 1.23,
+        "min": 7.73,
+        "max": 13.24
+      },
+      "p90_ms": {
+        "mean": 15.37,
+        "ci95": 1.39,
+        "min": 11.66,
+        "max": 18.9
+      },
+      "p99_ms": {
+        "mean": 22.81,
+        "ci95": 3.15,
+        "min": 18.27,
+        "max": 32.68
+      },
+      "p999_ms": {
+        "mean": 34.84,
+        "ci95": 5.67,
+        "min": 23.36,
+        "max": 49.27
+      },
+      "placements": {
+        "akil-exp-worker3 (batch-worker)": 9,
+        "akil-exp-worker (cache-stress)": 1
+      }
+    },
+    "default-scheduler": {
+      "trials": 10,
+      "requests": 12000,
+      "errors": 0,
+      "fail_open_scores": 0,
+      "p50_ms": {
+        "mean": 9.0,
+        "ci95": 0.27,
+        "min": 8.34,
+        "max": 9.65
+      },
+      "p90_ms": {
+        "mean": 12.07,
+        "ci95": 0.42,
+        "min": 11.22,
+        "max": 13.22
+      },
+      "p99_ms": {
+        "mean": 19.3,
+        "ci95": 1.99,
+        "min": 16.45,
+        "max": 24.64
+      },
+      "p999_ms": {
+        "mean": 36.64,
+        "ci95": 6.2,
+        "min": 25.25,
+        "max": 53.05
+      },
+      "placements": {
+        "akil-exp-worker (cache-stress)": 10
+      }
+    }
+  }
+}

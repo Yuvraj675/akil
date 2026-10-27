@@ -30,33 +30,32 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-line">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-8 h-16 flex items-center gap-6">
+      <header className="sticky top-0 z-40 bg-paper border-b border-line">
+        <div className="container h-16 flex items-center gap-6">
           <p className="shrink-0 leading-tight">
-            <span className="font-semibold">AKIL</span>
-            <span className="hidden sm:inline text-muted text-sm ml-2">Kernel-aware scheduling for Kubernetes</span>
+            <span className="font-medium">AKIL</span>
+            <span className="hidden md:inline text-muted text-sm ml-3">Kernel-aware scheduling for Kubernetes</span>
           </p>
           <nav className="ml-auto flex gap-1 overflow-x-auto" aria-label="Chapters">
             {CHAPTERS.map((name, i) => (
-              <button key={name} onClick={() => setChapter(i)} aria-current={chapter === i ? 'step' : undefined}
-                className={`shrink-0 px-3 py-1.5 rounded-lg text-sm transition-colors ${chapter === i ? 'bg-ink text-white' : 'text-muted hover:text-ink'}`}>
-                <span className="tabular mr-1.5 opacity-60">{i + 1}</span>{name}
+              <button key={name} onClick={() => setChapter(i)} aria-current={chapter === i ? 'step' : undefined} className="tab shrink-0">
+                <span className="measured mr-2 text-muted">{i + 1}</span>{name}
               </button>
             ))}
           </nav>
         </div>
       </header>
 
-      <main className="flex-1 w-full max-w-[1400px] mx-auto px-4 sm:px-8 py-10">
+      <main className="container flex-1 py-12">
         {chapter === 0 && <Problem onNext={() => setChapter(1)} />}
         {chapter === 1 && <LiveDemo />}
         {chapter === 2 && <Results />}
         {chapter === 3 && <HowItWorks />}
       </main>
 
-      <footer className="max-w-[1400px] w-full mx-auto px-4 sm:px-8 py-6 text-sm text-muted flex justify-between gap-4">
+      <footer className="container py-6 text-sm text-muted flex justify-between gap-4 border-t border-line">
         <span>AKIL: Adaptive Kernel Intelligence Layer</span>
-        <span className="hidden sm:inline">← → to move between chapters</span>
+        <span className="hidden sm:inline">Left and right arrow keys move between chapters</span>
       </footer>
     </div>
   );

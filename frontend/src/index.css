@@ -1,58 +1,171 @@
+/* Hallmark · shape: app screen · genre: modern-minimal · theme: Console (deal 1/3, seed research-demo-showing-kubernetes-2f65·ea1853a1·2026-10-27·r0) · redesign: full
+ * nav: kept, a top bar of four chapters · signature: the two ledgers of one node, what Kubernetes is told against what the kernel measured · states: connecting, live, local fallback, empty decision · console: graphite
+ * axes: dark/grotesk-sans/chromatic-amber · posture: restrained · contrast: pass · v2.0.0 */
+/* Hallmark · pre-emit critique: P3 H3 E3 S3 R2 V3 · weakest: R, the result was modelled; it now leads with the live-cluster measurement and labels the model as such */
 @import "tailwindcss";
+@import "./tokens.css";
+@import "./base.css" layer(base);
 
+/* The project's own utility names, carried onto Console. Kernel signals are all
+   instrument readings, so they share the cool hue in four lightness steps. */
 @theme {
-  --font-sans: 'IBM Plex Sans', system-ui, sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
-
-  --color-paper: #f3f5f7;
-  --color-surface: #ffffff;
-  --color-ink: #142030;
-  --color-muted: #5b6878;
-  --color-line: #d9dee5;
-
-  /* One colour per kernel signal, used identically everywhere */
-  --color-cache: #2e5bff;
-  --color-lock: #d98200;
-  --color-fault: #8b3fd9;
-  --color-ctx: #0e8c7f;
-
-  --color-bad: #d33a2c;
-  --color-good: #1f8a4c;
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-outlier);
+  --color-surface: var(--color-paper-2);
+  --color-line: var(--color-rule);
+  --color-cache: oklch(77% 0.12 245);
+  --color-lock: oklch(66% 0.10 245);
+  --color-fault: oklch(55% 0.08 245);
+  --color-ctx: oklch(45% 0.06 245);
+  --color-good: var(--color-ok);
+  --color-track: var(--color-paper-3);
+  --color-requested: var(--color-rule-2);
+  --text-hero: clamp(2.25rem, 1.4rem + 3.2vw, 3.75rem);
+  --text-reading: clamp(3rem, 2rem + 4vw, 5.5rem);
 }
 
-:root {
-  color-scheme: light;
+.tabular, .measured {
+  font-variant-numeric: tabular-nums slashed-zero;
+}
+.measured { font-family: var(--font-outlier); }
+
+.hero-head {
+  font-size: var(--text-hero);
+  max-width: 18ch;
+  line-height: 1.02;
+}
+.reading {
+  font-family: var(--font-outlier);
+  font-size: var(--text-reading);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums slashed-zero;
 }
 
-body {
-  background: var(--color-paper);
+/* Panels cut from one surface, divided by hairlines. */
+.panels {
+  display: grid;
+  gap: var(--rule-hair);
+  background: var(--color-rule);
   color: var(--color-ink);
-  font-family: var(--font-sans);
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-card);
+  overflow: hidden;
 }
+.panels > * { background: var(--color-paper-2); color: var(--color-ink); min-width: 0; }
 
-.tabular {
-  font-variant-numeric: tabular-nums;
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  min-height: 40px;
+  padding: var(--space-xs) var(--space-md);
+  border: var(--rule-hair) solid var(--color-rule-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-paper-2);
+  color: var(--color-ink);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--dur-short) var(--ease-out), border-color var(--dur-short) var(--ease-out), color var(--dur-short) var(--ease-out);
 }
+.btn:hover { border-color: var(--color-muted); }
+.btn:active { background: var(--color-paper-3); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn--primary { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-accent-ink); }
+.btn--primary:hover { background: color-mix(in oklab, var(--color-accent) 88%, var(--color-ink)); border-color: var(--color-accent); }
+.btn--primary:active { background: color-mix(in oklab, var(--color-accent) 80%, var(--color-paper)); }
+.btn--danger { border-color: var(--color-bad); color: var(--color-bad); }
+.btn--danger:hover { background: var(--color-bad-soft); border-color: var(--color-bad); }
 
-:focus-visible {
-  outline: 2px solid var(--color-cache);
-  outline-offset: 2px;
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px var(--space-xs);
+  border: var(--rule-hair) solid var(--color-rule-2);
   border-radius: 4px;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-ink-2);
+}
+.chip--cool { background: var(--color-cool-soft); border-color: color-mix(in oklab, var(--color-cool) 40%, transparent); }
+.chip--bad { background: var(--color-bad-soft); border-color: color-mix(in oklab, var(--color-bad) 45%, transparent); color: var(--color-bad); }
+.chip--ok { background: var(--color-ok-soft); border-color: color-mix(in oklab, var(--color-ok) 45%, transparent); color: var(--color-ok); }
+
+.tab {
+  min-height: 40px;
+  padding: var(--space-2xs) var(--space-sm);
+  border-radius: var(--radius-pill);
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  transition: color var(--dur-micro) var(--ease-out), background-color var(--dur-micro) var(--ease-out);
+}
+.tab:hover { color: var(--color-ink); }
+.tab[aria-current] { background: var(--color-paper-2); color: var(--color-ink); box-shadow: inset 0 0 0 var(--rule-hair) var(--color-rule-2); }
+
+a.link { text-decoration: underline; text-decoration-color: var(--color-rule-2); }
+a.link:hover { color: var(--color-accent); }
+
+/* Placement stage: the hero's signature. */
+.seg {
+  display: inline-flex;
+  padding: var(--space-2xs);
+  border: var(--rule-hair) solid var(--color-rule-2);
+  border-radius: var(--radius-pill);
+  background: var(--color-paper-3);
+}
+.seg button {
+  min-height: 36px;
+  padding: 0 var(--space-sm);
+  border-radius: 4px;
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: color var(--dur-micro) var(--ease-out), background-color var(--dur-short) var(--ease-out);
+}
+.seg button:hover { color: var(--color-ink); }
+.seg button[aria-pressed="true"] { background: var(--color-paper-2); color: var(--color-ink); box-shadow: inset 0 0 0 var(--rule-hair) var(--color-rule-2); }
+
+.stage-node {
+  padding: var(--space-md);
+  border: var(--rule-hair) solid var(--color-rule);
+  border-radius: var(--radius-card);
+  background: var(--color-paper);
+  min-width: 0;
+  transition: border-color var(--dur-long) var(--ease-out), background-color var(--dur-long) var(--ease-out);
+}
+.stage-node.is-flagged { border-color: color-mix(in oklab, var(--color-bad) 60%, transparent); background: var(--color-bad-soft); }
+.meter { display: block; height: 6px; border-radius: 999px; background: var(--color-paper-3); overflow: hidden; }
+.meter-fill { display: block; height: 100%; width: 100%; border-radius: inherit; background: var(--color-rule-2); transform-origin: left; transform: scaleX(0); transition: background-color var(--dur-long) var(--ease-out); }
+.meter-fill--kernel { background: var(--color-cool); }
+.is-flagged .meter-fill--kernel { background: var(--color-bad); }
+.slot { height: 44px; border: var(--rule-hair) dashed var(--color-rule-2); border-radius: var(--radius-pill); }
+.pod {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: var(--z-raised);
+  display: inline-flex;
+  align-items: baseline;
+  gap: var(--space-xs);
+  height: 36px;
+  padding: 0 var(--space-sm);
+  align-items: center;
+  border: var(--rule-hair) solid var(--color-accent);
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-soft);
+  color: var(--color-ink);
+  white-space: nowrap;
 }
 
 @keyframes land {
-  from { transform: translateY(-14px); opacity: 0; }
+  from { transform: translateY(-10px); opacity: 0; }
   to { transform: none; opacity: 1; }
 }
-.land {
-  animation: land 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
-}
+.land { animation: land var(--dur-long) var(--ease-out); }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation: none !important;
-    transition: none !important;
-  }
+  .land { animation: none; }
 }

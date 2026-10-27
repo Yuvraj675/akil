@@ -26,20 +26,25 @@ func TestScore_EmptyNode(t *testing.T) {
 	}
 }
 
-func TestScore_UnknownConfidence(t *testing.T) {
+func TestScore_UnknownCandidateStillSeesNoisyNeighbour(t *testing.T) {
 	s := NewScorer(DefaultScorerConfig())
 	candidate := profile.RuntimeProfile{
 		WorkloadKey: "default/Deployment/new-app",
 		Confidence:  profile.ConfidenceUnknown,
 	}
 
-	result := s.Score(candidate, []profile.RuntimeProfile{
-		{WorkloadKey: "default/Deployment/existing", Confidence: profile.ConfidenceHigh},
+	quiet := s.Score(candidate, []profile.RuntimeProfile{
+		{WorkloadKey: "default/Deployment/idle", Confidence: profile.ConfidenceHigh},
+	})
+	noisy := s.Score(candidate, []profile.RuntimeProfile{
+		{WorkloadKey: "default/Deployment/thrasher", CacheMissRate: 900_000, Confidence: profile.ConfidenceHigh},
 	})
 
-	if result.Score != NeutralScore {
-		t.Errorf("unknown confidence should return neutral score (%d), got %d",
-			NeutralScore, result.Score)
+	if quiet.Score != 100 {
+		t.Errorf("idle neighbour should not penalise a new workload, got %d", quiet.Score)
+	}
+	if noisy.Score >= quiet.Score {
+		t.Errorf("cache-thrashing neighbour should lower the score: noisy=%d quiet=%d", noisy.Score, quiet.Score)
 	}
 }
 

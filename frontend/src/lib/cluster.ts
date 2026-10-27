@@ -203,7 +203,8 @@ export function useCluster() {
       try {
         const [p, s, a, lg] = await Promise.all([
           fetch(API + '/api/profiles').then((r) => r.json()),
-          fetch(API + '/api/scale').then((r) => r.json()),
+          // The replica count is optional: a cluster without demo-workload still runs live.
+          fetch(API + '/api/scale').then((r) => (r.ok ? r.json() : { replicas: 0 })).catch(() => ({ replicas: 0 })),
           fetch(API + '/api/autoscale/status').then((r) => r.json()),
           fetch(API + '/api/logs').then((r) => r.json()),
         ]);

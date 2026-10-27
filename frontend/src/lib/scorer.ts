@@ -28,13 +28,15 @@ const DAMPENING: Record<Confidence, number> = { 0: 0, 1: 0.25, 2: 0.75, 3: 1 };
 
 export function score(candidate: Profile, colocated: Profile[]): ScoreResult {
   const empty = { cache: 0, lock: 0, pageFault: 0, ctxSwitch: 0 };
-  if (candidate.confidence === 0) return { score: 50, ...empty, reason: 'No profile for this workload yet' };
+  // A new workload has no profile yet; score it as a quiet one so neighbour pressure still counts.
+  if (candidate.confidence === 0) candidate = { ...candidate, cacheMissRate: 0, lockRatio: 0, pageFaultRate: 0, ctxSwitchRate: 0, confidence: 3 };
   const known = colocated.filter((p) => p.confidence !== 0);
   if (colocated.length === 0) return { score: 100, ...empty, reason: 'Empty node, nothing to interfere with' };
 
   const t = { ...empty };
   for (const p of known) {
-    t.cache += (Math.min(candidate.cacheMissRate, p.cacheMissRate) / MAX.cache) * WEIGHTS.cache;
+    // Neighbour's cache-miss rate directly penalises the candidate node
+    t.cache += (p.cacheMissRate / MAX.cache) * WEIGHTS.cache;
     t.lock += (candidate.lockRatio + p.lockRatio) * WEIGHTS.lock;
     t.pageFault += ((candidate.pageFaultRate + p.pageFaultRate) / MAX.pageFault) * WEIGHTS.pageFault;
     t.ctxSwitch += ((candidate.ctxSwitchRate + p.ctxSwitchRate) / MAX.ctxSwitch) * WEIGHTS.ctxSwitch;

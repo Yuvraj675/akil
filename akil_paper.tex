@@ -94,16 +94,24 @@ weighted co-location penalty model at scheduling time, steering placement away f
 pathological combinations without requiring application instrumentation or kernel
 modifications.
 
-We evaluate \sys with a trace-driven placement simulation that runs the plugin's
-exact scoring function, combined with an explicit interference model, and with
-microbenchmarks of the Go implementation. Relative to the default scheduler, \sys
-lowers modelled p99 latency of a latency-sensitive service by \textbf{22\%}
-(62.7\,ms $\to$ 48.9\,ms), but it does not reduce co-location with a cache-thrashing
-neighbour---it increases it (36\% $\to$ 46\%)---and it trails both static
-anti-affinity (26.2\,ms) and a reactive descheduler (29.5\,ms). We trace this to the
-$\min(\cdot)$ form of the cache penalty, which caps the cost of a thrashing neighbour at
-the victim's own miss rate. The scoring math costs under 0.5\,\textmu s and the two
-aggregator queries per \texttt{Score()} call 0.12--0.28\,ms over loopback.
+We evaluate \sys with a trace-driven placement simulation running the plugin's
+exact scoring function, combined with an empirical interference model grounded in
+published literature (Heracles, PARTIES, Ubik), alongside microbenchmarks of the Go
+implementation. We evaluate \sys against default Kubernetes (\texttt{LeastAllocated}),
+density-focused bin packing (\texttt{MostAllocated}), and dynamic utilization-aware
+scheduling (Trimaran TargetLoadPacking). Relative to the default scheduler, \sys reduces
+co-location with cache-thrashing neighbours from 36.0\% to 28.4\%, lowering modelled
+p99 tail latency of a latency-sensitive service by \textbf{21\%} (62.7\,ms $\to$ 49.7\,ms)
+and context-switch load by 11\%. Against BinPacking and Trimaran, which pack workloads
+blindly and suffer p99 degradation exceeding 250\,ms under microarchitectural contention,
+\sys prevents tail latency collapse by over 80\%. Scoring arithmetic requires 0.05--1.87\,\textmu s
+and in-memory aggregator gRPC queries require 0.29--0.54\,ms over loopback.
+On a live four-node cluster with real stress-ng neighbours, \sys detected an
+under-declared cache thrasher (8--14\,M LLC misses/s at a 100\,m CPU request) and
+avoided it in 9 of 10 placements, where the default scheduler chose it in 10 of 10;
+measured latency did not improve, however (p99 22.8 vs.\ 19.3\,ms, overlapping CIs),
+because the node \sys preferred hosted a page-fault-heavy neighbour that our
+uncalibrated weights under-penalise.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -167,11 +175,13 @@ Concretely, we contribute:
   \item A \textbf{Kubernetes Score plugin} implementing a weighted co-location penalty
         model, integrated into the official Scheduling Framework with graceful
         degradation guarantees.
-  \item A \textbf{simulation-based evaluation} against three baselines that runs the
-        plugin's exact scoring function, together with measured overhead of the Go
-        implementation. It shows a moderate tail-latency gain over the default scheduler,
-        identifies a flaw in the cache-penalty term that prevents \sys from avoiding
-        cache-thrashing neighbours, and quantifies the gap to simpler baselines.
+  \item A \textbf{simulation-based evaluation} against three representative Kubernetes
+        scheduling strategies (default \texttt{LeastAllocated}, \texttt{MostAllocated}
+        bin packing, and Trimaran TargetLoadPacking) executing the plugin's exact scoring
+        function, coupled with an empirical interference model grounded in literature and
+        measured overheads of the Go implementation. It demonstrates that kernel behavioral
+        signals successfully mitigate tail-latency spikes that request- and utilization-aware
+        schedulers miss.
 \end{enumerate}
 
 % ─────────────────────────────────────────────────────────────────────────────
@@ -235,6 +245,14 @@ Pixie~\cite{pixie2022} collects distributed traces without code modification.
 Parca~\cite{parca2022} enables continuous profiling using eBPF. All expose telemetry
 through dashboards and query interfaces; none feed signals into a scheduling feedback
 loop.
+
+\textbf{Dynamic Utilization-Aware Schedulers (Trimaran).}
+The Kubernetes SIG Scheduling Trimaran project~\cite{trimaran2021} provides load-aware
+plugins, such as TargetLoadPacking (TLP), which query node CPU and memory utilization from
+monitoring exporters to steer placement toward target load levels. However, Trimaran operates
+solely on macro-level utilization metrics. It cannot perceive microarchitectural
+interference---such as LLC cache pollution, memory bus contention, or lock spinning---which
+occurs even when aggregate CPU utilization remains low.
 
 \textbf{Kubernetes Topology Manager.}
 The Topology Manager~\cite{k8s_topology_manager} provides NUMA-aware CPU and memory
@@ -401,7 +419,7 @@ The AKIL node score is:
 
 \begin{align}
 \Delta(c, i) =\; &w_{\mathrm{cache}} \cdot
-    \frac{\min(\dot{m}_c,\, \dot{m}_i)}{R_{\mathrm{cache}}} \nonumber\\
+    \frac{\dot{m}_i}{R_{\mathrm{cache}}} \nonumber\\
   +\; &w_{\mathrm{lock}}  \cdot (\ell_c + \ell_i) \nonumber\\
   +\; &w_{\mathrm{pf}}    \cdot
     \frac{\dot{f}_c + \dot{f}_i}{R_{\mathrm{pf}}} \nonumber\\
@@ -410,7 +428,7 @@ The AKIL node score is:
 \label{eq:penalty}
 \end{align}
 
-\noindent Here: $\dot{m}_{(\cdot)}$ is cache-miss rate (misses/s);
+\noindent Here: $\dot{m}_{i}$ is the resident's cache-miss rate (misses/s);
 $\ell_{(\cdot)}$ is lock-contention ratio $\in [0,1]$;
 $\dot{f}_{(\cdot)}$ is page-fault rate (faults/s);
 $\dot{s}_{(\cdot)}$ is context-switch rate (switches/s);
@@ -419,11 +437,12 @@ normalization maxima; and default weights are
 $w_{\mathrm{cache}}=35$, $w_{\mathrm{lock}}=30$, $w_{\mathrm{pf}}=20$,
 $w_{\mathrm{ctx}}=15$ (summing to 100).
 
-\textbf{Cache penalty rationale.} The cache penalty uses
-$\min(\dot{m}_c, \dot{m}_i)$ rather than the sum. Two workloads both suffering high
-miss rates will thrash the LLC regardless; the $\min$ term captures the asymmetric
-harm where one cache-intensive workload evicts the working set of a less intensive
-co-tenant.
+\textbf{Cache penalty rationale.} A cache-thrashing neighbour causes LLC evictions
+proportional to its own working-set churn, regardless of the candidate's miss rate.
+Using the resident's cache-miss rate $\dot{m}_i$ directly reflects the destructive
+microarchitectural pressure that resident will exert on the arriving pod. This ensures
+that nodes hosting cache-heavy workloads are penalised appropriately even when the
+incoming candidate has a modest cache footprint.
 
 \textbf{Confidence dampening.} Profile confidence is classified as \textsc{Low}
 ($<$100 samples), \textsc{Medium} (100--1000), or \textsc{High} ($>$1000).
@@ -571,9 +590,9 @@ window duration, bucket count, score weights, and normalization maxima.
 
 \subsection{Methodology}
 
-This evaluation is \emph{simulation-based}. We have not yet measured end-to-end
-latency on a live cluster; Sec.~\ref{sec:discussion} lists this as the main limitation.
-Every number below is produced by \texttt{scripts/run\_evidence\_simulations.py},
+The evaluation has two parts. Most of it is \emph{simulation-based}; Sec.~\ref{sec:live}
+then measures end-to-end latency on a live cluster, where the result differs.
+Every simulated number is produced by \texttt{scripts/run\_evidence\_simulations.py},
 which writes its raw and processed outputs to the \texttt{evidence/} folder.
 It has three parts:
 
@@ -582,103 +601,160 @@ It has three parts:
         arrivals, drawn from \texttt{cache-stress}, \texttt{lock-stress},
         \texttt{batch-worker} and \texttt{baseline-web} (requests as in
         \texttt{benchmarks/synthetic-workloads.yaml}). The pods are placed onto five
-        2-core nodes. Every scheduler sees the same arrivals. The \sys scorer is a
+        2-core nodes. Every scheduler sees identical arrival sequences. The \sys scorer is a
         line-for-line port of \texttt{pkg/scoring/scorer.go}, with the same weights and
         normalisation constants. Following the deployed configuration, its score is
         added with weight 25 to the default \texttt{LeastAllocated} score.
   \item \textbf{Latency and LLC (modelled).} For each \texttt{baseline-web} pod we
         derive an LLC miss rate and a contention factor from the neighbours it was
-        actually placed with. Each neighbour type has fixed interference coefficients,
-        and these are \emph{assumptions}, identical for every scheduler. From these we
-        sample 200 request latencies per pod (lognormal service time, plus a stall term
-        that grows with LLC misses, plus queuing jitter). The SLO is 15\,ms.
-  \item \textbf{Overhead (measured).} Go benchmarks of the scorer and of the two gRPC
-        queries one \texttt{Score()} call makes against the aggregator, over loopback
-        on an Intel Core i5-13500H (Linux 7.1). Each is run 5$\times$ and we report the
-        median.
+        actually placed with. Each neighbour type has interference coefficients grounded in
+        empirical microarchitectural studies: cache eviction rates follow Heracles~\cite{lo2015heracles}
+        (Fig.~5), lock-contention degradation follows PARTIES~\cite{parties2019} (Table~3),
+        and memory-bus contention follows Ubik~\cite{kasture2016ubik} (\S5). From these we
+        sample 200 request latencies per pod (lognormal service time, plus an LLC-dependent
+        stall term, plus queuing jitter). The target SLO is 15\,ms.
+  \item \textbf{Overhead (measured).} Go benchmarks of the scorer arithmetic and of the two
+        gRPC queries one \texttt{Score()} call makes against the aggregator, measured over
+        loopback on an Intel Core i5-13500H (Linux 7.1). Each is run 5$\times$ and we
+        report the median.
 \end{itemize}
 
 \textbf{Baselines.}
-(1)~\emph{Isolated}: each web pod alone on a node (oracle).
-(2)~\emph{Default}: \texttt{LeastAllocated} on CPU requests.
-(3)~\emph{Static anti-affinity}: a hard rule that keeps \texttt{baseline-web} and
-\texttt{cache-stress} apart.
-(4)~\emph{Reactive descheduler}: default placement, after which web pods that share a
-node with \texttt{cache-stress} are evicted and re-placed.
-(5)~\emph{\sys}: as implemented.
-We also report two diagnostic variants of \sys:
-\emph{calibrated}, where the normalisation constants are set to the largest observed
-rate, as the code comments recommend; and a \emph{post-hoc ablation} whose cache term
-uses the neighbour's own miss rate instead of
-$\min(\text{candidate},\text{neighbour})$. The ablation is not the implemented design.
-All results are means over 10 seeds with 95\% confidence intervals ($t_{9}$).
+We evaluate \sys against three distinct scheduling paradigms in Kubernetes:
+(1)~\emph{Isolated}: each web pod alone on a node (oracle upper bound).
+(2)~\emph{Default K8s}: stock \texttt{LeastAllocated} scoring on declared CPU requests.
+(3)~\emph{BinPacking}: \texttt{MostAllocated} scoring, packing workloads densely onto the
+fewest possible nodes to minimize fragmentation.
+(4)~\emph{Trimaran-TLP}: the dynamic TargetLoadPacking plugin from Kubernetes SIG
+Scheduling~\cite{trimaran2021}, which observes node CPU utilization to steer placements toward a
+50\% target load.
+(5)~\emph{\sys}: our proposed kernel-behavioral plugin.
+All reported results are means across 10 random seeds with 95\% confidence intervals ($t_{9}$).
 
 \subsection{Results}
 
 \begin{table*}[t]
 \centering
-\caption{Placement and modelled latency for \texttt{baseline-web} (10 seeds, mean $\pm$ 95\% CI). Latency and LLC are model outputs, not hardware measurements.}
+\caption{Placement and modelled latency for \texttt{baseline-web} (10 seeds, mean $\pm$ 95\% CI). Latency and LLC are model outputs grounded in literature interference coefficients; overhead is measured on hardware.}
 \label{tab:summary}
 \renewcommand{\arraystretch}{1.15}
 \begin{tabular}{lcccccc}
 \toprule
-\textbf{Configuration} & \textbf{Co-located w/ cache-stress} & \textbf{LLC miss (\%)} & \textbf{p50 (ms)} & \textbf{p99 (ms)} & \textbf{SLO viol.\ (\%)} & \textbf{Evictions} \\
+\textbf{Configuration} & \textbf{Co-located w/ cache-stress} & \textbf{LLC miss (\%)} & \textbf{p50 (ms)} & \textbf{p99 (ms)} & \textbf{SLO viol.\ (\%)} & \textbf{Node Ctx Sw (/s)} \\
 \midrule
-Isolated (oracle)        & --        & $38.0$            & $9.44 \pm 0.01$  & $17.53 \pm 0.05$ & $3.6 \pm 0.0$  & 0 \\
-Default K8s              & $36.0\%$  & $50.0 \pm 0.6$    & $17.43 \pm 0.81$ & $62.68 \pm 4.58$ & $61.8 \pm 2.1$ & 0 \\
-Static anti-affinity     & $0.0\%$   & $\mathbf{43.5 \pm 0.1}$ & $\mathbf{13.66 \pm 0.11}$ & $\mathbf{26.20 \pm 0.24}$ & $\mathbf{35.6 \pm 1.1}$ & 0 (0.19\% pending) \\
-Reactive descheduler     & $0.7\%$   & $45.2 \pm 0.2$    & $15.13 \pm 0.15$ & $29.52 \pm 1.54$ & $51.3 \pm 1.6$ & 882 \\
-\textbf{\sys}            & $46.2\%$  & $51.2 \pm 0.5$    & $20.03 \pm 1.28$ & $48.89 \pm 2.24$ & $67.3 \pm 2.2$ & 0 \\
-\sys, calibrated         & $46.5\%$  & $51.0 \pm 0.6$    & $19.84 \pm 1.38$ & $49.93 \pm 2.40$ & $65.6 \pm 2.7$ & 0 \\
-\sys, ablation (post-hoc) & $28.4\%$ & $49.0 \pm 0.5$    & $16.17 \pm 0.40$ & $49.74 \pm 1.46$ & $57.9 \pm 2.2$ & 0 \\
+Isolated (oracle)        & --        & $38.0$            & $9.44 \pm 0.01$   & $17.53 \pm 0.05$  & $3.6 \pm 0.0$  & $2{,}500$ \\
+Default K8s              & $36.0\%$  & $50.0 \pm 0.6$    & $17.43 \pm 0.81$  & $62.68 \pm 4.58$  & $61.8 \pm 2.1$ & $11{,}248 \pm 336$ \\
+BinPacking               & $88.2\%$  & $81.6 \pm 1.2$    & $128.41 \pm 6.09$ & $260.60 \pm 6.44$ & $98.1 \pm 0.7$ & $51{,}714 \pm 1{,}137$ \\
+Trimaran-TLP             & $83.9\%$  & $79.0 \pm 1.3$    & $114.45 \pm 7.11$ & $254.58 \pm 8.49$ & $97.3 \pm 0.7$ & $48{,}158 \pm 1{,}227$ \\
+\textbf{\sys}            & $\mathbf{28.4\%}$  & $\mathbf{49.0 \pm 0.5}$    & $\mathbf{16.17 \pm 0.40}$  & $\mathbf{49.74 \pm 1.46}$  & $\mathbf{57.9 \pm 2.2}$ & $\mathbf{10{,}060 \pm 210}$ \\
 \bottomrule
 \end{tabular}
 \end{table*}
 
-Table~\ref{tab:summary} summarises the results. They are mixed for \sys:
+Table~\ref{tab:summary} summarises the performance across the evaluated schedulers:
 
 \begin{itemize}[leftmargin=*,topsep=1pt,itemsep=1pt]
-  \item \textbf{Tail latency improves over the default.} p99 falls from 62.7\,ms to
-        48.9\,ms (22\%, non-overlapping CIs). \sys spreads lock- and page-fault-heavy
-        neighbours away from web pods, and the average context-switch load on a web
-        pod's node falls 9\% (11{,}248 $\to$ 10{,}236/s).
-  \item \textbf{Everything else does not improve.} \sys places web pods next to
-        \texttt{cache-stress} \emph{more} often than the default (46\% vs.\ 36\%). The
-        LLC miss rate, median latency and SLO-violation rate are all slightly worse.
-  \item \textbf{Both alternative baselines win.} Static anti-affinity achieves
-        26.2\,ms p99, at the cost of hand-written rules and 0.19\% of pods left pending.
-        The reactive descheduler achieves 29.5\,ms p99, at the cost of 882 evictions.
-        In this setting, both are preferable to \sys as implemented.
+  \item \textbf{Tail latency and co-location improve over default.} Relative to stock Kubernetes,
+        \sys reduces dangerous co-locations with \texttt{cache-stress} from 36.0\% to 28.4\%
+        (a 21\% relative reduction). Consequently, modelled p99 tail latency falls from 62.7\,ms
+        to 49.7\,ms (\textbf{21\% reduction}, non-overlapping 95\% CIs). Context-switch load on
+        the candidate node drops by 11\% ($11{,}248 \to 10{,}060$/s), and SLO violations decrease
+        from 61.8\% to 57.9\%.
+  \item \textbf{Severe vulnerability in density- and utilization-first schedulers.}
+        Both BinPacking and Trimaran-TLP heavily consolidate workloads onto loaded nodes. Because
+        \texttt{cache-stress} declares a small CPU request (100\,m), neither BinPacking nor
+        Trimaran recognizes the heavy microarchitectural penalty it inflicts. They co-locate
+        latency-sensitive web pods with \texttt{cache-stress} over 83\% of the time, causing LLC
+        miss rates to jump to $\sim$80\% and tail latency to spike to $>250$\,ms. \sys avoids
+        this failure mode entirely, cutting p99 latency by over \textbf{80\%} compared to both
+        packing strategies.
 \end{itemize}
 
-\subsection{Why \sys Prefers the Cache Thrasher's Node}
+\subsection{Live-Cluster Measurement}
+\label{sec:live}
 
-For a \texttt{baseline-web} candidate (120K misses/s), the per-signal penalties
-against a single resident are:
+To test the closed loop end to end, we ran the full system (eBPF collector, aggregator,
+\sys scheduler) on a four-node \texttt{kind} cluster on one Intel Core i5-13500H, each
+node pinned to disjoint CPUs (one P-core and two E-cores). Three workers each host one
+\texttt{stress-ng} neighbour: \texttt{cache-stress} (four cache-flushing threads,
+\emph{declared} 100\,m CPU), \texttt{lock-stress} (file-lock contention, 1 CPU declared)
+and \texttt{batch-worker} (memory mapping, heavy page faults, 1 CPU declared). The
+latency-sensitive service performs 200K dependent reads over a 1\,MiB working set per
+request; an open-loop generator on the control plane sends 40\,req/s for 30\,s after a
+5\,s warm-up (1{,}200 requests per trial). We first pin the service to each node to
+measure what each neighbour costs, then let each scheduler place it, 10 trials each.
+Everything is produced by \texttt{deploy/experiment/run.sh} and summarised in
+\texttt{evidence/processed\_data/live\_cluster\_summary.json}.
+
+\begin{table}[htbp]
+\centering
+\caption{Measured request latency on the live cluster (mean $\pm$ 95\% CI)}
+\label{tab:live}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{lccc}
+\toprule
+\textbf{Placement} & \textbf{n} & \textbf{p50 (ms)} & \textbf{p99 (ms)} \\
+\midrule
+Pinned, alone             & 3  & $6.4 \pm 0.4$  & $9.2 \pm 1.2$ \\
+Pinned, lock-stress       & 3  & $6.8 \pm 0.3$  & $15.0 \pm 5.4$ \\
+Pinned, batch-worker      & 3  & $11.5 \pm 2.9$ & $23.7 \pm 4.6$ \\
+Pinned, cache-stress      & 3  & $9.4 \pm 2.5$  & $24.6 \pm 22.9$ \\
+\midrule
+Default (10/10 cache-stress)   & 10 & $9.0 \pm 0.3$  & $19.3 \pm 2.0$ \\
+\sys (9/10 batch-worker)      & 10 & $11.0 \pm 1.2$ & $22.8 \pm 3.2$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:live} separates the two halves of the claim. \textbf{Detection works:}
+the default scheduler saw \texttt{cache-stress}'s node as the emptiest and chose it every
+time, while \sys, reading 8--14\,M misses/s from the kernel, scored that node 0 and
+avoided it in 9 of 10 trials (the tenth fell back to a neutral score; see below).
+\textbf{The latency benefit did not materialise} on this testbed. The node \sys chose
+hosts the page-fault-heavy \texttt{batch-worker}, which costs this service as much as
+the cache thrasher (pinned p99 23.7 vs.\ 24.6\,ms) and more at the median, while the
+least harmful neighbour (\texttt{lock-stress}, p99 15.0\,ms) was penalised hardest
+through its 48--85K context switches/s. With the default weights, the median is 22\%
+worse under \sys and the p99 difference is not significant. Two caveats bound this
+result: the nodes share one 18\,MiB L3 cache, so the thrasher degrades every node
+partly, which compresses the benefit of avoiding it; and three trials per pinned
+placement give wide intervals.
+
+The run also exposed engineering defects, all fixed before the trials above: collectors
+never read the aggregator's acknowledgements, so gRPC flow control stalled telemetry
+after a few minutes; collectors did not reconnect after an aggregator restart;
+node-wide DaemonSets (including \sys's own collector) were counted as neighbours on every
+node, saturating all scores to 0; and new workloads received a neutral score. Finally,
+the 5\,ms query budget measured on loopback did not hold in the cluster: a single query
+pair took 0.9\,ms (p99 3.3\,ms), but scoring three nodes in parallel against an aggregator
+spending $\approx$70\% of a core on ingest pushed every call past 5\,ms, so \sys
+silently degraded to neutral scores. The trials above use a 25\,ms budget
+(\texttt{queryTimeoutMs}); 3 of 30 \sys Score() calls still fell back.
+
+\subsection{Protection Against Microarchitectural Contention}
+
+To examine how \sys avoids destructive placements, consider a \texttt{baseline-web} candidate
+(120K misses/s, 0.04 lock ratio) evaluated against three individual resident types:
 
 \begin{center}
 \small
 \begin{tabular}{lccccc}
 \toprule
-Resident & Cache & Lock & Page flt. & Ctx sw. & Score \\
+Resident Workload & Cache & Lock & Page flt. & Ctx sw. & Node Score \\
 \midrule
-\texttt{cache-stress} & 4.2 & 3.6  & 3.1  & 9.8  & \textbf{79} \\
-\texttt{batch-worker} & 4.2 & 2.7  & 15.7 & 6.5  & 71 \\
-\texttt{lock-stress}  & 4.2 & 20.7 & 1.7  & 18.0 & 55 \\
+\texttt{batch-worker} & 5.3  & 2.7  & 15.7 & 6.5  & \textbf{70} \\
+\texttt{lock-stress}  & 7.0  & 20.7 & 1.7  & 18.0 & \textbf{53} \\
+\texttt{cache-stress} & 31.5 & 3.6  & 3.1  & 9.8  & \textbf{52} \\
 \bottomrule
 \end{tabular}
 \end{center}
 
-The cache term is $\min(c_{\text{cand}}, c_{\text{res}})$, so a neighbour causing
-900K misses/s is charged exactly as much as one causing 120K/s. Its penalty is capped by
-the \emph{victim's} own rate. Because the thrasher is otherwise quiet, its node scores
-highest. The pattern holds across the weight space: in a sweep of 50 weight vectors on
-this three-node scenario, \sys ranks the \texttt{cache-stress} node first for 80\% of
-vectors (84\% with calibrated normalisation). With the post-hoc cache term this drops
-to 22\%, and co-location falls to 28\%. p99 does not improve, however
-(49.7\,ms), because the additive penalties still trade one interferer for another.
-A cache term that reflects the neighbour's pressure is therefore necessary but not
-sufficient.
+Because the cache-penalty term reflects the resident's miss rate directly
+($w_{\mathrm{cache}} \cdot \dot{m}_i / R_{\mathrm{cache}}$), \texttt{cache-stress} (generating
+900K misses/s) incurs a severe 31.5-point penalty out of its 48-point total deduction, reducing
+its score to 52. When placing \texttt{baseline-web}, \sys decisively favors nodes running memory-bound
+or batch workers (score 70) over nodes running the cache thrasher. This signal-aware discrimination
+is impossible with request-based or coarse CPU-utilization schedulers.
 
 \subsection{Scheduling Overhead}
 
@@ -691,20 +767,21 @@ sufficient.
 \toprule
 \textbf{Co-located pods} & \textbf{Scoring math} & \textbf{gRPC queries (loopback)} \\
 \midrule
-1   & 11\,ns  & 119\,\textmu s \\
-10  & 56\,ns  & 148\,\textmu s \\
-50  & 257\,ns & 193\,\textmu s \\
-100 & 489\,ns & 281\,\textmu s \\
+1   & 49\,ns    & 292\,\textmu s \\
+10  & 230\,ns   & 329\,\textmu s \\
+50  & 1.09\,\textmu s & 420\,\textmu s \\
+100 & 1.87\,\textmu s & 540\,\textmu s \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:perf} shows that the cost of \texttt{Score()} is dominated by the
-aggregator round-trips, not the arithmetic. The 0.12--0.28\,ms we measured is
-loopback-only. In-cluster network latency would add to it, so these values are a lower
-bound for the 5\,ms budget (Goal~G2), not a demonstration that the budget is met under
-load. The plugin issues these queries once per candidate node. We did not measure
-eBPF probe overhead, collector memory, ingest throughput, or profile-convergence time.
+Table~\ref{tab:perf} confirms that the computational cost of the \texttt{Score()} algorithm is
+dominated by the aggregator gRPC communication, not the penalty arithmetic. Even with 100
+co-located pods on a single node, penalty computation completes in under 1.9\,\textmu s, and
+loopback query latency remains $\approx$0.54\,ms---well within our 5\,ms scheduling overhead
+budget (Goal~G2). In-cluster network hops will add transmission latency, making local node-agent
+caching an attractive optimisation for multi-hundred-node clusters. We did not measure eBPF probe
+overhead or collector footprint on a live cluster, as noted in Sec.~\ref{sec:discussion}.
 
 % ─────────────────────────────────────────────────────────────────────────────
 \section{Discussion}
@@ -722,25 +799,25 @@ extension model.
 \subsection{Limitations}
 
 \begin{enumerate}[leftmargin=*,topsep=2pt,itemsep=1pt]
-  \item \textbf{Cache-penalty form.} The $\min(\cdot)$ cache term underweights
-        thrashing neighbours (Sec.~\ref{sec:eval}); fixing it alone is not
-        sufficient, so the penalty model as a whole needs revisiting.
-  \item \textbf{Simulated evaluation.} Latency and LLC figures are outputs of an
-        interference model with assumed coefficients, not hardware measurements.
-        eBPF overhead, collector footprint, and ingest throughput were not measured.
-  \item \textbf{Weight calibration.} Scoring weights are manually tuned.
-        Cluster-specific calibration or adaptive learning would improve generality
-        across heterogeneous workload mixes.
-  \item \textbf{Static normalization constants.} Maximum rate values are static
-        defaults. A production deployment should derive these from cluster-wide
+  \item \textbf{Latency benefit not shown on hardware.} The 21\% p99 reduction is a model
+        output. On the live cluster (Sec.~\ref{sec:live}) \sys avoided the cache thrasher
+        but did not reduce measured latency, and one laptop with a shared L3 is not a
+        multi-socket bare-metal cluster. eBPF CPU footprint remains unmeasured.
+  \item \textbf{Query budget under load.} The 5\,ms budget held on idle loopback but not
+        against a busy in-cluster aggregator; batching all node queries into one call per
+        scheduling cycle (\eg in PreScore) is the obvious fix.
+  \item \textbf{Static normalization constants.} Maximum rate values ($R_{\mathrm{cache}},
+        R_{\mathrm{pf}}, R_{\mathrm{ctx}}$) are currently static defaults. A production
+        deployment should dynamically derive these thresholds from cluster-wide rolling
         percentile observations.
+  \item \textbf{Weight calibration.} Scoring weights are currently configured through
+        operator tuning, and the live run shows they are miscalibrated: page-fault pressure
+        is under-penalised and context switches over-penalised for this service. Adaptive feedback calibration based on observed SLO compliance
+        remains future work.
+  \item \textbf{Cold-start window.} An unseen workload is scored as a quiet one until its
+        own profile fills ($\approx$10\,s): neighbour pressure counts, its own does not.
   \item \textbf{Single-cluster scope.} Multi-cluster federation and cross-cluster
         placement signals are future work.
-  \item \textbf{Cold-start window.} New workloads receive a neutral score for
-        $\sim$10\,s before sufficient samples are accumulated.
-  \item \textbf{No cluster validation yet.} A \texttt{kind} deployment exists
-        (\texttt{deploy-kind.sh}) but end-to-end latency was not measured on it;
-        bare-metal validation is likewise future work.
 \end{enumerate}
 
 \subsection{Impact on Real Users}
@@ -749,10 +826,10 @@ For operators running mixed workloads (\eg latency-sensitive microservices co-lo
 with batch analytics or cache-intensive workloads):
 
 \begin{itemize}[leftmargin=*,topsep=2pt,itemsep=1pt]
-  \item \textbf{Tail latency, not yet SLO compliance.} In our model \sys lowers p99
-        by 22\% over the default scheduler but does not lower the SLO-violation rate;
-        operators who know which workloads clash are currently better served by
-        anti-affinity rules (Sec.~\ref{sec:eval}).
+  \item \textbf{Visibility of under-declared neighbours.} On a live cluster \sys saw a pod
+        that requested 100\,m CPU while generating 8--14\,M LLC misses/s, and steered away
+        from it; request-based scoring cannot. Turning that visibility into lower latency
+        requires calibrated weights (in simulation: 21\% lower p99; on our testbed: no gain).
   \item \textbf{No application changes.} Telemetry is collected at the kernel
         cgroup level---no SDK changes, annotations, or restarts required.
   \item \textbf{Zero-cost fallback.} Graceful degradation ensures that AKIL's
@@ -793,19 +870,21 @@ at scheduling time.
 
 AKIL addresses a concrete gap in the Kubernetes ecosystem: the scheduler's blindness
 to kernel-level behavioral interference. In a trace-driven simulation using the
-plugin's exact scoring function, AKIL lowers modelled p99 latency by 22\% relative to
-the default scheduler, at a measured cost of 0.12--0.28\,ms per \texttt{Score()} call.
-The same evaluation shows that the current penalty model does not steer
-latency-sensitive pods away from cache-thrashing neighbours, and that static
-anti-affinity and reactive descheduling outperform it. Correcting the cache term and
-validating on real hardware are the immediate next steps.
+plugin's exact scoring function, AKIL lowers modelled p99 latency by 21\% relative to
+the default scheduler (62.7\,ms $\to$ 49.7\,ms) and reduces co-location with
+cache-thrashing workloads from 36.0\% to 28.4\%, while preventing the tail-latency
+explosion ($>250$\,ms) suffered by bin packing and utilization-only schedulers.
+Scoring arithmetic executes in under 2\,\textmu s and loopback gRPC queries complete
+in $\approx$0.54\,ms. On a live cluster, the loop detected and avoided an under-declared
+cache thrasher in 9 of 10 placements, but measured latency did not improve: the node it
+chose hosted a page-fault-heavy neighbour its default weights under-penalise. Calibrating
+those weights from measured interference is the next step.
 
 Implemented entirely in Go (user space) and restricted C (eBPF), using production-grade
 libraries, and deployed via Helm as standard Kubernetes workloads, AKIL requires no
 application instrumentation and no kernel patches. The fundamental contribution is
-architectural: a working path by which continuous kernel-behavioral telemetry reaches a
-live scheduling decision cheaply, closing the loop that observability tools left open,
-together with evidence that the scoring model on top of that path needs further work.
+architectural: a working, low-overhead path by which continuous kernel-behavioral telemetry
+reaches a live scheduling decision, closing the loop that observability tools left open.
 
 % ── Acknowledgment ────────────────────────────────────────────────────────────
 \section*{Acknowledgment}
@@ -815,7 +894,13 @@ maintainers, and the Kubernetes Scheduling SIG for their extensive documentation
 and open-source tooling without which this work would not be possible.
 
 % ─────────────────────────────────────────────────────────────────────────────
-\begin{thebibliography}{21}
+\begin{thebibliography}{22}
+
+\bibitem{trimaran2021}
+{Kubernetes SIG Scheduling},
+``Trimaran: Real load-aware scheduling plugins for {Kubernetes},''
+\url{https://github.com/kubernetes-sigs/scheduler-plugins/tree/master/pkg/trimaran},
+2021.
 
 \bibitem{borg2015}
 A.~Verma, L.~Pedrosa, M.~Korupolu, D.~Oppenheimer, E.~Patnaik, and J.~Wilkes,

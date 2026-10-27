@@ -1,0 +1,76 @@
+# AKIL runs as a second scheduler ("akil-scheduler"); pods opt in via spec.schedulerName.
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: akil-scheduler-config
+  namespace: kube-system
+data:
+  config.yaml: |
+    apiVersion: kubescheduler.config.k8s.io/v1
+    kind: KubeSchedulerConfiguration
+    leaderElection:
+      leaderElect: false
+    profiles:
+      - schedulerName: akil-scheduler
+        plugins:
+          score:
+            enabled:
+              - name: AkilScore
+                weight: 25
+        pluginConfig:
+          - name: AkilScore
+            args:
+              aggregatorAddress: "akil-aggregator.akil-system.svc.cluster.local:50051"
+              # Measured in-cluster: ~0.9 ms per query pair, but 3 nodes are scored in
+              # parallel against a busy aggregator and the queued tail passes 5 ms.
+              queryTimeoutMs: 25
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: akil-scheduler
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: akil-scheduler-as-kube-scheduler
+roleRef: {apiGroup: rbac.authorization.k8s.io, kind: ClusterRole, name: system:kube-scheduler}
+subjects: [{kind: ServiceAccount, name: akil-scheduler, namespace: kube-system}]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: akil-scheduler-as-volume-scheduler
+roleRef: {apiGroup: rbac.authorization.k8s.io, kind: ClusterRole, name: system:volume-scheduler}
+subjects: [{kind: ServiceAccount, name: akil-scheduler, namespace: kube-system}]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: akil-scheduler-extension-apiserver-authentication-reader
+  namespace: kube-system
+roleRef: {apiGroup: rbac.authorization.k8s.io, kind: Role, name: extension-apiserver-authentication-reader}
+subjects: [{kind: ServiceAccount, name: akil-scheduler, namespace: kube-system}]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: akil-scheduler
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: akil-scheduler}}
+  template:
+    metadata: {labels: {app: akil-scheduler}}
+    spec:
+      serviceAccountName: akil-scheduler
+      nodeSelector: {node-role.kubernetes.io/control-plane: ""}
+      tolerations: [{key: node-role.kubernetes.io/control-plane, effect: NoSchedule}]
+      containers:
+        - name: scheduler
+          image: akil-scheduler:exp
+          imagePullPolicy: Never
+          args: ["--config=/etc/akil/config.yaml", "--v=2"]
+          volumeMounts: [{name: config, mountPath: /etc/akil}]
+      volumes: [{name: config, configMap: {name: akil-scheduler-config}}]

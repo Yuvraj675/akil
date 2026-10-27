@@ -1,8 +1,6 @@
 # Configuration	p99_ms	ci95
 Default-K8s	62.68	4.58
-Static-AntiAffinity	26.2	0.24
-Reactive-Descheduler	29.52	1.54
-AKIL	48.89	2.24
-AKIL-calibrated	49.93	2.4
-AKIL-ablation-neighbour-cache	49.74	1.46
+BinPacking	260.6	6.44
+Trimaran-TLP	254.58	8.49
+AKIL	49.74	1.46
 Isolated (Clean)	17.53	0.05

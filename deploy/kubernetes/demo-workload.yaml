@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: demo-workload
+  labels:
+    akil.io/autoscale: "true"
   namespace: default
 spec:
   replicas: 1
@@ -21,4 +23,6 @@ spec:
         resources:
           requests:
             cpu: 100m
-            memory: 128Mi
+            memory: 32Mi
+          limits:
+            memory: 64Mi

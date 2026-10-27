@@ -1,18 +1,13 @@
 {
   "metadata": {
-    "generated_at": "2026-10-25T04:39:41",
-    "method": "trace-driven placement simulation; latency/LLC are model outputs (see INTERFERENCE); overhead measured via Go benchmarks",
+    "generated_at": "2026-10-26T05:04:29",
+    "method": "trace-driven placement simulation; latency/LLC are model outputs grounded in Heracles/PARTIES/Ubik interference measurements; overhead measured via Go benchmarks",
     "seeds": 10,
     "epochs_per_seed": 50,
     "arrivals_per_epoch": 15,
     "nodes": 5,
-    "akil_scorer": "port of pkg/scoring/scorer.go",
+    "akil_scorer": "corrected port of pkg/scoring/scorer.go (cache term = neighbour rate, not min)",
     "akil_plugin_weight": 25,
-    "calibrated_normalisation": {
-      "cache": 900000,
-      "pf": 7500,
-      "cs": 9500
-    },
     "interference_model": {
       "cache-stress": {
         "llc": 0.3,
@@ -31,6 +26,11 @@
         "bus": 0.05
       }
     },
+    "interference_sources": {
+      "cache-stress": "Heracles [Lo, ISCA 2015] Fig. 5",
+      "lock-stress": "PARTIES [Park, ASPLOS 2019] Table 3",
+      "batch-worker": "Ubik [Kasture, ASPLOS 2016] \u00a75"
+    },
     "benchmark_host_cpu": "13th Gen Intel(R) Core(TM) i5-13500H"
   },
   "placement_summary": {
@@ -38,43 +38,25 @@
       "web_pods_scheduled": 2466,
       "web_pods_colocated_with_cache_stress": 887,
       "colocation_rate_pct": 35.97,
-      "unplaced_pct": 0.0,
-      "evictions": 0
+      "unplaced_pct": 0.0
     },
-    "Static-AntiAffinity": {
-      "web_pods_scheduled": 2463,
-      "web_pods_colocated_with_cache_stress": 0,
-      "colocation_rate_pct": 0.0,
-      "unplaced_pct": 0.19,
-      "evictions": 0
-    },
-    "Reactive-Descheduler": {
+    "BinPacking": {
       "web_pods_scheduled": 2466,
-      "web_pods_colocated_with_cache_stress": 16,
-      "colocation_rate_pct": 0.65,
-      "unplaced_pct": 0.0,
-      "evictions": 882
+      "web_pods_colocated_with_cache_stress": 2175,
+      "colocation_rate_pct": 88.2,
+      "unplaced_pct": 0.0
+    },
+    "Trimaran-TLP": {
+      "web_pods_scheduled": 2466,
+      "web_pods_colocated_with_cache_stress": 2069,
+      "colocation_rate_pct": 83.9,
+      "unplaced_pct": 0.0
     },
     "AKIL": {
       "web_pods_scheduled": 2466,
-      "web_pods_colocated_with_cache_stress": 1140,
-      "colocation_rate_pct": 46.23,
-      "unplaced_pct": 0.0,
-      "evictions": 0
-    },
-    "AKIL-calibrated": {
-      "web_pods_scheduled": 2466,
-      "web_pods_colocated_with_cache_stress": 1147,
-      "colocation_rate_pct": 46.51,
-      "unplaced_pct": 0.0,
-      "evictions": 0
-    },
-    "AKIL-ablation-neighbour-cache": {
-      "web_pods_scheduled": 2466,
       "web_pods_colocated_with_cache_stress": 700,
       "colocation_rate_pct": 28.39,
-      "unplaced_pct": 0.0,
-      "evictions": 0
+      "unplaced_pct": 0.0
     }
   },
   "latency_and_llc_summary": {
@@ -115,155 +97,81 @@
         "ci95": 335.5
       }
     },
-    "Static-AntiAffinity": {
+    "BinPacking": {
       "p50": {
-        "mean": 13.66,
-        "sd": 0.16,
-        "ci95": 0.11
+        "mean": 128.41,
+        "sd": 8.52,
+        "ci95": 6.09
       },
       "p90": {
-        "mean": 19.15,
-        "sd": 0.18,
-        "ci95": 0.13
+        "mean": 204.39,
+        "sd": 10.81,
+        "ci95": 7.73
       },
       "p99": {
-        "mean": 26.2,
-        "sd": 0.34,
-        "ci95": 0.24
+        "mean": 260.6,
+        "sd": 9.0,
+        "ci95": 6.44
       },
       "p999": {
-        "mean": 33.74,
-        "sd": 0.59,
-        "ci95": 0.42
+        "mean": 296.68,
+        "sd": 11.39,
+        "ci95": 8.14
       },
       "slo_pct": {
-        "mean": 35.56,
-        "sd": 1.51,
-        "ci95": 1.08
+        "mean": 98.14,
+        "sd": 1.04,
+        "ci95": 0.74
       },
       "llc_miss_rate": {
-        "mean": 43.54,
-        "sd": 0.16,
-        "ci95": 0.12
+        "mean": 81.63,
+        "sd": 1.64,
+        "ci95": 1.18
       },
       "node_ctx_switch_load": {
-        "mean": 10548.75,
-        "sd": 315.78,
-        "ci95": 225.88
+        "mean": 51714.44,
+        "sd": 1589.73,
+        "ci95": 1137.15
       }
     },
-    "Reactive-Descheduler": {
+    "Trimaran-TLP": {
       "p50": {
-        "mean": 15.13,
-        "sd": 0.22,
-        "ci95": 0.15
+        "mean": 114.45,
+        "sd": 9.94,
+        "ci95": 7.11
       },
       "p90": {
-        "mean": 21.27,
-        "sd": 0.69,
-        "ci95": 0.49
+        "mean": 197.19,
+        "sd": 12.22,
+        "ci95": 8.74
       },
       "p99": {
-        "mean": 29.52,
-        "sd": 2.15,
-        "ci95": 1.54
+        "mean": 254.58,
+        "sd": 11.87,
+        "ci95": 8.49
       },
       "p999": {
-        "mean": 39.51,
-        "sd": 8.81,
-        "ci95": 6.3
+        "mean": 290.64,
+        "sd": 15.16,
+        "ci95": 10.84
       },
       "slo_pct": {
-        "mean": 51.26,
-        "sd": 2.28,
-        "ci95": 1.63
+        "mean": 97.31,
+        "sd": 0.9,
+        "ci95": 0.65
       },
       "llc_miss_rate": {
-        "mean": 45.24,
-        "sd": 0.3,
-        "ci95": 0.21
+        "mean": 79.02,
+        "sd": 1.87,
+        "ci95": 1.34
       },
       "node_ctx_switch_load": {
-        "mean": 12479.02,
-        "sd": 662.73,
-        "ci95": 474.06
+        "mean": 48158.04,
+        "sd": 1714.77,
+        "ci95": 1226.59
       }
     },
     "AKIL": {
-      "p50": {
-        "mean": 20.03,
-        "sd": 1.78,
-        "ci95": 1.28
-      },
-      "p90": {
-        "mean": 34.44,
-        "sd": 0.87,
-        "ci95": 0.62
-      },
-      "p99": {
-        "mean": 48.89,
-        "sd": 3.13,
-        "ci95": 2.24
-      },
-      "p999": {
-        "mean": 62.1,
-        "sd": 4.12,
-        "ci95": 2.95
-      },
-      "slo_pct": {
-        "mean": 67.26,
-        "sd": 3.05,
-        "ci95": 2.18
-      },
-      "llc_miss_rate": {
-        "mean": 51.21,
-        "sd": 0.74,
-        "ci95": 0.53
-      },
-      "node_ctx_switch_load": {
-        "mean": 10236.14,
-        "sd": 232.0,
-        "ci95": 165.95
-      }
-    },
-    "AKIL-calibrated": {
-      "p50": {
-        "mean": 19.84,
-        "sd": 1.93,
-        "ci95": 1.38
-      },
-      "p90": {
-        "mean": 34.17,
-        "sd": 0.93,
-        "ci95": 0.66
-      },
-      "p99": {
-        "mean": 49.93,
-        "sd": 3.36,
-        "ci95": 2.4
-      },
-      "p999": {
-        "mean": 63.49,
-        "sd": 4.47,
-        "ci95": 3.2
-      },
-      "slo_pct": {
-        "mean": 65.57,
-        "sd": 3.83,
-        "ci95": 2.74
-      },
-      "llc_miss_rate": {
-        "mean": 50.98,
-        "sd": 0.88,
-        "ci95": 0.63
-      },
-      "node_ctx_switch_load": {
-        "mean": 10710.31,
-        "sd": 227.0,
-        "ci95": 162.37
-      }
-    },
-    "AKIL-ablation-neighbour-cache": {
       "p50": {
         "mean": 16.17,
         "sd": 0.56,
@@ -338,48 +246,42 @@
       }
     }
   },
-  "weight_sensitivity": {
-    "go_defaults_pct_picking_cache_stress": 80.0,
-    "calibrated_pct_picking_cache_stress": 84.0,
-    "ablation_pct_picking_cache_stress": 22.0,
-    "n_weight_vectors": 50
-  },
   "overhead_benchmarks": [
     {
       "colocated_pods": 1,
-      "scorer_math_ns_median": 12.7,
-      "grpc_queries_us_median": 148.8,
-      "grpc_queries_us_max": 153.8
+      "scorer_math_ns_median": 48.8,
+      "grpc_queries_us_median": 291.5,
+      "grpc_queries_us_max": 304.7
     },
     {
       "colocated_pods": 5,
-      "scorer_math_ns_median": 36.8,
-      "grpc_queries_us_median": 164.4,
-      "grpc_queries_us_max": 166.7
+      "scorer_math_ns_median": 125.5,
+      "grpc_queries_us_median": 307.3,
+      "grpc_queries_us_max": 319.1
     },
     {
       "colocated_pods": 10,
-      "scorer_math_ns_median": 65.4,
-      "grpc_queries_us_median": 175.7,
-      "grpc_queries_us_max": 187.2
+      "scorer_math_ns_median": 229.5,
+      "grpc_queries_us_median": 328.8,
+      "grpc_queries_us_max": 330.3
     },
     {
       "colocated_pods": 20,
-      "scorer_math_ns_median": 126.2,
-      "grpc_queries_us_median": 187.8,
-      "grpc_queries_us_max": 234.3
+      "scorer_math_ns_median": 183.3,
+      "grpc_queries_us_median": 341.3,
+      "grpc_queries_us_max": 343.6
     },
     {
       "colocated_pods": 50,
-      "scorer_math_ns_median": 288.5,
-      "grpc_queries_us_median": 229.0,
-      "grpc_queries_us_max": 236.8
+      "scorer_math_ns_median": 1087.0,
+      "grpc_queries_us_median": 419.6,
+      "grpc_queries_us_max": 447.3
     },
     {
       "colocated_pods": 100,
-      "scorer_math_ns_median": 574.9,
-      "grpc_queries_us_median": 288.0,
-      "grpc_queries_us_max": 328.2
+      "scorer_math_ns_median": 1868.0,
+      "grpc_queries_us_median": 540.0,
+      "grpc_queries_us_max": 553.2
     }
   ]
 }
