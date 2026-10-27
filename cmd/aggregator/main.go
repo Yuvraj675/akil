@@ -126,6 +126,7 @@ func main() {
 			return
 		}
 		
+		markSimulated(req.WorkloadKey)
 		wp := store.GetOrCreate(req.WorkloadKey)
 		wp.RecordBulk(req.PageFaults, req.CacheMisses, req.CtxSwitches, req.LockNs, req.NodeName)
 		
