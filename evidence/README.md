@@ -13,7 +13,7 @@ The run takes 1–2 minutes. It requires Go to be installed for the hardware ove
 | Part | Status | How |
 |---|---|---|
 | Pod placement | **Simulated** | 10 seeds × 50 epochs × 15 arrivals on five 2-core nodes. The AKIL scorer is a line-for-line port of `pkg/scoring/scorer.go` (corrected cache term: neighbour's rate), combined with `LeastAllocated` at plugin weight 25 (`deploy/kubernetes/scheduler-config.yaml`). |
-| Latency, LLC miss rate | **Modelled** | Derived per web pod from the neighbours it was actually placed with. Interference coefficients are grounded in empirical microarchitectural literature: Heracles [Lo et al., ISCA 2015] Fig. 5 (LLC degradation), PARTIES [Park et al., ASPLOS 2019] Table 3 (lock contention), and Ubik [Kasture & Sanchez, ASPLOS 2016] §5 (memory-bus contention). |
+| Latency, LLC miss rate | **Modelled** | Derived per web pod from the neighbours it was actually placed with. Interference coefficients are grounded in empirical microarchitectural literature: Heracles [Lo et al., ISCA 2015] Fig. 5 (LLC degradation), PARTIES [Chen et al., ASPLOS 2019] Table 3 (lock contention), and Ubik [Kasture & Sanchez, ASPLOS 2014] §5 (memory-bus contention). |
 | Scoring overhead | **Measured** | Go benchmarks: `BenchmarkScore` (scorer maths) and `BenchmarkScoreQueries` (real gRPC queries to the in-memory aggregator over loopback on an Intel Core i5-13500H). |
 | Live-cluster latency and placement | **Measured** | `deploy/experiment/run.sh` on a 4-node kind cluster, real stress-ng neighbours, then `scripts/summarize_live_runs.py`. |
 | eBPF overhead, collector footprint, ingest rate | **Not measured** | Future work on bare-metal clusters. |

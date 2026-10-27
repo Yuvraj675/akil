@@ -28,8 +28,8 @@
     },
     "interference_sources": {
       "cache-stress": "Heracles [Lo, ISCA 2015] Fig. 5",
-      "lock-stress": "PARTIES [Park, ASPLOS 2019] Table 3",
-      "batch-worker": "Ubik [Kasture, ASPLOS 2016] \u00a75"
+      "lock-stress": "PARTIES [Chen, ASPLOS 2019] Table 3",
+      "batch-worker": "Ubik [Kasture, ASPLOS 2014] \u00a75"
     },
     "benchmark_host_cpu": "13th Gen Intel(R) Core(TM) i5-13500H"
   },

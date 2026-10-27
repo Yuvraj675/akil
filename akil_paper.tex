@@ -4,7 +4,7 @@
 %% Author : Yuvraj Gupta  |  Reg. No. 24BCE0797
 %% Affiliation : VIT Vellore
 %% ─────────────────────────────────────────────────────────────────────────────
-\documentclass[10pt,conference]{IEEEtran}
+\documentclass[10pt,conference,a4paper]{IEEEtran}
 
 % ── Font & encoding ───────────────────────────────────────────────────────────
 \usepackage[T1]{fontenc}
@@ -57,61 +57,38 @@
 \begin{document}
 
 % ── Title ─────────────────────────────────────────────────────────────────────
-\title{AKIL: Adaptive Kernel Intelligence Layer for\\
-       eBPF-Driven, Behaviorally-Aware Kubernetes Scheduling}
+\title{Adaptive Kernel Intelligence Layer for\\
+       eBPF-Driven Behavior-Aware Kubernetes Scheduling}
 
 % ── Author block (IEEE style) ─────────────────────────────────────────────────
 \author{
   \IEEEauthorblockN{Yuvraj Gupta}
-  \IEEEauthorblockA{
-    Registration No.: 24BCE0797\\
-    School of Computer Science and Engineering\\
-    VIT Vellore, India\\
-  }
+  \IEEEauthorblockA{\textit{School of Computer Science and Engineering} \\
+    \textit{Vellore Institute of Technology}\\
+    Vellore, India \\
+    yuvraj.gupta2024@vitstudent.ac.in}
 }
 
 \maketitle
 
 % ── Abstract ──────────────────────────────────────────────────────────────────
 \begin{abstract}
-Modern container orchestrators, such as Kubernetes, schedule workloads using only
-coarse-grained resource requests (\eg CPU cores, memory bytes). This approach is
-oblivious to how workloads \emph{actually behave} at the kernel level---their cache
-footprint, lock-contention intensity, page-fault rate, and context-switch frequency.
-Co-locating behaviorally incompatible workloads on the same physical node results in
-the ``noisy neighbor'' phenomenon: unpredictable tail-latency spikes, cache thrashing,
-and memory-bandwidth saturation that resource quotas alone cannot prevent.
-
-We present \textbf{AKIL} (\textbf{A}daptive \textbf{K}ernel \textbf{I}ntelligence
-\textbf{L}ayer), a closed-loop scheduling architecture that bridges the gap between
-kernel-level telemetry and live placement decisions. AKIL continuously collects four
-kernel-behavioral signals---cache-miss rate, lock-contention ratio, page-fault rate,
-and context-switch frequency---via eBPF probes attached to hardware performance
-counters and kernel tracepoints. These signals are aggregated per-workload in a
-lock-efficient, in-memory sliding-window store and exposed to a custom \emph{Score}
-plugin integrated into the Kubernetes Scheduling Framework. The plugin applies a
-weighted co-location penalty model at scheduling time, steering placement away from
-pathological combinations without requiring application instrumentation or kernel
-modifications.
-
-We evaluate \sys with a trace-driven placement simulation running the plugin's
-exact scoring function, combined with an empirical interference model grounded in
-published literature (Heracles, PARTIES, Ubik), alongside microbenchmarks of the Go
-implementation. We evaluate \sys against default Kubernetes (\texttt{LeastAllocated}),
-density-focused bin packing (\texttt{MostAllocated}), and dynamic utilization-aware
-scheduling (Trimaran TargetLoadPacking). Relative to the default scheduler, \sys reduces
-co-location with cache-thrashing neighbours from 36.0\% to 28.4\%, lowering modelled
-p99 tail latency of a latency-sensitive service by \textbf{21\%} (62.7\,ms $\to$ 49.7\,ms)
-and context-switch load by 11\%. Against BinPacking and Trimaran, which pack workloads
-blindly and suffer p99 degradation exceeding 250\,ms under microarchitectural contention,
-\sys prevents tail latency collapse by over 80\%. Scoring arithmetic requires 0.05--1.87\,\textmu s
-and in-memory aggregator gRPC queries require 0.29--0.54\,ms over loopback.
-On a live four-node cluster with real stress-ng neighbours, \sys detected an
-under-declared cache thrasher (8--14\,M LLC misses/s at a 100\,m CPU request) and
-avoided it in 9 of 10 placements, where the default scheduler chose it in 10 of 10;
-measured latency did not improve, however (p99 22.8 vs.\ 19.3\,ms, overlapping CIs),
-because the node \sys preferred hosted a page-fault-heavy neighbour that our
-uncalibrated weights under-penalise.
+Kubernetes places containers using only their declared resource requests, so it cannot
+see how a workload behaves inside the kernel. A pod that requests little CPU can still
+thrash the shared cache and slow every service placed beside it. We present AKIL, the
+Adaptive Kernel Intelligence Layer, which closes this gap inside the standard Kubernetes
+Scheduling Framework. eBPF probes collect four per-container kernel signals: cache misses,
+lock contention, page faults and context switches. An in-memory sliding-window aggregator
+turns them into runtime profiles, and a Score plugin penalizes nodes whose residents would
+interfere with an incoming pod. AKIL needs no application changes or kernel patches and
+falls back to neutral scores when telemetry is unavailable. In a simulation that runs the
+plugin's exact scoring code with literature-derived interference coefficients, AKIL lowers
+modeled tail latency by 21 percent relative to the default scheduler. On a live four-node
+cluster, AKIL detected and avoided an under-declared cache-thrashing neighbor in nine of
+ten placements, whereas the default scheduler chose it every time, but measured latency
+did not improve because the node it preferred hosted a page-fault-heavy neighbor that the
+default weights under-penalize. Scoring takes under two microseconds and its aggregator
+queries about one millisecond.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -734,9 +711,12 @@ silently degraded to neutral scores. The trials above use a 25\,ms budget
 \subsection{Protection Against Microarchitectural Contention}
 
 To examine how \sys avoids destructive placements, consider a \texttt{baseline-web} candidate
-(120K misses/s, 0.04 lock ratio) evaluated against three individual resident types:
+(120K misses/s, 0.04 lock ratio) evaluated against three individual resident types (Table~\ref{tab:penalty}).
 
-\begin{center}
+\begin{table}[htbp]
+\centering
+\caption{Penalty breakdown for \texttt{baseline-web} against each resident type}
+\label{tab:penalty}
 \small
 \begin{tabular}{lccccc}
 \toprule
@@ -747,7 +727,7 @@ Resident Workload & Cache & Lock & Page flt. & Ctx sw. & Node Score \\
 \texttt{cache-stress} & 31.5 & 3.6  & 3.1  & 9.8  & \textbf{52} \\
 \bottomrule
 \end{tabular}
-\end{center}
+\end{table}
 
 Because the cache-penalty term reflects the resident's miss rate directly
 ($w_{\mathrm{cache}} \cdot \dot{m}_i / R_{\mathrm{cache}}$), \texttt{cache-stress} (generating
@@ -894,117 +874,72 @@ maintainers, and the Kubernetes Scheduling SIG for their extensive documentation
 and open-source tooling without which this work would not be possible.
 
 % ─────────────────────────────────────────────────────────────────────────────
-\begin{thebibliography}{22}
-
-\bibitem{trimaran2021}
-{Kubernetes SIG Scheduling},
-``Trimaran: Real load-aware scheduling plugins for {Kubernetes},''
-\url{https://github.com/kubernetes-sigs/scheduler-plugins/tree/master/pkg/trimaran},
-2021.
-
-\bibitem{borg2015}
-A.~Verma, L.~Pedrosa, M.~Korupolu, D.~Oppenheimer, E.~Patnaik, and J.~Wilkes,
-``Large-scale cluster management at {Google} with {Borg},''
-in \emph{Proc. 10th European Conf. on Computer Systems (EuroSys)},
-pp.~1--17, 2015.
-
-\bibitem{schwarzkopf2013omega}
-M.~Schwarzkopf, A.~Konwinski, M.~Abd-El-Malek, and J.~Wilkes,
-``{Omega}: Flexible, scalable schedulers for large compute clusters,''
-in \emph{Proc. 8th ACM European Conf. on Computer Systems (EuroSys)},
-pp.~351--364, 2013.
-
-\bibitem{wilkes2020autopilot}
-J.~Wilkes,
-``{Autopilot}: Workload autoscaling at {Google},''
-in \emph{Proc. 15th European Conf. on Computer Systems (EuroSys)},
-pp.~1--16, 2020.
-
-\bibitem{firmament2016}
-I.~Gog, M.~Schwarzkopf, A.~Gleave, R.~N.~M.~Watson, and S.~Hand,
-``{Firmament}: Fast, centralized cluster scheduling at scale,''
-in \emph{Proc. 12th USENIX Symp. on Operating Systems Design and Implementation
-(OSDI)}, pp.~99--115, 2016.
+\begin{thebibliography}{20}
 
 \bibitem{lo2015heracles}
-D.~Lo, L.~Cheng, R.~Govindaraju, L.~A.~Barroso, and C.~Kozyrakis,
-``{Heracles}: Improving resource efficiency at scale,''
-in \emph{Proc. 42nd Annual Int'l Symp. on Computer Architecture (ISCA)},
-pp.~450--462, 2015.
-
-\bibitem{delimitrou2014quasar}
-C.~Delimitrou and C.~Kozyrakis,
-``{Quasar}: Resource-efficient and {QoS}-aware cluster management,''
-in \emph{Proc. 19th Int'l Conf. on Architectural Support for Programming Languages
-and Operating Systems (ASPLOS)}, pp.~127--144, 2014.
-
-\bibitem{parties2019}
 D.~Lo, L.~Cheng, R.~Govindaraju, P.~Ranganathan, and C.~Kozyrakis,
-``{PARTIES}: {QoS}-aware resource partitioning for multiple interactive services,''
-in \emph{Proc. 24th Int'l Conf. on Architectural Support for Programming Languages
-and Operating Systems (ASPLOS)}, pp.~107--120, 2019.
+``{Heracles}: Improving resource efficiency at scale,''
+in \emph{Proc. 42nd Annu. Int. Symp. Computer Architecture (ISCA)}, 2015, pp.~450--462.
+
 
 \bibitem{mars2011bubble}
 J.~Mars, L.~Tang, R.~Hundt, K.~Skadron, and M.~L.~Soffa,
-``Bubble-up: Increasing utilization in modern warehouse scale computers via
-sensible co-locations,''
-in \emph{Proc. 44th Annual IEEE/ACM Int'l Symp. on Microarchitecture (MICRO)},
-pp.~248--259, 2011.
+``Bubble-up: Increasing utilization in modern warehouse scale computers via sensible co-locations,''
+in \emph{Proc. 44th Annu. IEEE/ACM Int. Symp. Microarchitecture (MICRO)}, 2011, pp.~248--259.
+
 
 \bibitem{kasture2016ubik}
 H.~Kasture and D.~Sanchez,
 ``{Ubik}: Efficient cache sharing with strict {QoS} for latency-critical workloads,''
-in \emph{Proc. 21st Int'l Conf. on Architectural Support for Programming Languages
-and Operating Systems (ASPLOS)}, pp.~729--742, 2016.
+in \emph{Proc. 19th Int. Conf. Architectural Support for Programming Languages and Operating Systems (ASPLOS)}, 2014, pp.~729--742.
 
-\bibitem{quincy2009}
-M.~Isard, V.~Prabhakaran, J.~Currey, U.~Wieder, K.~Talbott, and A.~Rogers,
-``{Quincy}: Fair scheduling for distributed computing clusters,''
-in \emph{Proc. ACM SIGOPS 22nd Symp. on Operating Systems Principles (SOSP)},
-pp.~261--276, 2009.
+
+\bibitem{borg2015}
+A.~Verma, L.~Pedrosa, M.~Korupolu, D.~Oppenheimer, E.~Tune, and J.~Wilkes,
+``Large-scale cluster management at {Google} with {Borg},''
+in \emph{Proc. 10th European Conf. Computer Systems (EuroSys)}, 2015, pp.~1--17.
+
+
+\bibitem{wilkes2020autopilot}
+K.~Rzadca \emph{et al.},
+``{Autopilot}: Workload autoscaling at {Google},''
+in \emph{Proc. 15th European Conf. Computer Systems (EuroSys)}, 2020, pp.~1--16.
+
+
+\bibitem{firmament2016}
+I.~Gog, M.~Schwarzkopf, A.~Gleave, R.~N.~M.~Watson, and S.~Hand,
+``{Firmament}: Fast, centralized cluster scheduling at scale,''
+in \emph{Proc. 12th USENIX Symp. Operating Systems Design and Implementation (OSDI)}, 2016, pp.~99--115.
+
+
+\bibitem{delimitrou2014quasar}
+C.~Delimitrou and C.~Kozyrakis,
+``{Quasar}: Resource-efficient and {QoS}-aware cluster management,''
+in \emph{Proc. 19th Int. Conf. Architectural Support for Programming Languages and Operating Systems (ASPLOS)}, 2014, pp.~127--144.
+
+
+\bibitem{parties2019}
+S.~Chen, C.~Delimitrou, and J.~F.~Mart\'inez,
+``{PARTIES}: {QoS}-aware resource partitioning for multiple interactive services,''
+in \emph{Proc. 24th Int. Conf. Architectural Support for Programming Languages and Operating Systems (ASPLOS)}, 2019, pp.~107--120.
+
 
 \bibitem{k8s_scheduling_framework}
-{Kubernetes SIG Scheduling},
-``Scheduling Framework ({KEP}-624),''
-\url{https://git.io/k8s-sched-framework},
-stable as of Kubernetes v1.19, 2020.
+Kubernetes SIG Scheduling,
+``Scheduling framework ({KEP}-624),'' 2020.
+[Online]. Available: \url{https://github.com/kubernetes/enhancements/tree/master/keps/sig-scheduling/624-scheduling-framework}
 
-\bibitem{k8s_topology_manager}
-{Kubernetes SIG Node},
-``Topology Manager,''
-Kubernetes Documentation,
-\url{https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/},
-2024.
 
 \bibitem{ebpf_foundation}
-{eBPF Foundation},
-``What is {eBPF}?''
-\url{https://ebpf.io/what-is-ebpf/}, 2023.
+eBPF Foundation,
+``What is {eBPF}?'' 2023. [Online]. Available: \url{https://ebpf.io/what-is-ebpf/}
+
 
 \bibitem{nakryiko2020bpf}
 A.~Nakryiko,
-``{BPF CO-RE} (Compile Once -- Run Everywhere),''
-\url{https://nakryiko.com/posts/bpf-core-reference-guide/}, 2020.
+``{BPF CO-RE} reference guide,'' 2021.
+[Online]. Available: \url{https://nakryiko.com/posts/bpf-core-reference-guide/}
 
-\bibitem{cilium_ebpf}
-{Cilium Authors},
-``\texttt{cilium/ebpf}: Pure {Go} library to read, modify and load {eBPF} programs,''
-\url{https://github.com/cilium/ebpf}, 2024.
-
-\bibitem{cilium}
-T.~Graf, N.~Ramsauer, J.~Schlitt \emph{et al.},
-``{Cilium}: {BPF} and {XDP} for containers,''
-in \emph{Proc. Linux Plumbers Conference}, 2019.
-
-\bibitem{pixie2022}
-Z.~Fang, J.~Senko, N.~Nguyen, M.~Zuo, and N.~Rao,
-``{Pixie}: Instant, auto-telemetry for full-stack visibility,''
-in \emph{Proc. USENIX Operational Machine Learning (OpML)}, 2022.
-
-\bibitem{parca2022}
-{Parca Authors},
-``{Parca}: Continuous profiling for analysis of {CPU} and memory usage,''
-\url{https://parca.dev}, 2022.
 
 \bibitem{vieira2020ebpf}
 M.~A.~Vieira, M.~S.~Castanho, R.~D.~G.~Pac\'ifico, E.~R.~S.~Santos,
@@ -1013,16 +948,54 @@ E.~P.~M.~C\^amara~J\'unior, and L.~F.~M.~Vieira,
 and applications,''
 \emph{ACM Computing Surveys}, vol.~53, no.~1, pp.~1--36, 2020.
 
+
 \bibitem{goldshtein2022ebpf}
 N.~Goldshtein, M.~Oberman, S.~Sabag, S.~Biran, and N.~Segev,
 ``Practical {eBPF} based performance analysis,''
 in \emph{Proc. ACM/SPEC Int'l Conf. on Performance Engineering (ICPE)},
 pp.~225--236, 2022.
 
-\bibitem{burns2016borg}
-B.~Burns, B.~Grant, D.~Oppenheimer, E.~Brewer, and J.~Wilkes,
-``{Borg}, {Omega}, and {Kubernetes},''
-\emph{ACM Queue}, vol.~14, no.~1, pp.~70--93, 2016.
+
+\bibitem{schwarzkopf2013omega}
+M.~Schwarzkopf, A.~Konwinski, M.~Abd-El-Malek, and J.~Wilkes,
+``{Omega}: Flexible, scalable schedulers for large compute clusters,''
+in \emph{Proc. 8th ACM European Conf. Computer Systems (EuroSys)}, 2013, pp.~351--364.
+
+
+\bibitem{cilium}
+Cilium Authors,
+``{Cilium}: {eBPF}-based networking, observability, and security,'' 2024.
+[Online]. Available: \url{https://cilium.io}
+
+
+\bibitem{pixie2022}
+Pixie Authors,
+``{Pixie}: Open-source observability for {Kubernetes} applications,'' 2022.
+[Online]. Available: \url{https://px.dev}
+
+
+\bibitem{parca2022}
+Parca Authors,
+``{Parca}: Continuous profiling for analysis of {CPU} and memory usage,'' 2022.
+[Online]. Available: \url{https://parca.dev}
+
+
+\bibitem{trimaran2021}
+Kubernetes SIG Scheduling,
+``Trimaran: Real load-aware scheduling plugins for {Kubernetes},'' 2021.
+[Online]. Available: \url{https://github.com/kubernetes-sigs/scheduler-plugins/tree/master/pkg/trimaran}
+
+
+\bibitem{k8s_topology_manager}
+Kubernetes SIG Node,
+``Control topology management policies on a node,'' Kubernetes documentation, 2024.
+[Online]. Available: \url{https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/}
+
+
+\bibitem{cilium_ebpf}
+Cilium Authors,
+``cilium/ebpf: A pure {Go} library to read, modify and load {eBPF} programs,'' 2024, GitHub repository.
+[Online]. Available: \url{https://github.com/cilium/ebpf}
 
 \end{thebibliography}
 

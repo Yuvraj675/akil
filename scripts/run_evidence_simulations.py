@@ -13,8 +13,8 @@ What is simulated vs measured
 * Latency and LLC miss rate (Exp. 2) are MODEL OUTPUTS, derived per web pod from
   the neighbours that scheduler actually placed next to it. The per-neighbour
   interference coefficients in INTERFERENCE are grounded in published measurements
-  from Heracles [Lo et al., ISCA 2015], PARTIES [Park et al., ASPLOS 2019], and
-  Ubik [Kasture & Sanchez, ASPLOS 2016]; they are not measured on this hardware.
+  from Heracles [Lo et al., ISCA 2015], PARTIES [Chen et al., ASPLOS 2019], and
+  Ubik [Kasture & Sanchez, ASPLOS 2014]; they are not measured on this hardware.
 * Scheduling overhead (Exp. 4) is MEASURED by running the Go benchmarks in
   pkg/scoring and cmd/aggregator (scorer math + real gRPC round-trips over loopback).
 
@@ -64,8 +64,8 @@ WEB_SLO_MS = 15.0
 #   bus: additive memory-bus / run-queue contention multiplier.
 INTERFERENCE = {
     "cache-stress": {"llc": 0.30, "bus": 0.80},  # Heracles [Lo 2015] ~30% LLC degradation
-    "lock-stress":  {"llc": 0.03, "bus": 0.35},  # PARTIES [Park 2019] synchronisation overhead
-    "batch-worker": {"llc": 0.08, "bus": 0.25},  # Ubik [Kasture 2016] memory-bandwidth
+    "lock-stress":  {"llc": 0.03, "bus": 0.35},  # PARTIES [Chen 2019] synchronisation overhead
+    "batch-worker": {"llc": 0.08, "bus": 0.25},  # Ubik [Kasture 2014] memory-bandwidth
     "baseline-web": {"llc": 0.02, "bus": 0.05},  # minimal self-interference
 }
 ISOLATED_LLC = 0.38  # baseline-web LLC miss fraction in isolation
@@ -408,8 +408,8 @@ def main():
             "interference_model":   INTERFERENCE,
             "interference_sources": {
                 "cache-stress": "Heracles [Lo, ISCA 2015] Fig. 5",
-                "lock-stress":  "PARTIES [Park, ASPLOS 2019] Table 3",
-                "batch-worker": "Ubik [Kasture, ASPLOS 2016] §5",
+                "lock-stress":  "PARTIES [Chen, ASPLOS 2019] Table 3",
+                "batch-worker": "Ubik [Kasture, ASPLOS 2014] §5",
             },
             "benchmark_host_cpu": cpu,
         },
