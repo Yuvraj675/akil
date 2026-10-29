@@ -16,10 +16,15 @@ import (
 //
 // Used for safe lookups in a Collection or CollectionSpec.
 const (
-	BpfMapEvents             = "events"
-	BpfProgHandlePageFault   = "handle_page_fault"
-	BpfProgHandleSchedSwitch = "handle_sched_switch"
-	BpfVarUnusedEvent        = "unused_event"
+	BpfMapEvents                 = "events"
+	BpfMapLockStarts             = "lock_starts"
+	BpfProgHandleCacheMiss       = "handle_cache_miss"
+	BpfProgHandleContentionBegin = "handle_contention_begin"
+	BpfProgHandleContentionEnd   = "handle_contention_end"
+	BpfProgHandlePageFault       = "handle_page_fault"
+	BpfProgHandleSchedSwitch     = "handle_sched_switch"
+	BpfVarCacheMissSamplePeriod  = "cache_miss_sample_period"
+	BpfVarUnusedEvent            = "unused_event"
 )
 
 // LoadBpf returns the embedded CollectionSpec for Bpf.
@@ -64,22 +69,27 @@ type BpfSpecs struct {
 //
 // It can be passed ebpf.CollectionSpec.Assign.
 type BpfProgramSpecs struct {
-	HandlePageFault   *ebpf.ProgramSpec `ebpf:"handle_page_fault"`
-	HandleSchedSwitch *ebpf.ProgramSpec `ebpf:"handle_sched_switch"`
+	HandleCacheMiss       *ebpf.ProgramSpec `ebpf:"handle_cache_miss"`
+	HandleContentionBegin *ebpf.ProgramSpec `ebpf:"handle_contention_begin"`
+	HandleContentionEnd   *ebpf.ProgramSpec `ebpf:"handle_contention_end"`
+	HandlePageFault       *ebpf.ProgramSpec `ebpf:"handle_page_fault"`
+	HandleSchedSwitch     *ebpf.ProgramSpec `ebpf:"handle_sched_switch"`
 }
 
 // BpfMapSpecs contains maps before they are loaded into the kernel.
 //
 // It can be passed ebpf.CollectionSpec.Assign.
 type BpfMapSpecs struct {
-	Events *ebpf.MapSpec `ebpf:"events"`
+	Events     *ebpf.MapSpec `ebpf:"events"`
+	LockStarts *ebpf.MapSpec `ebpf:"lock_starts"`
 }
 
 // BpfVariableSpecs contains global variables before they are loaded into the kernel.
 //
 // It can be passed ebpf.CollectionSpec.Assign.
 type BpfVariableSpecs struct {
-	UnusedEvent *ebpf.VariableSpec `ebpf:"unused_event"`
+	CacheMissSamplePeriod *ebpf.VariableSpec `ebpf:"cache_miss_sample_period"`
+	UnusedEvent           *ebpf.VariableSpec `ebpf:"unused_event"`
 }
 
 // BpfObjects contains all objects after they have been loaded into the kernel.
@@ -102,12 +112,14 @@ func (o *BpfObjects) Close() error {
 //
 // It can be passed to LoadBpfObjects or ebpf.CollectionSpec.LoadAndAssign.
 type BpfMaps struct {
-	Events *ebpf.Map `ebpf:"events"`
+	Events     *ebpf.Map `ebpf:"events"`
+	LockStarts *ebpf.Map `ebpf:"lock_starts"`
 }
 
 func (m *BpfMaps) Close() error {
 	return _BpfClose(
 		m.Events,
+		m.LockStarts,
 	)
 }
 
@@ -115,19 +127,26 @@ func (m *BpfMaps) Close() error {
 //
 // It can be passed to LoadBpfObjects or ebpf.CollectionSpec.LoadAndAssign.
 type BpfVariables struct {
-	UnusedEvent *ebpf.Variable `ebpf:"unused_event"`
+	CacheMissSamplePeriod *ebpf.Variable `ebpf:"cache_miss_sample_period"`
+	UnusedEvent           *ebpf.Variable `ebpf:"unused_event"`
 }
 
 // BpfPrograms contains all programs after they have been loaded into the kernel.
 //
 // It can be passed to LoadBpfObjects or ebpf.CollectionSpec.LoadAndAssign.
 type BpfPrograms struct {
-	HandlePageFault   *ebpf.Program `ebpf:"handle_page_fault"`
-	HandleSchedSwitch *ebpf.Program `ebpf:"handle_sched_switch"`
+	HandleCacheMiss       *ebpf.Program `ebpf:"handle_cache_miss"`
+	HandleContentionBegin *ebpf.Program `ebpf:"handle_contention_begin"`
+	HandleContentionEnd   *ebpf.Program `ebpf:"handle_contention_end"`
+	HandlePageFault       *ebpf.Program `ebpf:"handle_page_fault"`
+	HandleSchedSwitch     *ebpf.Program `ebpf:"handle_sched_switch"`
 }
 
 func (p *BpfPrograms) Close() error {
 	return _BpfClose(
+		p.HandleCacheMiss,
+		p.HandleContentionBegin,
+		p.HandleContentionEnd,
 		p.HandlePageFault,
 		p.HandleSchedSwitch,
 	)

@@ -1,0 +1,7 @@
+colocated_pods,scorer_math_ns_median,grpc_queries_us_median,grpc_queries_us_max
+1,48.8,291.5,304.7
+5,125.5,307.3,319.1
+10,229.5,328.8,330.3
+20,183.3,341.3,343.6
+50,1087.0,419.6,447.3
+100,1868.0,540.0,553.2

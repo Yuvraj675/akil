@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
+    "animejs": "^4.5.0",
     "autoprefixer": "^10.6.1",
     "clsx": "^2.1.1",
     "framer-motion": "^14.0.0",
@@ -28,6 +29,7 @@
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
     "oxlint": "^1.81.0",
+    "playwright-core": "^1.64.1",
     "typescript": "~6.0.2",
     "vite": "^8.3.0"
   }

@@ -1,44 +1,77 @@
-//go:build ignore
-
-
 package scoring
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
+	"google.golang.org/grpc/connectivity"
 	"log/slog"
+	"strings"
+	"time"
 
 	v1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/runtime"
 	"k8s.io/kubernetes/pkg/scheduler/framework"
-	
+
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
+	"github.com/Yuvraj675/akil/pkg/profile"
 	pb "github.com/Yuvraj675/akil/pkg/proto"
 )
 
 const Name = "AkilScore"
 
-type AkilScorePlugin struct {
-	handle framework.Handle
-	client pb.AkilTelemetryClient
-	logger *slog.Logger
+// defaultQueryTimeout bounds each aggregator call so a slow aggregator degrades to a
+// neutral score instead of stalling the scheduling cycle (Goal G3).
+const defaultQueryTimeout = 5 * time.Millisecond
+
+// Args is the pluginConfig args block for AkilScore in KubeSchedulerConfiguration.
+type Args struct {
+	AggregatorAddress string `json:"aggregatorAddress"`
+	// QueryTimeoutMs overrides defaultQueryTimeout. Nodes are scored in parallel, so
+	// under heavy ingest the queued queries can need more than 5 ms.
+	QueryTimeoutMs int `json:"queryTimeoutMs"`
 }
 
-func New(obj runtime.Object, handle framework.Handle) (framework.Plugin, error) {
-	logger := slog.Default()
-	
-	// Hardcode for demo/phase2. In reality, read from obj (KubeSchedulerConfiguration config)
-	conn, err := grpc.Dial("localhost:50051", grpc.WithTransportCredentials(insecure.NewCredentials()))
+type AkilScorePlugin struct {
+	client  pb.AkilTelemetryClient
+	timeout time.Duration
+	scorer  *Scorer
+	logger  *slog.Logger
+}
+
+var _ framework.ScorePlugin = &AkilScorePlugin{}
+
+func New(_ context.Context, obj runtime.Object, _ framework.Handle) (framework.Plugin, error) {
+	args := Args{AggregatorAddress: "localhost:50051"}
+	if u, ok := obj.(*runtime.Unknown); ok && u != nil && len(u.Raw) > 0 {
+		if err := json.Unmarshal(u.Raw, &args); err != nil {
+			return nil, fmt.Errorf("decode AkilScore args: %w", err)
+		}
+	}
+
+	conn, err := grpc.NewClient(args.AggregatorAddress, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		return nil, fmt.Errorf("failed to dial aggregator: %w", err)
 	}
+	// Connect now so the first Score() call doesn't spend its 5 ms budget on DNS and
+	// the handshake. If the aggregator is down we start anyway and score neutral.
+	conn.Connect()
+	wctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
+	for st := conn.GetState(); st != connectivity.Ready && conn.WaitForStateChange(wctx, st); st = conn.GetState() {
+	}
+	cancel()
 
+	timeout := defaultQueryTimeout
+	if args.QueryTimeoutMs > 0 {
+		timeout = time.Duration(args.QueryTimeoutMs) * time.Millisecond
+	}
 	return &AkilScorePlugin{
-		handle: handle,
-		client: pb.NewAkilTelemetryClient(conn),
-		logger: logger,
+		client:  pb.NewAkilTelemetryClient(conn),
+		timeout: timeout,
+		scorer:  NewScorer(DefaultScorerConfig()),
+		logger:  slog.Default(),
 	}, nil
 }
 
@@ -46,66 +79,61 @@ func (p *AkilScorePlugin) Name() string {
 	return Name
 }
 
-func (p *AkilScorePlugin) Score(ctx context.Context, state *framework.CycleState, pod *v1.Pod, nodeName string) (int64, *framework.Status) {
-	// 1. Determine workload key for candidate pod
+func (p *AkilScorePlugin) Score(ctx context.Context, _ *framework.CycleState, pod *v1.Pod, nodeName string) (int64, *framework.Status) {
 	workloadKey := getWorkloadKey(pod)
-	if workloadKey == "" {
-		return 50, nil // Neutral score if no key
-	}
 
-	// 2. Query Candidate Profile
-	candResp, err := p.client.QueryProfile(ctx, &pb.ProfileRequest{WorkloadKey: workloadKey})
-	if err != nil || candResp.Confidence == pb.ProfileConfidence_UNKNOWN {
-		p.logger.Warn("Failed to query profile for candidate, returning neutral", "workload", workloadKey, "err", err)
-		return 50, nil
-	}
+	qctx, cancel := context.WithTimeout(ctx, p.timeout)
+	defer cancel()
 
-	// 3. Query Node Profiles
-	nodeResp, err := p.client.QueryNodeProfiles(ctx, &pb.NodeProfilesRequest{NodeName: nodeName})
+	cand, err := p.client.QueryProfile(qctx, &pb.ProfileRequest{WorkloadKey: workloadKey})
 	if err != nil {
-		p.logger.Warn("Failed to query node profiles, returning neutral", "node", nodeName, "err", err)
-		return 50, nil
+		p.logger.Warn("candidate profile query failed, returning neutral", "workload", workloadKey, "err", err)
+		return NeutralScore, nil
 	}
 
-	// 4. Compute Penalty
-	totalPenalty := 0.0
+	nodeResp, err := p.client.QueryNodeProfiles(qctx, &pb.NodeProfilesRequest{NodeName: nodeName})
+	if err != nil {
+		p.logger.Warn("node profiles query failed, returning neutral", "node", nodeName, "err", err)
+		return NeutralScore, nil
+	}
+
+	colocated := make([]profile.RuntimeProfile, 0, len(nodeResp.Profiles))
 	for _, np := range nodeResp.Profiles {
-		// Cache Penalty (Max Rate ~ 1000)
-		cachePenalty := min(candResp.CacheMissRate, np.CacheMissRate) / 1000.0 * 35.0
-		
-		// Lock Penalty
-		lockPenalty := (candResp.LockContentionRatio + np.LockContentionRatio) * 30.0
-		
-		// Page Fault Penalty (Max Rate ~ 5000)
-		pfPenalty := (candResp.PageFaultRate + np.PageFaultRate) / 5000.0 * 20.0
-		
-		// Ctx Switch Penalty (Max Rate ~ 10000)
-		ctxPenalty := (candResp.ContextSwitchRate + np.ContextSwitchRate) / 10000.0 * 15.0
-
-		totalPenalty += cachePenalty + lockPenalty + pfPenalty + ctxPenalty
+		if np.WorkloadKey == workloadKey {
+			continue // the candidate's own replicas are not its neighbours' interference
+		}
+		if strings.Contains(np.WorkloadKey, "/DaemonSet/") {
+			continue // runs on every node (including AKIL's own collector), so it can't tell nodes apart
+		}
+		colocated = append(colocated, fromProto(np))
 	}
 
-	score := int64(100.0 - totalPenalty)
-	if score < 0 { score = 0 }
-	if score > 100 { score = 100 }
-
-	p.logger.Info("Computed AKIL score", "pod", pod.Name, "node", nodeName, "score", score)
-	return score, nil
+	res := p.scorer.Score(fromProto(cand), colocated)
+	p.logger.Info("AKIL score", "pod", pod.Name, "node", nodeName, "score", res.Score, "reason", res.Reason)
+	return res.Score, nil
 }
 
 func (p *AkilScorePlugin) ScoreExtensions() framework.ScoreExtensions {
 	return nil
 }
 
+func fromProto(r *pb.RuntimeProfile) profile.RuntimeProfile {
+	return profile.RuntimeProfile{
+		WorkloadKey:         r.WorkloadKey,
+		PageFaultRate:       r.PageFaultRate,
+		CacheMissRate:       r.CacheMissRate,
+		LockContentionRatio: r.LockContentionRatio,
+		ContextSwitchRate:   r.ContextSwitchRate,
+		SampleCount:         r.SampleCount,
+		Confidence:          profile.Confidence(r.Confidence),
+	}
+}
+
+// getWorkloadKey must match the collector's key (pkg/cgroup/resolver.go).
 func getWorkloadKey(pod *v1.Pod) string {
 	if len(pod.OwnerReferences) > 0 {
 		ref := pod.OwnerReferences[0]
 		return fmt.Sprintf("%s/%s/%s", pod.Namespace, ref.Kind, ref.Name)
 	}
 	return fmt.Sprintf("%s/Pod/%s", pod.Namespace, pod.Name)
-}
-
-func min(a, b float64) float64 {
-	if a < b { return a }
-	return b
 }

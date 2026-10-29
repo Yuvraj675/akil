@@ -1,0 +1,6 @@
+# Configuration	LLC_miss_pct	ci95
+Default-K8s	50.04	0.59
+BinPacking	81.63	1.18
+Trimaran-TLP	79.02	1.34
+AKIL	48.99	0.47
+Isolated (Clean)	38.0	0.0

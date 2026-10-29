@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: demo-workload
+  labels:
+    akil.io/autoscale: "true"
   namespace: default
 spec:
   replicas: 1
@@ -17,8 +19,12 @@ spec:
       - name: workload
         image: alpine
         command: ["/bin/sh", "-c"]
-        args: ["while true; do dd if=/dev/urandom of=/dev/null bs=1M count=1 2>/dev/null; sleep 0.1; done"]
+        # Idle on purpose: the autoscaler decides on the demo's telemetry, and its own
+        # kernel noise would otherwise keep it scaled up.
+        args: ["while true; do sleep 3600; done"]
         resources:
           requests:
             cpu: 100m
-            memory: 128Mi
+            memory: 32Mi
+          limits:
+            memory: 64Mi

@@ -1,0 +1,5001 @@
+seed,config,latency_ms
+0,Default-K8s,5.393
+0,Default-K8s,5.827
+0,Default-K8s,5.924
+0,Default-K8s,6.081
+0,Default-K8s,6.218
+0,Default-K8s,6.231
+0,Default-K8s,6.327
+0,Default-K8s,6.347
+0,Default-K8s,6.5
+0,Default-K8s,6.523
+0,Default-K8s,6.528
+0,Default-K8s,6.533
+0,Default-K8s,6.55
+0,Default-K8s,6.561
+0,Default-K8s,6.593
+0,Default-K8s,6.598
+0,Default-K8s,6.605
+0,Default-K8s,6.654
+0,Default-K8s,6.676
+0,Default-K8s,6.707
+0,Default-K8s,6.756
+0,Default-K8s,6.87
+0,Default-K8s,6.875
+0,Default-K8s,6.889
+0,Default-K8s,6.906
+0,Default-K8s,6.908
+0,Default-K8s,6.923
+0,Default-K8s,6.94
+0,Default-K8s,6.959
+0,Default-K8s,6.97
+0,Default-K8s,6.984
+0,Default-K8s,6.985
+0,Default-K8s,6.989
+0,Default-K8s,7.002
+0,Default-K8s,7.008
+0,Default-K8s,7.021
+0,Default-K8s,7.029
+0,Default-K8s,7.032
+0,Default-K8s,7.033
+0,Default-K8s,7.034
+0,Default-K8s,7.056
+0,Default-K8s,7.064
+0,Default-K8s,7.066
+0,Default-K8s,7.074
+0,Default-K8s,7.077
+0,Default-K8s,7.083
+0,Default-K8s,7.097
+0,Default-K8s,7.104
+0,Default-K8s,7.104
+0,Default-K8s,7.111
+0,Default-K8s,7.124
+0,Default-K8s,7.135
+0,Default-K8s,7.14
+0,Default-K8s,7.141
+0,Default-K8s,7.144
+0,Default-K8s,7.145
+0,Default-K8s,7.161
+0,Default-K8s,7.168
+0,Default-K8s,7.173
+0,Default-K8s,7.186
+0,Default-K8s,7.188
+0,Default-K8s,7.202
+0,Default-K8s,7.209
+0,Default-K8s,7.245
+0,Default-K8s,7.247
+0,Default-K8s,7.251
+0,Default-K8s,7.281
+0,Default-K8s,7.288
+0,Default-K8s,7.298
+0,Default-K8s,7.306
+0,Default-K8s,7.308
+0,Default-K8s,7.311
+0,Default-K8s,7.317
+0,Default-K8s,7.329
+0,Default-K8s,7.332
+0,Default-K8s,7.333
+0,Default-K8s,7.335
+0,Default-K8s,7.339
+0,Default-K8s,7.343
+0,Default-K8s,7.354
+0,Default-K8s,7.401
+0,Default-K8s,7.402
+0,Default-K8s,7.414
+0,Default-K8s,7.421
+0,Default-K8s,7.427
+0,Default-K8s,7.437
+0,Default-K8s,7.443
+0,Default-K8s,7.445
+0,Default-K8s,7.458
+0,Default-K8s,7.461
+0,Default-K8s,7.462
+0,Default-K8s,7.464
+0,Default-K8s,7.469
+0,Default-K8s,7.473
+0,Default-K8s,7.475
+0,Default-K8s,7.484
+0,Default-K8s,7.486
+0,Default-K8s,7.493
+0,Default-K8s,7.501
+0,Default-K8s,7.519
+0,Default-K8s,7.52
+0,Default-K8s,7.527
+0,Default-K8s,7.537
+0,Default-K8s,7.541
+0,Default-K8s,7.541
+0,Default-K8s,7.541
+0,Default-K8s,7.542
+0,Default-K8s,7.543
+0,Default-K8s,7.546
+0,Default-K8s,7.547
+0,Default-K8s,7.548
+0,Default-K8s,7.552
+0,Default-K8s,7.552
+0,Default-K8s,7.566
+0,Default-K8s,7.602
+0,Default-K8s,7.611
+0,Default-K8s,7.634
+0,Default-K8s,7.645
+0,Default-K8s,7.659
+0,Default-K8s,7.662
+0,Default-K8s,7.667
+0,Default-K8s,7.668
+0,Default-K8s,7.673
+0,Default-K8s,7.679
+0,Default-K8s,7.68
+0,Default-K8s,7.684
+0,Default-K8s,7.686
+0,Default-K8s,7.688
+0,Default-K8s,7.689
+0,Default-K8s,7.696
+0,Default-K8s,7.704
+0,Default-K8s,7.708
+0,Default-K8s,7.711
+0,Default-K8s,7.721
+0,Default-K8s,7.723
+0,Default-K8s,7.723
+0,Default-K8s,7.731
+0,Default-K8s,7.735
+0,Default-K8s,7.741
+0,Default-K8s,7.746
+0,Default-K8s,7.749
+0,Default-K8s,7.754
+0,Default-K8s,7.768
+0,Default-K8s,7.777
+0,Default-K8s,7.779
+0,Default-K8s,7.785
+0,Default-K8s,7.786
+0,Default-K8s,7.788
+0,Default-K8s,7.789
+0,Default-K8s,7.79
+0,Default-K8s,7.793
+0,Default-K8s,7.795
+0,Default-K8s,7.801
+0,Default-K8s,7.809
+0,Default-K8s,7.816
+0,Default-K8s,7.817
+0,Default-K8s,7.822
+0,Default-K8s,7.827
+0,Default-K8s,7.829
+0,Default-K8s,7.829
+0,Default-K8s,7.839
+0,Default-K8s,7.845
+0,Default-K8s,7.852
+0,Default-K8s,7.854
+0,Default-K8s,7.854
+0,Default-K8s,7.855
+0,Default-K8s,7.861
+0,Default-K8s,7.861
+0,Default-K8s,7.862
+0,Default-K8s,7.866
+0,Default-K8s,7.868
+0,Default-K8s,7.868
+0,Default-K8s,7.872
+0,Default-K8s,7.874
+0,Default-K8s,7.875
+0,Default-K8s,7.879
+0,Default-K8s,7.879
+0,Default-K8s,7.882
+0,Default-K8s,7.888
+0,Default-K8s,7.892
+0,Default-K8s,7.895
+0,Default-K8s,7.895
+0,Default-K8s,7.897
+0,Default-K8s,7.902
+0,Default-K8s,7.904
+0,Default-K8s,7.904
+0,Default-K8s,7.906
+0,Default-K8s,7.914
+0,Default-K8s,7.919
+0,Default-K8s,7.919
+0,Default-K8s,7.921
+0,Default-K8s,7.929
+0,Default-K8s,7.93
+0,Default-K8s,7.93
+0,Default-K8s,7.931
+0,Default-K8s,7.931
+0,Default-K8s,7.932
+0,Default-K8s,7.937
+0,Default-K8s,7.937
+0,Default-K8s,7.941
+0,Default-K8s,7.946
+0,Default-K8s,7.946
+0,Default-K8s,7.947
+0,Default-K8s,7.948
+0,Default-K8s,7.949
+0,Default-K8s,7.955
+0,Default-K8s,7.957
+0,Default-K8s,7.958
+0,Default-K8s,7.958
+0,Default-K8s,7.959
+0,Default-K8s,7.962
+0,Default-K8s,7.964
+0,Default-K8s,7.965
+0,Default-K8s,7.967
+0,Default-K8s,7.968
+0,Default-K8s,7.97
+0,Default-K8s,7.975
+0,Default-K8s,7.979
+0,Default-K8s,7.979
+0,Default-K8s,7.98
+0,Default-K8s,7.981
+0,Default-K8s,7.982
+0,Default-K8s,7.989
+0,Default-K8s,8.002
+0,Default-K8s,8.002
+0,Default-K8s,8.004
+0,Default-K8s,8.005
+0,Default-K8s,8.009
+0,Default-K8s,8.018
+0,Default-K8s,8.019
+0,Default-K8s,8.019
+0,Default-K8s,8.021
+0,Default-K8s,8.026
+0,Default-K8s,8.032
+0,Default-K8s,8.035
+0,Default-K8s,8.036
+0,Default-K8s,8.04
+0,Default-K8s,8.04
+0,Default-K8s,8.042
+0,Default-K8s,8.043
+0,Default-K8s,8.045
+0,Default-K8s,8.046
+0,Default-K8s,8.05
+0,Default-K8s,8.05
+0,Default-K8s,8.056
+0,Default-K8s,8.057
+0,Default-K8s,8.059
+0,Default-K8s,8.061
+0,Default-K8s,8.061
+0,Default-K8s,8.064
+0,Default-K8s,8.07
+0,Default-K8s,8.072
+0,Default-K8s,8.072
+0,Default-K8s,8.078
+0,Default-K8s,8.079
+0,Default-K8s,8.08
+0,Default-K8s,8.09
+0,Default-K8s,8.094
+0,Default-K8s,8.096
+0,Default-K8s,8.102
+0,Default-K8s,8.103
+0,Default-K8s,8.106
+0,Default-K8s,8.107
+0,Default-K8s,8.109
+0,Default-K8s,8.109
+0,Default-K8s,8.112
+0,Default-K8s,8.112
+0,Default-K8s,8.114
+0,Default-K8s,8.114
+0,Default-K8s,8.117
+0,Default-K8s,8.119
+0,Default-K8s,8.121
+0,Default-K8s,8.124
+0,Default-K8s,8.13
+0,Default-K8s,8.131
+0,Default-K8s,8.134
+0,Default-K8s,8.138
+0,Default-K8s,8.14
+0,Default-K8s,8.14
+0,Default-K8s,8.143
+0,Default-K8s,8.144
+0,Default-K8s,8.144
+0,Default-K8s,8.145
+0,Default-K8s,8.149
+0,Default-K8s,8.149
+0,Default-K8s,8.151
+0,Default-K8s,8.151
+0,Default-K8s,8.158
+0,Default-K8s,8.158
+0,Default-K8s,8.162
+0,Default-K8s,8.163
+0,Default-K8s,8.164
+0,Default-K8s,8.164
+0,Default-K8s,8.166
+0,Default-K8s,8.166
+0,Default-K8s,8.167
+0,Default-K8s,8.17
+0,Default-K8s,8.171
+0,Default-K8s,8.173
+0,Default-K8s,8.173
+0,Default-K8s,8.178
+0,Default-K8s,8.18
+0,Default-K8s,8.181
+0,Default-K8s,8.184
+0,Default-K8s,8.185
+0,Default-K8s,8.185
+0,Default-K8s,8.185
+0,Default-K8s,8.188
+0,Default-K8s,8.189
+0,Default-K8s,8.199
+0,Default-K8s,8.199
+0,Default-K8s,8.204
+0,Default-K8s,8.209
+0,Default-K8s,8.21
+0,Default-K8s,8.21
+0,Default-K8s,8.211
+0,Default-K8s,8.212
+0,Default-K8s,8.214
+0,Default-K8s,8.215
+0,Default-K8s,8.216
+0,Default-K8s,8.217
+0,Default-K8s,8.217
+0,Default-K8s,8.219
+0,Default-K8s,8.222
+0,Default-K8s,8.229
+0,Default-K8s,8.233
+0,Default-K8s,8.239
+0,Default-K8s,8.24
+0,Default-K8s,8.244
+0,Default-K8s,8.246
+0,Default-K8s,8.246
+0,Default-K8s,8.247
+0,Default-K8s,8.25
+0,Default-K8s,8.251
+0,Default-K8s,8.254
+0,Default-K8s,8.254
+0,Default-K8s,8.257
+0,Default-K8s,8.257
+0,Default-K8s,8.258
+0,Default-K8s,8.259
+0,Default-K8s,8.261
+0,Default-K8s,8.264
+0,Default-K8s,8.266
+0,Default-K8s,8.267
+0,Default-K8s,8.27
+0,Default-K8s,8.271
+0,Default-K8s,8.274
+0,Default-K8s,8.277
+0,Default-K8s,8.28
+0,Default-K8s,8.281
+0,Default-K8s,8.282
+0,Default-K8s,8.288
+0,Default-K8s,8.288
+0,Default-K8s,8.288
+0,Default-K8s,8.289
+0,Default-K8s,8.296
+0,Default-K8s,8.298
+0,Default-K8s,8.301
+0,Default-K8s,8.304
+0,Default-K8s,8.304
+0,Default-K8s,8.308
+0,Default-K8s,8.31
+0,Default-K8s,8.314
+0,Default-K8s,8.322
+0,Default-K8s,8.323
+0,Default-K8s,8.324
+0,Default-K8s,8.325
+0,Default-K8s,8.327
+0,Default-K8s,8.333
+0,Default-K8s,8.337
+0,Default-K8s,8.34
+0,Default-K8s,8.341
+0,Default-K8s,8.343
+0,Default-K8s,8.343
+0,Default-K8s,8.344
+0,Default-K8s,8.345
+0,Default-K8s,8.346
+0,Default-K8s,8.347
+0,Default-K8s,8.355
+0,Default-K8s,8.357
+0,Default-K8s,8.36
+0,Default-K8s,8.362
+0,Default-K8s,8.364
+0,Default-K8s,8.366
+0,Default-K8s,8.369
+0,Default-K8s,8.37
+0,Default-K8s,8.371
+0,Default-K8s,8.374
+0,Default-K8s,8.379
+0,Default-K8s,8.381
+0,Default-K8s,8.387
+0,Default-K8s,8.391
+0,Default-K8s,8.394
+0,Default-K8s,8.394
+0,Default-K8s,8.396
+0,Default-K8s,8.398
+0,Default-K8s,8.398
+0,Default-K8s,8.4
+0,Default-K8s,8.401
+0,Default-K8s,8.407
+0,Default-K8s,8.407
+0,Default-K8s,8.41
+0,Default-K8s,8.41
+0,Default-K8s,8.411
+0,Default-K8s,8.416
+0,Default-K8s,8.418
+0,Default-K8s,8.419
+0,Default-K8s,8.419
+0,Default-K8s,8.425
+0,Default-K8s,8.425
+0,Default-K8s,8.429
+0,Default-K8s,8.429
+0,Default-K8s,8.43
+0,Default-K8s,8.431
+0,Default-K8s,8.432
+0,Default-K8s,8.432
+0,Default-K8s,8.432
+0,Default-K8s,8.434
+0,Default-K8s,8.434
+0,Default-K8s,8.436
+0,Default-K8s,8.44
+0,Default-K8s,8.441
+0,Default-K8s,8.445
+0,Default-K8s,8.449
+0,Default-K8s,8.451
+0,Default-K8s,8.451
+0,Default-K8s,8.452
+0,Default-K8s,8.454
+0,Default-K8s,8.455
+0,Default-K8s,8.455
+0,Default-K8s,8.458
+0,Default-K8s,8.458
+0,Default-K8s,8.459
+0,Default-K8s,8.46
+0,Default-K8s,8.46
+0,Default-K8s,8.46
+0,Default-K8s,8.46
+0,Default-K8s,8.462
+0,Default-K8s,8.462
+0,Default-K8s,8.462
+0,Default-K8s,8.463
+0,Default-K8s,8.463
+0,Default-K8s,8.464
+0,Default-K8s,8.465
+0,Default-K8s,8.467
+0,Default-K8s,8.469
+0,Default-K8s,8.469
+0,Default-K8s,8.478
+0,Default-K8s,8.484
+0,Default-K8s,8.486
+0,Default-K8s,8.489
+0,Default-K8s,8.491
+0,Default-K8s,8.497
+0,Default-K8s,8.497
+0,Default-K8s,8.498
+0,Default-K8s,8.499
+0,Default-K8s,8.5
+0,Default-K8s,8.501
+0,Default-K8s,8.503
+0,Default-K8s,8.504
+0,Default-K8s,8.504
+0,Default-K8s,8.504
+0,Default-K8s,8.506
+0,Default-K8s,8.507
+0,Default-K8s,8.508
+0,Default-K8s,8.51
+0,Default-K8s,8.511
+0,Default-K8s,8.511
+0,Default-K8s,8.511
+0,Default-K8s,8.511
+0,Default-K8s,8.511
+0,Default-K8s,8.513
+0,Default-K8s,8.514
+0,Default-K8s,8.514
+0,Default-K8s,8.517
+0,Default-K8s,8.52
+0,Default-K8s,8.522
+0,Default-K8s,8.522
+0,Default-K8s,8.522
+0,Default-K8s,8.524
+0,Default-K8s,8.526
+0,Default-K8s,8.526
+0,Default-K8s,8.526
+0,Default-K8s,8.527
+0,Default-K8s,8.532
+0,Default-K8s,8.533
+0,Default-K8s,8.534
+0,Default-K8s,8.535
+0,Default-K8s,8.536
+0,Default-K8s,8.54
+0,Default-K8s,8.54
+0,Default-K8s,8.54
+0,Default-K8s,8.542
+0,Default-K8s,8.543
+0,Default-K8s,8.543
+0,Default-K8s,8.546
+0,Default-K8s,8.546
+0,Default-K8s,8.547
+0,Default-K8s,8.548
+0,Default-K8s,8.55
+0,Default-K8s,8.551
+0,Default-K8s,8.552
+0,Default-K8s,8.554
+0,Default-K8s,8.557
+0,Default-K8s,8.558
+0,Default-K8s,8.558
+0,Default-K8s,8.558
+0,Default-K8s,8.558
+0,Default-K8s,8.559
+0,Default-K8s,8.559
+0,Default-K8s,8.559
+0,Default-K8s,8.559
+0,Default-K8s,8.562
+0,Default-K8s,8.562
+0,Default-K8s,8.562
+0,Default-K8s,8.564
+0,Default-K8s,8.565
+0,Default-K8s,8.566
+0,Default-K8s,8.567
+0,Default-K8s,8.569
+0,Default-K8s,8.57
+0,Default-K8s,8.572
+0,Default-K8s,8.572
+0,Default-K8s,8.572
+0,Default-K8s,8.574
+0,Default-K8s,8.574
+0,Default-K8s,8.574
+0,Default-K8s,8.577
+0,Default-K8s,8.577
+0,Default-K8s,8.578
+0,Default-K8s,8.579
+0,Default-K8s,8.579
+0,Default-K8s,8.581
+0,Default-K8s,8.586
+0,Default-K8s,8.587
+0,Default-K8s,8.587
+0,Default-K8s,8.589
+0,Default-K8s,8.593
+0,Default-K8s,8.593
+0,Default-K8s,8.593
+0,Default-K8s,8.595
+0,Default-K8s,8.597
+0,Default-K8s,8.599
+0,Default-K8s,8.601
+0,Default-K8s,8.602
+0,Default-K8s,8.603
+0,Default-K8s,8.604
+0,Default-K8s,8.604
+0,Default-K8s,8.609
+0,Default-K8s,8.613
+0,Default-K8s,8.614
+0,Default-K8s,8.623
+0,Default-K8s,8.624
+0,Default-K8s,8.625
+0,Default-K8s,8.626
+0,Default-K8s,8.627
+0,Default-K8s,8.631
+0,Default-K8s,8.633
+0,Default-K8s,8.635
+0,Default-K8s,8.636
+0,Default-K8s,8.644
+0,Default-K8s,8.646
+0,Default-K8s,8.648
+0,Default-K8s,8.651
+0,Default-K8s,8.652
+0,Default-K8s,8.652
+0,Default-K8s,8.652
+0,Default-K8s,8.655
+0,Default-K8s,8.656
+0,Default-K8s,8.658
+0,Default-K8s,8.658
+0,Default-K8s,8.66
+0,Default-K8s,8.664
+0,Default-K8s,8.665
+0,Default-K8s,8.666
+0,Default-K8s,8.667
+0,Default-K8s,8.671
+0,Default-K8s,8.671
+0,Default-K8s,8.672
+0,Default-K8s,8.674
+0,Default-K8s,8.677
+0,Default-K8s,8.678
+0,Default-K8s,8.678
+0,Default-K8s,8.679
+0,Default-K8s,8.679
+0,Default-K8s,8.681
+0,Default-K8s,8.681
+0,Default-K8s,8.685
+0,Default-K8s,8.685
+0,Default-K8s,8.686
+0,Default-K8s,8.687
+0,Default-K8s,8.688
+0,Default-K8s,8.689
+0,Default-K8s,8.69
+0,Default-K8s,8.691
+0,Default-K8s,8.691
+0,Default-K8s,8.693
+0,Default-K8s,8.696
+0,Default-K8s,8.699
+0,Default-K8s,8.699
+0,Default-K8s,8.7
+0,Default-K8s,8.702
+0,Default-K8s,8.702
+0,Default-K8s,8.704
+0,Default-K8s,8.707
+0,Default-K8s,8.709
+0,Default-K8s,8.71
+0,Default-K8s,8.716
+0,Default-K8s,8.719
+0,Default-K8s,8.719
+0,Default-K8s,8.728
+0,Default-K8s,8.73
+0,Default-K8s,8.73
+0,Default-K8s,8.731
+0,Default-K8s,8.731
+0,Default-K8s,8.731
+0,Default-K8s,8.733
+0,Default-K8s,8.734
+0,Default-K8s,8.736
+0,Default-K8s,8.736
+0,Default-K8s,8.736
+0,Default-K8s,8.739
+0,Default-K8s,8.739
+0,Default-K8s,8.74
+0,Default-K8s,8.741
+0,Default-K8s,8.742
+0,Default-K8s,8.742
+0,Default-K8s,8.744
+0,Default-K8s,8.745
+0,Default-K8s,8.745
+0,Default-K8s,8.748
+0,Default-K8s,8.75
+0,Default-K8s,8.755
+0,Default-K8s,8.756
+0,Default-K8s,8.759
+0,Default-K8s,8.761
+0,Default-K8s,8.762
+0,Default-K8s,8.763
+0,Default-K8s,8.763
+0,Default-K8s,8.764
+0,Default-K8s,8.765
+0,Default-K8s,8.765
+0,Default-K8s,8.771
+0,Default-K8s,8.771
+0,Default-K8s,8.774
+0,Default-K8s,8.775
+0,Default-K8s,8.776
+0,Default-K8s,8.777
+0,Default-K8s,8.777
+0,Default-K8s,8.779
+0,Default-K8s,8.779
+0,Default-K8s,8.78
+0,Default-K8s,8.781
+0,Default-K8s,8.782
+0,Default-K8s,8.786
+0,Default-K8s,8.787
+0,Default-K8s,8.787
+0,Default-K8s,8.79
+0,Default-K8s,8.794
+0,Default-K8s,8.795
+0,Default-K8s,8.795
+0,Default-K8s,8.796
+0,Default-K8s,8.796
+0,Default-K8s,8.797
+0,Default-K8s,8.801
+0,Default-K8s,8.801
+0,Default-K8s,8.802
+0,Default-K8s,8.802
+0,Default-K8s,8.803
+0,Default-K8s,8.803
+0,Default-K8s,8.804
+0,Default-K8s,8.805
+0,Default-K8s,8.805
+0,Default-K8s,8.805
+0,Default-K8s,8.806
+0,Default-K8s,8.806
+0,Default-K8s,8.807
+0,Default-K8s,8.807
+0,Default-K8s,8.81
+0,Default-K8s,8.81
+0,Default-K8s,8.813
+0,Default-K8s,8.814
+0,Default-K8s,8.814
+0,Default-K8s,8.814
+0,Default-K8s,8.814
+0,Default-K8s,8.817
+0,Default-K8s,8.818
+0,Default-K8s,8.818
+0,Default-K8s,8.819
+0,Default-K8s,8.821
+0,Default-K8s,8.825
+0,Default-K8s,8.825
+0,Default-K8s,8.827
+0,Default-K8s,8.827
+0,Default-K8s,8.828
+0,Default-K8s,8.829
+0,Default-K8s,8.829
+0,Default-K8s,8.832
+0,Default-K8s,8.835
+0,Default-K8s,8.837
+0,Default-K8s,8.84
+0,Default-K8s,8.84
+0,Default-K8s,8.84
+0,Default-K8s,8.841
+0,Default-K8s,8.843
+0,Default-K8s,8.843
+0,Default-K8s,8.844
+0,Default-K8s,8.844
+0,Default-K8s,8.844
+0,Default-K8s,8.846
+0,Default-K8s,8.846
+0,Default-K8s,8.848
+0,Default-K8s,8.851
+0,Default-K8s,8.851
+0,Default-K8s,8.852
+0,Default-K8s,8.853
+0,Default-K8s,8.854
+0,Default-K8s,8.855
+0,Default-K8s,8.856
+0,Default-K8s,8.859
+0,Default-K8s,8.86
+0,Default-K8s,8.862
+0,Default-K8s,8.864
+0,Default-K8s,8.864
+0,Default-K8s,8.864
+0,Default-K8s,8.865
+0,Default-K8s,8.866
+0,Default-K8s,8.866
+0,Default-K8s,8.868
+0,Default-K8s,8.869
+0,Default-K8s,8.87
+0,Default-K8s,8.872
+0,Default-K8s,8.876
+0,Default-K8s,8.879
+0,Default-K8s,8.879
+0,Default-K8s,8.88
+0,Default-K8s,8.881
+0,Default-K8s,8.882
+0,Default-K8s,8.886
+0,Default-K8s,8.886
+0,Default-K8s,8.886
+0,Default-K8s,8.887
+0,Default-K8s,8.888
+0,Default-K8s,8.888
+0,Default-K8s,8.888
+0,Default-K8s,8.89
+0,Default-K8s,8.892
+0,Default-K8s,8.893
+0,Default-K8s,8.894
+0,Default-K8s,8.894
+0,Default-K8s,8.896
+0,Default-K8s,8.899
+0,Default-K8s,8.904
+0,Default-K8s,8.905
+0,Default-K8s,8.906
+0,Default-K8s,8.909
+0,Default-K8s,8.91
+0,Default-K8s,8.91
+0,Default-K8s,8.913
+0,Default-K8s,8.916
+0,Default-K8s,8.916
+0,Default-K8s,8.916
+0,Default-K8s,8.916
+0,Default-K8s,8.916
+0,Default-K8s,8.917
+0,Default-K8s,8.921
+0,Default-K8s,8.921
+0,Default-K8s,8.921
+0,Default-K8s,8.923
+0,Default-K8s,8.924
+0,Default-K8s,8.925
+0,Default-K8s,8.925
+0,Default-K8s,8.928
+0,Default-K8s,8.932
+0,Default-K8s,8.933
+0,Default-K8s,8.933
+0,Default-K8s,8.934
+0,Default-K8s,8.935
+0,Default-K8s,8.935
+0,Default-K8s,8.936
+0,Default-K8s,8.939
+0,Default-K8s,8.94
+0,Default-K8s,8.941
+0,Default-K8s,8.943
+0,Default-K8s,8.943
+0,Default-K8s,8.944
+0,Default-K8s,8.945
+0,Default-K8s,8.946
+0,Default-K8s,8.948
+0,Default-K8s,8.949
+0,Default-K8s,8.95
+0,Default-K8s,8.952
+0,Default-K8s,8.955
+0,Default-K8s,8.955
+0,Default-K8s,8.956
+0,Default-K8s,8.956
+0,Default-K8s,8.957
+0,Default-K8s,8.958
+0,Default-K8s,8.96
+0,Default-K8s,8.961
+0,Default-K8s,8.963
+0,Default-K8s,8.963
+0,Default-K8s,8.964
+0,Default-K8s,8.964
+0,Default-K8s,8.965
+0,Default-K8s,8.965
+0,Default-K8s,8.966
+0,Default-K8s,8.968
+0,Default-K8s,8.968
+0,Default-K8s,8.969
+0,Default-K8s,8.97
+0,Default-K8s,8.971
+0,Default-K8s,8.971
+0,Default-K8s,8.973
+0,Default-K8s,8.976
+0,Default-K8s,8.976
+0,Default-K8s,8.977
+0,Default-K8s,8.978
+0,Default-K8s,8.978
+0,Default-K8s,8.979
+0,Default-K8s,8.979
+0,Default-K8s,8.98
+0,Default-K8s,8.981
+0,Default-K8s,8.982
+0,Default-K8s,8.982
+0,Default-K8s,8.984
+0,Default-K8s,8.985
+0,Default-K8s,8.985
+0,Default-K8s,8.986
+0,Default-K8s,8.987
+0,Default-K8s,8.988
+0,Default-K8s,8.989
+0,Default-K8s,8.992
+0,Default-K8s,8.992
+0,Default-K8s,8.993
+0,Default-K8s,8.993
+0,Default-K8s,8.997
+0,Default-K8s,8.998
+0,Default-K8s,8.998
+0,Default-K8s,8.999
+0,Default-K8s,9.0
+0,Default-K8s,9.001
+0,Default-K8s,9.002
+0,Default-K8s,9.002
+0,Default-K8s,9.003
+0,Default-K8s,9.005
+0,Default-K8s,9.007
+0,Default-K8s,9.009
+0,Default-K8s,9.009
+0,Default-K8s,9.01
+0,Default-K8s,9.01
+0,Default-K8s,9.011
+0,Default-K8s,9.013
+0,Default-K8s,9.014
+0,Default-K8s,9.014
+0,Default-K8s,9.016
+0,Default-K8s,9.018
+0,Default-K8s,9.018
+0,Default-K8s,9.021
+0,Default-K8s,9.022
+0,Default-K8s,9.024
+0,Default-K8s,9.024
+0,Default-K8s,9.024
+0,Default-K8s,9.024
+0,Default-K8s,9.025
+0,Default-K8s,9.025
+0,Default-K8s,9.026
+0,Default-K8s,9.026
+0,Default-K8s,9.026
+0,Default-K8s,9.027
+0,Default-K8s,9.028
+0,Default-K8s,9.028
+0,Default-K8s,9.029
+0,Default-K8s,9.03
+0,Default-K8s,9.031
+0,Default-K8s,9.031
+0,Default-K8s,9.031
+0,Default-K8s,9.033
+0,Default-K8s,9.035
+0,Default-K8s,9.037
+0,Default-K8s,9.038
+0,Default-K8s,9.039
+0,Default-K8s,9.039
+0,Default-K8s,9.039
+0,Default-K8s,9.04
+0,Default-K8s,9.04
+0,Default-K8s,9.04
+0,Default-K8s,9.041
+0,Default-K8s,9.042
+0,Default-K8s,9.044
+0,Default-K8s,9.044
+0,Default-K8s,9.046
+0,Default-K8s,9.047
+0,Default-K8s,9.048
+0,Default-K8s,9.048
+0,Default-K8s,9.049
+0,Default-K8s,9.049
+0,Default-K8s,9.053
+0,Default-K8s,9.053
+0,Default-K8s,9.054
+0,Default-K8s,9.055
+0,Default-K8s,9.055
+0,Default-K8s,9.055
+0,Default-K8s,9.057
+0,Default-K8s,9.057
+0,Default-K8s,9.058
+0,Default-K8s,9.059
+0,Default-K8s,9.06
+0,Default-K8s,9.06
+0,Default-K8s,9.061
+0,Default-K8s,9.061
+0,Default-K8s,9.062
+0,Default-K8s,9.063
+0,Default-K8s,9.064
+0,Default-K8s,9.064
+0,Default-K8s,9.065
+0,Default-K8s,9.066
+0,Default-K8s,9.068
+0,Default-K8s,9.071
+0,Default-K8s,9.072
+0,Default-K8s,9.072
+0,Default-K8s,9.072
+0,Default-K8s,9.073
+0,Default-K8s,9.074
+0,Default-K8s,9.075
+0,Default-K8s,9.076
+0,Default-K8s,9.078
+0,Default-K8s,9.078
+0,Default-K8s,9.081
+0,Default-K8s,9.086
+0,Default-K8s,9.086
+0,Default-K8s,9.086
+0,Default-K8s,9.087
+0,Default-K8s,9.088
+0,Default-K8s,9.089
+0,Default-K8s,9.089
+0,Default-K8s,9.09
+0,Default-K8s,9.09
+0,Default-K8s,9.091
+0,Default-K8s,9.091
+0,Default-K8s,9.092
+0,Default-K8s,9.093
+0,Default-K8s,9.093
+0,Default-K8s,9.094
+0,Default-K8s,9.095
+0,Default-K8s,9.095
+0,Default-K8s,9.096
+0,Default-K8s,9.096
+0,Default-K8s,9.096
+0,Default-K8s,9.098
+0,Default-K8s,9.101
+0,Default-K8s,9.102
+0,Default-K8s,9.102
+0,Default-K8s,9.103
+0,Default-K8s,9.105
+0,Default-K8s,9.106
+0,Default-K8s,9.106
+0,Default-K8s,9.108
+0,Default-K8s,9.108
+0,Default-K8s,9.109
+0,Default-K8s,9.109
+0,Default-K8s,9.112
+0,Default-K8s,9.112
+0,Default-K8s,9.115
+0,Default-K8s,9.117
+0,Default-K8s,9.117
+0,Default-K8s,9.118
+0,Default-K8s,9.119
+0,Default-K8s,9.12
+0,Default-K8s,9.12
+0,Default-K8s,9.121
+0,Default-K8s,9.121
+0,Default-K8s,9.122
+0,Default-K8s,9.126
+0,Default-K8s,9.126
+0,Default-K8s,9.128
+0,Default-K8s,9.129
+0,Default-K8s,9.129
+0,Default-K8s,9.129
+0,Default-K8s,9.129
+0,Default-K8s,9.129
+0,Default-K8s,9.13
+0,Default-K8s,9.131
+0,Default-K8s,9.131
+0,Default-K8s,9.132
+0,Default-K8s,9.132
+0,Default-K8s,9.133
+0,Default-K8s,9.135
+0,Default-K8s,9.136
+0,Default-K8s,9.136
+0,Default-K8s,9.137
+0,Default-K8s,9.138
+0,Default-K8s,9.138
+0,Default-K8s,9.139
+0,Default-K8s,9.14
+0,Default-K8s,9.141
+0,Default-K8s,9.141
+0,Default-K8s,9.142
+0,Default-K8s,9.142
+0,Default-K8s,9.143
+0,BinPacking,5.236
+0,BinPacking,5.33
+0,BinPacking,5.555
+0,BinPacking,5.591
+0,BinPacking,5.653
+0,BinPacking,5.708
+0,BinPacking,5.823
+0,BinPacking,5.956
+0,BinPacking,6.005
+0,BinPacking,6.011
+0,BinPacking,6.048
+0,BinPacking,6.09
+0,BinPacking,6.135
+0,BinPacking,6.136
+0,BinPacking,6.182
+0,BinPacking,6.2
+0,BinPacking,6.212
+0,BinPacking,6.222
+0,BinPacking,6.244
+0,BinPacking,6.267
+0,BinPacking,6.292
+0,BinPacking,6.306
+0,BinPacking,6.365
+0,BinPacking,6.39
+0,BinPacking,6.402
+0,BinPacking,6.432
+0,BinPacking,6.454
+0,BinPacking,6.516
+0,BinPacking,6.533
+0,BinPacking,6.543
+0,BinPacking,6.549
+0,BinPacking,6.558
+0,BinPacking,6.588
+0,BinPacking,6.642
+0,BinPacking,6.655
+0,BinPacking,6.666
+0,BinPacking,6.691
+0,BinPacking,6.7
+0,BinPacking,6.707
+0,BinPacking,6.753
+0,BinPacking,6.768
+0,BinPacking,6.793
+0,BinPacking,6.811
+0,BinPacking,6.864
+0,BinPacking,6.888
+0,BinPacking,6.904
+0,BinPacking,6.914
+0,BinPacking,6.92
+0,BinPacking,6.923
+0,BinPacking,6.93
+0,BinPacking,6.943
+0,BinPacking,6.96
+0,BinPacking,6.962
+0,BinPacking,6.964
+0,BinPacking,7.011
+0,BinPacking,7.051
+0,BinPacking,7.06
+0,BinPacking,7.102
+0,BinPacking,7.107
+0,BinPacking,7.112
+0,BinPacking,7.115
+0,BinPacking,7.141
+0,BinPacking,7.157
+0,BinPacking,7.166
+0,BinPacking,7.198
+0,BinPacking,7.202
+0,BinPacking,7.203
+0,BinPacking,7.204
+0,BinPacking,7.218
+0,BinPacking,7.237
+0,BinPacking,7.284
+0,BinPacking,7.322
+0,BinPacking,7.358
+0,BinPacking,7.367
+0,BinPacking,7.37
+0,BinPacking,7.374
+0,BinPacking,7.377
+0,BinPacking,7.38
+0,BinPacking,7.396
+0,BinPacking,7.409
+0,BinPacking,7.409
+0,BinPacking,7.417
+0,BinPacking,7.419
+0,BinPacking,7.422
+0,BinPacking,7.431
+0,BinPacking,7.437
+0,BinPacking,7.442
+0,BinPacking,7.445
+0,BinPacking,7.457
+0,BinPacking,7.47
+0,BinPacking,7.472
+0,BinPacking,7.476
+0,BinPacking,7.518
+0,BinPacking,7.532
+0,BinPacking,7.533
+0,BinPacking,7.545
+0,BinPacking,7.549
+0,BinPacking,7.552
+0,BinPacking,7.571
+0,BinPacking,7.581
+0,BinPacking,7.585
+0,BinPacking,7.602
+0,BinPacking,7.61
+0,BinPacking,7.64
+0,BinPacking,7.65
+0,BinPacking,7.664
+0,BinPacking,7.673
+0,BinPacking,7.679
+0,BinPacking,7.686
+0,BinPacking,7.692
+0,BinPacking,7.706
+0,BinPacking,7.736
+0,BinPacking,7.738
+0,BinPacking,7.74
+0,BinPacking,7.745
+0,BinPacking,7.748
+0,BinPacking,7.757
+0,BinPacking,7.76
+0,BinPacking,7.762
+0,BinPacking,7.793
+0,BinPacking,7.796
+0,BinPacking,7.801
+0,BinPacking,7.804
+0,BinPacking,7.805
+0,BinPacking,7.808
+0,BinPacking,7.811
+0,BinPacking,7.813
+0,BinPacking,7.815
+0,BinPacking,7.824
+0,BinPacking,7.854
+0,BinPacking,7.86
+0,BinPacking,7.867
+0,BinPacking,7.868
+0,BinPacking,7.872
+0,BinPacking,7.875
+0,BinPacking,7.876
+0,BinPacking,7.885
+0,BinPacking,7.889
+0,BinPacking,7.898
+0,BinPacking,7.913
+0,BinPacking,7.919
+0,BinPacking,7.92
+0,BinPacking,7.922
+0,BinPacking,7.937
+0,BinPacking,7.953
+0,BinPacking,7.958
+0,BinPacking,7.964
+0,BinPacking,7.966
+0,BinPacking,7.979
+0,BinPacking,7.982
+0,BinPacking,7.984
+0,BinPacking,7.992
+0,BinPacking,7.999
+0,BinPacking,8.001
+0,BinPacking,8.005
+0,BinPacking,8.006
+0,BinPacking,8.006
+0,BinPacking,8.007
+0,BinPacking,8.008
+0,BinPacking,8.025
+0,BinPacking,8.028
+0,BinPacking,8.034
+0,BinPacking,8.035
+0,BinPacking,8.041
+0,BinPacking,8.042
+0,BinPacking,8.052
+0,BinPacking,8.058
+0,BinPacking,8.058
+0,BinPacking,8.063
+0,BinPacking,8.064
+0,BinPacking,8.064
+0,BinPacking,8.072
+0,BinPacking,8.077
+0,BinPacking,8.08
+0,BinPacking,8.08
+0,BinPacking,8.095
+0,BinPacking,8.104
+0,BinPacking,8.107
+0,BinPacking,8.114
+0,BinPacking,8.127
+0,BinPacking,8.128
+0,BinPacking,8.13
+0,BinPacking,8.131
+0,BinPacking,8.134
+0,BinPacking,8.134
+0,BinPacking,8.157
+0,BinPacking,8.165
+0,BinPacking,8.165
+0,BinPacking,8.17
+0,BinPacking,8.171
+0,BinPacking,8.177
+0,BinPacking,8.179
+0,BinPacking,8.179
+0,BinPacking,8.181
+0,BinPacking,8.194
+0,BinPacking,8.198
+0,BinPacking,8.205
+0,BinPacking,8.216
+0,BinPacking,8.225
+0,BinPacking,8.23
+0,BinPacking,8.235
+0,BinPacking,8.237
+0,BinPacking,8.243
+0,BinPacking,8.246
+0,BinPacking,8.257
+0,BinPacking,8.277
+0,BinPacking,8.278
+0,BinPacking,8.28
+0,BinPacking,8.287
+0,BinPacking,8.294
+0,BinPacking,8.306
+0,BinPacking,8.31
+0,BinPacking,8.325
+0,BinPacking,8.343
+0,BinPacking,8.348
+0,BinPacking,8.351
+0,BinPacking,8.353
+0,BinPacking,8.354
+0,BinPacking,8.362
+0,BinPacking,8.363
+0,BinPacking,8.367
+0,BinPacking,8.368
+0,BinPacking,8.368
+0,BinPacking,8.371
+0,BinPacking,8.374
+0,BinPacking,8.391
+0,BinPacking,8.409
+0,BinPacking,8.413
+0,BinPacking,8.436
+0,BinPacking,8.444
+0,BinPacking,8.448
+0,BinPacking,8.456
+0,BinPacking,8.456
+0,BinPacking,8.458
+0,BinPacking,8.459
+0,BinPacking,8.467
+0,BinPacking,8.489
+0,BinPacking,8.5
+0,BinPacking,8.506
+0,BinPacking,8.51
+0,BinPacking,8.533
+0,BinPacking,8.534
+0,BinPacking,8.534
+0,BinPacking,8.541
+0,BinPacking,8.544
+0,BinPacking,8.553
+0,BinPacking,8.558
+0,BinPacking,8.567
+0,BinPacking,8.569
+0,BinPacking,8.58
+0,BinPacking,8.582
+0,BinPacking,8.588
+0,BinPacking,8.601
+0,BinPacking,8.606
+0,BinPacking,8.615
+0,BinPacking,8.626
+0,BinPacking,8.635
+0,BinPacking,8.637
+0,BinPacking,8.641
+0,BinPacking,8.649
+0,BinPacking,8.652
+0,BinPacking,8.66
+0,BinPacking,8.663
+0,BinPacking,8.669
+0,BinPacking,8.675
+0,BinPacking,8.683
+0,BinPacking,8.685
+0,BinPacking,8.686
+0,BinPacking,8.698
+0,BinPacking,8.703
+0,BinPacking,8.706
+0,BinPacking,8.706
+0,BinPacking,8.719
+0,BinPacking,8.719
+0,BinPacking,8.724
+0,BinPacking,8.735
+0,BinPacking,8.738
+0,BinPacking,8.739
+0,BinPacking,8.743
+0,BinPacking,8.748
+0,BinPacking,8.748
+0,BinPacking,8.748
+0,BinPacking,8.751
+0,BinPacking,8.751
+0,BinPacking,8.753
+0,BinPacking,8.771
+0,BinPacking,8.774
+0,BinPacking,8.812
+0,BinPacking,8.814
+0,BinPacking,8.817
+0,BinPacking,8.82
+0,BinPacking,8.821
+0,BinPacking,8.842
+0,BinPacking,8.855
+0,BinPacking,8.857
+0,BinPacking,8.858
+0,BinPacking,8.885
+0,BinPacking,8.894
+0,BinPacking,8.897
+0,BinPacking,8.907
+0,BinPacking,8.914
+0,BinPacking,8.918
+0,BinPacking,8.923
+0,BinPacking,8.924
+0,BinPacking,8.932
+0,BinPacking,8.934
+0,BinPacking,8.938
+0,BinPacking,8.944
+0,BinPacking,8.95
+0,BinPacking,8.963
+0,BinPacking,8.964
+0,BinPacking,8.97
+0,BinPacking,8.971
+0,BinPacking,8.973
+0,BinPacking,8.981
+0,BinPacking,8.985
+0,BinPacking,8.989
+0,BinPacking,8.996
+0,BinPacking,8.998
+0,BinPacking,9.0
+0,BinPacking,9.003
+0,BinPacking,9.011
+0,BinPacking,9.029
+0,BinPacking,9.048
+0,BinPacking,9.052
+0,BinPacking,9.064
+0,BinPacking,9.066
+0,BinPacking,9.073
+0,BinPacking,9.074
+0,BinPacking,9.076
+0,BinPacking,9.085
+0,BinPacking,9.086
+0,BinPacking,9.086
+0,BinPacking,9.088
+0,BinPacking,9.11
+0,BinPacking,9.111
+0,BinPacking,9.113
+0,BinPacking,9.118
+0,BinPacking,9.119
+0,BinPacking,9.132
+0,BinPacking,9.144
+0,BinPacking,9.148
+0,BinPacking,9.149
+0,BinPacking,9.15
+0,BinPacking,9.153
+0,BinPacking,9.16
+0,BinPacking,9.166
+0,BinPacking,9.167
+0,BinPacking,9.171
+0,BinPacking,9.174
+0,BinPacking,9.178
+0,BinPacking,9.191
+0,BinPacking,9.196
+0,BinPacking,9.199
+0,BinPacking,9.199
+0,BinPacking,9.199
+0,BinPacking,9.207
+0,BinPacking,9.217
+0,BinPacking,9.24
+0,BinPacking,9.241
+0,BinPacking,9.268
+0,BinPacking,9.268
+0,BinPacking,9.268
+0,BinPacking,9.28
+0,BinPacking,9.283
+0,BinPacking,9.289
+0,BinPacking,9.299
+0,BinPacking,9.302
+0,BinPacking,9.318
+0,BinPacking,9.323
+0,BinPacking,9.344
+0,BinPacking,9.376
+0,BinPacking,9.381
+0,BinPacking,9.381
+0,BinPacking,9.396
+0,BinPacking,9.398
+0,BinPacking,9.408
+0,BinPacking,9.415
+0,BinPacking,9.418
+0,BinPacking,9.421
+0,BinPacking,9.421
+0,BinPacking,9.422
+0,BinPacking,9.427
+0,BinPacking,9.435
+0,BinPacking,9.446
+0,BinPacking,9.449
+0,BinPacking,9.454
+0,BinPacking,9.456
+0,BinPacking,9.466
+0,BinPacking,9.479
+0,BinPacking,9.486
+0,BinPacking,9.487
+0,BinPacking,9.487
+0,BinPacking,9.489
+0,BinPacking,9.494
+0,BinPacking,9.502
+0,BinPacking,9.504
+0,BinPacking,9.508
+0,BinPacking,9.511
+0,BinPacking,9.513
+0,BinPacking,9.525
+0,BinPacking,9.528
+0,BinPacking,9.537
+0,BinPacking,9.538
+0,BinPacking,9.556
+0,BinPacking,9.558
+0,BinPacking,9.566
+0,BinPacking,9.574
+0,BinPacking,9.584
+0,BinPacking,9.59
+0,BinPacking,9.593
+0,BinPacking,9.595
+0,BinPacking,9.597
+0,BinPacking,9.599
+0,BinPacking,9.608
+0,BinPacking,9.618
+0,BinPacking,9.621
+0,BinPacking,9.632
+0,BinPacking,9.636
+0,BinPacking,9.651
+0,BinPacking,9.653
+0,BinPacking,9.654
+0,BinPacking,9.656
+0,BinPacking,9.66
+0,BinPacking,9.662
+0,BinPacking,9.663
+0,BinPacking,9.68
+0,BinPacking,9.681
+0,BinPacking,9.685
+0,BinPacking,9.694
+0,BinPacking,9.699
+0,BinPacking,9.7
+0,BinPacking,9.701
+0,BinPacking,9.701
+0,BinPacking,9.713
+0,BinPacking,9.718
+0,BinPacking,9.724
+0,BinPacking,9.734
+0,BinPacking,9.742
+0,BinPacking,9.752
+0,BinPacking,9.76
+0,BinPacking,9.76
+0,BinPacking,9.76
+0,BinPacking,9.766
+0,BinPacking,9.778
+0,BinPacking,9.78
+0,BinPacking,9.792
+0,BinPacking,9.81
+0,BinPacking,9.81
+0,BinPacking,9.812
+0,BinPacking,9.812
+0,BinPacking,9.82
+0,BinPacking,9.825
+0,BinPacking,9.828
+0,BinPacking,9.839
+0,BinPacking,9.857
+0,BinPacking,9.868
+0,BinPacking,9.869
+0,BinPacking,9.871
+0,BinPacking,9.878
+0,BinPacking,9.883
+0,BinPacking,9.892
+0,BinPacking,9.898
+0,BinPacking,9.899
+0,BinPacking,9.906
+0,BinPacking,9.906
+0,BinPacking,9.912
+0,BinPacking,9.917
+0,BinPacking,9.917
+0,BinPacking,9.918
+0,BinPacking,9.918
+0,BinPacking,9.921
+0,BinPacking,9.929
+0,BinPacking,9.934
+0,BinPacking,9.945
+0,BinPacking,9.952
+0,BinPacking,9.962
+0,BinPacking,9.963
+0,BinPacking,9.972
+0,BinPacking,9.977
+0,BinPacking,9.982
+0,BinPacking,10.002
+0,BinPacking,10.011
+0,BinPacking,10.033
+0,BinPacking,10.039
+0,BinPacking,10.04
+0,BinPacking,10.048
+0,BinPacking,10.066
+0,BinPacking,10.074
+0,BinPacking,10.091
+0,BinPacking,10.113
+0,BinPacking,10.115
+0,BinPacking,10.116
+0,BinPacking,10.117
+0,BinPacking,10.119
+0,BinPacking,10.128
+0,BinPacking,10.131
+0,BinPacking,10.133
+0,BinPacking,10.139
+0,BinPacking,10.147
+0,BinPacking,10.156
+0,BinPacking,10.157
+0,BinPacking,10.166
+0,BinPacking,10.176
+0,BinPacking,10.177
+0,BinPacking,10.182
+0,BinPacking,10.182
+0,BinPacking,10.185
+0,BinPacking,10.195
+0,BinPacking,10.196
+0,BinPacking,10.2
+0,BinPacking,10.207
+0,BinPacking,10.208
+0,BinPacking,10.221
+0,BinPacking,10.226
+0,BinPacking,10.23
+0,BinPacking,10.235
+0,BinPacking,10.236
+0,BinPacking,10.25
+0,BinPacking,10.254
+0,BinPacking,10.281
+0,BinPacking,10.282
+0,BinPacking,10.283
+0,BinPacking,10.285
+0,BinPacking,10.289
+0,BinPacking,10.29
+0,BinPacking,10.299
+0,BinPacking,10.304
+0,BinPacking,10.319
+0,BinPacking,10.32
+0,BinPacking,10.324
+0,BinPacking,10.339
+0,BinPacking,10.342
+0,BinPacking,10.355
+0,BinPacking,10.359
+0,BinPacking,10.379
+0,BinPacking,10.388
+0,BinPacking,10.395
+0,BinPacking,10.398
+0,BinPacking,10.4
+0,BinPacking,10.407
+0,BinPacking,10.407
+0,BinPacking,10.421
+0,BinPacking,10.433
+0,BinPacking,10.434
+0,BinPacking,10.437
+0,BinPacking,10.445
+0,BinPacking,10.449
+0,BinPacking,10.453
+0,BinPacking,10.459
+0,BinPacking,10.461
+0,BinPacking,10.467
+0,BinPacking,10.47
+0,BinPacking,10.471
+0,BinPacking,10.476
+0,BinPacking,10.481
+0,BinPacking,10.483
+0,BinPacking,10.497
+0,BinPacking,10.499
+0,BinPacking,10.503
+0,BinPacking,10.521
+0,BinPacking,10.533
+0,BinPacking,10.534
+0,BinPacking,10.535
+0,BinPacking,10.547
+0,BinPacking,10.551
+0,BinPacking,10.556
+0,BinPacking,10.556
+0,BinPacking,10.558
+0,BinPacking,10.56
+0,BinPacking,10.563
+0,BinPacking,10.57
+0,BinPacking,10.576
+0,BinPacking,10.588
+0,BinPacking,10.595
+0,BinPacking,10.607
+0,BinPacking,10.609
+0,BinPacking,10.612
+0,BinPacking,10.614
+0,BinPacking,10.62
+0,BinPacking,10.624
+0,BinPacking,10.625
+0,BinPacking,10.638
+0,BinPacking,10.641
+0,BinPacking,10.642
+0,BinPacking,10.649
+0,BinPacking,10.65
+0,BinPacking,10.678
+0,BinPacking,10.679
+0,BinPacking,10.688
+0,BinPacking,10.712
+0,BinPacking,10.719
+0,BinPacking,10.726
+0,BinPacking,10.751
+0,BinPacking,10.773
+0,BinPacking,10.78
+0,BinPacking,10.785
+0,BinPacking,10.797
+0,BinPacking,10.8
+0,BinPacking,10.809
+0,BinPacking,10.812
+0,BinPacking,10.813
+0,BinPacking,10.814
+0,BinPacking,10.816
+0,BinPacking,10.82
+0,BinPacking,10.822
+0,BinPacking,10.844
+0,BinPacking,10.845
+0,BinPacking,10.849
+0,BinPacking,10.849
+0,BinPacking,10.851
+0,BinPacking,10.869
+0,BinPacking,10.875
+0,BinPacking,10.877
+0,BinPacking,10.886
+0,BinPacking,10.887
+0,BinPacking,10.901
+0,BinPacking,10.908
+0,BinPacking,10.914
+0,BinPacking,10.922
+0,BinPacking,10.925
+0,BinPacking,10.942
+0,BinPacking,10.947
+0,BinPacking,10.949
+0,BinPacking,10.956
+0,BinPacking,10.967
+0,BinPacking,10.969
+0,BinPacking,10.973
+0,BinPacking,10.982
+0,BinPacking,10.984
+0,BinPacking,10.986
+0,BinPacking,10.992
+0,BinPacking,10.996
+0,BinPacking,11.023
+0,BinPacking,11.063
+0,BinPacking,11.071
+0,BinPacking,11.083
+0,BinPacking,11.096
+0,BinPacking,11.102
+0,BinPacking,11.12
+0,BinPacking,11.137
+0,BinPacking,11.145
+0,BinPacking,11.146
+0,BinPacking,11.149
+0,BinPacking,11.162
+0,BinPacking,11.18
+0,BinPacking,11.188
+0,BinPacking,11.191
+0,BinPacking,11.192
+0,BinPacking,11.199
+0,BinPacking,11.209
+0,BinPacking,11.215
+0,BinPacking,11.224
+0,BinPacking,11.225
+0,BinPacking,11.244
+0,BinPacking,11.257
+0,BinPacking,11.263
+0,BinPacking,11.284
+0,BinPacking,11.289
+0,BinPacking,11.305
+0,BinPacking,11.308
+0,BinPacking,11.315
+0,BinPacking,11.342
+0,BinPacking,11.343
+0,BinPacking,11.351
+0,BinPacking,11.357
+0,BinPacking,11.361
+0,BinPacking,11.365
+0,BinPacking,11.373
+0,BinPacking,11.382
+0,BinPacking,11.391
+0,BinPacking,11.399
+0,BinPacking,11.421
+0,BinPacking,11.422
+0,BinPacking,11.425
+0,BinPacking,11.432
+0,BinPacking,11.45
+0,BinPacking,11.455
+0,BinPacking,11.458
+0,BinPacking,11.468
+0,BinPacking,11.468
+0,BinPacking,11.474
+0,BinPacking,11.488
+0,BinPacking,11.495
+0,BinPacking,11.51
+0,BinPacking,11.519
+0,BinPacking,11.522
+0,BinPacking,11.531
+0,BinPacking,11.531
+0,BinPacking,11.535
+0,BinPacking,11.544
+0,BinPacking,11.565
+0,BinPacking,11.578
+0,BinPacking,11.594
+0,BinPacking,11.596
+0,BinPacking,11.608
+0,BinPacking,11.609
+0,BinPacking,11.61
+0,BinPacking,11.619
+0,BinPacking,11.624
+0,BinPacking,11.632
+0,BinPacking,11.637
+0,BinPacking,11.647
+0,BinPacking,11.677
+0,BinPacking,11.678
+0,BinPacking,11.688
+0,BinPacking,11.698
+0,BinPacking,11.698
+0,BinPacking,11.7
+0,BinPacking,11.71
+0,BinPacking,11.715
+0,BinPacking,11.743
+0,BinPacking,11.756
+0,BinPacking,11.763
+0,BinPacking,11.807
+0,BinPacking,11.809
+0,BinPacking,11.81
+0,BinPacking,11.812
+0,BinPacking,11.827
+0,BinPacking,11.837
+0,BinPacking,11.839
+0,BinPacking,11.861
+0,BinPacking,11.88
+0,BinPacking,11.88
+0,BinPacking,11.895
+0,BinPacking,11.898
+0,BinPacking,11.917
+0,BinPacking,11.937
+0,BinPacking,11.956
+0,BinPacking,11.965
+0,BinPacking,11.981
+0,BinPacking,11.993
+0,BinPacking,12.001
+0,BinPacking,12.015
+0,BinPacking,12.016
+0,BinPacking,12.016
+0,BinPacking,12.029
+0,BinPacking,12.034
+0,BinPacking,12.038
+0,BinPacking,12.041
+0,BinPacking,12.059
+0,BinPacking,12.065
+0,BinPacking,12.074
+0,BinPacking,12.086
+0,BinPacking,12.119
+0,BinPacking,12.13
+0,BinPacking,12.136
+0,BinPacking,12.149
+0,BinPacking,12.158
+0,BinPacking,12.158
+0,BinPacking,12.161
+0,BinPacking,12.176
+0,BinPacking,12.18
+0,BinPacking,12.202
+0,BinPacking,12.221
+0,BinPacking,12.234
+0,BinPacking,12.248
+0,BinPacking,12.279
+0,BinPacking,12.285
+0,BinPacking,12.294
+0,BinPacking,12.3
+0,BinPacking,12.306
+0,BinPacking,12.307
+0,BinPacking,12.331
+0,BinPacking,12.342
+0,BinPacking,12.343
+0,BinPacking,12.36
+0,BinPacking,12.361
+0,BinPacking,12.372
+0,BinPacking,12.398
+0,BinPacking,12.403
+0,BinPacking,12.406
+0,BinPacking,12.416
+0,BinPacking,12.421
+0,BinPacking,12.43
+0,BinPacking,12.434
+0,BinPacking,12.45
+0,BinPacking,12.457
+0,BinPacking,12.458
+0,BinPacking,12.459
+0,BinPacking,12.482
+0,BinPacking,12.485
+0,BinPacking,12.499
+0,BinPacking,12.508
+0,BinPacking,12.53
+0,BinPacking,12.55
+0,BinPacking,12.576
+0,BinPacking,12.585
+0,BinPacking,12.589
+0,BinPacking,12.592
+0,BinPacking,12.597
+0,BinPacking,12.599
+0,BinPacking,12.615
+0,BinPacking,12.643
+0,BinPacking,12.644
+0,BinPacking,12.648
+0,BinPacking,12.649
+0,BinPacking,12.659
+0,BinPacking,12.702
+0,BinPacking,12.704
+0,BinPacking,12.709
+0,BinPacking,12.73
+0,BinPacking,12.731
+0,BinPacking,12.735
+0,BinPacking,12.775
+0,BinPacking,12.784
+0,BinPacking,12.79
+0,BinPacking,12.799
+0,BinPacking,12.819
+0,BinPacking,12.82
+0,BinPacking,12.838
+0,BinPacking,12.843
+0,BinPacking,12.855
+0,BinPacking,12.856
+0,BinPacking,12.858
+0,BinPacking,12.863
+0,BinPacking,12.877
+0,BinPacking,12.889
+0,BinPacking,12.905
+0,BinPacking,12.909
+0,BinPacking,12.926
+0,BinPacking,12.951
+0,BinPacking,12.956
+0,BinPacking,12.961
+0,BinPacking,12.962
+0,BinPacking,12.963
+0,BinPacking,12.97
+0,BinPacking,12.976
+0,BinPacking,12.985
+0,BinPacking,13.01
+0,BinPacking,13.012
+0,BinPacking,13.04
+0,BinPacking,13.054
+0,BinPacking,13.056
+0,BinPacking,13.089
+0,BinPacking,13.121
+0,BinPacking,13.124
+0,BinPacking,13.127
+0,BinPacking,13.128
+0,BinPacking,13.144
+0,BinPacking,13.179
+0,BinPacking,13.186
+0,BinPacking,13.19
+0,BinPacking,13.214
+0,BinPacking,13.23
+0,BinPacking,13.249
+0,BinPacking,13.257
+0,BinPacking,13.268
+0,BinPacking,13.348
+0,BinPacking,13.354
+0,BinPacking,13.359
+0,BinPacking,13.37
+0,BinPacking,13.375
+0,BinPacking,13.382
+0,BinPacking,13.397
+0,BinPacking,13.409
+0,BinPacking,13.416
+0,BinPacking,13.437
+0,BinPacking,13.447
+0,BinPacking,13.448
+0,BinPacking,13.452
+0,BinPacking,13.476
+0,BinPacking,13.487
+0,BinPacking,13.492
+0,BinPacking,13.494
+0,BinPacking,13.495
+0,BinPacking,13.503
+0,BinPacking,13.504
+0,BinPacking,13.508
+0,BinPacking,13.527
+0,BinPacking,13.537
+0,BinPacking,13.591
+0,BinPacking,13.604
+0,BinPacking,13.63
+0,BinPacking,13.648
+0,BinPacking,13.682
+0,BinPacking,13.695
+0,BinPacking,13.698
+0,BinPacking,13.701
+0,BinPacking,13.731
+0,BinPacking,13.731
+0,BinPacking,13.745
+0,BinPacking,13.753
+0,BinPacking,13.762
+0,BinPacking,13.77
+0,BinPacking,13.808
+0,BinPacking,13.875
+0,BinPacking,13.956
+0,BinPacking,13.967
+0,BinPacking,13.971
+0,BinPacking,13.978
+0,BinPacking,14.006
+0,BinPacking,14.028
+0,BinPacking,14.042
+0,BinPacking,14.053
+0,BinPacking,14.065
+0,BinPacking,14.105
+0,BinPacking,14.164
+0,BinPacking,14.21
+0,BinPacking,14.218
+0,BinPacking,14.24
+0,BinPacking,14.256
+0,BinPacking,14.281
+0,BinPacking,14.303
+0,BinPacking,14.338
+0,BinPacking,14.37
+0,BinPacking,14.399
+0,BinPacking,14.464
+0,BinPacking,14.479
+0,BinPacking,14.493
+0,BinPacking,14.517
+0,BinPacking,14.544
+0,BinPacking,14.545
+0,BinPacking,14.632
+0,BinPacking,14.636
+0,BinPacking,14.646
+0,BinPacking,14.669
+0,BinPacking,14.686
+0,BinPacking,14.714
+0,BinPacking,14.718
+0,BinPacking,14.728
+0,BinPacking,14.736
+0,BinPacking,14.87
+0,BinPacking,14.967
+0,BinPacking,14.972
+0,BinPacking,14.993
+0,BinPacking,15.002
+0,BinPacking,15.064
+0,BinPacking,15.203
+0,BinPacking,15.268
+0,BinPacking,15.357
+0,BinPacking,15.388
+0,BinPacking,15.39
+0,BinPacking,15.519
+0,BinPacking,15.583
+0,BinPacking,15.608
+0,BinPacking,15.632
+0,BinPacking,15.634
+0,BinPacking,15.658
+0,BinPacking,15.658
+0,BinPacking,15.689
+0,BinPacking,15.704
+0,BinPacking,15.709
+0,BinPacking,15.753
+0,BinPacking,15.768
+0,BinPacking,15.798
+0,BinPacking,15.85
+0,BinPacking,15.853
+0,BinPacking,15.857
+0,BinPacking,15.911
+0,BinPacking,15.918
+0,BinPacking,15.929
+0,BinPacking,15.974
+0,BinPacking,16.079
+0,BinPacking,16.092
+0,BinPacking,16.103
+0,BinPacking,16.129
+0,BinPacking,16.164
+0,BinPacking,16.183
+0,BinPacking,16.188
+0,BinPacking,16.317
+0,BinPacking,16.32
+0,BinPacking,16.323
+0,BinPacking,16.427
+0,BinPacking,16.44
+0,BinPacking,16.458
+0,BinPacking,16.533
+0,BinPacking,16.65
+0,BinPacking,16.722
+0,BinPacking,16.973
+0,BinPacking,17.062
+0,BinPacking,17.209
+0,BinPacking,17.364
+0,BinPacking,17.46
+0,BinPacking,17.562
+0,BinPacking,17.606
+0,BinPacking,17.711
+0,BinPacking,17.786
+0,BinPacking,17.923
+0,BinPacking,17.969
+0,BinPacking,17.972
+0,BinPacking,18.04
+0,BinPacking,18.138
+0,BinPacking,18.301
+0,BinPacking,18.34
+0,BinPacking,18.497
+0,BinPacking,18.506
+0,BinPacking,18.527
+0,BinPacking,18.528
+0,BinPacking,18.555
+0,BinPacking,18.832
+0,BinPacking,19.148
+0,BinPacking,19.181
+0,BinPacking,19.207
+0,BinPacking,19.209
+0,BinPacking,19.308
+0,BinPacking,19.311
+0,BinPacking,19.348
+0,BinPacking,19.409
+0,BinPacking,19.428
+0,Trimaran-TLP,5.656
+0,Trimaran-TLP,5.819
+0,Trimaran-TLP,5.88
+0,Trimaran-TLP,5.904
+0,Trimaran-TLP,5.905
+0,Trimaran-TLP,5.977
+0,Trimaran-TLP,5.999
+0,Trimaran-TLP,6.035
+0,Trimaran-TLP,6.078
+0,Trimaran-TLP,6.111
+0,Trimaran-TLP,6.16
+0,Trimaran-TLP,6.192
+0,Trimaran-TLP,6.254
+0,Trimaran-TLP,6.288
+0,Trimaran-TLP,6.292
+0,Trimaran-TLP,6.339
+0,Trimaran-TLP,6.415
+0,Trimaran-TLP,6.466
+0,Trimaran-TLP,6.479
+0,Trimaran-TLP,6.516
+0,Trimaran-TLP,6.548
+0,Trimaran-TLP,6.667
+0,Trimaran-TLP,6.673
+0,Trimaran-TLP,6.682
+0,Trimaran-TLP,6.685
+0,Trimaran-TLP,6.721
+0,Trimaran-TLP,6.73
+0,Trimaran-TLP,6.748
+0,Trimaran-TLP,6.804
+0,Trimaran-TLP,6.824
+0,Trimaran-TLP,6.839
+0,Trimaran-TLP,6.86
+0,Trimaran-TLP,6.861
+0,Trimaran-TLP,6.869
+0,Trimaran-TLP,6.882
+0,Trimaran-TLP,6.886
+0,Trimaran-TLP,6.887
+0,Trimaran-TLP,6.892
+0,Trimaran-TLP,6.894
+0,Trimaran-TLP,6.912
+0,Trimaran-TLP,6.916
+0,Trimaran-TLP,6.918
+0,Trimaran-TLP,6.938
+0,Trimaran-TLP,6.978
+0,Trimaran-TLP,6.984
+0,Trimaran-TLP,7.004
+0,Trimaran-TLP,7.013
+0,Trimaran-TLP,7.013
+0,Trimaran-TLP,7.029
+0,Trimaran-TLP,7.048
+0,Trimaran-TLP,7.055
+0,Trimaran-TLP,7.077
+0,Trimaran-TLP,7.103
+0,Trimaran-TLP,7.105
+0,Trimaran-TLP,7.126
+0,Trimaran-TLP,7.134
+0,Trimaran-TLP,7.137
+0,Trimaran-TLP,7.138
+0,Trimaran-TLP,7.142
+0,Trimaran-TLP,7.143
+0,Trimaran-TLP,7.15
+0,Trimaran-TLP,7.155
+0,Trimaran-TLP,7.157
+0,Trimaran-TLP,7.168
+0,Trimaran-TLP,7.186
+0,Trimaran-TLP,7.206
+0,Trimaran-TLP,7.21
+0,Trimaran-TLP,7.218
+0,Trimaran-TLP,7.251
+0,Trimaran-TLP,7.255
+0,Trimaran-TLP,7.278
+0,Trimaran-TLP,7.283
+0,Trimaran-TLP,7.285
+0,Trimaran-TLP,7.288
+0,Trimaran-TLP,7.289
+0,Trimaran-TLP,7.29
+0,Trimaran-TLP,7.292
+0,Trimaran-TLP,7.295
+0,Trimaran-TLP,7.298
+0,Trimaran-TLP,7.3
+0,Trimaran-TLP,7.329
+0,Trimaran-TLP,7.367
+0,Trimaran-TLP,7.374
+0,Trimaran-TLP,7.378
+0,Trimaran-TLP,7.382
+0,Trimaran-TLP,7.417
+0,Trimaran-TLP,7.419
+0,Trimaran-TLP,7.428
+0,Trimaran-TLP,7.428
+0,Trimaran-TLP,7.434
+0,Trimaran-TLP,7.454
+0,Trimaran-TLP,7.457
+0,Trimaran-TLP,7.485
+0,Trimaran-TLP,7.507
+0,Trimaran-TLP,7.509
+0,Trimaran-TLP,7.516
+0,Trimaran-TLP,7.526
+0,Trimaran-TLP,7.534
+0,Trimaran-TLP,7.537
+0,Trimaran-TLP,7.545
+0,Trimaran-TLP,7.571
+0,Trimaran-TLP,7.575
+0,Trimaran-TLP,7.581
+0,Trimaran-TLP,7.59
+0,Trimaran-TLP,7.59
+0,Trimaran-TLP,7.596
+0,Trimaran-TLP,7.598
+0,Trimaran-TLP,7.6
+0,Trimaran-TLP,7.602
+0,Trimaran-TLP,7.63
+0,Trimaran-TLP,7.646
+0,Trimaran-TLP,7.655
+0,Trimaran-TLP,7.664
+0,Trimaran-TLP,7.664
+0,Trimaran-TLP,7.677
+0,Trimaran-TLP,7.691
+0,Trimaran-TLP,7.695
+0,Trimaran-TLP,7.697
+0,Trimaran-TLP,7.699
+0,Trimaran-TLP,7.704
+0,Trimaran-TLP,7.716
+0,Trimaran-TLP,7.745
+0,Trimaran-TLP,7.745
+0,Trimaran-TLP,7.747
+0,Trimaran-TLP,7.752
+0,Trimaran-TLP,7.757
+0,Trimaran-TLP,7.758
+0,Trimaran-TLP,7.759
+0,Trimaran-TLP,7.764
+0,Trimaran-TLP,7.774
+0,Trimaran-TLP,7.778
+0,Trimaran-TLP,7.782
+0,Trimaran-TLP,7.796
+0,Trimaran-TLP,7.808
+0,Trimaran-TLP,7.818
+0,Trimaran-TLP,7.819
+0,Trimaran-TLP,7.845
+0,Trimaran-TLP,7.856
+0,Trimaran-TLP,7.865
+0,Trimaran-TLP,7.87
+0,Trimaran-TLP,7.88
+0,Trimaran-TLP,7.88
+0,Trimaran-TLP,7.884
+0,Trimaran-TLP,7.886
+0,Trimaran-TLP,7.904
+0,Trimaran-TLP,7.915
+0,Trimaran-TLP,7.916
+0,Trimaran-TLP,7.917
+0,Trimaran-TLP,7.923
+0,Trimaran-TLP,7.923
+0,Trimaran-TLP,7.934
+0,Trimaran-TLP,7.936
+0,Trimaran-TLP,7.94
+0,Trimaran-TLP,7.941
+0,Trimaran-TLP,7.942
+0,Trimaran-TLP,7.945
+0,Trimaran-TLP,7.946
+0,Trimaran-TLP,7.951
+0,Trimaran-TLP,7.972
+0,Trimaran-TLP,7.978
+0,Trimaran-TLP,7.987
+0,Trimaran-TLP,7.991
+0,Trimaran-TLP,7.996
+0,Trimaran-TLP,8.011
+0,Trimaran-TLP,8.018
+0,Trimaran-TLP,8.019
+0,Trimaran-TLP,8.021
+0,Trimaran-TLP,8.022
+0,Trimaran-TLP,8.024
+0,Trimaran-TLP,8.042
+0,Trimaran-TLP,8.042
+0,Trimaran-TLP,8.045
+0,Trimaran-TLP,8.046
+0,Trimaran-TLP,8.054
+0,Trimaran-TLP,8.054
+0,Trimaran-TLP,8.056
+0,Trimaran-TLP,8.065
+0,Trimaran-TLP,8.071
+0,Trimaran-TLP,8.074
+0,Trimaran-TLP,8.076
+0,Trimaran-TLP,8.082
+0,Trimaran-TLP,8.086
+0,Trimaran-TLP,8.091
+0,Trimaran-TLP,8.093
+0,Trimaran-TLP,8.098
+0,Trimaran-TLP,8.111
+0,Trimaran-TLP,8.112
+0,Trimaran-TLP,8.116
+0,Trimaran-TLP,8.12
+0,Trimaran-TLP,8.122
+0,Trimaran-TLP,8.124
+0,Trimaran-TLP,8.132
+0,Trimaran-TLP,8.145
+0,Trimaran-TLP,8.146
+0,Trimaran-TLP,8.15
+0,Trimaran-TLP,8.153
+0,Trimaran-TLP,8.182
+0,Trimaran-TLP,8.197
+0,Trimaran-TLP,8.208
+0,Trimaran-TLP,8.216
+0,Trimaran-TLP,8.219
+0,Trimaran-TLP,8.222
+0,Trimaran-TLP,8.225
+0,Trimaran-TLP,8.23
+0,Trimaran-TLP,8.231
+0,Trimaran-TLP,8.233
+0,Trimaran-TLP,8.238
+0,Trimaran-TLP,8.246
+0,Trimaran-TLP,8.248
+0,Trimaran-TLP,8.253
+0,Trimaran-TLP,8.256
+0,Trimaran-TLP,8.258
+0,Trimaran-TLP,8.26
+0,Trimaran-TLP,8.267
+0,Trimaran-TLP,8.271
+0,Trimaran-TLP,8.273
+0,Trimaran-TLP,8.274
+0,Trimaran-TLP,8.281
+0,Trimaran-TLP,8.282
+0,Trimaran-TLP,8.291
+0,Trimaran-TLP,8.296
+0,Trimaran-TLP,8.309
+0,Trimaran-TLP,8.314
+0,Trimaran-TLP,8.316
+0,Trimaran-TLP,8.321
+0,Trimaran-TLP,8.328
+0,Trimaran-TLP,8.329
+0,Trimaran-TLP,8.331
+0,Trimaran-TLP,8.332
+0,Trimaran-TLP,8.335
+0,Trimaran-TLP,8.338
+0,Trimaran-TLP,8.338
+0,Trimaran-TLP,8.341
+0,Trimaran-TLP,8.343
+0,Trimaran-TLP,8.345
+0,Trimaran-TLP,8.347
+0,Trimaran-TLP,8.351
+0,Trimaran-TLP,8.361
+0,Trimaran-TLP,8.367
+0,Trimaran-TLP,8.368
+0,Trimaran-TLP,8.376
+0,Trimaran-TLP,8.377
+0,Trimaran-TLP,8.381
+0,Trimaran-TLP,8.386
+0,Trimaran-TLP,8.388
+0,Trimaran-TLP,8.392
+0,Trimaran-TLP,8.392
+0,Trimaran-TLP,8.399
+0,Trimaran-TLP,8.401
+0,Trimaran-TLP,8.401
+0,Trimaran-TLP,8.408
+0,Trimaran-TLP,8.425
+0,Trimaran-TLP,8.429
+0,Trimaran-TLP,8.43
+0,Trimaran-TLP,8.43
+0,Trimaran-TLP,8.432
+0,Trimaran-TLP,8.432
+0,Trimaran-TLP,8.437
+0,Trimaran-TLP,8.437
+0,Trimaran-TLP,8.438
+0,Trimaran-TLP,8.448
+0,Trimaran-TLP,8.452
+0,Trimaran-TLP,8.457
+0,Trimaran-TLP,8.461
+0,Trimaran-TLP,8.464
+0,Trimaran-TLP,8.475
+0,Trimaran-TLP,8.483
+0,Trimaran-TLP,8.484
+0,Trimaran-TLP,8.489
+0,Trimaran-TLP,8.491
+0,Trimaran-TLP,8.493
+0,Trimaran-TLP,8.5
+0,Trimaran-TLP,8.506
+0,Trimaran-TLP,8.508
+0,Trimaran-TLP,8.511
+0,Trimaran-TLP,8.514
+0,Trimaran-TLP,8.515
+0,Trimaran-TLP,8.517
+0,Trimaran-TLP,8.521
+0,Trimaran-TLP,8.536
+0,Trimaran-TLP,8.538
+0,Trimaran-TLP,8.559
+0,Trimaran-TLP,8.56
+0,Trimaran-TLP,8.56
+0,Trimaran-TLP,8.567
+0,Trimaran-TLP,8.573
+0,Trimaran-TLP,8.587
+0,Trimaran-TLP,8.588
+0,Trimaran-TLP,8.594
+0,Trimaran-TLP,8.598
+0,Trimaran-TLP,8.599
+0,Trimaran-TLP,8.601
+0,Trimaran-TLP,8.602
+0,Trimaran-TLP,8.617
+0,Trimaran-TLP,8.628
+0,Trimaran-TLP,8.63
+0,Trimaran-TLP,8.633
+0,Trimaran-TLP,8.638
+0,Trimaran-TLP,8.641
+0,Trimaran-TLP,8.647
+0,Trimaran-TLP,8.648
+0,Trimaran-TLP,8.651
+0,Trimaran-TLP,8.68
+0,Trimaran-TLP,8.681
+0,Trimaran-TLP,8.69
+0,Trimaran-TLP,8.701
+0,Trimaran-TLP,8.702
+0,Trimaran-TLP,8.709
+0,Trimaran-TLP,8.71
+0,Trimaran-TLP,8.721
+0,Trimaran-TLP,8.727
+0,Trimaran-TLP,8.728
+0,Trimaran-TLP,8.734
+0,Trimaran-TLP,8.737
+0,Trimaran-TLP,8.742
+0,Trimaran-TLP,8.745
+0,Trimaran-TLP,8.754
+0,Trimaran-TLP,8.759
+0,Trimaran-TLP,8.766
+0,Trimaran-TLP,8.771
+0,Trimaran-TLP,8.774
+0,Trimaran-TLP,8.779
+0,Trimaran-TLP,8.78
+0,Trimaran-TLP,8.788
+0,Trimaran-TLP,8.793
+0,Trimaran-TLP,8.796
+0,Trimaran-TLP,8.799
+0,Trimaran-TLP,8.804
+0,Trimaran-TLP,8.809
+0,Trimaran-TLP,8.82
+0,Trimaran-TLP,8.82
+0,Trimaran-TLP,8.82
+0,Trimaran-TLP,8.823
+0,Trimaran-TLP,8.825
+0,Trimaran-TLP,8.836
+0,Trimaran-TLP,8.847
+0,Trimaran-TLP,8.851
+0,Trimaran-TLP,8.858
+0,Trimaran-TLP,8.86
+0,Trimaran-TLP,8.861
+0,Trimaran-TLP,8.862
+0,Trimaran-TLP,8.863
+0,Trimaran-TLP,8.869
+0,Trimaran-TLP,8.87
+0,Trimaran-TLP,8.873
+0,Trimaran-TLP,8.878
+0,Trimaran-TLP,8.882
+0,Trimaran-TLP,8.884
+0,Trimaran-TLP,8.891
+0,Trimaran-TLP,8.895
+0,Trimaran-TLP,8.896
+0,Trimaran-TLP,8.897
+0,Trimaran-TLP,8.907
+0,Trimaran-TLP,8.908
+0,Trimaran-TLP,8.91
+0,Trimaran-TLP,8.911
+0,Trimaran-TLP,8.939
+0,Trimaran-TLP,8.939
+0,Trimaran-TLP,8.944
+0,Trimaran-TLP,8.948
+0,Trimaran-TLP,8.951
+0,Trimaran-TLP,8.953
+0,Trimaran-TLP,8.955
+0,Trimaran-TLP,8.956
+0,Trimaran-TLP,8.963
+0,Trimaran-TLP,8.975
+0,Trimaran-TLP,8.988
+0,Trimaran-TLP,8.99
+0,Trimaran-TLP,8.991
+0,Trimaran-TLP,8.995
+0,Trimaran-TLP,8.995
+0,Trimaran-TLP,8.997
+0,Trimaran-TLP,9.001
+0,Trimaran-TLP,9.003
+0,Trimaran-TLP,9.003
+0,Trimaran-TLP,9.012
+0,Trimaran-TLP,9.019
+0,Trimaran-TLP,9.021
+0,Trimaran-TLP,9.022
+0,Trimaran-TLP,9.026
+0,Trimaran-TLP,9.027
+0,Trimaran-TLP,9.028
+0,Trimaran-TLP,9.035
+0,Trimaran-TLP,9.038
+0,Trimaran-TLP,9.04
+0,Trimaran-TLP,9.041
+0,Trimaran-TLP,9.045
+0,Trimaran-TLP,9.045
+0,Trimaran-TLP,9.048
+0,Trimaran-TLP,9.07
+0,Trimaran-TLP,9.076
+0,Trimaran-TLP,9.077
+0,Trimaran-TLP,9.077
+0,Trimaran-TLP,9.085
+0,Trimaran-TLP,9.09
+0,Trimaran-TLP,9.11
+0,Trimaran-TLP,9.115
+0,Trimaran-TLP,9.116
+0,Trimaran-TLP,9.117
+0,Trimaran-TLP,9.121
+0,Trimaran-TLP,9.121
+0,Trimaran-TLP,9.129
+0,Trimaran-TLP,9.146
+0,Trimaran-TLP,9.148
+0,Trimaran-TLP,9.16
+0,Trimaran-TLP,9.161
+0,Trimaran-TLP,9.163
+0,Trimaran-TLP,9.163
+0,Trimaran-TLP,9.177
+0,Trimaran-TLP,9.177
+0,Trimaran-TLP,9.177
+0,Trimaran-TLP,9.181
+0,Trimaran-TLP,9.182
+0,Trimaran-TLP,9.184
+0,Trimaran-TLP,9.186
+0,Trimaran-TLP,9.186
+0,Trimaran-TLP,9.191
+0,Trimaran-TLP,9.192
+0,Trimaran-TLP,9.193
+0,Trimaran-TLP,9.193
+0,Trimaran-TLP,9.195
+0,Trimaran-TLP,9.2
+0,Trimaran-TLP,9.2
+0,Trimaran-TLP,9.2
+0,Trimaran-TLP,9.205
+0,Trimaran-TLP,9.206
+0,Trimaran-TLP,9.209
+0,Trimaran-TLP,9.213
+0,Trimaran-TLP,9.214
+0,Trimaran-TLP,9.219
+0,Trimaran-TLP,9.225
+0,Trimaran-TLP,9.227
+0,Trimaran-TLP,9.228
+0,Trimaran-TLP,9.229
+0,Trimaran-TLP,9.232
+0,Trimaran-TLP,9.237
+0,Trimaran-TLP,9.239
+0,Trimaran-TLP,9.244
+0,Trimaran-TLP,9.245
+0,Trimaran-TLP,9.247
+0,Trimaran-TLP,9.247
+0,Trimaran-TLP,9.248
+0,Trimaran-TLP,9.25
+0,Trimaran-TLP,9.259
+0,Trimaran-TLP,9.26
+0,Trimaran-TLP,9.265
+0,Trimaran-TLP,9.273
+0,Trimaran-TLP,9.273
+0,Trimaran-TLP,9.279
+0,Trimaran-TLP,9.281
+0,Trimaran-TLP,9.284
+0,Trimaran-TLP,9.29
+0,Trimaran-TLP,9.291
+0,Trimaran-TLP,9.291
+0,Trimaran-TLP,9.295
+0,Trimaran-TLP,9.296
+0,Trimaran-TLP,9.298
+0,Trimaran-TLP,9.302
+0,Trimaran-TLP,9.307
+0,Trimaran-TLP,9.307
+0,Trimaran-TLP,9.311
+0,Trimaran-TLP,9.312
+0,Trimaran-TLP,9.313
+0,Trimaran-TLP,9.313
+0,Trimaran-TLP,9.316
+0,Trimaran-TLP,9.318
+0,Trimaran-TLP,9.333
+0,Trimaran-TLP,9.338
+0,Trimaran-TLP,9.346
+0,Trimaran-TLP,9.346
+0,Trimaran-TLP,9.347
+0,Trimaran-TLP,9.349
+0,Trimaran-TLP,9.351
+0,Trimaran-TLP,9.353
+0,Trimaran-TLP,9.363
+0,Trimaran-TLP,9.365
+0,Trimaran-TLP,9.366
+0,Trimaran-TLP,9.369
+0,Trimaran-TLP,9.373
+0,Trimaran-TLP,9.373
+0,Trimaran-TLP,9.375
+0,Trimaran-TLP,9.381
+0,Trimaran-TLP,9.381
+0,Trimaran-TLP,9.381
+0,Trimaran-TLP,9.395
+0,Trimaran-TLP,9.4
+0,Trimaran-TLP,9.408
+0,Trimaran-TLP,9.408
+0,Trimaran-TLP,9.41
+0,Trimaran-TLP,9.413
+0,Trimaran-TLP,9.416
+0,Trimaran-TLP,9.416
+0,Trimaran-TLP,9.423
+0,Trimaran-TLP,9.427
+0,Trimaran-TLP,9.432
+0,Trimaran-TLP,9.436
+0,Trimaran-TLP,9.442
+0,Trimaran-TLP,9.442
+0,Trimaran-TLP,9.443
+0,Trimaran-TLP,9.451
+0,Trimaran-TLP,9.452
+0,Trimaran-TLP,9.457
+0,Trimaran-TLP,9.46
+0,Trimaran-TLP,9.461
+0,Trimaran-TLP,9.465
+0,Trimaran-TLP,9.465
+0,Trimaran-TLP,9.479
+0,Trimaran-TLP,9.489
+0,Trimaran-TLP,9.493
+0,Trimaran-TLP,9.496
+0,Trimaran-TLP,9.499
+0,Trimaran-TLP,9.504
+0,Trimaran-TLP,9.515
+0,Trimaran-TLP,9.524
+0,Trimaran-TLP,9.526
+0,Trimaran-TLP,9.535
+0,Trimaran-TLP,9.538
+0,Trimaran-TLP,9.538
+0,Trimaran-TLP,9.539
+0,Trimaran-TLP,9.554
+0,Trimaran-TLP,9.556
+0,Trimaran-TLP,9.562
+0,Trimaran-TLP,9.563
+0,Trimaran-TLP,9.563
+0,Trimaran-TLP,9.574
+0,Trimaran-TLP,9.576
+0,Trimaran-TLP,9.578
+0,Trimaran-TLP,9.58
+0,Trimaran-TLP,9.591
+0,Trimaran-TLP,9.598
+0,Trimaran-TLP,9.6
+0,Trimaran-TLP,9.6
+0,Trimaran-TLP,9.603
+0,Trimaran-TLP,9.604
+0,Trimaran-TLP,9.606
+0,Trimaran-TLP,9.607
+0,Trimaran-TLP,9.618
+0,Trimaran-TLP,9.619
+0,Trimaran-TLP,9.62
+0,Trimaran-TLP,9.622
+0,Trimaran-TLP,9.625
+0,Trimaran-TLP,9.626
+0,Trimaran-TLP,9.627
+0,Trimaran-TLP,9.63
+0,Trimaran-TLP,9.631
+0,Trimaran-TLP,9.641
+0,Trimaran-TLP,9.643
+0,Trimaran-TLP,9.645
+0,Trimaran-TLP,9.645
+0,Trimaran-TLP,9.649
+0,Trimaran-TLP,9.651
+0,Trimaran-TLP,9.651
+0,Trimaran-TLP,9.651
+0,Trimaran-TLP,9.652
+0,Trimaran-TLP,9.653
+0,Trimaran-TLP,9.653
+0,Trimaran-TLP,9.665
+0,Trimaran-TLP,9.668
+0,Trimaran-TLP,9.675
+0,Trimaran-TLP,9.675
+0,Trimaran-TLP,9.68
+0,Trimaran-TLP,9.683
+0,Trimaran-TLP,9.685
+0,Trimaran-TLP,9.687
+0,Trimaran-TLP,9.689
+0,Trimaran-TLP,9.689
+0,Trimaran-TLP,9.697
+0,Trimaran-TLP,9.697
+0,Trimaran-TLP,9.698
+0,Trimaran-TLP,9.698
+0,Trimaran-TLP,9.7
+0,Trimaran-TLP,9.7
+0,Trimaran-TLP,9.702
+0,Trimaran-TLP,9.704
+0,Trimaran-TLP,9.707
+0,Trimaran-TLP,9.712
+0,Trimaran-TLP,9.713
+0,Trimaran-TLP,9.717
+0,Trimaran-TLP,9.72
+0,Trimaran-TLP,9.721
+0,Trimaran-TLP,9.726
+0,Trimaran-TLP,9.73
+0,Trimaran-TLP,9.73
+0,Trimaran-TLP,9.732
+0,Trimaran-TLP,9.735
+0,Trimaran-TLP,9.738
+0,Trimaran-TLP,9.742
+0,Trimaran-TLP,9.742
+0,Trimaran-TLP,9.744
+0,Trimaran-TLP,9.752
+0,Trimaran-TLP,9.756
+0,Trimaran-TLP,9.759
+0,Trimaran-TLP,9.766
+0,Trimaran-TLP,9.777
+0,Trimaran-TLP,9.781
+0,Trimaran-TLP,9.781
+0,Trimaran-TLP,9.781
+0,Trimaran-TLP,9.797
+0,Trimaran-TLP,9.805
+0,Trimaran-TLP,9.808
+0,Trimaran-TLP,9.81
+0,Trimaran-TLP,9.812
+0,Trimaran-TLP,9.816
+0,Trimaran-TLP,9.819
+0,Trimaran-TLP,9.823
+0,Trimaran-TLP,9.823
+0,Trimaran-TLP,9.825
+0,Trimaran-TLP,9.827
+0,Trimaran-TLP,9.835
+0,Trimaran-TLP,9.841
+0,Trimaran-TLP,9.842
+0,Trimaran-TLP,9.844
+0,Trimaran-TLP,9.849
+0,Trimaran-TLP,9.85
+0,Trimaran-TLP,9.858
+0,Trimaran-TLP,9.859
+0,Trimaran-TLP,9.86
+0,Trimaran-TLP,9.861
+0,Trimaran-TLP,9.861
+0,Trimaran-TLP,9.874
+0,Trimaran-TLP,9.878
+0,Trimaran-TLP,9.879
+0,Trimaran-TLP,9.879
+0,Trimaran-TLP,9.88
+0,Trimaran-TLP,9.881
+0,Trimaran-TLP,9.889
+0,Trimaran-TLP,9.889
+0,Trimaran-TLP,9.897
+0,Trimaran-TLP,9.9
+0,Trimaran-TLP,9.9
+0,Trimaran-TLP,9.906
+0,Trimaran-TLP,9.907
+0,Trimaran-TLP,9.914
+0,Trimaran-TLP,9.919
+0,Trimaran-TLP,9.921
+0,Trimaran-TLP,9.927
+0,Trimaran-TLP,9.927
+0,Trimaran-TLP,9.927
+0,Trimaran-TLP,9.929
+0,Trimaran-TLP,9.93
+0,Trimaran-TLP,9.937
+0,Trimaran-TLP,9.941
+0,Trimaran-TLP,9.943
+0,Trimaran-TLP,9.946
+0,Trimaran-TLP,9.948
+0,Trimaran-TLP,9.951
+0,Trimaran-TLP,9.959
+0,Trimaran-TLP,9.961
+0,Trimaran-TLP,9.962
+0,Trimaran-TLP,9.963
+0,Trimaran-TLP,9.967
+0,Trimaran-TLP,9.976
+0,Trimaran-TLP,9.977
+0,Trimaran-TLP,9.985
+0,Trimaran-TLP,9.985
+0,Trimaran-TLP,9.988
+0,Trimaran-TLP,9.99
+0,Trimaran-TLP,9.996
+0,Trimaran-TLP,9.997
+0,Trimaran-TLP,10.0
+0,Trimaran-TLP,10.002
+0,Trimaran-TLP,10.005
+0,Trimaran-TLP,10.022
+0,Trimaran-TLP,10.024
+0,Trimaran-TLP,10.026
+0,Trimaran-TLP,10.036
+0,Trimaran-TLP,10.043
+0,Trimaran-TLP,10.049
+0,Trimaran-TLP,10.054
+0,Trimaran-TLP,10.058
+0,Trimaran-TLP,10.061
+0,Trimaran-TLP,10.063
+0,Trimaran-TLP,10.067
+0,Trimaran-TLP,10.08
+0,Trimaran-TLP,10.084
+0,Trimaran-TLP,10.086
+0,Trimaran-TLP,10.09
+0,Trimaran-TLP,10.091
+0,Trimaran-TLP,10.094
+0,Trimaran-TLP,10.098
+0,Trimaran-TLP,10.099
+0,Trimaran-TLP,10.099
+0,Trimaran-TLP,10.101
+0,Trimaran-TLP,10.106
+0,Trimaran-TLP,10.106
+0,Trimaran-TLP,10.114
+0,Trimaran-TLP,10.123
+0,Trimaran-TLP,10.125
+0,Trimaran-TLP,10.128
+0,Trimaran-TLP,10.129
+0,Trimaran-TLP,10.134
+0,Trimaran-TLP,10.14
+0,Trimaran-TLP,10.148
+0,Trimaran-TLP,10.156
+0,Trimaran-TLP,10.163
+0,Trimaran-TLP,10.166
+0,Trimaran-TLP,10.176
+0,Trimaran-TLP,10.179
+0,Trimaran-TLP,10.182
+0,Trimaran-TLP,10.184
+0,Trimaran-TLP,10.185
+0,Trimaran-TLP,10.186
+0,Trimaran-TLP,10.197
+0,Trimaran-TLP,10.199
+0,Trimaran-TLP,10.201
+0,Trimaran-TLP,10.202
+0,Trimaran-TLP,10.211
+0,Trimaran-TLP,10.214
+0,Trimaran-TLP,10.215
+0,Trimaran-TLP,10.217
+0,Trimaran-TLP,10.224
+0,Trimaran-TLP,10.225
+0,Trimaran-TLP,10.228
+0,Trimaran-TLP,10.228
+0,Trimaran-TLP,10.231
+0,Trimaran-TLP,10.236
+0,Trimaran-TLP,10.24
+0,Trimaran-TLP,10.245
+0,Trimaran-TLP,10.246
+0,Trimaran-TLP,10.246
+0,Trimaran-TLP,10.247
+0,Trimaran-TLP,10.247
+0,Trimaran-TLP,10.247
+0,Trimaran-TLP,10.248
+0,Trimaran-TLP,10.253
+0,Trimaran-TLP,10.258
+0,Trimaran-TLP,10.26
+0,Trimaran-TLP,10.261
+0,Trimaran-TLP,10.264
+0,Trimaran-TLP,10.264
+0,Trimaran-TLP,10.267
+0,Trimaran-TLP,10.271
+0,Trimaran-TLP,10.272
+0,Trimaran-TLP,10.274
+0,Trimaran-TLP,10.281
+0,Trimaran-TLP,10.289
+0,Trimaran-TLP,10.294
+0,Trimaran-TLP,10.298
+0,Trimaran-TLP,10.3
+0,Trimaran-TLP,10.307
+0,Trimaran-TLP,10.309
+0,Trimaran-TLP,10.314
+0,Trimaran-TLP,10.321
+0,Trimaran-TLP,10.327
+0,Trimaran-TLP,10.328
+0,Trimaran-TLP,10.334
+0,Trimaran-TLP,10.336
+0,Trimaran-TLP,10.346
+0,Trimaran-TLP,10.348
+0,Trimaran-TLP,10.349
+0,Trimaran-TLP,10.35
+0,Trimaran-TLP,10.361
+0,Trimaran-TLP,10.373
+0,Trimaran-TLP,10.373
+0,Trimaran-TLP,10.376
+0,Trimaran-TLP,10.382
+0,Trimaran-TLP,10.384
+0,Trimaran-TLP,10.393
+0,Trimaran-TLP,10.394
+0,Trimaran-TLP,10.395
+0,Trimaran-TLP,10.407
+0,Trimaran-TLP,10.41
+0,Trimaran-TLP,10.412
+0,Trimaran-TLP,10.427
+0,Trimaran-TLP,10.427
+0,Trimaran-TLP,10.431
+0,Trimaran-TLP,10.436
+0,Trimaran-TLP,10.45
+0,Trimaran-TLP,10.451
+0,Trimaran-TLP,10.453
+0,Trimaran-TLP,10.456
+0,Trimaran-TLP,10.458
+0,Trimaran-TLP,10.467
+0,Trimaran-TLP,10.467
+0,Trimaran-TLP,10.472
+0,Trimaran-TLP,10.474
+0,Trimaran-TLP,10.477
+0,Trimaran-TLP,10.481
+0,Trimaran-TLP,10.482
+0,Trimaran-TLP,10.484
+0,Trimaran-TLP,10.491
+0,Trimaran-TLP,10.497
+0,Trimaran-TLP,10.497
+0,Trimaran-TLP,10.499
+0,Trimaran-TLP,10.503
+0,Trimaran-TLP,10.505
+0,Trimaran-TLP,10.511
+0,Trimaran-TLP,10.517
+0,Trimaran-TLP,10.521
+0,Trimaran-TLP,10.522
+0,Trimaran-TLP,10.534
+0,Trimaran-TLP,10.534
+0,Trimaran-TLP,10.538
+0,Trimaran-TLP,10.543
+0,Trimaran-TLP,10.543
+0,Trimaran-TLP,10.546
+0,Trimaran-TLP,10.554
+0,Trimaran-TLP,10.558
+0,Trimaran-TLP,10.558
+0,Trimaran-TLP,10.559
+0,Trimaran-TLP,10.561
+0,Trimaran-TLP,10.564
+0,Trimaran-TLP,10.566
+0,Trimaran-TLP,10.568
+0,Trimaran-TLP,10.597
+0,Trimaran-TLP,10.598
+0,Trimaran-TLP,10.598
+0,Trimaran-TLP,10.602
+0,Trimaran-TLP,10.602
+0,Trimaran-TLP,10.602
+0,Trimaran-TLP,10.602
+0,Trimaran-TLP,10.616
+0,Trimaran-TLP,10.622
+0,Trimaran-TLP,10.629
+0,Trimaran-TLP,10.632
+0,Trimaran-TLP,10.636
+0,Trimaran-TLP,10.645
+0,Trimaran-TLP,10.647
+0,Trimaran-TLP,10.648
+0,Trimaran-TLP,10.649
+0,Trimaran-TLP,10.655
+0,Trimaran-TLP,10.659
+0,Trimaran-TLP,10.662
+0,Trimaran-TLP,10.669
+0,Trimaran-TLP,10.676
+0,Trimaran-TLP,10.677
+0,Trimaran-TLP,10.681
+0,Trimaran-TLP,10.69
+0,Trimaran-TLP,10.692
+0,Trimaran-TLP,10.699
+0,Trimaran-TLP,10.704
+0,Trimaran-TLP,10.707
+0,Trimaran-TLP,10.707
+0,Trimaran-TLP,10.711
+0,Trimaran-TLP,10.712
+0,Trimaran-TLP,10.714
+0,Trimaran-TLP,10.73
+0,Trimaran-TLP,10.731
+0,Trimaran-TLP,10.739
+0,Trimaran-TLP,10.739
+0,Trimaran-TLP,10.741
+0,Trimaran-TLP,10.745
+0,Trimaran-TLP,10.746
+0,Trimaran-TLP,10.75
+0,Trimaran-TLP,10.751
+0,Trimaran-TLP,10.754
+0,Trimaran-TLP,10.756
+0,Trimaran-TLP,10.758
+0,Trimaran-TLP,10.761
+0,Trimaran-TLP,10.763
+0,Trimaran-TLP,10.765
+0,Trimaran-TLP,10.769
+0,Trimaran-TLP,10.774
+0,Trimaran-TLP,10.774
+0,Trimaran-TLP,10.774
+0,Trimaran-TLP,10.782
+0,Trimaran-TLP,10.782
+0,Trimaran-TLP,10.788
+0,Trimaran-TLP,10.791
+0,Trimaran-TLP,10.793
+0,Trimaran-TLP,10.803
+0,Trimaran-TLP,10.804
+0,Trimaran-TLP,10.806
+0,Trimaran-TLP,10.808
+0,Trimaran-TLP,10.808
+0,Trimaran-TLP,10.819
+0,Trimaran-TLP,10.821
+0,Trimaran-TLP,10.823
+0,Trimaran-TLP,10.824
+0,Trimaran-TLP,10.825
+0,Trimaran-TLP,10.828
+0,Trimaran-TLP,10.839
+0,Trimaran-TLP,10.842
+0,Trimaran-TLP,10.843
+0,Trimaran-TLP,10.846
+0,Trimaran-TLP,10.846
+0,Trimaran-TLP,10.848
+0,Trimaran-TLP,10.85
+0,Trimaran-TLP,10.852
+0,Trimaran-TLP,10.857
+0,Trimaran-TLP,10.86
+0,Trimaran-TLP,10.86
+0,Trimaran-TLP,10.864
+0,Trimaran-TLP,10.888
+0,Trimaran-TLP,10.888
+0,Trimaran-TLP,10.889
+0,Trimaran-TLP,10.89
+0,Trimaran-TLP,10.891
+0,Trimaran-TLP,10.891
+0,Trimaran-TLP,10.897
+0,Trimaran-TLP,10.9
+0,Trimaran-TLP,10.907
+0,Trimaran-TLP,10.913
+0,Trimaran-TLP,10.93
+0,Trimaran-TLP,10.93
+0,Trimaran-TLP,10.931
+0,Trimaran-TLP,10.932
+0,Trimaran-TLP,10.938
+0,Trimaran-TLP,10.942
+0,Trimaran-TLP,10.947
+0,Trimaran-TLP,10.949
+0,Trimaran-TLP,10.951
+0,Trimaran-TLP,10.952
+0,Trimaran-TLP,10.956
+0,Trimaran-TLP,10.96
+0,Trimaran-TLP,10.969
+0,Trimaran-TLP,10.983
+0,Trimaran-TLP,10.984
+0,Trimaran-TLP,10.989
+0,Trimaran-TLP,10.989
+0,Trimaran-TLP,10.998
+0,Trimaran-TLP,10.998
+0,Trimaran-TLP,10.999
+0,Trimaran-TLP,11.002
+0,Trimaran-TLP,11.013
+0,Trimaran-TLP,11.018
+0,Trimaran-TLP,11.019
+0,Trimaran-TLP,11.022
+0,Trimaran-TLP,11.023
+0,Trimaran-TLP,11.023
+0,Trimaran-TLP,11.025
+0,Trimaran-TLP,11.027
+0,Trimaran-TLP,11.029
+0,Trimaran-TLP,11.033
+0,Trimaran-TLP,11.034
+0,Trimaran-TLP,11.042
+0,Trimaran-TLP,11.043
+0,Trimaran-TLP,11.044
+0,Trimaran-TLP,11.048
+0,Trimaran-TLP,11.057
+0,Trimaran-TLP,11.065
+0,Trimaran-TLP,11.067
+0,Trimaran-TLP,11.068
+0,Trimaran-TLP,11.07
+0,Trimaran-TLP,11.082
+0,Trimaran-TLP,11.084
+0,Trimaran-TLP,11.093
+0,Trimaran-TLP,11.099
+0,Trimaran-TLP,11.099
+0,Trimaran-TLP,11.1
+0,Trimaran-TLP,11.106
+0,Trimaran-TLP,11.108
+0,Trimaran-TLP,11.113
+0,Trimaran-TLP,11.115
+0,Trimaran-TLP,11.124
+0,Trimaran-TLP,11.125
+0,Trimaran-TLP,11.134
+0,Trimaran-TLP,11.142
+0,Trimaran-TLP,11.145
+0,Trimaran-TLP,11.149
+0,Trimaran-TLP,11.152
+0,Trimaran-TLP,11.161
+0,Trimaran-TLP,11.162
+0,Trimaran-TLP,11.162
+0,Trimaran-TLP,11.171
+0,Trimaran-TLP,11.175
+0,Trimaran-TLP,11.184
+0,Trimaran-TLP,11.186
+0,Trimaran-TLP,11.199
+0,Trimaran-TLP,11.202
+0,Trimaran-TLP,11.204
+0,Trimaran-TLP,11.204
+0,Trimaran-TLP,11.206
+0,Trimaran-TLP,11.208
+0,Trimaran-TLP,11.208
+0,Trimaran-TLP,11.214
+0,Trimaran-TLP,11.215
+0,Trimaran-TLP,11.216
+0,Trimaran-TLP,11.22
+0,Trimaran-TLP,11.23
+0,Trimaran-TLP,11.23
+0,Trimaran-TLP,11.231
+0,Trimaran-TLP,11.231
+0,Trimaran-TLP,11.231
+0,Trimaran-TLP,11.232
+0,Trimaran-TLP,11.233
+0,Trimaran-TLP,11.241
+0,Trimaran-TLP,11.241
+0,Trimaran-TLP,11.242
+0,Trimaran-TLP,11.243
+0,Trimaran-TLP,11.252
+0,Trimaran-TLP,11.253
+0,Trimaran-TLP,11.255
+0,Trimaran-TLP,11.257
+0,Trimaran-TLP,11.257
+0,Trimaran-TLP,11.259
+0,Trimaran-TLP,11.26
+0,Trimaran-TLP,11.261
+0,Trimaran-TLP,11.263
+0,Trimaran-TLP,11.263
+0,Trimaran-TLP,11.276
+0,Trimaran-TLP,11.278
+0,Trimaran-TLP,11.28
+0,Trimaran-TLP,11.282
+0,Trimaran-TLP,11.286
+0,Trimaran-TLP,11.288
+0,Trimaran-TLP,11.29
+0,Trimaran-TLP,11.292
+0,Trimaran-TLP,11.292
+0,Trimaran-TLP,11.293
+0,AKIL,5.393
+0,AKIL,5.899
+0,AKIL,6.019
+0,AKIL,6.081
+0,AKIL,6.25
+0,AKIL,6.253
+0,AKIL,6.327
+0,AKIL,6.328
+0,AKIL,6.439
+0,AKIL,6.528
+0,AKIL,6.533
+0,AKIL,6.576
+0,AKIL,6.588
+0,AKIL,6.605
+0,AKIL,6.623
+0,AKIL,6.676
+0,AKIL,6.685
+0,AKIL,6.835
+0,AKIL,6.893
+0,AKIL,6.897
+0,AKIL,6.907
+0,AKIL,6.908
+0,AKIL,6.93
+0,AKIL,6.94
+0,AKIL,6.968
+0,AKIL,7.005
+0,AKIL,7.02
+0,AKIL,7.028
+0,AKIL,7.029
+0,AKIL,7.032
+0,AKIL,7.033
+0,AKIL,7.056
+0,AKIL,7.092
+0,AKIL,7.097
+0,AKIL,7.102
+0,AKIL,7.104
+0,AKIL,7.104
+0,AKIL,7.105
+0,AKIL,7.127
+0,AKIL,7.127
+0,AKIL,7.14
+0,AKIL,7.141
+0,AKIL,7.161
+0,AKIL,7.168
+0,AKIL,7.169
+0,AKIL,7.18
+0,AKIL,7.18
+0,AKIL,7.181
+0,AKIL,7.183
+0,AKIL,7.186
+0,AKIL,7.191
+0,AKIL,7.226
+0,AKIL,7.251
+0,AKIL,7.266
+0,AKIL,7.268
+0,AKIL,7.274
+0,AKIL,7.288
+0,AKIL,7.296
+0,AKIL,7.3
+0,AKIL,7.301
+0,AKIL,7.303
+0,AKIL,7.304
+0,AKIL,7.316
+0,AKIL,7.317
+0,AKIL,7.32
+0,AKIL,7.332
+0,AKIL,7.334
+0,AKIL,7.341
+0,AKIL,7.342
+0,AKIL,7.343
+0,AKIL,7.351
+0,AKIL,7.356
+0,AKIL,7.364
+0,AKIL,7.383
+0,AKIL,7.401
+0,AKIL,7.407
+0,AKIL,7.41
+0,AKIL,7.428
+0,AKIL,7.437
+0,AKIL,7.443
+0,AKIL,7.451
+0,AKIL,7.464
+0,AKIL,7.464
+0,AKIL,7.472
+0,AKIL,7.477
+0,AKIL,7.483
+0,AKIL,7.484
+0,AKIL,7.489
+0,AKIL,7.499
+0,AKIL,7.522
+0,AKIL,7.543
+0,AKIL,7.547
+0,AKIL,7.549
+0,AKIL,7.554
+0,AKIL,7.556
+0,AKIL,7.566
+0,AKIL,7.569
+0,AKIL,7.569
+0,AKIL,7.569
+0,AKIL,7.57
+0,AKIL,7.573
+0,AKIL,7.582
+0,AKIL,7.583
+0,AKIL,7.585
+0,AKIL,7.589
+0,AKIL,7.59
+0,AKIL,7.592
+0,AKIL,7.593
+0,AKIL,7.626
+0,AKIL,7.642
+0,AKIL,7.652
+0,AKIL,7.654
+0,AKIL,7.662
+0,AKIL,7.667
+0,AKIL,7.671
+0,AKIL,7.679
+0,AKIL,7.685
+0,AKIL,7.688
+0,AKIL,7.695
+0,AKIL,7.695
+0,AKIL,7.696
+0,AKIL,7.705
+0,AKIL,7.706
+0,AKIL,7.719
+0,AKIL,7.722
+0,AKIL,7.727
+0,AKIL,7.729
+0,AKIL,7.729
+0,AKIL,7.73
+0,AKIL,7.74
+0,AKIL,7.746
+0,AKIL,7.75
+0,AKIL,7.764
+0,AKIL,7.765
+0,AKIL,7.766
+0,AKIL,7.768
+0,AKIL,7.769
+0,AKIL,7.771
+0,AKIL,7.773
+0,AKIL,7.779
+0,AKIL,7.785
+0,AKIL,7.788
+0,AKIL,7.79
+0,AKIL,7.792
+0,AKIL,7.801
+0,AKIL,7.803
+0,AKIL,7.806
+0,AKIL,7.808
+0,AKIL,7.809
+0,AKIL,7.81
+0,AKIL,7.813
+0,AKIL,7.815
+0,AKIL,7.823
+0,AKIL,7.829
+0,AKIL,7.835
+0,AKIL,7.839
+0,AKIL,7.84
+0,AKIL,7.842
+0,AKIL,7.848
+0,AKIL,7.848
+0,AKIL,7.849
+0,AKIL,7.854
+0,AKIL,7.861
+0,AKIL,7.862
+0,AKIL,7.87
+0,AKIL,7.872
+0,AKIL,7.874
+0,AKIL,7.877
+0,AKIL,7.879
+0,AKIL,7.883
+0,AKIL,7.885
+0,AKIL,7.889
+0,AKIL,7.891
+0,AKIL,7.893
+0,AKIL,7.899
+0,AKIL,7.901
+0,AKIL,7.907
+0,AKIL,7.91
+0,AKIL,7.916
+0,AKIL,7.919
+0,AKIL,7.921
+0,AKIL,7.922
+0,AKIL,7.926
+0,AKIL,7.927
+0,AKIL,7.927
+0,AKIL,7.928
+0,AKIL,7.928
+0,AKIL,7.931
+0,AKIL,7.931
+0,AKIL,7.933
+0,AKIL,7.933
+0,AKIL,7.934
+0,AKIL,7.937
+0,AKIL,7.947
+0,AKIL,7.953
+0,AKIL,7.958
+0,AKIL,7.959
+0,AKIL,7.961
+0,AKIL,7.965
+0,AKIL,7.966
+0,AKIL,7.967
+0,AKIL,7.975
+0,AKIL,7.977
+0,AKIL,7.982
+0,AKIL,7.989
+0,AKIL,7.999
+0,AKIL,8.002
+0,AKIL,8.01
+0,AKIL,8.01
+0,AKIL,8.013
+0,AKIL,8.013
+0,AKIL,8.015
+0,AKIL,8.018
+0,AKIL,8.018
+0,AKIL,8.02
+0,AKIL,8.024
+0,AKIL,8.025
+0,AKIL,8.026
+0,AKIL,8.026
+0,AKIL,8.028
+0,AKIL,8.043
+0,AKIL,8.046
+0,AKIL,8.047
+0,AKIL,8.057
+0,AKIL,8.057
+0,AKIL,8.061
+0,AKIL,8.065
+0,AKIL,8.065
+0,AKIL,8.066
+0,AKIL,8.068
+0,AKIL,8.07
+0,AKIL,8.076
+0,AKIL,8.078
+0,AKIL,8.079
+0,AKIL,8.08
+0,AKIL,8.09
+0,AKIL,8.093
+0,AKIL,8.096
+0,AKIL,8.096
+0,AKIL,8.101
+0,AKIL,8.102
+0,AKIL,8.103
+0,AKIL,8.104
+0,AKIL,8.104
+0,AKIL,8.111
+0,AKIL,8.121
+0,AKIL,8.132
+0,AKIL,8.136
+0,AKIL,8.137
+0,AKIL,8.137
+0,AKIL,8.14
+0,AKIL,8.141
+0,AKIL,8.144
+0,AKIL,8.153
+0,AKIL,8.159
+0,AKIL,8.16
+0,AKIL,8.162
+0,AKIL,8.163
+0,AKIL,8.164
+0,AKIL,8.169
+0,AKIL,8.171
+0,AKIL,8.171
+0,AKIL,8.179
+0,AKIL,8.18
+0,AKIL,8.181
+0,AKIL,8.185
+0,AKIL,8.187
+0,AKIL,8.187
+0,AKIL,8.187
+0,AKIL,8.188
+0,AKIL,8.19
+0,AKIL,8.19
+0,AKIL,8.192
+0,AKIL,8.195
+0,AKIL,8.196
+0,AKIL,8.196
+0,AKIL,8.199
+0,AKIL,8.2
+0,AKIL,8.206
+0,AKIL,8.209
+0,AKIL,8.21
+0,AKIL,8.215
+0,AKIL,8.217
+0,AKIL,8.221
+0,AKIL,8.221
+0,AKIL,8.222
+0,AKIL,8.225
+0,AKIL,8.225
+0,AKIL,8.228
+0,AKIL,8.229
+0,AKIL,8.23
+0,AKIL,8.237
+0,AKIL,8.239
+0,AKIL,8.24
+0,AKIL,8.242
+0,AKIL,8.243
+0,AKIL,8.244
+0,AKIL,8.244
+0,AKIL,8.25
+0,AKIL,8.25
+0,AKIL,8.25
+0,AKIL,8.251
+0,AKIL,8.254
+0,AKIL,8.258
+0,AKIL,8.259
+0,AKIL,8.26
+0,AKIL,8.26
+0,AKIL,8.261
+0,AKIL,8.27
+0,AKIL,8.273
+0,AKIL,8.276
+0,AKIL,8.281
+0,AKIL,8.282
+0,AKIL,8.288
+0,AKIL,8.294
+0,AKIL,8.295
+0,AKIL,8.299
+0,AKIL,8.301
+0,AKIL,8.307
+0,AKIL,8.308
+0,AKIL,8.313
+0,AKIL,8.314
+0,AKIL,8.316
+0,AKIL,8.317
+0,AKIL,8.321
+0,AKIL,8.322
+0,AKIL,8.325
+0,AKIL,8.327
+0,AKIL,8.329
+0,AKIL,8.329
+0,AKIL,8.335
+0,AKIL,8.338
+0,AKIL,8.34
+0,AKIL,8.342
+0,AKIL,8.343
+0,AKIL,8.346
+0,AKIL,8.347
+0,AKIL,8.347
+0,AKIL,8.35
+0,AKIL,8.353
+0,AKIL,8.358
+0,AKIL,8.362
+0,AKIL,8.366
+0,AKIL,8.368
+0,AKIL,8.37
+0,AKIL,8.37
+0,AKIL,8.371
+0,AKIL,8.372
+0,AKIL,8.374
+0,AKIL,8.376
+0,AKIL,8.38
+0,AKIL,8.381
+0,AKIL,8.383
+0,AKIL,8.384
+0,AKIL,8.385
+0,AKIL,8.385
+0,AKIL,8.392
+0,AKIL,8.393
+0,AKIL,8.394
+0,AKIL,8.396
+0,AKIL,8.398
+0,AKIL,8.398
+0,AKIL,8.398
+0,AKIL,8.399
+0,AKIL,8.4
+0,AKIL,8.4
+0,AKIL,8.401
+0,AKIL,8.402
+0,AKIL,8.405
+0,AKIL,8.41
+0,AKIL,8.412
+0,AKIL,8.416
+0,AKIL,8.417
+0,AKIL,8.422
+0,AKIL,8.424
+0,AKIL,8.426
+0,AKIL,8.429
+0,AKIL,8.43
+0,AKIL,8.431
+0,AKIL,8.434
+0,AKIL,8.439
+0,AKIL,8.44
+0,AKIL,8.443
+0,AKIL,8.446
+0,AKIL,8.448
+0,AKIL,8.449
+0,AKIL,8.45
+0,AKIL,8.457
+0,AKIL,8.46
+0,AKIL,8.462
+0,AKIL,8.468
+0,AKIL,8.468
+0,AKIL,8.471
+0,AKIL,8.471
+0,AKIL,8.476
+0,AKIL,8.48
+0,AKIL,8.481
+0,AKIL,8.481
+0,AKIL,8.484
+0,AKIL,8.485
+0,AKIL,8.485
+0,AKIL,8.485
+0,AKIL,8.485
+0,AKIL,8.486
+0,AKIL,8.489
+0,AKIL,8.49
+0,AKIL,8.493
+0,AKIL,8.496
+0,AKIL,8.498
+0,AKIL,8.5
+0,AKIL,8.502
+0,AKIL,8.507
+0,AKIL,8.509
+0,AKIL,8.515
+0,AKIL,8.515
+0,AKIL,8.522
+0,AKIL,8.523
+0,AKIL,8.528
+0,AKIL,8.532
+0,AKIL,8.533
+0,AKIL,8.535
+0,AKIL,8.535
+0,AKIL,8.536
+0,AKIL,8.537
+0,AKIL,8.539
+0,AKIL,8.54
+0,AKIL,8.543
+0,AKIL,8.544
+0,AKIL,8.546
+0,AKIL,8.546
+0,AKIL,8.546
+0,AKIL,8.549
+0,AKIL,8.549
+0,AKIL,8.549
+0,AKIL,8.55
+0,AKIL,8.551
+0,AKIL,8.551
+0,AKIL,8.552
+0,AKIL,8.553
+0,AKIL,8.553
+0,AKIL,8.554
+0,AKIL,8.555
+0,AKIL,8.555
+0,AKIL,8.56
+0,AKIL,8.561
+0,AKIL,8.562
+0,AKIL,8.564
+0,AKIL,8.57
+0,AKIL,8.57
+0,AKIL,8.574
+0,AKIL,8.578
+0,AKIL,8.589
+0,AKIL,8.59
+0,AKIL,8.591
+0,AKIL,8.591
+0,AKIL,8.596
+0,AKIL,8.597
+0,AKIL,8.598
+0,AKIL,8.598
+0,AKIL,8.599
+0,AKIL,8.601
+0,AKIL,8.604
+0,AKIL,8.606
+0,AKIL,8.607
+0,AKIL,8.609
+0,AKIL,8.611
+0,AKIL,8.614
+0,AKIL,8.62
+0,AKIL,8.627
+0,AKIL,8.637
+0,AKIL,8.637
+0,AKIL,8.641
+0,AKIL,8.646
+0,AKIL,8.648
+0,AKIL,8.65
+0,AKIL,8.651
+0,AKIL,8.651
+0,AKIL,8.654
+0,AKIL,8.655
+0,AKIL,8.656
+0,AKIL,8.658
+0,AKIL,8.658
+0,AKIL,8.659
+0,AKIL,8.661
+0,AKIL,8.661
+0,AKIL,8.661
+0,AKIL,8.663
+0,AKIL,8.665
+0,AKIL,8.666
+0,AKIL,8.667
+0,AKIL,8.668
+0,AKIL,8.669
+0,AKIL,8.669
+0,AKIL,8.673
+0,AKIL,8.674
+0,AKIL,8.677
+0,AKIL,8.679
+0,AKIL,8.681
+0,AKIL,8.682
+0,AKIL,8.687
+0,AKIL,8.689
+0,AKIL,8.691
+0,AKIL,8.693
+0,AKIL,8.693
+0,AKIL,8.695
+0,AKIL,8.695
+0,AKIL,8.697
+0,AKIL,8.698
+0,AKIL,8.699
+0,AKIL,8.699
+0,AKIL,8.701
+0,AKIL,8.705
+0,AKIL,8.709
+0,AKIL,8.711
+0,AKIL,8.711
+0,AKIL,8.712
+0,AKIL,8.713
+0,AKIL,8.715
+0,AKIL,8.716
+0,AKIL,8.722
+0,AKIL,8.724
+0,AKIL,8.725
+0,AKIL,8.726
+0,AKIL,8.728
+0,AKIL,8.731
+0,AKIL,8.731
+0,AKIL,8.731
+0,AKIL,8.732
+0,AKIL,8.732
+0,AKIL,8.735
+0,AKIL,8.74
+0,AKIL,8.741
+0,AKIL,8.742
+0,AKIL,8.743
+0,AKIL,8.745
+0,AKIL,8.745
+0,AKIL,8.745
+0,AKIL,8.745
+0,AKIL,8.751
+0,AKIL,8.752
+0,AKIL,8.752
+0,AKIL,8.756
+0,AKIL,8.756
+0,AKIL,8.756
+0,AKIL,8.761
+0,AKIL,8.764
+0,AKIL,8.765
+0,AKIL,8.767
+0,AKIL,8.769
+0,AKIL,8.779
+0,AKIL,8.779
+0,AKIL,8.78
+0,AKIL,8.78
+0,AKIL,8.78
+0,AKIL,8.781
+0,AKIL,8.782
+0,AKIL,8.788
+0,AKIL,8.789
+0,AKIL,8.791
+0,AKIL,8.792
+0,AKIL,8.793
+0,AKIL,8.793
+0,AKIL,8.793
+0,AKIL,8.794
+0,AKIL,8.801
+0,AKIL,8.802
+0,AKIL,8.802
+0,AKIL,8.804
+0,AKIL,8.804
+0,AKIL,8.806
+0,AKIL,8.806
+0,AKIL,8.808
+0,AKIL,8.81
+0,AKIL,8.811
+0,AKIL,8.811
+0,AKIL,8.812
+0,AKIL,8.816
+0,AKIL,8.816
+0,AKIL,8.82
+0,AKIL,8.821
+0,AKIL,8.822
+0,AKIL,8.827
+0,AKIL,8.827
+0,AKIL,8.827
+0,AKIL,8.828
+0,AKIL,8.828
+0,AKIL,8.828
+0,AKIL,8.828
+0,AKIL,8.832
+0,AKIL,8.835
+0,AKIL,8.842
+0,AKIL,8.846
+0,AKIL,8.847
+0,AKIL,8.847
+0,AKIL,8.85
+0,AKIL,8.853
+0,AKIL,8.854
+0,AKIL,8.856
+0,AKIL,8.859
+0,AKIL,8.859
+0,AKIL,8.861
+0,AKIL,8.861
+0,AKIL,8.861
+0,AKIL,8.863
+0,AKIL,8.863
+0,AKIL,8.864
+0,AKIL,8.865
+0,AKIL,8.865
+0,AKIL,8.865
+0,AKIL,8.865
+0,AKIL,8.869
+0,AKIL,8.869
+0,AKIL,8.87
+0,AKIL,8.87
+0,AKIL,8.871
+0,AKIL,8.872
+0,AKIL,8.872
+0,AKIL,8.872
+0,AKIL,8.873
+0,AKIL,8.874
+0,AKIL,8.874
+0,AKIL,8.875
+0,AKIL,8.876
+0,AKIL,8.878
+0,AKIL,8.879
+0,AKIL,8.879
+0,AKIL,8.88
+0,AKIL,8.88
+0,AKIL,8.884
+0,AKIL,8.886
+0,AKIL,8.887
+0,AKIL,8.888
+0,AKIL,8.89
+0,AKIL,8.89
+0,AKIL,8.891
+0,AKIL,8.891
+0,AKIL,8.892
+0,AKIL,8.892
+0,AKIL,8.893
+0,AKIL,8.901
+0,AKIL,8.902
+0,AKIL,8.903
+0,AKIL,8.903
+0,AKIL,8.904
+0,AKIL,8.909
+0,AKIL,8.911
+0,AKIL,8.911
+0,AKIL,8.915
+0,AKIL,8.915
+0,AKIL,8.915
+0,AKIL,8.917
+0,AKIL,8.918
+0,AKIL,8.918
+0,AKIL,8.92
+0,AKIL,8.92
+0,AKIL,8.922
+0,AKIL,8.923
+0,AKIL,8.924
+0,AKIL,8.925
+0,AKIL,8.927
+0,AKIL,8.928
+0,AKIL,8.931
+0,AKIL,8.933
+0,AKIL,8.933
+0,AKIL,8.934
+0,AKIL,8.939
+0,AKIL,8.939
+0,AKIL,8.94
+0,AKIL,8.94
+0,AKIL,8.942
+0,AKIL,8.943
+0,AKIL,8.946
+0,AKIL,8.947
+0,AKIL,8.948
+0,AKIL,8.948
+0,AKIL,8.949
+0,AKIL,8.949
+0,AKIL,8.952
+0,AKIL,8.954
+0,AKIL,8.954
+0,AKIL,8.954
+0,AKIL,8.955
+0,AKIL,8.955
+0,AKIL,8.956
+0,AKIL,8.956
+0,AKIL,8.96
+0,AKIL,8.961
+0,AKIL,8.963
+0,AKIL,8.964
+0,AKIL,8.964
+0,AKIL,8.965
+0,AKIL,8.965
+0,AKIL,8.965
+0,AKIL,8.966
+0,AKIL,8.966
+0,AKIL,8.968
+0,AKIL,8.969
+0,AKIL,8.969
+0,AKIL,8.969
+0,AKIL,8.974
+0,AKIL,8.975
+0,AKIL,8.976
+0,AKIL,8.976
+0,AKIL,8.977
+0,AKIL,8.977
+0,AKIL,8.977
+0,AKIL,8.978
+0,AKIL,8.978
+0,AKIL,8.979
+0,AKIL,8.981
+0,AKIL,8.982
+0,AKIL,8.984
+0,AKIL,8.986
+0,AKIL,8.987
+0,AKIL,8.988
+0,AKIL,8.989
+0,AKIL,8.99
+0,AKIL,8.991
+0,AKIL,8.991
+0,AKIL,8.993
+0,AKIL,8.994
+0,AKIL,8.996
+0,AKIL,8.996
+0,AKIL,8.996
+0,AKIL,8.997
+0,AKIL,8.997
+0,AKIL,8.998
+0,AKIL,9.0
+0,AKIL,9.001
+0,AKIL,9.002
+0,AKIL,9.002
+0,AKIL,9.004
+0,AKIL,9.005
+0,AKIL,9.005
+0,AKIL,9.01
+0,AKIL,9.01
+0,AKIL,9.012
+0,AKIL,9.013
+0,AKIL,9.013
+0,AKIL,9.014
+0,AKIL,9.014
+0,AKIL,9.014
+0,AKIL,9.015
+0,AKIL,9.015
+0,AKIL,9.016
+0,AKIL,9.017
+0,AKIL,9.018
+0,AKIL,9.018
+0,AKIL,9.019
+0,AKIL,9.019
+0,AKIL,9.019
+0,AKIL,9.02
+0,AKIL,9.022
+0,AKIL,9.024
+0,AKIL,9.024
+0,AKIL,9.025
+0,AKIL,9.026
+0,AKIL,9.027
+0,AKIL,9.027
+0,AKIL,9.028
+0,AKIL,9.028
+0,AKIL,9.029
+0,AKIL,9.03
+0,AKIL,9.03
+0,AKIL,9.033
+0,AKIL,9.034
+0,AKIL,9.035
+0,AKIL,9.036
+0,AKIL,9.037
+0,AKIL,9.037
+0,AKIL,9.037
+0,AKIL,9.038
+0,AKIL,9.038
+0,AKIL,9.039
+0,AKIL,9.043
+0,AKIL,9.043
+0,AKIL,9.043
+0,AKIL,9.044
+0,AKIL,9.044
+0,AKIL,9.047
+0,AKIL,9.047
+0,AKIL,9.048
+0,AKIL,9.048
+0,AKIL,9.048
+0,AKIL,9.049
+0,AKIL,9.051
+0,AKIL,9.051
+0,AKIL,9.054
+0,AKIL,9.054
+0,AKIL,9.056
+0,AKIL,9.057
+0,AKIL,9.058
+0,AKIL,9.058
+0,AKIL,9.06
+0,AKIL,9.06
+0,AKIL,9.061
+0,AKIL,9.062
+0,AKIL,9.062
+0,AKIL,9.062
+0,AKIL,9.064
+0,AKIL,9.065
+0,AKIL,9.065
+0,AKIL,9.065
+0,AKIL,9.065
+0,AKIL,9.066
+0,AKIL,9.066
+0,AKIL,9.071
+0,AKIL,9.073
+0,AKIL,9.074
+0,AKIL,9.075
+0,AKIL,9.076
+0,AKIL,9.078
+0,AKIL,9.081
+0,AKIL,9.082
+0,AKIL,9.083
+0,AKIL,9.083
+0,AKIL,9.083
+0,AKIL,9.086
+0,AKIL,9.086
+0,AKIL,9.086
+0,AKIL,9.086
+0,AKIL,9.086
+0,AKIL,9.087
+0,AKIL,9.087
+0,AKIL,9.087
+0,AKIL,9.087
+0,AKIL,9.087
+0,AKIL,9.088
+0,AKIL,9.09
+0,AKIL,9.091
+0,AKIL,9.091
+0,AKIL,9.092
+0,AKIL,9.094
+0,AKIL,9.094
+0,AKIL,9.095
+0,AKIL,9.095
+0,AKIL,9.096
+0,AKIL,9.098
+0,AKIL,9.099
+0,AKIL,9.102
+0,AKIL,9.102
+0,AKIL,9.102
+0,AKIL,9.103
+0,AKIL,9.103
+0,AKIL,9.104
+0,AKIL,9.104
+0,AKIL,9.104
+0,AKIL,9.106
+0,AKIL,9.107
+0,AKIL,9.108
+0,AKIL,9.108
+0,AKIL,9.109
+0,AKIL,9.11
+0,AKIL,9.114
+0,AKIL,9.116
+0,AKIL,9.118
+0,AKIL,9.118
+0,AKIL,9.12
+0,AKIL,9.12
+0,AKIL,9.121
+0,AKIL,9.121
+0,AKIL,9.121
+0,AKIL,9.122
+0,AKIL,9.124
+0,AKIL,9.125
+0,AKIL,9.126
+0,AKIL,9.126
+0,AKIL,9.128
+0,AKIL,9.129
+0,AKIL,9.129
+0,AKIL,9.129
+0,AKIL,9.13
+0,AKIL,9.131
+0,AKIL,9.132
+0,AKIL,9.133
+0,AKIL,9.133
+0,AKIL,9.134
+0,AKIL,9.135
+0,AKIL,9.135
+0,AKIL,9.135
+0,AKIL,9.135
+0,AKIL,9.136
+0,AKIL,9.137
+0,AKIL,9.137
+0,AKIL,9.138
+0,AKIL,9.139
+0,AKIL,9.14
+0,AKIL,9.14
+0,AKIL,9.141
+0,AKIL,9.141
+0,AKIL,9.141
+0,AKIL,9.142
+0,AKIL,9.142
+0,AKIL,9.142
+0,AKIL,9.142
+0,AKIL,9.144
+0,AKIL,9.145
+0,AKIL,9.148
+0,AKIL,9.149
+0,AKIL,9.149
+0,AKIL,9.149
+0,AKIL,9.152
+0,AKIL,9.155
+0,AKIL,9.156
+0,AKIL,9.157
+0,AKIL,9.158
+0,AKIL,9.158
+0,AKIL,9.159
+0,AKIL,9.159
+0,AKIL,9.159
+0,AKIL,9.16
+0,AKIL,9.16
+0,AKIL,9.16
+0,AKIL,9.161
+0,AKIL,9.161
+0,AKIL,9.161
+0,AKIL,9.162
+0,AKIL,9.162
+0,AKIL,9.162
+0,AKIL,9.162
+0,AKIL,9.163
+0,AKIL,9.164
+0,AKIL,9.165
+0,AKIL,9.165
+0,AKIL,9.166
+0,AKIL,9.167
+0,AKIL,9.168
+0,AKIL,9.168
+0,AKIL,9.169
+0,AKIL,9.17
+0,AKIL,9.172
+0,AKIL,9.172
+0,AKIL,9.173
+0,AKIL,9.173
+0,AKIL,9.174
+0,AKIL,9.175
+0,AKIL,9.176
+0,AKIL,9.177
+0,AKIL,9.179
+0,AKIL,9.18
+0,AKIL,9.181
+0,AKIL,9.182
+0,AKIL,9.183
+0,AKIL,9.184
+0,AKIL,9.185
+0,AKIL,9.185
+0,AKIL,9.186
+0,AKIL,9.186
+0,AKIL,9.186
+0,AKIL,9.189
+0,AKIL,9.19
+0,AKIL,9.191
+0,AKIL,9.192
+0,AKIL,9.193
+0,AKIL,9.194
+0,AKIL,9.194
+0,AKIL,9.194
+0,AKIL,9.194
+0,AKIL,9.194
+0,AKIL,9.196
+0,AKIL,9.196
+0,AKIL,9.196
+0,AKIL,9.197
+0,AKIL,9.199
+0,AKIL,9.199
+0,AKIL,9.2
+0,AKIL,9.2
+0,AKIL,9.201
+0,AKIL,9.201
+0,AKIL,9.202
+0,AKIL,9.204
+0,AKIL,9.204
+0,AKIL,9.206
+0,AKIL,9.206
+0,AKIL,9.207
+0,AKIL,9.208
+0,AKIL,9.209
+0,AKIL,9.21
+0,AKIL,9.211
+0,AKIL,9.212
+0,AKIL,9.213
+0,AKIL,9.213
+0,AKIL,9.214
+0,AKIL,9.214
+0,AKIL,9.214
+0,AKIL,9.215
+0,AKIL,9.218
+0,AKIL,9.218
+0,AKIL,9.218
+0,AKIL,9.219
+0,AKIL,9.22
+0,AKIL,9.22
+0,AKIL,9.221
+0,AKIL,9.223
+0,AKIL,9.224
+0,AKIL,9.224
+0,AKIL,9.225
+0,AKIL,9.225
+0,AKIL,9.225
+0,AKIL,9.225
+0,Isolated (Clean),3.565
+0,Isolated (Clean),3.684
+0,Isolated (Clean),3.795
+0,Isolated (Clean),3.988
+0,Isolated (Clean),4.232
+0,Isolated (Clean),4.261
+0,Isolated (Clean),4.365
+0,Isolated (Clean),4.38
+0,Isolated (Clean),4.425
+0,Isolated (Clean),4.465
+0,Isolated (Clean),4.491
+0,Isolated (Clean),4.511
+0,Isolated (Clean),4.52
+0,Isolated (Clean),4.525
+0,Isolated (Clean),4.54
+0,Isolated (Clean),4.588
+0,Isolated (Clean),4.604
+0,Isolated (Clean),4.607
+0,Isolated (Clean),4.618
+0,Isolated (Clean),4.632
+0,Isolated (Clean),4.641
+0,Isolated (Clean),4.645
+0,Isolated (Clean),4.697
+0,Isolated (Clean),4.713
+0,Isolated (Clean),4.722
+0,Isolated (Clean),4.754
+0,Isolated (Clean),4.757
+0,Isolated (Clean),4.777
+0,Isolated (Clean),4.778
+0,Isolated (Clean),4.779
+0,Isolated (Clean),4.795
+0,Isolated (Clean),4.812
+0,Isolated (Clean),4.817
+0,Isolated (Clean),4.82
+0,Isolated (Clean),4.845
+0,Isolated (Clean),4.853
+0,Isolated (Clean),4.86
+0,Isolated (Clean),4.873
+0,Isolated (Clean),4.874
+0,Isolated (Clean),4.878
+0,Isolated (Clean),4.884
+0,Isolated (Clean),4.904
+0,Isolated (Clean),4.92
+0,Isolated (Clean),4.923
+0,Isolated (Clean),4.937
+0,Isolated (Clean),4.95
+0,Isolated (Clean),4.953
+0,Isolated (Clean),4.976
+0,Isolated (Clean),4.985
+0,Isolated (Clean),4.994
+0,Isolated (Clean),5.009
+0,Isolated (Clean),5.018
+0,Isolated (Clean),5.023
+0,Isolated (Clean),5.039
+0,Isolated (Clean),5.047
+0,Isolated (Clean),5.05
+0,Isolated (Clean),5.05
+0,Isolated (Clean),5.056
+0,Isolated (Clean),5.057
+0,Isolated (Clean),5.064
+0,Isolated (Clean),5.069
+0,Isolated (Clean),5.071
+0,Isolated (Clean),5.071
+0,Isolated (Clean),5.074
+0,Isolated (Clean),5.085
+0,Isolated (Clean),5.09
+0,Isolated (Clean),5.095
+0,Isolated (Clean),5.098
+0,Isolated (Clean),5.115
+0,Isolated (Clean),5.13
+0,Isolated (Clean),5.13
+0,Isolated (Clean),5.133
+0,Isolated (Clean),5.135
+0,Isolated (Clean),5.136
+0,Isolated (Clean),5.137
+0,Isolated (Clean),5.139
+0,Isolated (Clean),5.146
+0,Isolated (Clean),5.149
+0,Isolated (Clean),5.152
+0,Isolated (Clean),5.157
+0,Isolated (Clean),5.157
+0,Isolated (Clean),5.16
+0,Isolated (Clean),5.162
+0,Isolated (Clean),5.169
+0,Isolated (Clean),5.169
+0,Isolated (Clean),5.17
+0,Isolated (Clean),5.173
+0,Isolated (Clean),5.176
+0,Isolated (Clean),5.181
+0,Isolated (Clean),5.185
+0,Isolated (Clean),5.187
+0,Isolated (Clean),5.192
+0,Isolated (Clean),5.193
+0,Isolated (Clean),5.194
+0,Isolated (Clean),5.199
+0,Isolated (Clean),5.201
+0,Isolated (Clean),5.203
+0,Isolated (Clean),5.223
+0,Isolated (Clean),5.223
+0,Isolated (Clean),5.227
+0,Isolated (Clean),5.228
+0,Isolated (Clean),5.232
+0,Isolated (Clean),5.233
+0,Isolated (Clean),5.245
+0,Isolated (Clean),5.249
+0,Isolated (Clean),5.253
+0,Isolated (Clean),5.254
+0,Isolated (Clean),5.255
+0,Isolated (Clean),5.256
+0,Isolated (Clean),5.26
+0,Isolated (Clean),5.264
+0,Isolated (Clean),5.267
+0,Isolated (Clean),5.27
+0,Isolated (Clean),5.277
+0,Isolated (Clean),5.278
+0,Isolated (Clean),5.278
+0,Isolated (Clean),5.28
+0,Isolated (Clean),5.281
+0,Isolated (Clean),5.282
+0,Isolated (Clean),5.283
+0,Isolated (Clean),5.283
+0,Isolated (Clean),5.285
+0,Isolated (Clean),5.298
+0,Isolated (Clean),5.298
+0,Isolated (Clean),5.3
+0,Isolated (Clean),5.305
+0,Isolated (Clean),5.317
+0,Isolated (Clean),5.317
+0,Isolated (Clean),5.318
+0,Isolated (Clean),5.32
+0,Isolated (Clean),5.321
+0,Isolated (Clean),5.326
+0,Isolated (Clean),5.326
+0,Isolated (Clean),5.328
+0,Isolated (Clean),5.333
+0,Isolated (Clean),5.335
+0,Isolated (Clean),5.336
+0,Isolated (Clean),5.339
+0,Isolated (Clean),5.344
+0,Isolated (Clean),5.346
+0,Isolated (Clean),5.352
+0,Isolated (Clean),5.355
+0,Isolated (Clean),5.356
+0,Isolated (Clean),5.359
+0,Isolated (Clean),5.359
+0,Isolated (Clean),5.362
+0,Isolated (Clean),5.362
+0,Isolated (Clean),5.365
+0,Isolated (Clean),5.368
+0,Isolated (Clean),5.37
+0,Isolated (Clean),5.37
+0,Isolated (Clean),5.374
+0,Isolated (Clean),5.375
+0,Isolated (Clean),5.377
+0,Isolated (Clean),5.381
+0,Isolated (Clean),5.392
+0,Isolated (Clean),5.394
+0,Isolated (Clean),5.396
+0,Isolated (Clean),5.397
+0,Isolated (Clean),5.397
+0,Isolated (Clean),5.398
+0,Isolated (Clean),5.402
+0,Isolated (Clean),5.404
+0,Isolated (Clean),5.407
+0,Isolated (Clean),5.412
+0,Isolated (Clean),5.416
+0,Isolated (Clean),5.417
+0,Isolated (Clean),5.419
+0,Isolated (Clean),5.425
+0,Isolated (Clean),5.426
+0,Isolated (Clean),5.426
+0,Isolated (Clean),5.428
+0,Isolated (Clean),5.43
+0,Isolated (Clean),5.431
+0,Isolated (Clean),5.434
+0,Isolated (Clean),5.436
+0,Isolated (Clean),5.436
+0,Isolated (Clean),5.436
+0,Isolated (Clean),5.436
+0,Isolated (Clean),5.437
+0,Isolated (Clean),5.439
+0,Isolated (Clean),5.442
+0,Isolated (Clean),5.446
+0,Isolated (Clean),5.446
+0,Isolated (Clean),5.447
+0,Isolated (Clean),5.448
+0,Isolated (Clean),5.449
+0,Isolated (Clean),5.45
+0,Isolated (Clean),5.45
+0,Isolated (Clean),5.452
+0,Isolated (Clean),5.452
+0,Isolated (Clean),5.452
+0,Isolated (Clean),5.453
+0,Isolated (Clean),5.453
+0,Isolated (Clean),5.454
+0,Isolated (Clean),5.458
+0,Isolated (Clean),5.46
+0,Isolated (Clean),5.461
+0,Isolated (Clean),5.461
+0,Isolated (Clean),5.466
+0,Isolated (Clean),5.467
+0,Isolated (Clean),5.47
+0,Isolated (Clean),5.474
+0,Isolated (Clean),5.475
+0,Isolated (Clean),5.476
+0,Isolated (Clean),5.477
+0,Isolated (Clean),5.479
+0,Isolated (Clean),5.48
+0,Isolated (Clean),5.481
+0,Isolated (Clean),5.483
+0,Isolated (Clean),5.484
+0,Isolated (Clean),5.486
+0,Isolated (Clean),5.489
+0,Isolated (Clean),5.49
+0,Isolated (Clean),5.492
+0,Isolated (Clean),5.493
+0,Isolated (Clean),5.493
+0,Isolated (Clean),5.493
+0,Isolated (Clean),5.496
+0,Isolated (Clean),5.499
+0,Isolated (Clean),5.499
+0,Isolated (Clean),5.5
+0,Isolated (Clean),5.503
+0,Isolated (Clean),5.505
+0,Isolated (Clean),5.508
+0,Isolated (Clean),5.511
+0,Isolated (Clean),5.515
+0,Isolated (Clean),5.516
+0,Isolated (Clean),5.517
+0,Isolated (Clean),5.518
+0,Isolated (Clean),5.523
+0,Isolated (Clean),5.527
+0,Isolated (Clean),5.527
+0,Isolated (Clean),5.528
+0,Isolated (Clean),5.529
+0,Isolated (Clean),5.529
+0,Isolated (Clean),5.53
+0,Isolated (Clean),5.532
+0,Isolated (Clean),5.532
+0,Isolated (Clean),5.534
+0,Isolated (Clean),5.537
+0,Isolated (Clean),5.538
+0,Isolated (Clean),5.539
+0,Isolated (Clean),5.539
+0,Isolated (Clean),5.543
+0,Isolated (Clean),5.544
+0,Isolated (Clean),5.547
+0,Isolated (Clean),5.547
+0,Isolated (Clean),5.549
+0,Isolated (Clean),5.55
+0,Isolated (Clean),5.551
+0,Isolated (Clean),5.551
+0,Isolated (Clean),5.553
+0,Isolated (Clean),5.56
+0,Isolated (Clean),5.563
+0,Isolated (Clean),5.569
+0,Isolated (Clean),5.569
+0,Isolated (Clean),5.57
+0,Isolated (Clean),5.573
+0,Isolated (Clean),5.573
+0,Isolated (Clean),5.574
+0,Isolated (Clean),5.576
+0,Isolated (Clean),5.576
+0,Isolated (Clean),5.576
+0,Isolated (Clean),5.577
+0,Isolated (Clean),5.58
+0,Isolated (Clean),5.58
+0,Isolated (Clean),5.581
+0,Isolated (Clean),5.582
+0,Isolated (Clean),5.589
+0,Isolated (Clean),5.59
+0,Isolated (Clean),5.593
+0,Isolated (Clean),5.594
+0,Isolated (Clean),5.596
+0,Isolated (Clean),5.599
+0,Isolated (Clean),5.6
+0,Isolated (Clean),5.6
+0,Isolated (Clean),5.601
+0,Isolated (Clean),5.601
+0,Isolated (Clean),5.602
+0,Isolated (Clean),5.603
+0,Isolated (Clean),5.604
+0,Isolated (Clean),5.604
+0,Isolated (Clean),5.604
+0,Isolated (Clean),5.605
+0,Isolated (Clean),5.606
+0,Isolated (Clean),5.607
+0,Isolated (Clean),5.61
+0,Isolated (Clean),5.611
+0,Isolated (Clean),5.611
+0,Isolated (Clean),5.613
+0,Isolated (Clean),5.614
+0,Isolated (Clean),5.617
+0,Isolated (Clean),5.617
+0,Isolated (Clean),5.619
+0,Isolated (Clean),5.619
+0,Isolated (Clean),5.619
+0,Isolated (Clean),5.62
+0,Isolated (Clean),5.624
+0,Isolated (Clean),5.625
+0,Isolated (Clean),5.625
+0,Isolated (Clean),5.63
+0,Isolated (Clean),5.63
+0,Isolated (Clean),5.632
+0,Isolated (Clean),5.634
+0,Isolated (Clean),5.635
+0,Isolated (Clean),5.64
+0,Isolated (Clean),5.64
+0,Isolated (Clean),5.641
+0,Isolated (Clean),5.641
+0,Isolated (Clean),5.644
+0,Isolated (Clean),5.646
+0,Isolated (Clean),5.646
+0,Isolated (Clean),5.646
+0,Isolated (Clean),5.647
+0,Isolated (Clean),5.648
+0,Isolated (Clean),5.649
+0,Isolated (Clean),5.651
+0,Isolated (Clean),5.651
+0,Isolated (Clean),5.652
+0,Isolated (Clean),5.653
+0,Isolated (Clean),5.653
+0,Isolated (Clean),5.653
+0,Isolated (Clean),5.655
+0,Isolated (Clean),5.656
+0,Isolated (Clean),5.662
+0,Isolated (Clean),5.664
+0,Isolated (Clean),5.667
+0,Isolated (Clean),5.668
+0,Isolated (Clean),5.669
+0,Isolated (Clean),5.67
+0,Isolated (Clean),5.67
+0,Isolated (Clean),5.672
+0,Isolated (Clean),5.673
+0,Isolated (Clean),5.674
+0,Isolated (Clean),5.676
+0,Isolated (Clean),5.676
+0,Isolated (Clean),5.676
+0,Isolated (Clean),5.678
+0,Isolated (Clean),5.68
+0,Isolated (Clean),5.682
+0,Isolated (Clean),5.682
+0,Isolated (Clean),5.682
+0,Isolated (Clean),5.683
+0,Isolated (Clean),5.685
+0,Isolated (Clean),5.685
+0,Isolated (Clean),5.686
+0,Isolated (Clean),5.691
+0,Isolated (Clean),5.692
+0,Isolated (Clean),5.694
+0,Isolated (Clean),5.694
+0,Isolated (Clean),5.696
+0,Isolated (Clean),5.697
+0,Isolated (Clean),5.697
+0,Isolated (Clean),5.699
+0,Isolated (Clean),5.701
+0,Isolated (Clean),5.701
+0,Isolated (Clean),5.702
+0,Isolated (Clean),5.705
+0,Isolated (Clean),5.705
+0,Isolated (Clean),5.705
+0,Isolated (Clean),5.706
+0,Isolated (Clean),5.708
+0,Isolated (Clean),5.708
+0,Isolated (Clean),5.709
+0,Isolated (Clean),5.709
+0,Isolated (Clean),5.712
+0,Isolated (Clean),5.713
+0,Isolated (Clean),5.714
+0,Isolated (Clean),5.715
+0,Isolated (Clean),5.716
+0,Isolated (Clean),5.716
+0,Isolated (Clean),5.717
+0,Isolated (Clean),5.717
+0,Isolated (Clean),5.718
+0,Isolated (Clean),5.718
+0,Isolated (Clean),5.72
+0,Isolated (Clean),5.72
+0,Isolated (Clean),5.724
+0,Isolated (Clean),5.724
+0,Isolated (Clean),5.726
+0,Isolated (Clean),5.727
+0,Isolated (Clean),5.727
+0,Isolated (Clean),5.727
+0,Isolated (Clean),5.729
+0,Isolated (Clean),5.73
+0,Isolated (Clean),5.731
+0,Isolated (Clean),5.733
+0,Isolated (Clean),5.733
+0,Isolated (Clean),5.734
+0,Isolated (Clean),5.734
+0,Isolated (Clean),5.736
+0,Isolated (Clean),5.736
+0,Isolated (Clean),5.737
+0,Isolated (Clean),5.737
+0,Isolated (Clean),5.739
+0,Isolated (Clean),5.74
+0,Isolated (Clean),5.742
+0,Isolated (Clean),5.742
+0,Isolated (Clean),5.743
+0,Isolated (Clean),5.744
+0,Isolated (Clean),5.744
+0,Isolated (Clean),5.745
+0,Isolated (Clean),5.745
+0,Isolated (Clean),5.745
+0,Isolated (Clean),5.748
+0,Isolated (Clean),5.75
+0,Isolated (Clean),5.75
+0,Isolated (Clean),5.752
+0,Isolated (Clean),5.752
+0,Isolated (Clean),5.753
+0,Isolated (Clean),5.753
+0,Isolated (Clean),5.754
+0,Isolated (Clean),5.754
+0,Isolated (Clean),5.754
+0,Isolated (Clean),5.754
+0,Isolated (Clean),5.757
+0,Isolated (Clean),5.757
+0,Isolated (Clean),5.759
+0,Isolated (Clean),5.759
+0,Isolated (Clean),5.76
+0,Isolated (Clean),5.761
+0,Isolated (Clean),5.764
+0,Isolated (Clean),5.766
+0,Isolated (Clean),5.766
+0,Isolated (Clean),5.767
+0,Isolated (Clean),5.768
+0,Isolated (Clean),5.768
+0,Isolated (Clean),5.768
+0,Isolated (Clean),5.77
+0,Isolated (Clean),5.773
+0,Isolated (Clean),5.774
+0,Isolated (Clean),5.777
+0,Isolated (Clean),5.779
+0,Isolated (Clean),5.781
+0,Isolated (Clean),5.781
+0,Isolated (Clean),5.781
+0,Isolated (Clean),5.782
+0,Isolated (Clean),5.782
+0,Isolated (Clean),5.782
+0,Isolated (Clean),5.783
+0,Isolated (Clean),5.784
+0,Isolated (Clean),5.785
+0,Isolated (Clean),5.785
+0,Isolated (Clean),5.785
+0,Isolated (Clean),5.787
+0,Isolated (Clean),5.788
+0,Isolated (Clean),5.788
+0,Isolated (Clean),5.789
+0,Isolated (Clean),5.789
+0,Isolated (Clean),5.791
+0,Isolated (Clean),5.791
+0,Isolated (Clean),5.793
+0,Isolated (Clean),5.794
+0,Isolated (Clean),5.794
+0,Isolated (Clean),5.795
+0,Isolated (Clean),5.795
+0,Isolated (Clean),5.797
+0,Isolated (Clean),5.797
+0,Isolated (Clean),5.799
+0,Isolated (Clean),5.8
+0,Isolated (Clean),5.8
+0,Isolated (Clean),5.802
+0,Isolated (Clean),5.802
+0,Isolated (Clean),5.802
+0,Isolated (Clean),5.803
+0,Isolated (Clean),5.803
+0,Isolated (Clean),5.804
+0,Isolated (Clean),5.808
+0,Isolated (Clean),5.81
+0,Isolated (Clean),5.811
+0,Isolated (Clean),5.812
+0,Isolated (Clean),5.814
+0,Isolated (Clean),5.814
+0,Isolated (Clean),5.818
+0,Isolated (Clean),5.819
+0,Isolated (Clean),5.823
+0,Isolated (Clean),5.823
+0,Isolated (Clean),5.824
+0,Isolated (Clean),5.825
+0,Isolated (Clean),5.826
+0,Isolated (Clean),5.826
+0,Isolated (Clean),5.827
+0,Isolated (Clean),5.829
+0,Isolated (Clean),5.829
+0,Isolated (Clean),5.83
+0,Isolated (Clean),5.831
+0,Isolated (Clean),5.832
+0,Isolated (Clean),5.833
+0,Isolated (Clean),5.833
+0,Isolated (Clean),5.834
+0,Isolated (Clean),5.837
+0,Isolated (Clean),5.84
+0,Isolated (Clean),5.846
+0,Isolated (Clean),5.847
+0,Isolated (Clean),5.847
+0,Isolated (Clean),5.848
+0,Isolated (Clean),5.848
+0,Isolated (Clean),5.848
+0,Isolated (Clean),5.851
+0,Isolated (Clean),5.852
+0,Isolated (Clean),5.852
+0,Isolated (Clean),5.853
+0,Isolated (Clean),5.854
+0,Isolated (Clean),5.855
+0,Isolated (Clean),5.858
+0,Isolated (Clean),5.86
+0,Isolated (Clean),5.861
+0,Isolated (Clean),5.863
+0,Isolated (Clean),5.864
+0,Isolated (Clean),5.864
+0,Isolated (Clean),5.864
+0,Isolated (Clean),5.866
+0,Isolated (Clean),5.866
+0,Isolated (Clean),5.867
+0,Isolated (Clean),5.867
+0,Isolated (Clean),5.867
+0,Isolated (Clean),5.869
+0,Isolated (Clean),5.869
+0,Isolated (Clean),5.869
+0,Isolated (Clean),5.875
+0,Isolated (Clean),5.875
+0,Isolated (Clean),5.877
+0,Isolated (Clean),5.877
+0,Isolated (Clean),5.878
+0,Isolated (Clean),5.879
+0,Isolated (Clean),5.879
+0,Isolated (Clean),5.88
+0,Isolated (Clean),5.88
+0,Isolated (Clean),5.88
+0,Isolated (Clean),5.881
+0,Isolated (Clean),5.881
+0,Isolated (Clean),5.882
+0,Isolated (Clean),5.882
+0,Isolated (Clean),5.882
+0,Isolated (Clean),5.883
+0,Isolated (Clean),5.883
+0,Isolated (Clean),5.883
+0,Isolated (Clean),5.886
+0,Isolated (Clean),5.886
+0,Isolated (Clean),5.886
+0,Isolated (Clean),5.887
+0,Isolated (Clean),5.888
+0,Isolated (Clean),5.889
+0,Isolated (Clean),5.889
+0,Isolated (Clean),5.89
+0,Isolated (Clean),5.891
+0,Isolated (Clean),5.891
+0,Isolated (Clean),5.891
+0,Isolated (Clean),5.892
+0,Isolated (Clean),5.892
+0,Isolated (Clean),5.892
+0,Isolated (Clean),5.892
+0,Isolated (Clean),5.892
+0,Isolated (Clean),5.895
+0,Isolated (Clean),5.896
+0,Isolated (Clean),5.897
+0,Isolated (Clean),5.899
+0,Isolated (Clean),5.9
+0,Isolated (Clean),5.901
+0,Isolated (Clean),5.901
+0,Isolated (Clean),5.902
+0,Isolated (Clean),5.902
+0,Isolated (Clean),5.903
+0,Isolated (Clean),5.903
+0,Isolated (Clean),5.903
+0,Isolated (Clean),5.906
+0,Isolated (Clean),5.907
+0,Isolated (Clean),5.908
+0,Isolated (Clean),5.908
+0,Isolated (Clean),5.909
+0,Isolated (Clean),5.909
+0,Isolated (Clean),5.91
+0,Isolated (Clean),5.91
+0,Isolated (Clean),5.91
+0,Isolated (Clean),5.911
+0,Isolated (Clean),5.912
+0,Isolated (Clean),5.913
+0,Isolated (Clean),5.914
+0,Isolated (Clean),5.914
+0,Isolated (Clean),5.914
+0,Isolated (Clean),5.916
+0,Isolated (Clean),5.916
+0,Isolated (Clean),5.917
+0,Isolated (Clean),5.918
+0,Isolated (Clean),5.919
+0,Isolated (Clean),5.919
+0,Isolated (Clean),5.92
+0,Isolated (Clean),5.92
+0,Isolated (Clean),5.92
+0,Isolated (Clean),5.921
+0,Isolated (Clean),5.922
+0,Isolated (Clean),5.922
+0,Isolated (Clean),5.923
+0,Isolated (Clean),5.923
+0,Isolated (Clean),5.923
+0,Isolated (Clean),5.924
+0,Isolated (Clean),5.924
+0,Isolated (Clean),5.925
+0,Isolated (Clean),5.926
+0,Isolated (Clean),5.927
+0,Isolated (Clean),5.928
+0,Isolated (Clean),5.928
+0,Isolated (Clean),5.928
+0,Isolated (Clean),5.929
+0,Isolated (Clean),5.93
+0,Isolated (Clean),5.93
+0,Isolated (Clean),5.931
+0,Isolated (Clean),5.932
+0,Isolated (Clean),5.934
+0,Isolated (Clean),5.935
+0,Isolated (Clean),5.935
+0,Isolated (Clean),5.935
+0,Isolated (Clean),5.936
+0,Isolated (Clean),5.936
+0,Isolated (Clean),5.938
+0,Isolated (Clean),5.938
+0,Isolated (Clean),5.939
+0,Isolated (Clean),5.94
+0,Isolated (Clean),5.94
+0,Isolated (Clean),5.94
+0,Isolated (Clean),5.941
+0,Isolated (Clean),5.944
+0,Isolated (Clean),5.944
+0,Isolated (Clean),5.944
+0,Isolated (Clean),5.946
+0,Isolated (Clean),5.946
+0,Isolated (Clean),5.947
+0,Isolated (Clean),5.948
+0,Isolated (Clean),5.951
+0,Isolated (Clean),5.951
+0,Isolated (Clean),5.951
+0,Isolated (Clean),5.951
+0,Isolated (Clean),5.952
+0,Isolated (Clean),5.952
+0,Isolated (Clean),5.953
+0,Isolated (Clean),5.953
+0,Isolated (Clean),5.953
+0,Isolated (Clean),5.954
+0,Isolated (Clean),5.955
+0,Isolated (Clean),5.955
+0,Isolated (Clean),5.956
+0,Isolated (Clean),5.956
+0,Isolated (Clean),5.956
+0,Isolated (Clean),5.957
+0,Isolated (Clean),5.958
+0,Isolated (Clean),5.958
+0,Isolated (Clean),5.959
+0,Isolated (Clean),5.96
+0,Isolated (Clean),5.96
+0,Isolated (Clean),5.96
+0,Isolated (Clean),5.961
+0,Isolated (Clean),5.962
+0,Isolated (Clean),5.963
+0,Isolated (Clean),5.964
+0,Isolated (Clean),5.964
+0,Isolated (Clean),5.964
+0,Isolated (Clean),5.965
+0,Isolated (Clean),5.966
+0,Isolated (Clean),5.966
+0,Isolated (Clean),5.967
+0,Isolated (Clean),5.969
+0,Isolated (Clean),5.97
+0,Isolated (Clean),5.97
+0,Isolated (Clean),5.971
+0,Isolated (Clean),5.972
+0,Isolated (Clean),5.972
+0,Isolated (Clean),5.973
+0,Isolated (Clean),5.973
+0,Isolated (Clean),5.975
+0,Isolated (Clean),5.976
+0,Isolated (Clean),5.977
+0,Isolated (Clean),5.977
+0,Isolated (Clean),5.979
+0,Isolated (Clean),5.98
+0,Isolated (Clean),5.981
+0,Isolated (Clean),5.981
+0,Isolated (Clean),5.981
+0,Isolated (Clean),5.984
+0,Isolated (Clean),5.984
+0,Isolated (Clean),5.986
+0,Isolated (Clean),5.987
+0,Isolated (Clean),5.988
+0,Isolated (Clean),5.99
+0,Isolated (Clean),5.992
+0,Isolated (Clean),5.993
+0,Isolated (Clean),5.994
+0,Isolated (Clean),5.994
+0,Isolated (Clean),5.995
+0,Isolated (Clean),5.995
+0,Isolated (Clean),5.996
+0,Isolated (Clean),5.996
+0,Isolated (Clean),5.996
+0,Isolated (Clean),5.996
+0,Isolated (Clean),5.997
+0,Isolated (Clean),5.997
+0,Isolated (Clean),5.998
+0,Isolated (Clean),5.998
+0,Isolated (Clean),5.999
+0,Isolated (Clean),6.002
+0,Isolated (Clean),6.003
+0,Isolated (Clean),6.003
+0,Isolated (Clean),6.003
+0,Isolated (Clean),6.004
+0,Isolated (Clean),6.005
+0,Isolated (Clean),6.006
+0,Isolated (Clean),6.006
+0,Isolated (Clean),6.007
+0,Isolated (Clean),6.007
+0,Isolated (Clean),6.008
+0,Isolated (Clean),6.009
+0,Isolated (Clean),6.009
+0,Isolated (Clean),6.01
+0,Isolated (Clean),6.011
+0,Isolated (Clean),6.012
+0,Isolated (Clean),6.013
+0,Isolated (Clean),6.015
+0,Isolated (Clean),6.017
+0,Isolated (Clean),6.017
+0,Isolated (Clean),6.018
+0,Isolated (Clean),6.018
+0,Isolated (Clean),6.018
+0,Isolated (Clean),6.019
+0,Isolated (Clean),6.019
+0,Isolated (Clean),6.02
+0,Isolated (Clean),6.02
+0,Isolated (Clean),6.021
+0,Isolated (Clean),6.022
+0,Isolated (Clean),6.022
+0,Isolated (Clean),6.023
+0,Isolated (Clean),6.023
+0,Isolated (Clean),6.024
+0,Isolated (Clean),6.024
+0,Isolated (Clean),6.024
+0,Isolated (Clean),6.025
+0,Isolated (Clean),6.026
+0,Isolated (Clean),6.026
+0,Isolated (Clean),6.026
+0,Isolated (Clean),6.027
+0,Isolated (Clean),6.029
+0,Isolated (Clean),6.029
+0,Isolated (Clean),6.03
+0,Isolated (Clean),6.03
+0,Isolated (Clean),6.032
+0,Isolated (Clean),6.033
+0,Isolated (Clean),6.033
+0,Isolated (Clean),6.035
+0,Isolated (Clean),6.037
+0,Isolated (Clean),6.037
+0,Isolated (Clean),6.038
+0,Isolated (Clean),6.038
+0,Isolated (Clean),6.038
+0,Isolated (Clean),6.039
+0,Isolated (Clean),6.039
+0,Isolated (Clean),6.041
+0,Isolated (Clean),6.042
+0,Isolated (Clean),6.043
+0,Isolated (Clean),6.043
+0,Isolated (Clean),6.044
+0,Isolated (Clean),6.045
+0,Isolated (Clean),6.045
+0,Isolated (Clean),6.046
+0,Isolated (Clean),6.046
+0,Isolated (Clean),6.046
+0,Isolated (Clean),6.047
+0,Isolated (Clean),6.047
+0,Isolated (Clean),6.047
+0,Isolated (Clean),6.048
+0,Isolated (Clean),6.048
+0,Isolated (Clean),6.049
+0,Isolated (Clean),6.049
+0,Isolated (Clean),6.05
+0,Isolated (Clean),6.051
+0,Isolated (Clean),6.051
+0,Isolated (Clean),6.052
+0,Isolated (Clean),6.053
+0,Isolated (Clean),6.053
+0,Isolated (Clean),6.053
+0,Isolated (Clean),6.054
+0,Isolated (Clean),6.054
+0,Isolated (Clean),6.055
+0,Isolated (Clean),6.055
+0,Isolated (Clean),6.056
+0,Isolated (Clean),6.056
+0,Isolated (Clean),6.056
+0,Isolated (Clean),6.057
+0,Isolated (Clean),6.057
+0,Isolated (Clean),6.058
+0,Isolated (Clean),6.058
+0,Isolated (Clean),6.058
+0,Isolated (Clean),6.058
+0,Isolated (Clean),6.059
+0,Isolated (Clean),6.059
+0,Isolated (Clean),6.06
+0,Isolated (Clean),6.061
+0,Isolated (Clean),6.061
+0,Isolated (Clean),6.061
+0,Isolated (Clean),6.062
+0,Isolated (Clean),6.063
+0,Isolated (Clean),6.063
+0,Isolated (Clean),6.063
+0,Isolated (Clean),6.064
+0,Isolated (Clean),6.064
+0,Isolated (Clean),6.066
+0,Isolated (Clean),6.067
+0,Isolated (Clean),6.067
+0,Isolated (Clean),6.068
+0,Isolated (Clean),6.068
+0,Isolated (Clean),6.069
+0,Isolated (Clean),6.071
+0,Isolated (Clean),6.071
+0,Isolated (Clean),6.071
+0,Isolated (Clean),6.072
+0,Isolated (Clean),6.072
+0,Isolated (Clean),6.072
+0,Isolated (Clean),6.073
+0,Isolated (Clean),6.073
+0,Isolated (Clean),6.075
+0,Isolated (Clean),6.075
+0,Isolated (Clean),6.076
+0,Isolated (Clean),6.076
+0,Isolated (Clean),6.077
+0,Isolated (Clean),6.078
+0,Isolated (Clean),6.079
+0,Isolated (Clean),6.08
+0,Isolated (Clean),6.081
+0,Isolated (Clean),6.081
+0,Isolated (Clean),6.082
+0,Isolated (Clean),6.082
+0,Isolated (Clean),6.083
+0,Isolated (Clean),6.083
+0,Isolated (Clean),6.084
+0,Isolated (Clean),6.084
+0,Isolated (Clean),6.084
+0,Isolated (Clean),6.085
+0,Isolated (Clean),6.085
+0,Isolated (Clean),6.086
+0,Isolated (Clean),6.086
+0,Isolated (Clean),6.087
+0,Isolated (Clean),6.088
+0,Isolated (Clean),6.088
+0,Isolated (Clean),6.09
+0,Isolated (Clean),6.091
+0,Isolated (Clean),6.093
+0,Isolated (Clean),6.093
+0,Isolated (Clean),6.093
+0,Isolated (Clean),6.094
+0,Isolated (Clean),6.095
+0,Isolated (Clean),6.095
+0,Isolated (Clean),6.095
+0,Isolated (Clean),6.095
+0,Isolated (Clean),6.096
+0,Isolated (Clean),6.096
+0,Isolated (Clean),6.096
+0,Isolated (Clean),6.098
+0,Isolated (Clean),6.099
+0,Isolated (Clean),6.101
+0,Isolated (Clean),6.101
+0,Isolated (Clean),6.102
+0,Isolated (Clean),6.102
+0,Isolated (Clean),6.103
+0,Isolated (Clean),6.103
+0,Isolated (Clean),6.103
+0,Isolated (Clean),6.104
+0,Isolated (Clean),6.104
+0,Isolated (Clean),6.106
+0,Isolated (Clean),6.106
+0,Isolated (Clean),6.107
+0,Isolated (Clean),6.107
+0,Isolated (Clean),6.109
+0,Isolated (Clean),6.11
+0,Isolated (Clean),6.111
+0,Isolated (Clean),6.112
+0,Isolated (Clean),6.112
+0,Isolated (Clean),6.112
+0,Isolated (Clean),6.112
+0,Isolated (Clean),6.113
+0,Isolated (Clean),6.114
+0,Isolated (Clean),6.114
+0,Isolated (Clean),6.115
+0,Isolated (Clean),6.116
+0,Isolated (Clean),6.116
+0,Isolated (Clean),6.116
+0,Isolated (Clean),6.117
+0,Isolated (Clean),6.117
+0,Isolated (Clean),6.118
+0,Isolated (Clean),6.119
+0,Isolated (Clean),6.12
+0,Isolated (Clean),6.12
+0,Isolated (Clean),6.121
+0,Isolated (Clean),6.121
+0,Isolated (Clean),6.122
+0,Isolated (Clean),6.123
+0,Isolated (Clean),6.124
+0,Isolated (Clean),6.124
+0,Isolated (Clean),6.126
+0,Isolated (Clean),6.126
+0,Isolated (Clean),6.126
+0,Isolated (Clean),6.127
+0,Isolated (Clean),6.128
+0,Isolated (Clean),6.128
+0,Isolated (Clean),6.129
+0,Isolated (Clean),6.13
+0,Isolated (Clean),6.132
+0,Isolated (Clean),6.134
+0,Isolated (Clean),6.134
+0,Isolated (Clean),6.135
+0,Isolated (Clean),6.136
+0,Isolated (Clean),6.137
+0,Isolated (Clean),6.137
+0,Isolated (Clean),6.137
+0,Isolated (Clean),6.139
+0,Isolated (Clean),6.139
+0,Isolated (Clean),6.139
+0,Isolated (Clean),6.14
+0,Isolated (Clean),6.14
+0,Isolated (Clean),6.142
+0,Isolated (Clean),6.143
+0,Isolated (Clean),6.144
+0,Isolated (Clean),6.145
+0,Isolated (Clean),6.145
+0,Isolated (Clean),6.145
+0,Isolated (Clean),6.145
+0,Isolated (Clean),6.146
+0,Isolated (Clean),6.146
+0,Isolated (Clean),6.146
+0,Isolated (Clean),6.146
+0,Isolated (Clean),6.147
+0,Isolated (Clean),6.147
+0,Isolated (Clean),6.147
+0,Isolated (Clean),6.15
+0,Isolated (Clean),6.15
+0,Isolated (Clean),6.151
+0,Isolated (Clean),6.153
+0,Isolated (Clean),6.154
+0,Isolated (Clean),6.154
+0,Isolated (Clean),6.154
+0,Isolated (Clean),6.154
+0,Isolated (Clean),6.155
+0,Isolated (Clean),6.155
+0,Isolated (Clean),6.155
+0,Isolated (Clean),6.156
+0,Isolated (Clean),6.156
+0,Isolated (Clean),6.157
+0,Isolated (Clean),6.158
+0,Isolated (Clean),6.16
+0,Isolated (Clean),6.16
+0,Isolated (Clean),6.161
+0,Isolated (Clean),6.161
+0,Isolated (Clean),6.161
+0,Isolated (Clean),6.161
+0,Isolated (Clean),6.162
+0,Isolated (Clean),6.162
+0,Isolated (Clean),6.162
+0,Isolated (Clean),6.162
+0,Isolated (Clean),6.163
+0,Isolated (Clean),6.163
+0,Isolated (Clean),6.164
+0,Isolated (Clean),6.164
+0,Isolated (Clean),6.165
+0,Isolated (Clean),6.165
+0,Isolated (Clean),6.165
+0,Isolated (Clean),6.165
+0,Isolated (Clean),6.166
+0,Isolated (Clean),6.167
+0,Isolated (Clean),6.167
+0,Isolated (Clean),6.167
+0,Isolated (Clean),6.17
+0,Isolated (Clean),6.17
+0,Isolated (Clean),6.17
+0,Isolated (Clean),6.172
+0,Isolated (Clean),6.172
+0,Isolated (Clean),6.172
+0,Isolated (Clean),6.173
+0,Isolated (Clean),6.173
+0,Isolated (Clean),6.173
+0,Isolated (Clean),6.173
+0,Isolated (Clean),6.174
+0,Isolated (Clean),6.175
+0,Isolated (Clean),6.175
+0,Isolated (Clean),6.175
+0,Isolated (Clean),6.175
+0,Isolated (Clean),6.176
+0,Isolated (Clean),6.176
+0,Isolated (Clean),6.176
+0,Isolated (Clean),6.176
+0,Isolated (Clean),6.176
+0,Isolated (Clean),6.177
+0,Isolated (Clean),6.177
+0,Isolated (Clean),6.177
+0,Isolated (Clean),6.178
+0,Isolated (Clean),6.178
+0,Isolated (Clean),6.178
+0,Isolated (Clean),6.178
+0,Isolated (Clean),6.179
+0,Isolated (Clean),6.18
+0,Isolated (Clean),6.18
+0,Isolated (Clean),6.18
+0,Isolated (Clean),6.181
+0,Isolated (Clean),6.181

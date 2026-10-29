@@ -104,12 +104,10 @@ type ScoreResult struct {
 //
 // Returns a ScoreResult with score in [0, 100], or NeutralScore if insufficient data.
 func (s *Scorer) Score(candidate profile.RuntimeProfile, colocated []profile.RuntimeProfile) ScoreResult {
-	// If no candidate profile or unknown confidence, return neutral
+	// A new workload has no profile yet, but its neighbours' pressure still harms
+	// it, so score it as a quiet workload instead of returning neutral.
 	if candidate.Confidence == profile.ConfidenceUnknown {
-		return ScoreResult{
-			Score:  NeutralScore,
-			Reason: "no profile available for candidate workload",
-		}
+		candidate = profile.RuntimeProfile{WorkloadKey: candidate.WorkloadKey, Confidence: profile.ConfidenceHigh}
 	}
 
 	// If no co-located workloads, perfect score — empty node
@@ -127,8 +125,13 @@ func (s *Scorer) Score(candidate profile.RuntimeProfile, colocated []profile.Run
 			continue // skip workloads with no profile data
 		}
 
-		// Cache penalty: min of the two rates (captures destructive interference)
-		cachePenalty := math.Min(candidate.CacheMissRate, p.CacheMissRate) /
+		// Cache penalty: neighbour's miss rate drives the penalty.
+		// A cache-thrashing neighbour causes LLC evictions proportional to its own
+		// working-set churn, regardless of the candidate's miss rate. Using the
+		// neighbour's rate directly (rather than min(candidate, neighbour)) ensures
+		// that a 900K-miss/s co-tenant is penalised at its actual pressure level even
+		// when the victim itself is cache-friendly.
+		cachePenalty := p.CacheMissRate /
 			s.maxCacheMissRate * s.weights.Cache
 
 		// Lock penalty: sum of ratios (both contribute to contention pressure)

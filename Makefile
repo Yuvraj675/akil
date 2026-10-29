@@ -26,7 +26,7 @@ COLLECTOR_BIN       := $(BIN_DIR)/akil-collector
 AGGREGATOR_BIN      := $(BIN_DIR)/akil-aggregator
 SCHEDULER_PLUGIN_BIN := $(BIN_DIR)/akil-scheduler
 
-.PHONY: all build clean test vet lint proto generate image kind-up kind-down deploy help
+.PHONY: demo all build clean test vet lint proto generate image kind-up kind-down deploy help
 
 ## Default target
 all: build
@@ -135,3 +135,10 @@ dev-aggregator:
 build-cli:
 	@mkdir -p $(BIN_DIR)
 	$(GOBUILD) -o $(BIN_DIR)/akil-cli ./cmd/akil-cli/
+
+## demo: Run the aggregator locally (fast 12s window) and the frontend for the live demo
+demo: build-aggregator
+	@echo "Aggregator on :8080, frontend on http://localhost:5173"
+	@trap 'kill 0' EXIT; \
+	./$(AGGREGATOR_BIN) --bucket-duration=1s & \
+	cd frontend && npm run dev

@@ -1,0 +1,20 @@
+\ProvidesPackage{enumitem}[2020/01/01 Minimal enumitem shim]
+
+\let\old@itemize\itemize
+\let\old@enditemize\enditemize
+\let\old@enumerate\enumerate
+\let\old@endenumerate\endenumerate
+
+\renewenvironment{itemize}[1][]{%
+  \old@itemize
+}{%
+  \old@enditemize
+}
+
+\renewenvironment{enumerate}[1][]{%
+  \old@enumerate
+}{%
+  \old@endenumerate
+}
+
+\newcommand{\setlist}[2][]{}
